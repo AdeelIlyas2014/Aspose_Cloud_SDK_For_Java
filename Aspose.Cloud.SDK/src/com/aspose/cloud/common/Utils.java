@@ -359,21 +359,7 @@ public class Utils {
 
 	public static String StreamToString(InputStream stream) {
 		try {
-			// read it with BufferedReader
-			java.io.BufferedReader br = new java.io.BufferedReader(
-					new java.io.InputStreamReader(stream));
-
-			StringBuilder sb = new StringBuilder();
-
-			String line;
-			while ((line = br.readLine()) != null) {
-				sb.append(line);
-			}
-
-			// System.out.println(sb.toString());
-
-			br.close();
-			return sb.toString();
+		    return IOUtils.toString(stream);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
