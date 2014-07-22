@@ -26,7 +26,7 @@ public class TextEditor {
 
 	public List<TextItem> FindText(String text) throws Exception {
 		// check whether file is set or not
-		if (FileName == "")
+		if (FileName.equals(""))
 			throw new Exception("No file name specified");
 
 		// build URI
@@ -62,7 +62,7 @@ public class TextEditor {
 
 	public int ReplaceText(String oldText, String newText) throws Exception {
 		// check whether file is set or not
-		if (FileName == "")
+		if (FileName.equals(""))
 			throw new Exception("No file name specified");
 
 		// build URI
@@ -98,7 +98,7 @@ public class TextEditor {
 
 	public List<TextItem> GetTextItems() throws Exception {
 		// check whether file is set or not
-		if (FileName == "")
+		if (FileName.equals(""))
 			throw new Exception("No file name specified");
 
 		// build URI
@@ -139,7 +139,7 @@ public class TextEditor {
 	public List<TextItem> FindText(String WorkSheetName, String text)
 			throws Exception {
 		// check whether file is set or not
-		if (FileName == "")
+		if (FileName.equals(""))
 			throw new Exception("No file name specified");
 
 		// build URI
@@ -176,7 +176,7 @@ public class TextEditor {
 	public int ReplaceText(String workSheet, String oldText, String newText)
 			throws Exception {
 		// check whether file is set or not
-		if (FileName == "")
+		if (FileName.equals(""))
 			throw new Exception("No file name specified");
 
 		// build URI
@@ -217,7 +217,7 @@ public class TextEditor {
 	// / <returns></returns>
 	public List<TextItem> GetTextItems(String WorkSheetName) throws Exception {
 		// check whether file is set or not
-		if (FileName == "")
+		if (FileName.equals(""))
 			throw new Exception("No file name specified");
 
 		// build URI

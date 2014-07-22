@@ -333,7 +333,7 @@ public class Utils {
 					.openConnection();
 			httpCon.setDoOutput(true);
 
-			if (ContentType.toLowerCase() == "xml")
+			if (ContentType.toLowerCase().equals("xml"))
 				httpCon.setRequestProperty("Content-Type", "application/xml");
 			else
 				httpCon.setRequestProperty("Content-Type", "application/json");

@@ -277,7 +277,7 @@ public class Folder {
 			File localFile = new File(strFile);
 			String strRemoteFileName = localFile.getName();
 			String strURIRequest = this.strURIFile
-					+ (strFolder == "" ? "" : strFolder + "/")
+					+ (strFolder.equals("") ? "" : strFolder + "/")
 					+ strRemoteFileName;
 			String strURISigned = "";
 			if (this.auth != null) {
@@ -309,7 +309,7 @@ public class Folder {
 			File localFile = new File(strFile);
 			String strRemoteFileName = localFile.getName();
 			String strURIRequest = this.strURIFile
-					+ (strFolder == "" ? "" : strFolder + "/")
+					+ (strFolder.equals("") ? "" : strFolder + "/")
 					+ strRemoteFileName;
 			strURIRequest += "?storage=" + storageName;
 			String strURISigned = "";

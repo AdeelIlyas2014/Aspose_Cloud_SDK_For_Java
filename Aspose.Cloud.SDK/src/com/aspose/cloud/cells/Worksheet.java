@@ -32,7 +32,7 @@ public class Worksheet {
 		try {
 
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -74,7 +74,7 @@ public class Worksheet {
 
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -116,7 +116,7 @@ public class Worksheet {
 		try {
 
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -164,7 +164,7 @@ public class Worksheet {
 		try {
 
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -212,7 +212,7 @@ public class Worksheet {
 		try {
 
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -260,7 +260,7 @@ public class Worksheet {
 		try {
 
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -306,7 +306,7 @@ public class Worksheet {
 
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -353,7 +353,7 @@ public class Worksheet {
 		try {
 
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -395,7 +395,7 @@ public class Worksheet {
 	{
 		try
 		{
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -471,7 +471,7 @@ public class Worksheet {
 		try {
 
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -517,7 +517,7 @@ public class Worksheet {
 
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -566,7 +566,7 @@ public class Worksheet {
 		try {
 
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -624,7 +624,7 @@ public class Worksheet {
 		try {
 
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -670,7 +670,7 @@ public class Worksheet {
 	public Hyperlink GetHyperlinkByIndex(int index) {
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -717,7 +717,7 @@ public class Worksheet {
 	public Comment GetComment(String cellName) {
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -765,7 +765,7 @@ public class Worksheet {
 	public OleObject GetOleObjectByIndex(int index) {
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -815,7 +815,7 @@ public class Worksheet {
 
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -936,7 +936,7 @@ public class Worksheet {
 	public Validation GetValidationByIndex(int index) {
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -987,7 +987,7 @@ public class Worksheet {
 
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -1037,7 +1037,7 @@ public class Worksheet {
 		try {
 
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -1088,7 +1088,7 @@ public class Worksheet {
 		try {
 
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -1138,7 +1138,7 @@ public class Worksheet {
 		try {
 
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -1187,7 +1187,7 @@ public class Worksheet {
 		try {
 
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -1235,7 +1235,7 @@ public class Worksheet {
 	public int GetChartsCount() {
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -1283,7 +1283,7 @@ public class Worksheet {
 
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -1332,7 +1332,7 @@ public class Worksheet {
 
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -1381,7 +1381,7 @@ public class Worksheet {
 
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -1433,7 +1433,7 @@ public class Worksheet {
 
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -1533,7 +1533,7 @@ public class Worksheet {
 		try {
 
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -1625,7 +1625,7 @@ public class Worksheet {
 
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -1670,7 +1670,7 @@ public class Worksheet {
 
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -1713,7 +1713,7 @@ public class Worksheet {
 
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -1758,7 +1758,7 @@ public class Worksheet {
 
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -1804,7 +1804,7 @@ public class Worksheet {
 		try {
 
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -1900,7 +1900,7 @@ public class Worksheet {
 
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -1986,7 +1986,7 @@ public class Worksheet {
 	{
 		try
 		{
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI

@@ -59,9 +59,9 @@ public class Converter {
 			ImageFormat outputformat) {
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
-			else if (WorkSheetName == "")
+			else if (WorkSheetName.equals(""))
 				throw new Exception("No Worksheet name specified");
 
 			// build URI
@@ -104,9 +104,9 @@ public class Converter {
 			ImageFormat outputformat) {
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
-			else if (WorkSheetName == "")
+			else if (WorkSheetName.equals(""))
 				throw new Exception("No Worksheet name specified");
 
 			// build URI
@@ -150,9 +150,9 @@ public class Converter {
 			ImageFormat outputformat) {
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
-			else if (WorkSheetName == "")
+			else if (WorkSheetName.equals(""))
 				throw new Exception("No Worksheet name specified");
 
 			// build URI
@@ -195,9 +195,9 @@ public class Converter {
 
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
-			else if (WorkSheetName == "")
+			else if (WorkSheetName.equals(""))
 				throw new Exception("No Worksheet name specified");
 
 			// build URI
@@ -240,9 +240,9 @@ public class Converter {
 			ImageFormat outputFormat) {
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
-			else if (WorkSheetName == "")
+			else if (WorkSheetName.equals(""))
 				throw new Exception("No Worksheet name specified");
 
 			// build URI
@@ -278,7 +278,7 @@ public class Converter {
 	public boolean Save(String outputFileName, SaveFormat outputFormat) {
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI

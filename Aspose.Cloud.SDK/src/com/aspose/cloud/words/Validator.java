@@ -48,7 +48,7 @@ import com.aspose.cloud.common.Product;
        /* public Boolean validateFile()
         {
 
-            if (Path.GetExtension(FileName).ToLower() == "." +  SaveFormat.Doc.ToString().ToLower() || Path.GetExtension(FileName).ToLower() == "." + SaveFormat.Docx.ToString().ToLower())
+            if (Path.GetExtension(FileName).ToLower().equals(".") +  SaveFormat.Doc.ToString().ToLower() || Path.GetExtension(FileName).ToLower().equals(".") + SaveFormat.Docx.ToString().ToLower())
                 return true;
             else
                 return false;

@@ -69,7 +69,7 @@ public class ChartEditor {
 
 	public boolean DeleteChart(int chartIndex) throws Exception {
 		// check whether file is set or not
-		if (FileName == "")
+		if (FileName.equals(""))
 			throw new Exception("No file name specified");
 
 		// build URI
@@ -105,7 +105,7 @@ public class ChartEditor {
 
 	public ChartArea GetChartArea(int chartIndex) throws Exception {
 		// check whether file is set or not
-		if (FileName == "")
+		if (FileName.equals(""))
 			throw new Exception("No file name specified");
 
 		// build URI
@@ -141,7 +141,7 @@ public class ChartEditor {
 
 	public FillFormat GetFillFormat(int chartIndex) throws Exception {
 		// check whether file is set or not
-		if (FileName == "")
+		if (FileName.equals(""))
 			throw new Exception("No file name specified");
 
 		// build URI
@@ -177,7 +177,7 @@ public class ChartEditor {
 
 	public Line GetBorder(int chartIndex) throws Exception {
 		// check whether file is set or not
-		if (FileName == "")
+		if (FileName.equals(""))
 			throw new Exception("No file name specified");
 
 		// build URI

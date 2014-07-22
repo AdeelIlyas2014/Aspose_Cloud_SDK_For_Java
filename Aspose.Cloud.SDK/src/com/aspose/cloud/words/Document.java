@@ -70,7 +70,7 @@ public class Document {
 	public List<DocumentProperty> GetProperties() {
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -110,7 +110,7 @@ public class Document {
 	public DocumentProperty GetProperty(String propertyName) {
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -205,7 +205,7 @@ public class Document {
 	public boolean DeleteProperty(String propertyName) {
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -254,7 +254,7 @@ public class Document {
 	public DocumentResourceResponse GetDocumentInfo() {
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -294,7 +294,7 @@ public class Document {
 			String[] importFormatModes, String folder) {
 
 		// check whether file is set or not
-		if (FileName == "")
+		if (FileName.equals(""))
 			throw new RuntimeException("No file name specified");
 
 		// check whether required information is complete
@@ -369,7 +369,7 @@ public class Document {
 		try {
 			
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -422,7 +422,7 @@ public class Document {
 		try {
 			
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -468,7 +468,7 @@ public class Document {
 		 try {
 				
 				// check whether file is set or not
-				if (FileName == "")
+				if (FileName.equals(""))
 					throw new Exception("No file name specified");
 
 				// build URI
@@ -519,14 +519,14 @@ public class Document {
 try {
 			
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = Product.getBaseProductUri() + "/words/" + FileName;
 			strURI += "/split?" +
-                    (format == "" ? "" : "format=" + format) +
-                    (folder == "" ? "" : "&folder=" + folder) +
+                    (format.equals("") ? "" : "format=" + format) +
+                    (folder.equals("") ? "" : "&folder=" + folder) +
                     (from == 0 ? "" : "&from=" +  from) +
                     (to == 0 ? "" : "&to=" + to);
 

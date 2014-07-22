@@ -966,7 +966,7 @@ public class Document {
 	{ 
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -1006,7 +1006,7 @@ public class Document {
 	{
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -1052,7 +1052,7 @@ public class Document {
 	{
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -1098,7 +1098,7 @@ public class Document {
 	{
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -1144,7 +1144,7 @@ public class Document {
 	{
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -1190,7 +1190,7 @@ public class Document {
 	{
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -1229,7 +1229,7 @@ public class Document {
 	{
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -1268,7 +1268,7 @@ public class Document {
 	{
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -1307,7 +1307,7 @@ public class Document {
 	{
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -1349,7 +1349,7 @@ public class Document {
 	{
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -1392,7 +1392,7 @@ public class Document {
 	{ 
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
