@@ -4,6 +4,7 @@
 package com.aspose.cloud.storage;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -186,6 +187,15 @@ public class Folder {
 		}
 	}
 
+	public boolean UploadFile(InputStream fileStream, String strRemoteFileName,
+			String strFolder) throws Exception {
+		return UploadFile(fileStream, strRemoteFileName, strFolder, null, null);
+	}
+
+	
+	
+
+	
 	// / <summary>
 	// / Deletes an empty folder from the storage. Use
 	// "FolderName/SubFolderName" for sub folders.
@@ -264,77 +274,48 @@ public class Folder {
 			return false;
 		}
 	}
-
-	// / <summary>
-	// / Uploads a file from your local machine to specified folder / subfolder
-	// on Aspose storage.
-	// / </summary>
-	// / <param name="strFile"></param>
-	// / <param name="strFolder"></param>
-	public boolean UploadFile(String strFile, String strFolder)
-			throws Exception {
-		try {
-			File localFile = new File(strFile);
-			String strRemoteFileName = localFile.getName();
-			String strURIRequest = this.strURIFile
-					+ (strFolder == "" ? "" : strFolder + "/")
-					+ strRemoteFileName;
-			String strURISigned = "";
-			if (this.auth != null) {
-				if (!this.auth.validateAuth()) {
-					System.out.println("Please Specify AppSID and AppKey");
-				} else {
-					strURISigned = Utils.Sign(strURIRequest,
-							this.auth.getAppKey(), this.auth.getAppSID());
-				}
-			} else {
-				strURISigned = Utils.Sign(strURIRequest);
-			}
-
-			String strResponse = Utils.UploadFileBinary(localFile,
-					strURISigned, "PUT");
-
-			if (strResponse.contains("OK"))
-				return true;
-			else
-				return false;
-		} catch (Exception ex) {
-			throw new Exception(ex.getMessage());
-		}
+	public boolean UploadFile(String strFile, String strFolder) throws Exception {
+		 return UploadFile(strFile, strFolder, null, null);
+		 }
+	public boolean UploadFile(String strFile, String strFolder,StorageType storageType, String storageName) throws Exception {
+		File localFile = new File(strFile);
+		FileInputStream fileStream = new FileInputStream(localFile);
+		String strRemoteFileName = localFile.getName();
+		return UploadFile(fileStream, strRemoteFileName, strFolder,	storageType, storageName);
 	}
+	
 
-	public boolean UploadFile(String strFile, String strFolder,
+
+	public boolean UploadFile(InputStream fileStream, String strRemoteFileName, String strFolder,
 			StorageType storageType, String storageName) throws Exception {
-		try {
-			File localFile = new File(strFile);
-			String strRemoteFileName = localFile.getName();
-			String strURIRequest = this.strURIFile
-					+ (strFolder == "" ? "" : strFolder + "/")
-					+ strRemoteFileName;
-			strURIRequest += "?storage=" + storageName;
-			String strURISigned = "";
-			if (this.auth != null) {
-				if (!this.auth.validateAuth()) {
-					System.out.println("Please Specify AppSID and AppKey");
+			try {
+				
+				String strURIRequest = this.strURIFile
+						+ (strFolder == "" ? "" : strFolder + "/")
+						+ strRemoteFileName;
+				String strURISigned = "";
+				if (this.auth != null) {
+					if (!this.auth.validateAuth()) {
+						System.out.println("Please Specify AppSID and AppKey");
+					} else {
+						strURISigned = Utils.Sign(strURIRequest,
+								this.auth.getAppKey(), this.auth.getAppSID());
+					}
 				} else {
-					strURISigned = Utils.Sign(strURIRequest,
-							this.auth.getAppKey(), this.auth.getAppSID());
+					strURISigned = Utils.Sign(strURIRequest);
 				}
-			} else {
-				strURISigned = Utils.Sign(strURIRequest);
+				String strResponse = Utils.UploadFileBinary(fileStream,
+						strURISigned, "PUT");
+
+				if (strResponse.contains("OK"))
+					return true;
+				else
+					return false;
+			} catch (Exception ex) {
+				throw new Exception(ex.getMessage());
 			}
-
-			String strResponse = Utils.UploadFileBinary(localFile,
-					strURISigned, "PUT");
-
-			if (strResponse.contains("OK"))
-				return true;
-			else
-				return false;
-		} catch (Exception ex) {
-			throw new Exception(ex.getMessage());
 		}
-	}
+
 
 	// / <summary>
 	// / Creates a folder under the specified folder. If no path specified,

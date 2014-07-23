@@ -7,7 +7,6 @@ import groovyx.net.http.URIBuilder;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -21,6 +20,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.IOUtils;
+
 
 /**
  * @author Mudassir
@@ -122,7 +122,7 @@ public class Utils {
 				uri.setPath(tempUrl);
 			}
 			url = uri.toURI().toString();
-      url = url.replace("%2C", ",");
+			url = url.replace("%2C", ",");
 
 			// get an hmac_sha1 key from the raw key bytes
 			SecretKeySpec signingKey = new SecretKeySpec(AppKey.getBytes(),
@@ -155,8 +155,21 @@ public class Utils {
 	public static String UploadFileBinary(File localFile, String uploadUrl,
 			String strHttpCommand) {
 		try {
+			InputStream is = new FileInputStream(localFile);
+			
+			return UploadFileBinary(is, uploadUrl, strHttpCommand);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+	
+	public static String UploadFileBinary(InputStream inputStream, String uploadUrl,String strHttpCommand) {
+			try {
 			URL url = new URL(uploadUrl);
-			byte[] buf = getBytesFromFile(localFile);
+			byte[] buf = IOUtils.toByteArray(inputStream);
 			HttpURLConnection m_connection;
 			m_connection = (HttpURLConnection) url.openConnection();
 			//String parameters = "data=some_post_data";
@@ -181,43 +194,6 @@ public class Utils {
 			e.printStackTrace();
 			return null;
 		}
-
-	}
-
-	// Returns the contents of the file in a byte array.
-	public static byte[] getBytesFromFile(File file) throws IOException {
-		InputStream is = new FileInputStream(file);
-
-		// Get the size of the file
-		long length = file.length();
-
-		// You cannot create an array using a long type.
-		// It needs to be an int type.
-		// Before converting to an int type, check
-		// to ensure that file is not larger than Integer.MAX_VALUE.
-		if (length > Integer.MAX_VALUE) {
-			// File is too large
-		}
-
-		// Create the byte array to hold the data
-		byte[] bytes = new byte[(int) length];
-
-		// Read in the bytes
-		int offset = 0;
-		int numRead = 0;
-		while (offset < bytes.length
-				&& (numRead = is.read(bytes, offset, bytes.length - offset)) >= 0) {
-			offset += numRead;
-		}
-
-		// Ensure all the bytes have been read in
-		if (offset < bytes.length) {
-			throw new IOException("Could not completely read file "	+ file.getName());
-		}
-
-		// Close the input stream and return bytes
-		is.close();
-		return bytes;
 	}
 
 	public static InputStream ProcessCommand(String strURI,
