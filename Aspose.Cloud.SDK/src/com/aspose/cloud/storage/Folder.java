@@ -282,12 +282,14 @@ public class Folder {
 		FileInputStream fileStream = new FileInputStream(localFile);
 		String strRemoteFileName = localFile.getName();
 		return UploadFile(fileStream, strRemoteFileName, strFolder,	storageType, storageName);
+
 	}
 	
 
 
 	public boolean UploadFile(InputStream fileStream, String strRemoteFileName, String strFolder,
 			StorageType storageType, String storageName) throws Exception {
+
 			try {
 				
 				String strURIRequest = this.strURIFile
