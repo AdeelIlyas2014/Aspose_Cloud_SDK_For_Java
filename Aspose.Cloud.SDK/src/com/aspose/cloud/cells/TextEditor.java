@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.aspose.cloud.common.AsposeAppNonStatic;
 import com.aspose.cloud.common.Utils;
+import com.aspose.cloud.exceptions.AuthorizationException;
+import com.aspose.cloud.exceptions.ParameterMissingException;
 import com.google.gson.Gson;
 
 public class TextEditor {
@@ -26,8 +28,8 @@ public class TextEditor {
 
 	public List<TextItem> FindText(String text) throws Exception {
 		// check whether file is set or not
-		if (FileName == "")
-			throw new Exception("No file name specified");
+		if (FileName.equals(""))
+			throw new ParameterMissingException("No file name specified");
 
 		// build URI
 		String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -39,6 +41,7 @@ public class TextEditor {
 		if (this.auth != null) {
 			if (!this.auth.validateAuth()) {
 				System.out.println("Please Specify AppKey and AppSID");
+				throw new AuthorizationException("TextEditor.FindText Please Specify AppKey and AppSID");
 			} else {
 				signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 						this.auth.getAppSID());
@@ -62,8 +65,8 @@ public class TextEditor {
 
 	public int ReplaceText(String oldText, String newText) throws Exception {
 		// check whether file is set or not
-		if (FileName == "")
-			throw new Exception("No file name specified");
+		if (FileName.equals(""))
+			throw new ParameterMissingException("No file name specified");
 
 		// build URI
 		String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -75,6 +78,7 @@ public class TextEditor {
 		if (this.auth != null) {
 			if (!this.auth.validateAuth()) {
 				System.out.println("Please Specify AppKey and AppSID");
+				throw new AuthorizationException("TextEditor.ReplaceText Please Specify AppKey and AppSID");
 			} else {
 				signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 						this.auth.getAppSID());
@@ -98,8 +102,8 @@ public class TextEditor {
 
 	public List<TextItem> GetTextItems() throws Exception {
 		// check whether file is set or not
-		if (FileName == "")
-			throw new Exception("No file name specified");
+		if (FileName.equals(""))
+			throw new ParameterMissingException("No file name specified");
 
 		// build URI
 		String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -111,6 +115,7 @@ public class TextEditor {
 		if (this.auth != null) {
 			if (!this.auth.validateAuth()) {
 				System.out.println("Please Specify AppKey and AppSID");
+				throw new AuthorizationException("TextEditor.GetTextItems Please Specify AppKey and AppSID");
 			} else {
 				signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 						this.auth.getAppSID());
@@ -139,8 +144,8 @@ public class TextEditor {
 	public List<TextItem> FindText(String WorkSheetName, String text)
 			throws Exception {
 		// check whether file is set or not
-		if (FileName == "")
-			throw new Exception("No file name specified");
+		if (FileName.equals(""))
+			throw new ParameterMissingException("No file name specified");
 
 		// build URI
 		String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -152,6 +157,7 @@ public class TextEditor {
 		if (this.auth != null) {
 			if (!this.auth.validateAuth()) {
 				System.out.println("Please Specify AppKey and AppSID");
+				throw new AuthorizationException("TextEditor.FindText Please Specify AppKey and AppSID");
 			} else {
 				signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 						this.auth.getAppSID());
@@ -176,8 +182,8 @@ public class TextEditor {
 	public int ReplaceText(String workSheet, String oldText, String newText)
 			throws Exception {
 		// check whether file is set or not
-		if (FileName == "")
-			throw new Exception("No file name specified");
+		if (FileName.equals(""))
+			throw new ParameterMissingException("No file name specified");
 
 		// build URI
 		String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -190,6 +196,7 @@ public class TextEditor {
 		if (this.auth != null) {
 			if (!this.auth.validateAuth()) {
 				System.out.println("Please Specify AppKey and AppSID");
+				throw new AuthorizationException("TextEditor.ReplaceText Please Specify AppKey and AppSID");
 			} else {
 				signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 						this.auth.getAppSID());
@@ -217,8 +224,8 @@ public class TextEditor {
 	// / <returns></returns>
 	public List<TextItem> GetTextItems(String WorkSheetName) throws Exception {
 		// check whether file is set or not
-		if (FileName == "")
-			throw new Exception("No file name specified");
+		if (FileName.equals(""))
+			throw new ParameterMissingException("No file name specified");
 
 		// build URI
 		String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -229,6 +236,7 @@ public class TextEditor {
 		if (this.auth != null) {
 			if (!this.auth.validateAuth()) {
 				System.out.println("Please Specify AppKey and AppSID");
+				throw new AuthorizationException("TextEditor.GetTextItems Please Specify AppKey and AppSID");
 			} else {
 				signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 						this.auth.getAppSID());

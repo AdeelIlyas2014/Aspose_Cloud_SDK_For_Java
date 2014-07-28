@@ -6,6 +6,9 @@ import com.aspose.cloud.common.AsposeAppNonStatic;
 import com.aspose.cloud.common.BaseResponse;
 import com.aspose.cloud.common.Product;
 import com.aspose.cloud.common.Utils;
+import com.aspose.cloud.exceptions.AuthorizationException;
+import com.aspose.cloud.exceptions.CommonIOException;
+import com.aspose.cloud.exceptions.ParameterMissingException;
 import com.google.gson.Gson;
 
 public class Protection {
@@ -18,10 +21,9 @@ public class Protection {
     }
     public String GetProtection()
     { 
-    	try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = Product.getBaseProductUri() + "/words/" + FileName;
@@ -32,6 +34,8 @@ public class Protection {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Protection.GetProtection Please Specify AppKey and AppSID");
+					
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -50,17 +54,12 @@ public class Protection {
 					ProtectionResponse.class);
 
 			return docResponse.getProtectionData().getProtectionType();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
     }
     public boolean ProtectDocument(String password, ProtectionType protectionType)
     {
-    	try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = Product.getBaseProductUri() + "/words/" + FileName;
@@ -71,6 +70,8 @@ public class Protection {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Protection.ProtectDocument Please Specify AppKey and AppSID");
+					
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -101,17 +102,12 @@ public class Protection {
 				return true;
 			else
 				return false;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
     }
     public boolean ChangeProtection(String oldPassword,String newPassword, ProtectionType protectionType)
     {
-    	try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = Product.getBaseProductUri() + "/words/" + FileName;
@@ -153,16 +149,12 @@ public class Protection {
 				return true;
 			else
 				return false;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
     }
     public boolean UnProtectDocument(String password)
     {
     	try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI

@@ -5,11 +5,16 @@ package com.aspose.cloud.barcode;
 
 
 import java.lang.String;
-
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
 import com.aspose.cloud.common.*;
+import com.aspose.cloud.exceptions.AppKeyMissingException;
+import com.aspose.cloud.exceptions.AppSIDMissingException;
+import com.aspose.cloud.exceptions.AuthorizationException;
+import com.aspose.cloud.exceptions.BarCodeIOException;
+import com.aspose.cloud.exceptions.ParameterMissingException;
 import com.aspose.cloud.storage.Folder;
 import com.google.gson.*;
 
@@ -69,19 +74,18 @@ public class BarCodeReader {
 	// / </example>
 	public List<RecognizedBarCode> ReadFromLocalImage(String localImage,
 			String remoteFolder, BarCodeReadType barcodeReadType) {
-		try {
 
 			// First upload the local image to remote location
 			Folder folder = new Folder();
-			folder.UploadFile(localImage, remoteFolder);
+			try {
+				folder.UploadFile(localImage, remoteFolder);
+			} catch (IOException e) {
+			throw new BarCodeIOException("BarCodeReader.ReadFromLocalImage: Some Error occurred while loading local barcode Image to remote.",e);
+			}
 
 			// After upload, perform server recognition on uploaded image
 			return Read(new File(localImage).getName(), remoteFolder,
 					barcodeReadType);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 
 	}
 
@@ -119,6 +123,8 @@ public class BarCodeReader {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppSID and AppKey");
+					throw new AuthorizationException("BarCodeReader.Read: Please Specify AppKey and AppSID");
+
 				} else {
 					responseStream = Utils.ProcessCommand(
 							Utils.Sign(uri, this.auth.getAppKey(),
@@ -174,6 +180,8 @@ public class BarCodeReader {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppSID and AppKey");
+					throw new AuthorizationException("BarCodeReader.Read: Please Specify AppKey and AppSID");
+
 				} else {
 					responseStream = Utils.ProcessCommand(
 							Utils.Sign(uri, this.auth.getAppKey(),
@@ -230,20 +238,23 @@ public class BarCodeReader {
 		return uri;
 	}
 
-	private void PerformValidations(boolean apikeysOnly) throws Exception {
+	private void PerformValidations(boolean apikeysOnly)  {
 		// Throw exception if App Key is empty
 		if (this.auth != null) {
 			if (!this.auth.validateAuth()) {
 				if (AsposeApp.getAppKey() == null
 						|| AsposeApp.getAppKey().trim().length() == 0)
-					throw new Exception(
-							"App Key is not specified. Please set the App Key property.");
+				throw new AppKeyMissingException(
+						"BarCodeReader.PerformValidation: App Key is not specified. Please set the App Key property.");
+
 
 				// Throw exception if App SID is empty
 				if (AsposeApp.getAppSID() == null
 						|| AsposeApp.getAppSID().trim().length() == 0)
-					throw new Exception(
-							"App SID is not specified. Please set App SID property.");
+					throw new AppSIDMissingException(
+							"BarCodeReader.PerformValidation: App SID is not specified. Please set App SID property.");
+
+				
 
 				// If only API keys need to be validated, then no need to
 				// proceed
@@ -254,7 +265,8 @@ public class BarCodeReader {
 				// Throw exception if barcode value is empty
 				if (_remoteImageName == null
 						|| _remoteImageName.trim().length() == 0)
-					throw new Exception("Image name is not specified.");
+				throw new ParameterMissingException(
+						"BarCodeReader.PerformValidation: Image name is not specified.");
 			}
 		}
 	}

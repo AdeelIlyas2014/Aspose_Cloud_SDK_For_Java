@@ -1,10 +1,13 @@
 ﻿package com.aspose.cloud.words;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 import com.aspose.cloud.common.BaseResponse;
 import com.aspose.cloud.common.Product;
 import com.aspose.cloud.common.Utils;
+import com.aspose.cloud.exceptions.CommonIOException;
+import com.aspose.cloud.exceptions.WordsIOException;
 import com.aspose.cloud.storage.Folder;
 import com.google.gson.Gson;
 
@@ -39,8 +42,6 @@ import com.google.gson.Gson;
         /// <returns></returns>
         public Boolean insertWatermarkText(String FileName, String text, double rotationAngle)
         {
-            try
-            {
             	//build URI to get Image
                 String strURI = Product.getBaseProductUri() + "/words/" + FileName + "/insertWatermarkText";
 
@@ -69,13 +70,6 @@ import com.google.gson.Gson;
          	    else
          	        return false;            
             	
-            }   
-       
-            catch (Exception ex)
-            {
-            	ex.printStackTrace();
-            	return false;
-            }
         }
 
         /// <summary>
@@ -87,8 +81,6 @@ import com.google.gson.Gson;
         /// <returns></returns>
         public Boolean insertWatermarkImage(String FileName, String imageFile, double rotationAngle)
         {
-            try
-            {
                 //build URI to get Image
                 String strURI = Product.getBaseProductUri() + "/words/" + FileName + "/insertWatermarkImage?imageFile=";
                 strURI += imageFile + "&rotationAngle=" + rotationAngle;
@@ -110,12 +102,6 @@ import com.google.gson.Gson;
                 else
                     return false;
 
-            }
-            catch (Exception ex)
-            {
-            	ex.printStackTrace();
-            	return false;
-            }
         }
 
         /// <summary>
@@ -130,8 +116,6 @@ import com.google.gson.Gson;
         /// <returns></returns>
         public boolean replaceText(String FileName, String OldValue, String NewValue, boolean IsMatchCase, boolean IsMatchWholeWord, String output)
         {
-            try
-            {
                 //build URI to get Image
                 String strURI = Product.getBaseProductUri() + "/words/" + FileName + "/replaceText";
 
@@ -165,13 +149,12 @@ import com.google.gson.Gson;
                 responseStream = Utils.ProcessCommand(signedURI, "GET");
 
                 boolean response=Folder.SaveStreamToFile(output, responseStream);
-		        responseStream.close();
+            	try {
+    				responseStream.close();
+    			} catch (IOException e) {
+    				throw new WordsIOException("DocumentBuilder.replaceText Some error occurred while closing steam",e);
+
+    			}
 		        return response;
-            }
-            catch (Exception ex)
-            {
-            	ex.printStackTrace();
-            	return false;
-            }
         }
     }

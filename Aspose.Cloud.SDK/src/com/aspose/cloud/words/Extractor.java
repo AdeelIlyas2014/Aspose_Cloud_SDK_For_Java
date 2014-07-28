@@ -1,11 +1,15 @@
 ﻿package com.aspose.cloud.words;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
 import com.aspose.cloud.common.AsposeAppNonStatic;
 import com.aspose.cloud.common.Product;
 import com.aspose.cloud.common.Utils;
+import com.aspose.cloud.exceptions.AuthorizationException;
+import com.aspose.cloud.exceptions.CommonIOException;
+import com.aspose.cloud.exceptions.WordsIOException;
 import com.aspose.cloud.storage.Folder;
 import com.google.gson.Gson;
 
@@ -21,7 +25,6 @@ public class Extractor {
 	}
 
 	public List<Paragraph> GetText(String FileName) {
-		try {
 			// build URI
 			String strURI = Product.getBaseProductUri() + "/words/" + FileName;
 			strURI += "/textItems";
@@ -31,6 +34,7 @@ public class Extractor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Extrator.GetText Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -50,10 +54,6 @@ public class Extractor {
 
 			return docResponse.getTextItems().getList();
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return null;
-		}
 	}
 
 	// / <summary>
@@ -64,7 +64,6 @@ public class Extractor {
 	// / <returns></returns>
 	public void GetDrawingObjects(String FileName, String outputPath) {
 
-		try {
 			// build URI to get Drawing Objects
 			String strURI = Product.getBaseProductUri() + "/words/" + FileName
 					+ "/drawingObjects";
@@ -72,6 +71,8 @@ public class Extractor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Extrator.GetDrawingObjects Please Specify AppKey and AppSID");
+					
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -93,9 +94,6 @@ public class Extractor {
 				GetDrawingObject(list.getlink().getHref(), outputPath);
 
 			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
 	}
 
 	// / <summary>
@@ -105,12 +103,14 @@ public class Extractor {
 	// / <param name="outputPath">C:\Output.jpg</param>
 	public boolean GetDrawingObject(String strURI, String outputPath) {
 
-		try {
 			// build URI to get Drawing Objects
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Extrator.GetDrawingObjects Please Specify AppKey and AppSID");
+					
+					
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -158,6 +158,8 @@ public class Extractor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Extrator.GetDrawingObjects Please Specify AppKey and AppSID");
+					
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -169,12 +171,13 @@ public class Extractor {
 			responseStream = Utils.ProcessCommand(signedURI, "GET");
 			boolean response = Folder.SaveStreamToFile(outputPath,
 					responseStream);
-			responseStream.close();
+			try {
+				responseStream.close();
+			} catch (IOException e) {
+				throw new WordsIOException("Extrator.GetDrawingObjects Some error occurred while closing steam",e);
+
+			}
 			return response;
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
 	}
 
 	/*
@@ -232,7 +235,6 @@ public class Extractor {
 	public boolean GetoleData(String FileName, int index,
 			DrawingObjectsRenderFormat renderformat, String outputPath) {
 
-		try {
 			// build URI to get Image
 			String strURI = Product.getBaseProductUri() + "/words/" + FileName
 					+ "/drawingObjects/" + index + "/oleData";
@@ -241,6 +243,8 @@ public class Extractor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Extrator.GetoleData Please Specify AppKey and AppSID");
+					
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -252,12 +256,13 @@ public class Extractor {
 			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
 			boolean response = Folder.SaveStreamToFile(outputPath,
 					responseStream);
-			responseStream.close();
+			try {
+				responseStream.close();
+			} catch (IOException e) {
+				throw new WordsIOException("Extrator.GetoleData Some error occurred while closing steam",e);
+
+			}
 			return response;
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
 	}
 
 	// / <summary>
@@ -269,7 +274,6 @@ public class Extractor {
 	// / <param name="outputPath"></param>
 	public boolean GetimageData(String FileName, int index,
 			DrawingObjectsRenderFormat renderformat, String outputPath) {
-		try {
 			// build URI to get Image
 			String strURI = Product.getBaseProductUri() + "/words/" + FileName
 					+ "/drawingObjects/" + index + "/ImageData";
@@ -278,6 +282,8 @@ public class Extractor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Extrator.GetimageData Please Specify AppKey and AppSID");
+					
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -288,12 +294,13 @@ public class Extractor {
 			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
 			boolean response = Folder.SaveStreamToFile(outputPath,
 					responseStream);
-			responseStream.close();
+			try {
+				responseStream.close();
+			} catch (IOException e) {
+				throw new WordsIOException("Extrator.GetimageData Some error occurred while closing steam",e);
+
+			}
 			return response;
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
 	}
 
 	// / <summary>
@@ -305,7 +312,6 @@ public class Extractor {
 	// / <param name="outputPath"></param>
 	public boolean ConvertDrawingObject(String FileName, int index,
 			DrawingObjectsRenderFormat renderformat, String outputPath) {
-		try {
 			// build URI to get Image
 			String strURI = Product.getBaseProductUri() + "/words/" + FileName
 					+ "/drawingObjects/" + index;
@@ -314,6 +320,8 @@ public class Extractor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Extrator.ConvertDrawingObject Please Specify AppKey and AppSID");
+					
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -325,12 +333,13 @@ public class Extractor {
 			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
 			boolean response = Folder.SaveStreamToFile(outputPath,
 					responseStream);
-			responseStream.close();
+			try {
+				responseStream.close();
+			} catch (IOException e) {
+				throw new WordsIOException("Extrator.ConvertDrawingObject Some error occurred while closing steam",e);
+
+			}
 			return response;
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
 	}
 
 }

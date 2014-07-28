@@ -4,12 +4,16 @@
 package com.aspose.cloud.pdf;
 
 import com.aspose.cloud.common.*;
+import com.aspose.cloud.exceptions.AuthorizationException;
+import com.aspose.cloud.exceptions.CommonIOException;
+import com.aspose.cloud.exceptions.PdfIOException;
 import com.aspose.cloud.pdf.SaveFormat;
 import com.aspose.cloud.storage.Folder;
 
 import java.lang.String;
-
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -44,7 +48,6 @@ public class Converter {
 	public boolean GetImage(String outputPath, int pageNumber,
 			ConvertImageFormat imageFormat, SaveLocation saveLocation,
 			int imageHeight, int imageWidth) {
-		try {
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
 					+ "/pages/" + Integer.toString(pageNumber);
@@ -56,6 +59,8 @@ public class Converter {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Converter.GetImage: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -67,12 +72,13 @@ public class Converter {
 			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
 			boolean response = Folder.SaveStreamToFile(outputPath,
 					responseStream);
-			responseStream.close();
+			try {
+				responseStream.close();
+			} catch (IOException e) {
+				throw new PdfIOException("Converter.GetImage Some error occurred while closing stream",e);
+
+			}
 			return response;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
 
 	}
 
@@ -83,7 +89,6 @@ public class Converter {
 	// / <param name="pageNumber"></param>
 	public boolean GetImage(String outputPath, int pageNumber,
 			ConvertImageFormat imageFormat, SaveLocation saveLocation) {
-		try {
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
 					+ "/pages/" + Integer.toString(pageNumber);
@@ -93,6 +98,8 @@ public class Converter {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Converter.GetImage: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -103,12 +110,13 @@ public class Converter {
 			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
 			boolean response = Folder.SaveStreamToFile(outputPath,
 					responseStream);
-			responseStream.close();
+			try {
+				responseStream.close();
+			} catch (IOException e) {
+				throw new PdfIOException("Converter.GetImage Some error occurred while closing stream",e);
+			}
 			return response;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
+	
 
 	}
 
@@ -119,7 +127,6 @@ public class Converter {
 	// / <param name="saveFormat"></param>
 	public boolean Convert(String outputPath, SaveFormat saveFormat) {
 
-		try {
 
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName;
@@ -129,6 +136,8 @@ public class Converter {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Converter.Convert: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -140,12 +149,12 @@ public class Converter {
 			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
 			boolean response = Folder.SaveStreamToFile(outputPath,
 					responseStream);
-			responseStream.close();
+			try {
+				responseStream.close();
+			} catch (IOException e) {
+				throw new PdfIOException("Converter.Convert Some error occurred while closing stream",e);
+			}
 			return response;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
 
 	}
 
@@ -156,7 +165,6 @@ public class Converter {
 	// / <param name="outputFormat"></param>
 	public void ConvertLocalFile(String inputPath, String outputPath,
 			SaveFormat outputFormat) {
-		try {
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -167,6 +175,8 @@ public class Converter {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Converter.ConvertLocalFile: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -175,7 +185,12 @@ public class Converter {
 				signedURI = Utils.Sign(strURI);
 			}
 
-			InputStream fileStream = new FileInputStream(inputPath);
+			InputStream fileStream;
+			try {
+				fileStream = new FileInputStream(inputPath);
+			} catch (FileNotFoundException e) {
+				throw new PdfIOException("Converter.ConvertLocalFile: Specified file not found!",e);
+			}
 
 			// get response stream
 			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT",
@@ -183,11 +198,12 @@ public class Converter {
 
 			Folder.SaveStreamToFile(outputPath, responseStream);
 
-			responseStream.close();
+			try {
+				responseStream.close();
+			} catch (IOException e) {
+				throw new PdfIOException("Converter.ConvertLocalFile Some error occurred while closing stream",e);
+			}
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
 
 	}
 
@@ -198,7 +214,6 @@ public class Converter {
 	// / <param name="outputFormat"></param>
 	public InputStream ConvertLocalFile(InputStream inputStream,
 			SaveFormat outputFormat) {
-		try {
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
 					+ "/pdf/convert?format=" + outputFormat;
@@ -208,6 +223,9 @@ public class Converter {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Converter.ConvertLocalFile: Please Specify AppKey and AppSID");
+
+					
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -217,10 +235,6 @@ public class Converter {
 			}
 
 			return Utils.ProcessCommand(signedURI, "PUT", inputStream);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return null;
-		}
 
 	}
 

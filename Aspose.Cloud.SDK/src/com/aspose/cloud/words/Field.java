@@ -7,6 +7,9 @@ import com.aspose.cloud.common.AsposeAppNonStatic;
 import com.aspose.cloud.common.BaseResponse;
 import com.aspose.cloud.common.Product;
 import com.aspose.cloud.common.Utils;
+import com.aspose.cloud.exceptions.AuthorizationException;
+import com.aspose.cloud.exceptions.CommonIOException;
+import com.aspose.cloud.exceptions.ParameterMissingException;
 import com.google.gson.Gson;
 
 public class Field {
@@ -35,7 +38,6 @@ public class Field {
 
 	public Boolean insertPageNumber(String FileName, String alignment,
 			String format, Boolean isTop, Boolean SetPageNumberOnFirstPage) {
-		try {
 			// build URI to get Image
 			String strURI = Product.getBaseProductUri() + "/words/" + FileName
 					+ "/insertPageNumbers";
@@ -44,6 +46,8 @@ public class Field {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Field.insertPageNumber Please Specify AppKey and AppSID");
+					
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -80,12 +84,6 @@ public class Field {
 			else
 				return false;
 
-		}
-
-		catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
 	}
 
 	// / <summary>
@@ -93,10 +91,9 @@ public class Field {
 	// / </summary>
 	// / <param name="FileName"></param>
 	public List<String> GetMailMergeFieldNames(String FileName) {
-		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = Product.getBaseProductUri() + "/words/" + FileName;
@@ -107,6 +104,8 @@ public class Field {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Field.GetMailMergeFieldNames Please Specify AppKey and AppSID");
+					
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -126,11 +125,6 @@ public class Field {
 
 			// return document property
 			return Response.getFieldNames().getNames();
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return null;
-		}
 	}
 
 }

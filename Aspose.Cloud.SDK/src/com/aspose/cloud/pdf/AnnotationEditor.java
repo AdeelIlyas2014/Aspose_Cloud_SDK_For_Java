@@ -11,6 +11,8 @@ import java.util.List;
 import com.aspose.cloud.common.AsposeAppNonStatic;
 import com.aspose.cloud.common.Product;
 import com.aspose.cloud.common.Utils;
+import com.aspose.cloud.exceptions.AuthorizationException;
+import com.aspose.cloud.exceptions.CommonIOException;
 import com.aspose.cloud.storage.Folder;
 import com.google.gson.Gson;
 
@@ -48,8 +50,7 @@ public class AnnotationEditor {
 	// / <param name="pageNumber"></param>
 	// / <returns>returns number of annotations on a specified page</returns>
 
-	public int GetAnnotationsCount(int pageNumber) throws SignatureException {
-		try {
+	public int GetAnnotationsCount(int pageNumber) {
 
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
@@ -58,6 +59,8 @@ public class AnnotationEditor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("AnnotationEditor.GetAnnotationsCount: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -78,10 +81,7 @@ public class AnnotationEditor {
 			int count = annotationsResponse.getAnnotations().getList().size();
 
 			return count;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return -1;
-		}
+		
 	}
 
 	// / <summary>
@@ -90,8 +90,7 @@ public class AnnotationEditor {
 	// / <param name="pageNumber"></param>
 	// / <returns>List of annotations on a page</returns>
 
-	public List<Annotation> GetAllAnnotations(int pageNumber)
-			throws SignatureException {
+	public List<Annotation> GetAllAnnotations(int pageNumber) {
 		List<Annotation> ListAnnotations = new java.util.ArrayList<Annotation>();
 		int iTotalAnnotation = GetAnnotationsCount(pageNumber);
 		for (int index = 1; index <= iTotalAnnotation; index++) {
@@ -109,7 +108,6 @@ public class AnnotationEditor {
 	// / <returns>Selected annotation on a page</returns>
 
 	public Annotation GetAnnotation(int pageNumber, int annotationIndex) {
-		try {
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
 					+ "/pages/" + Integer.toString(pageNumber)
@@ -118,6 +116,8 @@ public class AnnotationEditor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("AnnotationEditor.GetAnnotation: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -135,10 +135,6 @@ public class AnnotationEditor {
 					AnnotationResponse.class);
 
 			return annotationResponse.getAnnotation();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 
 	// / <summary>
@@ -147,7 +143,6 @@ public class AnnotationEditor {
 	// / <returns>Total number of Bookmarks</returns>
 
 	public int GetBookmarksCount() {
-		try {
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
 					+ "/bookmarks/";
@@ -155,6 +150,8 @@ public class AnnotationEditor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("AnnotationEditor.GetBookmarksCount: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -176,12 +173,7 @@ public class AnnotationEditor {
 			return count;
 		}
 
-		catch (Exception e) {
-
-			e.printStackTrace();
-			return -1;
-		}
-	}
+		
 
 	// / <summary>
 	// / Gets number of child bookmarks in a specfied parent bookmark
@@ -200,6 +192,8 @@ public class AnnotationEditor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("AnnotationEditor.GetChildBookmarksCount: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -283,7 +277,6 @@ public class AnnotationEditor {
 	// / <returns>Selected Bookmark</returns>
 
 	public Bookmark GetBookmark(int bookmarkIndex) {
-		try {
 
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
@@ -293,6 +286,8 @@ public class AnnotationEditor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("AnnotationEditor.GetBookmark: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -310,12 +305,6 @@ public class AnnotationEditor {
 					BookmarkResponse.class);
 
 			return bookmarkResponse.getBookmark();
-		}
-
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 
 	}
 
@@ -329,7 +318,6 @@ public class AnnotationEditor {
 
 	public Bookmark GetChildBookmark(int parentBookmarkIndex,
 			int childBookmarkIndex) {
-		try { // build URI to get page count
 
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
 					+ "/bookmarks/" + Integer.toString(parentBookmarkIndex)
@@ -339,6 +327,8 @@ public class AnnotationEditor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("AnnotationEditor.GetChildBookmark: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -356,10 +346,6 @@ public class AnnotationEditor {
 					BookmarkResponse.class);
 
 			return bookmarkResponse.getBookmark();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return null;
-		}
 	}
 
 	// / <summary>
@@ -379,6 +365,8 @@ public class AnnotationEditor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("AnnotationEditor.IsChildBookmark: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -412,7 +400,6 @@ public class AnnotationEditor {
 	// / <returns>Number of attachments in Pdf document</returns>
 
 	public int GetAttachmentsCount() {
-		try {
 
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
@@ -421,6 +408,8 @@ public class AnnotationEditor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("AnnotationEditor.GetAttachmentsCount: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -440,10 +429,6 @@ public class AnnotationEditor {
 			int count = attachmentsResponse.getAttachments().getList().size();
 
 			return count;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return -1;
-		}
 	}
 
 	// / <summary>
@@ -471,7 +456,6 @@ public class AnnotationEditor {
 	// / <returns>Selected attachment at specfied index</returns>
 
 	public Attachment GetAttachment(int attachmentIndex) {
-		try {
 
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
@@ -480,6 +464,8 @@ public class AnnotationEditor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("AnnotationEditor.GetAttachment: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -497,10 +483,6 @@ public class AnnotationEditor {
 					AttachmentResponse.class);
 
 			return attachmentResponse.getAttachment();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 
 	// / <summary>
@@ -524,6 +506,8 @@ public class AnnotationEditor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("AnnotationEditor.DownloadAttachment: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -552,7 +536,6 @@ public class AnnotationEditor {
 	// / <returns>Get total number of links in a page</returns>
 
 	public int GetLinksCount(int pageNumber) {
-		try {
 			// build URI to get page count
 
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
@@ -561,6 +544,8 @@ public class AnnotationEditor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("AnnotationEditor.GetLinksCount: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -579,10 +564,6 @@ public class AnnotationEditor {
 			int count = pdfLinksResponse.getLinks().getList().size();
 
 			return count;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return -1;
-		}
 	}
 
 	// / <summary>
@@ -613,7 +594,6 @@ public class AnnotationEditor {
 	// page</returns>
 
 	public com.aspose.cloud.pdf.Link GetLink(int pageNumber, int attachmentIndex) {
-		try {
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
 					+ "/pages/" + Integer.toString(pageNumber) + "/links/"
@@ -622,6 +602,8 @@ public class AnnotationEditor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("AnnotationEditor.GetLink: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -642,11 +624,6 @@ public class AnnotationEditor {
 
 			// return pdfLinkResponse;
 			return pdfLinkResponse.getLink();
-		} catch (Exception e) {
-
-			e.printStackTrace();
-			return null;
-		}
 	}
 
 	/*

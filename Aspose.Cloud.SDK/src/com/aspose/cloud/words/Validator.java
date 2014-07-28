@@ -2,6 +2,7 @@
 
 import com.aspose.cloud.common.AsposeApp;
 import com.aspose.cloud.common.Product;
+import com.aspose.cloud.exceptions.ParameterMissingException;
 
     /// <summary>
     /// Performs any validation related tasks
@@ -25,24 +26,17 @@ import com.aspose.cloud.common.Product;
         /// </summary>
         public static void LocalValidation()
         {
-            try
-            {
                 // Throws exception if product server is not specified
                 if (Product.getBaseProductUri() + "/words/" == null || (Product.getBaseProductUri() + "/words/").length() == 0)
-                    throw new Exception("App Server is not specified. Please set Server property.");
+                    throw new ParameterMissingException("App Server is not specified. Please set Server property.");
 
                 // Throw exception if App Key is empty
                 if (AsposeApp.getAppKey() == null || AsposeApp.getAppKey().length() == 0)
-                    throw new Exception("App Key is not specified. Please set the App Key property.");
+                    throw new ParameterMissingException("App Key is not specified. Please set the App Key property.");
 
                 // Throw exception if App SID is empty
                 if (AsposeApp.getAppSID() == null || AsposeApp.getAppSID().length() == 0)
-                    throw new Exception("App SID is not specified. Please set App SID property.");
-            }
-            catch (Exception ex)
-            {
-                ex.printStackTrace();
-            }
+                    throw new ParameterMissingException("App SID is not specified. Please set App SID property.");
         }
        
        /* public Boolean validateFile()

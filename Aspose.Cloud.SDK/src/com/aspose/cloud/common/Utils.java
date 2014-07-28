@@ -7,11 +7,16 @@ import groovyx.net.http.URIBuilder;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,6 +26,9 @@ import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.IOUtils;
 
+import com.aspose.cloud.exceptions.CloudUtilsException;
+import com.aspose.cloud.exceptions.CommonIOException;
+import com.aspose.cloud.exceptions.SigningException;
 
 /**
  * @author Mudassir
@@ -66,11 +74,11 @@ public class Utils {
 				uri.setPath(tempUrl);
 			}
 			url = uri.toURI().toString();
-      url = url.replace("%2C", ",");
+			url = url.replace("%2C", ",");
 
 			// get an hmac_sha1 key from the raw key bytes
-			SecretKeySpec signingKey = new SecretKeySpec(AsposeApp
-					.getAppKey().getBytes(), HMAC_SHA1_ALGORITHM);
+			SecretKeySpec signingKey = new SecretKeySpec(AsposeApp.getAppKey()
+					.getBytes(), HMAC_SHA1_ALGORITHM);
 
 			// get an hmac_sha1 Mac instance and initialize with the signing key
 			Mac mac = Mac.getInstance(HMAC_SHA1_ALGORITHM);
@@ -88,17 +96,29 @@ public class Utils {
 			// System.out.println("Final URL:" + uri.toURI().toString
 			// ()+"&signature="+encodedUrl);
 			return uri.toURI().toString() + "&signature=" + encodedUrl;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+		} catch (URISyntaxException e) {
 
+			throw new CloudUtilsException("Some URI related exception occurred ",
+					e);
+
+		} catch (NoSuchAlgorithmException e) {
+			throw new SigningException("Exception occurred while signing key",
+					e);
+
+		} catch (InvalidKeyException e) {
+
+			throw new SigningException("Exception occurred while signing key",
+					e);
+		} catch (UnsupportedEncodingException e) {
+
+			throw new CloudUtilsException(
+					"Some encoding related exception occured", e);
 		}
 
 	}
 
 	public static String Sign(String data, String AppKey, String AppSID) {
 		try {
-
 			data = data.replace(" ", "%20");
 
 			Map<String, String> query = new HashMap<String, String>(1); // UriBuilder
@@ -144,41 +164,56 @@ public class Utils {
 			// System.out.println("Final URL:" + uri.toURI().toString
 			// ()+"&signature="+encodedUrl);
 			return uri.toURI().toString() + "&signature=" + encodedUrl;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+		} catch (URISyntaxException e) {
 
+			throw new CloudUtilsException("Some URI related exception occurred ",
+					e);
+
+		} catch (NoSuchAlgorithmException e) {
+			throw new SigningException("Exception occurred while signing key",
+					e);
+
+		} catch (InvalidKeyException e) {
+
+			throw new SigningException("Exception occurred while signing key",
+					e);
+		} catch (UnsupportedEncodingException e) {
+
+			throw new CloudUtilsException(
+					"Some encoding related exception occured", e);
 		}
-
 	}
 
 	public static String UploadFileBinary(File localFile, String uploadUrl,
 			String strHttpCommand) {
+		InputStream is = null;
 		try {
-			InputStream is = new FileInputStream(localFile);
-			
-			return UploadFileBinary(is, uploadUrl, strHttpCommand);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+			is = new FileInputStream(localFile);
+		} catch (IOException io) {
+			throw new CommonIOException(
+					"Utils.UploadFileBinary: Some IO error occured while reading from local stream.",
+					io);
 		}
 
+		return UploadFileBinary(is, uploadUrl, strHttpCommand);
+
 	}
-	
-	public static String UploadFileBinary(InputStream inputStream, String uploadUrl,String strHttpCommand) {
-			try {
+
+	public static String UploadFileBinary(InputStream inputStream,
+			String uploadUrl, String strHttpCommand) {
+		try {
+
 			URL url = new URL(uploadUrl);
 			byte[] buf = IOUtils.toByteArray(inputStream);
 			HttpURLConnection m_connection;
 			m_connection = (HttpURLConnection) url.openConnection();
-			//String parameters = "data=some_post_data";
+			// String parameters = "data=some_post_data";
 			m_connection.setDoOutput(true);
 			m_connection.setRequestMethod("PUT");
 			m_connection.setRequestProperty("Accept", "text/json");
 			m_connection.setRequestProperty("Content-Type",
 					"MultiPart/Form-Data");
-			//byte bytes[] = parameters.getBytes();
+			// byte bytes[] = parameters.getBytes();
 			m_connection.setRequestProperty("Content-length", "" + buf.length);
 			m_connection.connect();
 			java.io.OutputStream out = m_connection.getOutputStream();
@@ -190,22 +225,22 @@ public class Utils {
 			String res = StreamToString(response);
 
 			return res;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+		} catch (IOException e) {
+			throw new CommonIOException(
+					"Utils.UploadFileBinary: Some IO error occured while writing to remote stream.",
+					e);
 		}
 	}
 
 	public static InputStream ProcessCommand(String strURI,
 			String strHttpCommand, String strContent) {
-		
+
 		URL address = null;
 		HttpURLConnection httpCon = null;
 
 		try {
 			address = new URL(strURI);
-			httpCon = (HttpURLConnection) address
-					.openConnection();
+			httpCon = (HttpURLConnection) address.openConnection();
 			httpCon.setDoOutput(true);
 			httpCon.setRequestProperty("Content-Type", "application/json");
 			httpCon.setRequestProperty("Accept", "text/json");
@@ -217,27 +252,27 @@ public class Utils {
 			out.close();
 
 			return httpCon.getInputStream();
-		} catch (Exception Ex) {
+		} catch (IOException e) {
 			InputStream error = httpCon.getErrorStream();
 			String s = Utils.StreamToString(error);
-			System.out.println(s);
-			Ex.printStackTrace();
-			return null;
+			throw new CommonIOException(
+					"Utils.ProcessCommand: Some errpr occured while writing to remote stream. HttpErrorStream data: "
+							+ s, e);
 		}
 
 	}
 
 	public static InputStream ProcessCommand(String strURI,
-			String strHttpCommand, InputStream strContent) {
-		
+			String strHttpCommand, InputStream strContent)
+			{
+
 		URL address = null;
 		HttpURLConnection httpCon = null;
-		
+
 		try {
 			byte[] bytes = IOUtils.toByteArray(strContent);
 			address = new URL(strURI);
-			httpCon = (HttpURLConnection) address
-					.openConnection();
+			httpCon = (HttpURLConnection) address.openConnection();
 			httpCon.setDoOutput(true);
 
 			httpCon.setRequestProperty("Content-Type", "multipart/form-data");// "application/x-www-form-urlencoded"
@@ -251,65 +286,60 @@ public class Utils {
 			out.flush();
 
 			return httpCon.getInputStream();
-		} catch (Exception Ex) {
+		} catch (IOException e) {
 			InputStream error = httpCon.getErrorStream();
 			String s = Utils.StreamToString(error);
-			System.out.println(s);
-			
-			Ex.printStackTrace();
-			return null;
+			throw new CommonIOException(
+					"Utils.ProcessCommand: Some errpr occured while writing to remote stream. HttpErrorStream data: "
+							+ s, e);
 		}
 
 	}
 
 	public static InputStream ProcessCommand(String strURI,
-			String strHttpCommand)  {
-		
+			String strHttpCommand) {
+
 		URL address = null;
 		HttpURLConnection httpCon = null;
-		
-		try{
+
+		try {
 			address = new URL(strURI);
-			httpCon = (HttpURLConnection) address
-					.openConnection();
+			httpCon = (HttpURLConnection) address.openConnection();
 			httpCon.setDoOutput(true);
 			httpCon.setRequestProperty("Content-Type", "application/json");
 			httpCon.setRequestProperty("Accept", "text/json");
 			httpCon.setRequestMethod(strHttpCommand);
 			if (strHttpCommand.equals("PUT") || strHttpCommand.equals("POST"))
 				httpCon.setFixedLengthStreamingMode(0);
-			
+
 			return httpCon.getInputStream();
-			
-		} catch (Exception ex) {
+
+		} catch (IOException e) {
 			InputStream error = httpCon.getErrorStream();
 			String s = Utils.StreamToString(error);
-			System.out.println(s);
-			
-			ex.printStackTrace();
-			return null;
+			throw new CommonIOException(
+					"Utils.ProcessCommand: Some errpr occured while writing to remote stream. HttpErrorStream data: "
+							+ s, e);
 		}
-
-		
 
 	}
 
 	public static InputStream ProcessCommand(String strURI,
-			String strHttpCommand, String strContent, String ContentType) {
-		
+			String strHttpCommand, String strContent, String ContentType)
+			{
+
 		URL address = null;
 		HttpURLConnection httpCon = null;
-		
+
 		try {
 
 			byte[] arr = strContent.getBytes();
 
 			address = new URL(strURI);
-			httpCon = (HttpURLConnection) address
-					.openConnection();
+			httpCon = (HttpURLConnection) address.openConnection();
 			httpCon.setDoOutput(true);
 
-			if (ContentType.toLowerCase() == "xml")
+			if (ContentType.toLowerCase().equals("xml"))
 				httpCon.setRequestProperty("Content-Type", "application/xml");
 			else
 				httpCon.setRequestProperty("Content-Type", "application/json");
@@ -320,23 +350,24 @@ public class Utils {
 
 			java.io.OutputStream out = httpCon.getOutputStream();
 			out.write(arr);
-			out.flush();			
+			out.flush();
 
 			return httpCon.getInputStream();
-		} catch (Exception Ex) {
+		} catch (IOException e) {
 			InputStream error = httpCon.getErrorStream();
 			String s = Utils.StreamToString(error);
-			System.out.println(s);
-			
-			Ex.printStackTrace();
-			return null;
+			throw new CommonIOException(
+					"Utils.ProcessCommand: Some errpr occured while writing to remote stream. HttpErrorStream data: "
+							+ s, e);
 		}
 	}
 
 	public static String StreamToString(InputStream stream) {
 		try {
-		    return IOUtils.toString(stream);
-		} catch (Exception e) {
+			return IOUtils.toString(stream);
+		} catch (IOException e) {
+			System.out
+					.println("Utils.StreamToString: Some error occurred while converting Stream to String:");
 			e.printStackTrace();
 			return null;
 		}

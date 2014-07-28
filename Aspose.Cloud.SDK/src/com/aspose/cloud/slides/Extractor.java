@@ -9,6 +9,8 @@ import java.util.List;
 import com.aspose.cloud.common.AsposeAppNonStatic;
 import com.aspose.cloud.common.Product;
 import com.aspose.cloud.common.Utils;
+import com.aspose.cloud.exceptions.AuthorizationException;
+import com.aspose.cloud.exceptions.CommonIOException;
 import com.aspose.cloud.storage.StorageType;
 import com.google.gson.Gson;
 
@@ -43,7 +45,6 @@ public class Extractor {
 	// / </summary>
 	// / <returns>Total number of images</returns>
 	public int GetImageCount() {
-		try {
 			// build URI to get image count
 			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
 					+ "/images";
@@ -51,6 +52,8 @@ public class Extractor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetImageCount: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -68,15 +71,10 @@ public class Extractor {
 					ImagesResponse.class);
 
 			return imagesResponse.getImages().getList().size();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return -1;
-		}
 	}
 
 	public int GetImageCount(StorageType storageType, String storageName,
 			String folderName) {
-		try {
 			// build URI to get image count
 			String strURI = Product.getBaseProductUri()
 					+ "/slides/"
@@ -91,6 +89,8 @@ public class Extractor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetImageCount: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -108,10 +108,6 @@ public class Extractor {
 					ImagesResponse.class);
 
 			return imagesResponse.getImages().getList().size();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return -1;
-		}
 	}
 
 	// / <summary>
@@ -119,7 +115,6 @@ public class Extractor {
 	// / </summary>
 	// / <returns>Total number of images</returns>
 	public List<com.aspose.cloud.slides.Image> GetPresentationImages() {
-		try {
 			// build URI to get image count
 			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
 					+ "/images";
@@ -127,6 +122,8 @@ public class Extractor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetPresentationImages: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -144,10 +141,6 @@ public class Extractor {
 					ImagesResponse.class);
 
 			return imagesResponse.getImages().getList();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 
 	// / <summary>
@@ -156,7 +149,6 @@ public class Extractor {
 	// / <param name="slideNumber"></param>
 	// / <returns></returns>
 	public int GetImageCount(int slideNumber) {
-		try {
 			// build URI to get image count
 			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
 					+ "/slides/" + Integer.toString(slideNumber) + "/images";
@@ -164,6 +156,8 @@ public class Extractor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetImageCount: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -181,15 +175,10 @@ public class Extractor {
 					ImagesResponse.class);
 
 			return imagesResponse.getImages().getList().size();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return -1;
-		}
 	}
 
 	public int GetImageCount(int slideNumber, StorageType storageType,
 			String storageName, String folderName) {
-		try {
 			// build URI to get image count
 			String strURI = Product.getBaseProductUri()
 					+ "/slides/"
@@ -206,6 +195,8 @@ public class Extractor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetImageCount: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -223,10 +214,6 @@ public class Extractor {
 					ImagesResponse.class);
 
 			return imagesResponse.getImages().getList().size();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return -1;
-		}
 	}
 
 	// / <summary>
@@ -235,7 +222,6 @@ public class Extractor {
 	// / <param name="slideNumber"></param>
 	// / <returns></returns>
 	public List<Shape> GetShapes(int slideNumber) {
-		try {
 			// build URI to get shapes
 			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
 					+ "/slides/" + Integer.toString(slideNumber) + "/shapes";
@@ -243,6 +229,8 @@ public class Extractor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetShapes: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -272,15 +260,10 @@ public class Extractor {
 			}
 
 			return shapes;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 
 	public List<Shape> GetShapes(int slideNumber, StorageType storageType,
 			String storageName, String folderName) {
-		try {
 			// build URI to get shapes
 			String strURI = Product.getBaseProductUri()
 					+ "/slides/"
@@ -297,6 +280,8 @@ public class Extractor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetShapes: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -325,10 +310,6 @@ public class Extractor {
 			}
 
 			return shapes;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 
 	// / <summary>
@@ -337,7 +318,6 @@ public class Extractor {
 	// / <param name="slideNumber"></param>
 	// / <returns></returns>
 	public int GetShapesCount(int slideNumber) {
-		try {
 			// build URI to get shapes
 			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
 					+ "/slides/" + Integer.toString(slideNumber) + "/shapes";
@@ -345,6 +325,8 @@ public class Extractor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetShapesCount: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -373,10 +355,6 @@ public class Extractor {
 			}
 
 			return shapes.size();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return -1;
-		}
 	}
 
 	// / <summary>
@@ -385,12 +363,13 @@ public class Extractor {
 	// / <param name="strURI"></param>
 	// / <returns></returns>
 	private String ProcessURI(String strURI) {
-		try {
 			// build URI
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.ProcessURI: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -402,15 +381,10 @@ public class Extractor {
 
 			// Parse the json String to JObject
 			return Utils.StreamToString(responseStream);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 
 	}
 
 	public ColorScheme GetColorScheme(int slideNumber) {
-		try {
 			String strURI = Product.getBaseProductUri() + "/slides/"
 					+ this.FileName + "/slides/"
 					+ Integer.toString(slideNumber) + "/theme/colorScheme";
@@ -418,6 +392,8 @@ public class Extractor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetColorScheme: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -430,15 +406,10 @@ public class Extractor {
 			ColorSchemeResponse colorSchemeResponse = gson.fromJson(strJSON,
 					ColorSchemeResponse.class);
 			return colorSchemeResponse.getColorScheme();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 
 	public ColorScheme GetColorScheme(int slideNumber, StorageType storageType,
 			String storageName) {
-		try {
 			String strURI = Product.getBaseProductUri() + "/slides/"
 					+ this.FileName + "/slides/"
 					+ Integer.toString(slideNumber) + "/theme/colorScheme";
@@ -449,6 +420,8 @@ public class Extractor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetColorScheme: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -461,14 +434,9 @@ public class Extractor {
 			ColorSchemeResponse colorSchemeResponse = gson.fromJson(strJSON,
 					ColorSchemeResponse.class);
 			return colorSchemeResponse.getColorScheme();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 
 	public FontScheme getFontScheme(int slideNumber) {
-		try {
 			String strURI = Product.getBaseProductUri() + "/slides/"
 					+ this.FileName + "/slides/"
 					+ Integer.toString(slideNumber) + "/theme/fontScheme";
@@ -476,6 +444,8 @@ public class Extractor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.getFontScheme: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -488,15 +458,10 @@ public class Extractor {
 			FontSchemeResponse fontSchemeResponse = gson.fromJson(strJSON,
 					FontSchemeResponse.class);
 			return fontSchemeResponse.getFontScheme();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 
 	public FontScheme getFontScheme(int slideNumber, StorageType storageType,
 			String storageName) {
-		try {
 			String strURI = Product.getBaseProductUri() + "/slides/"
 					+ this.FileName + "/slides/"
 					+ Integer.toString(slideNumber) + "/theme/fontScheme";
@@ -507,6 +472,8 @@ public class Extractor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.getFontScheme: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -519,14 +486,9 @@ public class Extractor {
 			FontSchemeResponse fontSchemeResponse = gson.fromJson(strJSON,
 					FontSchemeResponse.class);
 			return fontSchemeResponse.getFontScheme();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 
 	public FormatScheme getFormatScheme(int slideNumber) {
-		try {
 			String strURI = Product.getBaseProductUri() + "/slides/"
 					+ this.FileName + "/slides/"
 					+ Integer.toString(slideNumber) + "/theme/formatScheme";
@@ -534,6 +496,8 @@ public class Extractor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.getFormatScheme: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -546,15 +510,10 @@ public class Extractor {
 			FormatSchemeResponse fontSchemeResponse = gson.fromJson(strJSON,
 					FormatSchemeResponse.class);
 			return fontSchemeResponse.getFormatScheme();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 
 	public FormatScheme getFormatScheme(int slideNumber,
 			StorageType storageType, String storageName) {
-		try {
 			String strURI = Product.getBaseProductUri() + "/slides/"
 					+ this.FileName + "/slides/"
 					+ Integer.toString(slideNumber) + "/theme/formatScheme";
@@ -565,6 +524,8 @@ public class Extractor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.getFormatScheme: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -577,14 +538,9 @@ public class Extractor {
 			FormatSchemeResponse fontSchemeResponse = gson.fromJson(strJSON,
 					FormatSchemeResponse.class);
 			return fontSchemeResponse.getFormatScheme();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 
 	public int getPlaceholderCount(int slideNumber) {
-		try {
 			String strURI = Product.getBaseProductUri() + "/slides/"
 					+ this.FileName + "/slides/"
 					+ Integer.toString(slideNumber) + "/placeholders";
@@ -592,6 +548,8 @@ public class Extractor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.getPlaceholderCount: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -604,16 +562,11 @@ public class Extractor {
 			PlaceholdersResponse placeholderResponse = gson.fromJson(strJSON,
 					PlaceholdersResponse.class);
 			return placeholderResponse.getPlaceholders().getPlaceholderLinks().size();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return -1;
-		}
 
 	}
 
 	public int getPlaceholderCount(int slideNumber, StorageType storageType,
 			String storageName, String folderName) {
-		try {
 			String strURI = Product.getBaseProductUri()
 					+ "/slides/"
 					+ this.FileName
@@ -629,6 +582,8 @@ public class Extractor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.getPlaceholderCount: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -641,15 +596,10 @@ public class Extractor {
 			PlaceholdersResponse placeholderResponse = gson.fromJson(strJSON,
 					PlaceholdersResponse.class);
 			return placeholderResponse.getPlaceholders().getPlaceholderLinks().size();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return -1;
-		}
 
 	}
 
 	public Placeholder GetPlaceholder(int slideNumber, int placeholderIndex) {
-		try {
 			String strURI = Product.getBaseProductUri() + "/slides/"
 					+ this.FileName + "/slides/"
 					+ Integer.toString(slideNumber) + "/placeholders/"
@@ -658,6 +608,8 @@ public class Extractor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetPlaceholder: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -670,16 +622,11 @@ public class Extractor {
 			PlaceholderResponse placeholderResponse = gson.fromJson(strJSON,
 					PlaceholderResponse.class);
 			return placeholderResponse.getPlaceholder();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 
 	}
 
 	public Placeholder GetPlaceholder(int slideNumber, int placeholderIndex,
 			StorageType storageType, String storageName, String folderName) {
-		try {
 			String strURI = Product.getBaseProductUri()
 					+ "/slides/"
 					+ this.FileName
@@ -696,6 +643,8 @@ public class Extractor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetPlaceholder: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -708,10 +657,6 @@ public class Extractor {
 			PlaceholderResponse placeholderResponse = gson.fromJson(strJSON,
 					PlaceholderResponse.class);
 			return placeholderResponse.getPlaceholder();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 
 	}
 

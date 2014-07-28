@@ -8,6 +8,9 @@ import com.aspose.cloud.common.AsposeAppNonStatic;
 import com.aspose.cloud.common.BaseResponse;
 import com.aspose.cloud.common.Product;
 import com.aspose.cloud.common.Utils;
+import com.aspose.cloud.exceptions.AuthorizationException;
+import com.aspose.cloud.exceptions.CommonIOException;
+import com.aspose.cloud.exceptions.ParameterMissingException;
 import com.google.gson.Gson;
 
 /// <summary>
@@ -68,10 +71,9 @@ public class Document {
 	// / </summary>
 	// / <returns>List of document properties</returns>
 	public List<DocumentProperty> GetProperties() {
-		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = Product.getBaseProductUri() + "/words/" + FileName;
@@ -82,6 +84,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetProperties: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -100,18 +104,13 @@ public class Document {
 					DocumentResponse.class);
 
 			return docResponse.getDocumentProperties().getList();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 
 	}
 
 	public DocumentProperty GetProperty(String propertyName) {
-		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = Product.getBaseProductUri() + "/words/" + FileName;
@@ -122,6 +121,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetProperty: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -140,10 +141,6 @@ public class Document {
 					DocumentResponse.class);
 
 			return docResponse.getDocumentProperty();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 
 	// / <summary>
@@ -152,13 +149,14 @@ public class Document {
 	// / <param name="propertyName">property name</param>
 	// / <param name="propertyValue">property value</param>
 	public boolean SetProperty(String propertyName, String propertyValue) {
-		try {
 			String strURI = Product.getBaseProductUri() + "/words/" + FileName
 					+ "/documentProperties/" + propertyName;
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.SetProperty: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -191,10 +189,6 @@ public class Document {
 				return true;
 			else
 				return false;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
 	}
 
 	// / <summary>
@@ -203,10 +197,9 @@ public class Document {
 	// / <param name="propertyName">Property Name</param>
 	// / <returns></returns>
 	public boolean DeleteProperty(String propertyName) {
-		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = Product.getBaseProductUri() + "/words/" + FileName;
@@ -217,6 +210,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.DeleteProperty: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -240,10 +235,6 @@ public class Document {
 			else
 				return false;
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
 	}
 
 	// / <summary>
@@ -252,10 +243,9 @@ public class Document {
 	// / </summary>
 	// / <returns></returns>
 	public DocumentResourceResponse GetDocumentInfo() {
-		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = Product.getBaseProductUri() + "/words/" + FileName;
@@ -266,6 +256,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetDocumentInfo: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -284,25 +276,20 @@ public class Document {
 					DocumentResourceResponse.class);
 
 			return docResponse;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 
 	public boolean AppendDocument(String[] appendDocs,
 			String[] importFormatModes, String folder) {
 
 		// check whether file is set or not
-		if (FileName == "")
-			throw new RuntimeException("No file name specified");
+		if (FileName.equals(""))
+			throw new ParameterMissingException("No file name specified");
 
 		// check whether required information is complete
 		if (appendDocs.length != importFormatModes.length)
-			throw new RuntimeException(
+			throw new ParameterMissingException(
 					"Please specify complete documents and import format modes");
 
-		try {
 			// Create DocumentEntryList object
 			DocumentEntryList list = new DocumentEntryList();
 			list.setDocumentEntries(new java.util.ArrayList<DocumentEntry>());
@@ -329,6 +316,9 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.AppendDocument: Please Specify AppKey and AppSID");
+
+					
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -357,20 +347,15 @@ public class Document {
 			else
 				return false;
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
 		
 		
 	}
 	public boolean PostBookMark(String name, String text)
 	{
-		try {
 			
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = Product.getBaseProductUri() + "/words/" + FileName;
@@ -380,6 +365,8 @@ public class Document {
 				if (this.auth != null) {
 					if (!this.auth.validateAuth()) {
 						System.out.println("Please Specify AppKey and AppSID");
+						throw new AuthorizationException("Document.PostBookMark: Please Specify AppKey and AppSID");
+
 					} else {
 						signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 								this.auth.getAppSID());
@@ -411,19 +398,14 @@ public class Document {
 				return true;
 			else
 				return false;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
 	}
 	public String GetBookMark(String name) {
 		String result;
 		result="";
-		try {
 			
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = Product.getBaseProductUri() + "/words/" + FileName;
@@ -434,6 +416,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetBookMark: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -457,19 +441,14 @@ public class Document {
 			result=bookmarkResponse.getBookmark().getText();
 
 			return result;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return result;
-		}
 	}
 	 public boolean SaveAsTiff(String resultFile, boolean useAntiAliasing, boolean useHighQualityRendering, int pageCount, int pageIndex, int resolution, String tiffCompression, String folder)
      
 	 {
-		 try {
 				
 				// check whether file is set or not
-				if (FileName == "")
-					throw new Exception("No file name specified");
+				if (FileName.equals(""))
+					throw new ParameterMissingException("No file name specified");
 
 				// build URI
 				String strURI = Product.getBaseProductUri() + "/words/" + FileName+ "/SaveAs/tiff?";
@@ -480,6 +459,8 @@ public class Document {
 					if (this.auth != null) {
 						if (!this.auth.validateAuth()) {
 							System.out.println("Please Specify AppKey and AppSID");
+							throw new AuthorizationException("Document.SaveAsTiff: Please Specify AppKey and AppSID");
+
 						} else {
 							signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 									this.auth.getAppSID());
@@ -509,24 +490,19 @@ public class Document {
 		return false;
 
 	 			
-			} catch (Exception e) {
-				e.printStackTrace();
-				return false;
-			} 
 	 }
 	public int SplitDocument(String format, String folder, int from, int to)
 	{
-try {
 			
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = Product.getBaseProductUri() + "/words/" + FileName;
 			strURI += "/split?" +
-                    (format == "" ? "" : "format=" + format) +
-                    (folder == "" ? "" : "&folder=" + folder) +
+					 (format.equals("") ? "" : "format=" + format) +
+					 (folder.equals("") ? "" : "&folder=" + folder) +
                     (from == 0 ? "" : "&from=" +  from) +
                     (to == 0 ? "" : "&to=" + to);
 
@@ -534,6 +510,8 @@ try {
 				if (this.auth != null) {
 					if (!this.auth.validateAuth()) {
 						System.out.println("Please Specify AppKey and AppSID");
+						throw new AuthorizationException("Document.SplitDocument: Please Specify AppKey and AppSID");
+
 					} else {
 						signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 								this.auth.getAppSID());
@@ -568,10 +546,6 @@ try {
  					SplitResultResponse.class);
 						
  			return splitResultResponse.getSplitResult().getPages().size();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return 0;
-		}
 		
 	}
 }

@@ -1,5 +1,6 @@
 package com.aspose.cloud.slides;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
@@ -7,6 +8,10 @@ import com.aspose.cloud.common.AsposeAppNonStatic;
 import com.aspose.cloud.common.BaseResponse;
 import com.aspose.cloud.common.Product;
 import com.aspose.cloud.common.Utils;
+import com.aspose.cloud.exceptions.AuthorizationException;
+import com.aspose.cloud.exceptions.CommonIOException;
+import com.aspose.cloud.exceptions.ParameterMissingException;
+import com.aspose.cloud.exceptions.SlidesIOException;
 import com.aspose.cloud.storage.Folder;
 import com.aspose.cloud.storage.StorageType;
 import com.google.gson.Gson;
@@ -39,13 +44,14 @@ public class Document {
 
 	public boolean Convert(InputStream stream, String outputPath,
 			SaveFormat saveFormat) {
-		try {
 			String strURI = Product.getBaseProductUri()
 					+ "/slides/convert?format=" + saveFormat;
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.Convert: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -56,12 +62,13 @@ public class Document {
 			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT");
 			boolean response = Folder.SaveStreamToFile(outputPath,
 					responseStream);
-			responseStream.close();
+			try {
+				responseStream.close();
+			} catch (IOException e) {
+				throw new SlidesIOException("Document.Convert Some error occurred while closing steam",e);
+
+			}
 			return response;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
 
 	}
 
@@ -70,7 +77,6 @@ public class Document {
 	// / </summary>
 	// / <returns>slide count</returns>
 	public int GetSlideCount() {
-		try {
 			// build URI to get slide count
 
 			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
@@ -79,6 +85,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetSlideCount: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -96,16 +104,11 @@ public class Document {
 
 			int count = slidesResponse.getSlides().getSlideList().size();
 			return count;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return -1;
-		}
 
 	}
 
 	public int GetSlideCount(StorageType storageType, String storageName,
 			String folderName) {
-		try {
 			// build URI to get slide count
 
 			String strURI = Product.getBaseProductUri()
@@ -121,6 +124,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetSlideCount: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -139,10 +144,6 @@ public class Document {
 
 			int count = slidesResponse.getSlides().getSlideList().size();
 			return count;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return -1;
-		}
 
 	}
 
@@ -151,7 +152,6 @@ public class Document {
 	// / </summary>
 	// / <returns>List of document properties</returns>
 	public int GetDocumentPropertiesCount() {
-		try {
 			// build URI to get document properties
 
 			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
@@ -160,6 +160,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetDocumentPropertiesCount: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -178,10 +180,6 @@ public class Document {
 
 			return documentPropertiesResponse.getDocumentProperties().getList()
 					.size();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return -1;
-		}
 
 	}
 
@@ -190,7 +188,6 @@ public class Document {
 	// / </summary>
 	// / <returns>List of document properties</returns>
 	public List<com.aspose.cloud.slides.DocumentProperty> GetDocumentProperties() {
-		try {
 			// build URI to get document properties
 
 			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
@@ -199,6 +196,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetDocumentProperties: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -216,10 +215,6 @@ public class Document {
 					.fromJson(strJSON, DocumentPropertiesResponse.class);
 
 			return documentPropertiesResponse.getDocumentProperties().getList();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 
 	}
 
@@ -230,7 +225,6 @@ public class Document {
 	// / <returns>value of the specified property</returns>
 	public com.aspose.cloud.slides.DocumentProperty GetDocumentProperty(
 			String propertyName) {
-		try {
 			// build URI to get single property
 			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
 					+ "/presentation/documentproperties/" + propertyName;
@@ -238,6 +232,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetDocumentProperty: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -255,10 +251,6 @@ public class Document {
 					strJSON, DocumentPropertyResponse.class);
 
 			return documentPropertyResponse.getDocumentProperty();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 
 	// / <summary>
@@ -266,7 +258,6 @@ public class Document {
 	// properties
 	// / </summary>
 	public boolean RemoveAllProperties() {
-		try {
 			// build URI to remove/reset all the properties
 			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
 					+ "/documentProperties";
@@ -274,6 +265,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.RemoveAllProperties: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -296,10 +289,6 @@ public class Document {
 				return true;
 			else
 				return false;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
 	}
 
 	// / <summary>
@@ -308,7 +297,6 @@ public class Document {
 	// / <param name="oldText"></param>
 	// / <param name="newText"></param>
 	public boolean ReplaceText(String oldText, String newText) {
-		try {
 			// build URI to replace text
 			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
 					+ "/replaceText?oldValue=" + oldText + "&newValue="
@@ -318,6 +306,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.ReplaceText: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -340,10 +330,6 @@ public class Document {
 				return true;
 			else
 				return false;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
 
 	}
 
@@ -354,7 +340,6 @@ public class Document {
 	// / <param name="newText"></param>
 	// / <param name="slideNumber"></param>
 	public boolean ReplaceText(String oldText, String newText, int slideNumber) {
-		try {
 			// build URI to replace text in a particular slide
 			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
 					+ "/slides/" + Integer.toString(slideNumber)
@@ -365,6 +350,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.ReplaceText: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -387,10 +374,6 @@ public class Document {
 				return true;
 			else
 				return false;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
 
 	}
 
@@ -400,7 +383,6 @@ public class Document {
 	// / </summary>
 	// / <param name="propertyName"></param>
 	public boolean DeleteDocumentProperty(String propertyName) {
-		try {
 			// build URI to remove single property
 			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
 					+ "/documentProperties/" + propertyName;
@@ -408,6 +390,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.DeleteDocumentProperty: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -430,10 +414,6 @@ public class Document {
 				return true;
 			else
 				return false;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
 	}
 
 	// / <summary>
@@ -441,7 +421,6 @@ public class Document {
 	// / </summary>
 	// / <returns>A list containing all the text items</returns>
 	public List<TextItem> GetAllTextItems() {
-		try {
 			// build URI to get all text items in a presentation
 			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
 					+ "/textItems";
@@ -449,6 +428,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetAllTextItems: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -466,16 +447,11 @@ public class Document {
 					TextItemsResponse.class);
 
 			return textItemsResponse.getTextItems().getItems();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 
 	}
 
 	public List<TextItem> GetAllTextItems(StorageType storageType,
 			String storageName, String folderName) {
-		try {
 			// build URI to get all text items in a presentation
 			String strURI = Product.getBaseProductUri()
 					+ "/slides/"
@@ -490,6 +466,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetAllTextItems: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -506,10 +484,6 @@ public class Document {
 					TextItemsResponse.class);
 
 			return textItemsResponse.getTextItems().getItems();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 
 	}
 
@@ -521,7 +495,6 @@ public class Document {
 	// shapes without text</param>
 	// / <returns>A list containing all the text items in a slide</returns>
 	public List<TextItem> GetAllTextItems(int slideNumber, boolean withEmpty) {
-		try {
 			// build URI to get all text items in a slide
 			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
 					+ "/slides/" + Integer.toString(slideNumber)
@@ -531,6 +504,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetAllTextItems: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -547,15 +522,10 @@ public class Document {
 					TextItemsResponse.class);
 
 			return textItemsResponse.getTextItems().getItems();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 
 	public List<TextItem> GetAllTextItems(int slideNumber, boolean withEmpty,
 			StorageType storageType, String storageName, String folderName) {
-		try {
 			// build URI to get all text items in a slide
 			String strURI = Product.getBaseProductUri()
 					+ "/slides/"
@@ -573,6 +543,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetAllTextItems: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -590,10 +562,6 @@ public class Document {
 					TextItemsResponse.class);
 
 			return textItemsResponse.getTextItems().getItems();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 
 	// / <summary>
@@ -603,7 +571,6 @@ public class Document {
 	// / <param name="saveFormat"></param>
 	public void SaveAs(String outputPath, SaveFormat saveFormat) {
 
-		try {
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/slides/" + FileName;
 			strURI += "?format=" + saveFormat.toString().toLowerCase();
@@ -612,6 +579,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.SaveAs: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -625,18 +594,17 @@ public class Document {
 			com.aspose.cloud.storage.Folder.SaveStreamToFile(outputPath,
 					responseStream);
 
-			responseStream.close();
-		}
+			try {
+				responseStream.close();
+			} catch (IOException e) {
+				throw new SlidesIOException("Document.SaveAs Some error occurred while closing steam",e);
 
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+			}
 	}
 
 	public void SaveAs(String outputPath, SaveFormat saveFormat,
 			StorageType storageType, String storageName, String folderName) {
 
-		try {
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/slides/" + FileName;
 			strURI += "?format="
@@ -650,6 +618,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.SaveAs: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -663,12 +633,12 @@ public class Document {
 			com.aspose.cloud.storage.Folder.SaveStreamToFile(outputPath,
 					responseStream);
 
-			responseStream.close();
-		}
+			try {
+				responseStream.close();
+			} catch (IOException e) {
+				throw new SlidesIOException("Document.SaveAs Some error occurred while closing steam",e);
 
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+			}
 	}
 
 	// / <summary>
@@ -681,7 +651,6 @@ public class Document {
 			ImageFormat imageFormat)// Returns 100x100 image
 	{
 
-		try {
 
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
@@ -692,6 +661,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.SaveSlideAs: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -705,12 +676,12 @@ public class Document {
 			com.aspose.cloud.storage.Folder.SaveStreamToFile(outputPath,
 					responseStream);
 
-			responseStream.close();
-		}
+			try {
+				responseStream.close();
+			} catch (IOException e) {
+				throw new SlidesIOException("Document.SaveSlideAs Some error occurred while closing steam",e);
 
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+			};
 	}
 
 	public void SaveSlideAs(String outputPath, int slideNumber,
@@ -718,7 +689,6 @@ public class Document {
 			String storageName, String folderName)// Returns 100x100 image
 	{
 
-		try {
 
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri()
@@ -737,6 +707,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.SaveSlideAs: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -750,12 +722,12 @@ public class Document {
 			com.aspose.cloud.storage.Folder.SaveStreamToFile(outputPath,
 					responseStream);
 
-			responseStream.close();
-		}
+			try {
+				responseStream.close();
+			} catch (IOException e) {
+				throw new SlidesIOException("Document.SaveSlideAs Some error occurred while closing steam",e);
 
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+			};
 	}
 
 	// / <summary>
@@ -769,7 +741,6 @@ public class Document {
 	// / <param name="height"></param>
 	public void SaveSlideAs(String outputPath, int slideNumber,
 			ImageFormat imageFormat, int width, int height) {
-		try {
 			// build URI to get page count
 			// String strURI = Product.getBaseProductUri() + "/slides/" +
 			// FileName + "/slides/" + slideNumber+"/images" + "?format=" +
@@ -785,6 +756,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.SaveSlideAs: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -798,18 +771,18 @@ public class Document {
 			com.aspose.cloud.storage.Folder.SaveStreamToFile(outputPath,
 					responseStream);
 
-			responseStream.close();
-		}
+			try {
+				responseStream.close();
+			} catch (IOException e) {
+				throw new SlidesIOException("Document.SaveSlideAs Some error occurred while closing steam",e);
 
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+			}
+
 	}
 
 	public void SaveSlideAs(String outputPath, int slideNumber,
 			ImageFormat imageFormat, int width, int height,
 			StorageType storageType, String storageName, String folderName) {
-		try {
 			// build URI to get page count
 			// String strURI = Product.getBaseProductUri() + "/slides/" +
 			// FileName + "/slides/" + slideNumber+"/images" + "?format=" +
@@ -835,6 +808,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.SaveSlideAs: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -847,12 +822,12 @@ public class Document {
 			com.aspose.cloud.storage.Folder.SaveStreamToFile(outputPath,
 					responseStream);
 
-			responseStream.close();
-		}
+			try {
+				responseStream.close();
+			} catch (IOException e) {
+				throw new SlidesIOException("Document.SaveSlideAs Some error occurred while closing steam",e);
 
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+			}
 	}
 
 	// / <summary>
@@ -870,6 +845,8 @@ public class Document {
 		if (this.auth != null) {
 			if (!this.auth.validateAuth()) {
 				System.out.println("Please Specify AppKey and AppSID");
+				throw new AuthorizationException("Document.SetDocumentProperty: Please Specify AppKey and AppSID");
+
 			} else {
 				signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 						this.auth.getAppSID());
@@ -903,13 +880,14 @@ public class Document {
 	}
 
 	public boolean DeleteAllSlides() {
-		try {
 			String strURI = Product.getBaseProductUri() + "/slides/"
 					+ this.FileName + "/slides";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.DeleteAllSlides: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -927,16 +905,11 @@ public class Document {
 			} else {
 				return false;
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
 
 	}
 
 	public boolean DeleteAllSlides(StorageType storageType, String storageName,
 			String folderName) {
-		try {
 			String strURI = Product.getBaseProductUri()
 					+ "/slides/"
 					+ this.FileName
@@ -967,21 +940,14 @@ public class Document {
 			} else {
 				return false;
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
 
 	}
 	public boolean MergeDocuments(String[] sourceFiles) {
-		try
-
-		{
 			String mergedFileName = FileName;
 
 			if (sourceFiles.length < 1)
 			{
-				throw new Exception("One or more files are requred to merge.");
+				throw new ParameterMissingException("One or more files are requred to merge.");
 			}
 			// build URI to remove single property
 			String strURI = Product.getBaseProductUri() + "/slides/" + mergedFileName + "/merge";
@@ -989,6 +955,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.MergeDocuments: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -1015,13 +983,8 @@ public class Document {
 			} else {
 				return false;
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
 	}
 	public Slide GetSlide(int slideNumber) {
-		try {
 			// build URI to get slide count
 
 			String strURI = Product.getBaseProductUri()+ "/slides/" + FileName + "/slides/" + slideNumber;
@@ -1029,6 +992,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetSlide: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -1045,19 +1010,16 @@ public class Document {
 					SlideDetailResponse.class);
 
 			return slidesResponse.getSlide();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 
 	}
 	public boolean DeleteSlide(int slideNumber) {
-		try {
 			String strURI = Product.getBaseProductUri() + "/slides/" + FileName + "/slides/" + slideNumber;
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.DeleteSlide: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -1075,14 +1037,9 @@ public class Document {
 			} else {
 				return false;
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
 
 	}
 	public Theme GetTheme(int slideNumber) {
-		try {
 			// build URI to get slide count
 
 			String strURI = Product.getBaseProductUri()+ "/slides/" + FileName + "/slides/" + slideNumber + "/theme";
@@ -1090,6 +1047,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetTheme: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -1106,10 +1065,6 @@ public class Document {
 					ThemeResponse.class);
 
 			return themeResponse.getTheme();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 
 	}
 }

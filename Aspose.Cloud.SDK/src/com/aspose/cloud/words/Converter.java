@@ -1,11 +1,19 @@
 ﻿package com.aspose.cloud.words;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 
 import com.aspose.cloud.common.AsposeAppNonStatic;
 import com.aspose.cloud.common.Product;
 import com.aspose.cloud.common.Utils;
+import com.aspose.cloud.exceptions.AuthorizationException;
+import com.aspose.cloud.exceptions.CommonIOException;
+import com.aspose.cloud.exceptions.ParameterMissingException;
+import com.aspose.cloud.exceptions.SlidesIOException;
+import com.aspose.cloud.exceptions.WordsException;
+import com.aspose.cloud.exceptions.WordsIOException;
 import com.aspose.cloud.storage.Folder;
 
 /// <summary>
@@ -40,10 +48,9 @@ public class Converter {
 	// / </summary>
 	// / <param name="output">the location of the output file</param>
 	public boolean Convert(String output) {
-		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = Product.getBaseProductUri() + "/words/" + FileName;
@@ -64,12 +71,13 @@ public class Converter {
 
 			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
 			boolean response = Folder.SaveStreamToFile(output, responseStream);
-			responseStream.close();
+			try {
+				responseStream.close();
+			} catch (IOException e) {
+				throw new WordsIOException("Conveter.Convert Some error occurred while closing steam",e);
+
+			}
 			return response;
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
 	}
 
 	// / <summary>
@@ -78,10 +86,9 @@ public class Converter {
 	// / <param name="output">the location of the output file</param>
 	// / /// <param name="output">SaveFormat of the output file</param>
 	public boolean Convert(String output, SaveFormat OutPutType) {
-		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = Product.getBaseProductUri() + "/words/" + FileName;
@@ -92,6 +99,9 @@ public class Converter {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Converter.Convert: Please Specify AppKey and AppSID");
+
+					
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -102,12 +112,13 @@ public class Converter {
 
 			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
 			boolean response = Folder.SaveStreamToFile(output, responseStream);
-			responseStream.close();
+			try {
+				responseStream.close();
+			} catch (IOException e) {
+				throw new WordsIOException("Conveter.Convert Some error occurred while closing steam",e);
+
+			}
 			return response;
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
 	}
 
 	// / <summary>
@@ -117,7 +128,6 @@ public class Converter {
 	// / <param name="outputFormat"></param>
 	public void ConvertLocalFile(String inputPath, String outputPath,
 			SaveFormat outputFormat) {
-		try {
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -128,6 +138,9 @@ public class Converter {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Converter.ConvertLocalFile: Please Specify AppKey and AppSID");
+
+					
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -135,7 +148,12 @@ public class Converter {
 			} else {
 				signedURI = Utils.Sign(strURI);
 			}
-			InputStream fileStream = new FileInputStream(inputPath);
+			InputStream fileStream;
+			try {
+				fileStream = new FileInputStream(inputPath);
+			} catch (FileNotFoundException e) {
+			    throw new WordsException("Converter.ConvertLocalFile: Specified file not found.",e);
+			}
 
 			// get response stream
 			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT",
@@ -143,9 +161,6 @@ public class Converter {
 
 			Folder.SaveStreamToFile(outputPath, responseStream);
 			responseStream.close();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
 
 	}
 
@@ -156,7 +171,6 @@ public class Converter {
 	// / <param name="outputFormat"></param>
 	public InputStream ConvertLocalFile(InputStream inputStream,
 			SaveFormat outputFormat) {
-		try {
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
 					+ "/words/convert?format=" + outputFormat;
@@ -166,6 +180,8 @@ public class Converter {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Converter.ConvertLocalFile: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -180,10 +196,6 @@ public class Converter {
 			// inputStream);//, Stream);
 
 			return Utils.ProcessCommand(signedURI, "PUT", inputStream);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return null;
-		}
 
 	}
 

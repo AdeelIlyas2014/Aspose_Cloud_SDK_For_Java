@@ -4,6 +4,8 @@ import java.lang.String;
 import java.io.InputStream;
 
 import com.aspose.cloud.common.*;
+import com.aspose.cloud.exceptions.AuthorizationException;
+import com.aspose.cloud.exceptions.ParameterMissingException;
 import com.google.gson.*;
 
 public class ChartEditor {
@@ -27,8 +29,8 @@ public class ChartEditor {
 
 	public boolean AddChart(ChartType chartType, int upperLeftRow,
 			int upperLeftColumn, int lowerRightRow, int lowerRightColumn)
-			throws Exception {
-		try {
+			 {
+		
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/cells/" + FileName;
 			strURI += "/worksheets/" + WorkSheetName + "/charts?chartType="
@@ -40,6 +42,7 @@ public class ChartEditor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("ChartEditor.AddChart: Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -62,15 +65,13 @@ public class ChartEditor {
 			else
 				return false;
 
-		} catch (Exception ex) {
-			throw new Exception(ex.getMessage());
-		}
+
 	}
 
-	public boolean DeleteChart(int chartIndex) throws Exception {
+	public boolean DeleteChart(int chartIndex) {
 		// check whether file is set or not
-		if (FileName == "")
-			throw new Exception("No file name specified");
+		if (FileName.equals(""))
+			throw new ParameterMissingException("ChartEditor.DeleteChart: No file name specified");
 
 		// build URI
 		String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -82,6 +83,7 @@ public class ChartEditor {
 		if (this.auth != null) {
 			if (!this.auth.validateAuth()) {
 				System.out.println("Please Specify AppKey and AppSID");
+				throw new AuthorizationException("ChartEditor.AddChart: Please Specify AppKey and AppSID");
 			} else {
 				signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 						this.auth.getAppSID());
@@ -103,10 +105,12 @@ public class ChartEditor {
 			return false;
 	}
 
-	public ChartArea GetChartArea(int chartIndex) throws Exception {
+	public ChartArea GetChartArea(int chartIndex) {
 		// check whether file is set or not
-		if (FileName == "")
-			throw new Exception("No file name specified");
+		if (FileName.equals(""))
+			throw new ParameterMissingException("ChartEditor.GetChartArea: No file name specified");
+
+
 
 		// build URI
 		String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -119,6 +123,7 @@ public class ChartEditor {
 		if (this.auth != null) {
 			if (!this.auth.validateAuth()) {
 				System.out.println("Please Specify AppKey and AppSID");
+				throw new AuthorizationException("ChartEditor.AddChart: Please Specify AppKey and AppSID");
 			} else {
 				signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 						this.auth.getAppSID());
@@ -139,10 +144,10 @@ public class ChartEditor {
 		return chartResponse.getChartArea();
 	}
 
-	public FillFormat GetFillFormat(int chartIndex) throws Exception {
+	public FillFormat GetFillFormat(int chartIndex) {
 		// check whether file is set or not
-		if (FileName == "")
-			throw new Exception("No file name specified");
+		if (FileName.equals(""))
+			throw new ParameterMissingException("ChartEditor.GetFillFormat: No file name specified");
 
 		// build URI
 		String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -155,6 +160,8 @@ public class ChartEditor {
 		if (this.auth != null) {
 			if (!this.auth.validateAuth()) {
 				System.out.println("Please Specify AppKey and AppSID");
+				throw new AuthorizationException("ChartEditor.AddChart: Please Specify AppKey and AppSID");
+
 			} else {
 				signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 						this.auth.getAppSID());
@@ -177,8 +184,9 @@ public class ChartEditor {
 
 	public Line GetBorder(int chartIndex) throws Exception {
 		// check whether file is set or not
-		if (FileName == "")
-			throw new Exception("No file name specified");
+		if (FileName.equals(""))
+			throw new ParameterMissingException("ChartEditor.GetFillFormat: No file name specified");
+
 
 		// build URI
 		String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -191,6 +199,8 @@ public class ChartEditor {
 		if (this.auth != null) {
 			if (!this.auth.validateAuth()) {
 				System.out.println("Please Specify AppKey and AppSID");
+				throw new AuthorizationException("ChartEditor.AddChart: Please Specify AppKey and AppSID");
+
 			} else {
 				signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 						this.auth.getAppSID());

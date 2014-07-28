@@ -7,6 +7,8 @@ import com.aspose.cloud.common.AsposeAppNonStatic;
 import com.aspose.cloud.common.BaseResponse;
 import com.aspose.cloud.common.Product;
 import com.aspose.cloud.common.Utils;
+import com.aspose.cloud.exceptions.AuthorizationException;
+import com.aspose.cloud.exceptions.ParameterMissingException;
 import com.google.gson.Gson;
 
 public class Workbook {
@@ -32,8 +34,8 @@ public class Workbook {
 	public List<DocumentProperty> GetProperties() {
 		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -45,6 +47,7 @@ public class Workbook {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Workbook.GetProperties Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -78,8 +81,8 @@ public class Workbook {
 	public DocumentProperty GetProperty(String propertyName) {
 		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -91,6 +94,7 @@ public class Workbook {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Workbook.GetProperty Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -130,6 +134,7 @@ public class Workbook {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Workbook.SetProperty Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -172,8 +177,8 @@ public class Workbook {
 	public boolean RemoveAllProperties() {
 		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -185,6 +190,7 @@ public class Workbook {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Workbook.RemoveAllProperties Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -217,8 +223,8 @@ public class Workbook {
 	public boolean RemoveProperty(String propertyName) {
 		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -230,6 +236,7 @@ public class Workbook {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Workbook.RemoveProperty Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -272,6 +279,7 @@ public class Workbook {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Workbook.CreateEmptyWorkbook Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -312,6 +320,7 @@ public class Workbook {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Workbook.CreateWorkbookFromTemplate Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -360,6 +369,7 @@ public class Workbook {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Workbook.CreateWorkbookFromSmartMarkerTemplate Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -400,6 +410,7 @@ public class Workbook {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Workbook.ProcessSmartMarker Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -437,8 +448,8 @@ public class Workbook {
      {
 		 try {
 				// check whether file is set or not
-				if (FileName == "")
-					throw new Exception("No file name specified");
+				if (FileName.equals(""))
+					throw new ParameterMissingException("No file name specified");
 
 				// build URI
 				String strURI = com.aspose.cloud.common.Product.getBaseProductUri()+ "/cells/" + FileName;
@@ -449,6 +460,7 @@ public class Workbook {
 				if (this.auth != null) {
 					if (!this.auth.validateAuth()) {
 						System.out.println("Please Specify AppKey and AppSID");
+						throw new AuthorizationException("Workbook.GetName Please Specify AppKey and AppSID");
 					} else {
 						signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 								this.auth.getAppSID());
@@ -480,8 +492,8 @@ public class Workbook {
 
 		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -493,6 +505,7 @@ public class Workbook {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Workbook.GetWorksheetsCount Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -524,8 +537,8 @@ public class Workbook {
 
 		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -537,6 +550,7 @@ public class Workbook {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Workbook.GetNamesCount Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -566,8 +580,8 @@ public class Workbook {
 
 		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -579,6 +593,7 @@ public class Workbook {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Workbook.getDefaultStyle Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -612,6 +627,7 @@ public class Workbook {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Workbook.EncryptWorkbook Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -662,6 +678,7 @@ public class Workbook {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Workbook.ProtectWorkbook Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -710,6 +727,7 @@ public class Workbook {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Workbook.UnprotectWorkbook Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -757,6 +775,7 @@ public class Workbook {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Workbook.SetModifyPassword Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -804,6 +823,7 @@ public class Workbook {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Workbook.ClearModifyPassword Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -852,6 +872,7 @@ public class Workbook {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Workbook.DecryptWorkbook Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -904,6 +925,7 @@ public class Workbook {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Workbook.AddWorksheet Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -944,8 +966,8 @@ public class Workbook {
 		try {
 
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -957,6 +979,7 @@ public class Workbook {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Workbook.RemoveWorksheet Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -991,8 +1014,8 @@ public class Workbook {
 	public boolean MergeWorkbook(String mergefileName) {
 		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -1004,6 +1027,7 @@ public class Workbook {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Workbook.MergeWorkbook Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -1040,8 +1064,8 @@ public class Workbook {
 
 		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -1055,6 +1079,7 @@ public class Workbook {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Workbook.SplitDocument Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());

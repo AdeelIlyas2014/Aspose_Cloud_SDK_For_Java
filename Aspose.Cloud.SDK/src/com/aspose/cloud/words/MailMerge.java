@@ -1,16 +1,23 @@
 package com.aspose.cloud.words;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
 
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 import com.aspose.cloud.common.AsposeAppNonStatic;
 import com.aspose.cloud.common.Product;
 import com.aspose.cloud.common.Utils;
+import com.aspose.cloud.exceptions.AuthorizationException;
+import com.aspose.cloud.exceptions.CommonIOException;
+import com.aspose.cloud.exceptions.WordsException;
+import com.aspose.cloud.exceptions.WordsIOException;
 import com.aspose.cloud.storage.Folder;
 
 public class MailMerge {
@@ -33,7 +40,6 @@ public class MailMerge {
 
 	public void ExecuteMailMerege(String FileName, String strXML,
 			SaveFormat saveformat, String outputPath) {
-		try {
 			// build URI to get Image
 			String strURI = Product.getBaseProductUri() + "/words/" + FileName
 					+ "/executeMailMerge";
@@ -42,6 +48,8 @@ public class MailMerge {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("MailMerge.ExecuteMailMerege Please Specify AppKey and AppSID");
+					
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -60,9 +68,24 @@ public class MailMerge {
 			// Parse the input document
 			DocumentBuilderFactory factory = DocumentBuilderFactory
 					.newInstance();
-			javax.xml.parsers.DocumentBuilder builder = factory
-					.newDocumentBuilder();
-			org.w3c.dom.Document doc = builder.parse(source);
+			javax.xml.parsers.DocumentBuilder builder;
+			try {
+				builder = factory
+						.newDocumentBuilder();
+			} catch (ParserConfigurationException e1) {
+			 throw new WordsException("MailMerge.ExecuteMailMerege Some Error occurred while doing mail merge for words.",e1);
+			}
+			org.w3c.dom.Document doc;
+				try {
+					doc = builder.parse(source);
+				
+				} catch (SAXException e) {
+					 throw new WordsException("MailMerge.ExecuteMailMerege Some Error occurred while doing mail merge for words.",e);
+						
+				} catch (IOException e) {
+					 throw new WordsIOException("MailMerge.ExecuteMailMerege Some IO Error occurred while doing mail merge for words.",e);
+					 
+				}	
 
 			NodeList nodes = doc.getElementsByTagName("FileName");
 			String DocName = nodes.item(0).getChildNodes().item(0)
@@ -77,6 +100,7 @@ public class MailMerge {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("MailMerge.ExecuteMailMerege Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -89,10 +113,13 @@ public class MailMerge {
 			responseStream = Utils.ProcessCommand(signedURI, "GET");
 
 			Folder.SaveStreamToFile(outputPath, responseStream);
-			responseStream.close();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
+			try {
+				responseStream.close();
+			} catch (IOException e) {
+				throw new WordsIOException("MailMerge.ExecuteMailMerege Some error occurred while closing steam",e);
+
+			}
+			
 	}
 
 	// / <summary>
@@ -104,7 +131,6 @@ public class MailMerge {
 	// / <param name="output"></param>
 	public void ExecuteMailMeregewithRegions(String FileName, String strXML,
 			SaveFormat saveformat, String outputPath) {
-		try {
 			// build URI to get Image
 			String strURI = Product.getBaseProductUri() + "/words/" + FileName
 					+ "/executeMailMerge?withRegions=true";
@@ -113,6 +139,8 @@ public class MailMerge {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("MailMerge.ExecuteMailMeregewithRegions Please Specify AppKey and AppSID");
+					
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -131,9 +159,24 @@ public class MailMerge {
 			// Parse the input document
 			DocumentBuilderFactory factory = DocumentBuilderFactory
 					.newInstance();
-			javax.xml.parsers.DocumentBuilder builder = factory
-					.newDocumentBuilder();
-			org.w3c.dom.Document doc = builder.parse(source);
+			javax.xml.parsers.DocumentBuilder builder=null;
+			try {
+				builder = factory
+						.newDocumentBuilder();
+			} catch (ParserConfigurationException e) {
+				 throw new WordsException("MailMerge.ExecuteMailMeregewithRegions Some Error occurred while doing mail merge for words.",e);
+					
+			}
+			org.w3c.dom.Document doc;
+			try {
+				doc = builder.parse(source);
+			} catch (SAXException e) {
+				 throw new WordsException("MailMerge.ExecuteMailMeregewithRegions Some Error occurred while doing mail merge for words.",e);
+					
+			} catch (IOException e) {
+				 throw new WordsIOException("MailMerge.ExecuteMailMeregewithRegions Some IO Error occurred while doing mail merge for words.",e);
+					
+			}
 
 			NodeList nodes = doc.getElementsByTagName("FileName");
 			String DocName = nodes.item(0).getChildNodes().item(0)
@@ -148,6 +191,8 @@ public class MailMerge {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("MailMerge.ExecuteMailMeregewithRegions Please Specify AppKey and AppSID");
+					
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -160,11 +205,13 @@ public class MailMerge {
 			responseStream = Utils.ProcessCommand(signedURI, "GET");
 
 			Folder.SaveStreamToFile(outputPath, responseStream);
-			responseStream.close();
+			try {
+				responseStream.close();
+			} catch (IOException e) {
+				throw new WordsIOException("MailMerge.ExecuteMailMeregewithRegions Some error occurred while closing steam",e);
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
+			}
+
 	}
 
 	// / <summary>
@@ -176,7 +223,6 @@ public class MailMerge {
 	// / <param name="output"></param>
 	public void ExecuteTemplate(String FileName, String strXML,
 			SaveFormat saveformat, String outputPath) {
-		try {
 			// build URI to get Image
 			String strURI = Product.getBaseProductUri() + "/words/" + FileName
 					+ "/executeTemplate";
@@ -184,6 +230,8 @@ public class MailMerge {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("MailMerge.ExecuteTemplate Please Specify AppKey and AppSID");
+					
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -202,9 +250,24 @@ public class MailMerge {
 			// Parse the input document
 			DocumentBuilderFactory factory = DocumentBuilderFactory
 					.newInstance();
-			javax.xml.parsers.DocumentBuilder builder = factory
-					.newDocumentBuilder();
-			org.w3c.dom.Document doc = builder.parse(source);
+			javax.xml.parsers.DocumentBuilder builder;
+			try {
+				builder = factory
+						.newDocumentBuilder();
+			} catch (ParserConfigurationException e) {
+				 throw new WordsException("MailMerge.ExecuteTemplate Some Error occurred while doing mail merge for words.",e);
+					
+			}
+			org.w3c.dom.Document doc;
+			try {
+				doc = builder.parse(source);
+			} catch (SAXException e) {
+				 throw new WordsException("MailMerge.ExecuteTemplate Some Error occurred while doing mail merge for words.",e);
+					
+			} catch (IOException e) {
+				 throw new WordsIOException("MailMerge.ExecuteTemplate Some IO Error occurred while doing mail merge for words.",e);
+					
+			}
 
 			NodeList nodes = doc.getElementsByTagName("FileName");
 			String DocName = nodes.item(0).getChildNodes().item(0)
@@ -219,6 +282,8 @@ public class MailMerge {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("MailMerge.ExecuteTemplate Please Specify AppKey and AppSID");
+					
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -230,10 +295,12 @@ public class MailMerge {
 			responseStream = Utils.ProcessCommand(signedURI, "GET");
 
 			Folder.SaveStreamToFile(outputPath, responseStream);
-			responseStream.close();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
+			try {
+				responseStream.close();
+			} catch (IOException e) {
+				throw new WordsIOException("MailMerge.ExecuteTemplate Some error occurred while closing steam",e);
+
+			}
 	}
 
 }

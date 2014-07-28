@@ -13,6 +13,9 @@ import com.aspose.cloud.common.AsposeAppNonStatic;
 import com.aspose.cloud.common.BaseResponse;
 import com.aspose.cloud.common.Product;
 import com.aspose.cloud.common.Utils;
+import com.aspose.cloud.exceptions.AuthorizationException;
+import com.aspose.cloud.exceptions.CommonIOException;
+import com.aspose.cloud.exceptions.ParameterMissingException;
 import com.google.gson.Gson;
 
 /**
@@ -40,7 +43,6 @@ public class Document {
 	// / </summary>
 	// / <returns>page count</returns>
 	public int GetPageCount() {
-		try {
 			// build URI to get page count
 
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
@@ -49,6 +51,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetPageCount: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -69,10 +73,6 @@ public class Document {
 
 			int count = pagesResponse.getPages().getList().size();
 			return count;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return -1;
-		}
 	}
 
 	// / <summary>
@@ -80,7 +80,6 @@ public class Document {
 	// / </summary>
 	// / <returns>list of properties</returns>
 	public List<DocumentProperty> GetDocumentProperties() {
-		try {
 
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
@@ -89,6 +88,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetDocumentProperties: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -107,10 +108,6 @@ public class Document {
 					.fromJson(strJSON, DocumentPropertiesResponse.class);
 
 			return documentPropertiesResponse.getDocumentProperties().getList();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 
 	}
 
@@ -120,7 +117,6 @@ public class Document {
 	// / <param name="propertyName"></param>
 	// / <returns>value of the specified property</returns>
 	public DocumentProperty GetDocumentProperty(String propertyName) {
-		try {
 
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
@@ -129,6 +125,9 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetDocumentProperty: Please Specify AppKey and AppSID");
+
+					
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -147,10 +146,6 @@ public class Document {
 					strJSON, DocumentPropertyResponse.class);
 
 			return documentPropertyResponse.getDocumentProperty();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 
 	}
 
@@ -161,7 +156,7 @@ public class Document {
 	// / <param name="propertyValue"></param>
 	// / <returns></returns>
 	public boolean SetDocumentProperty(String propertyName, String propertyValue)
-			throws SignatureException {
+			throws SignatureException, CommonIOException {
 
 		// build URI to get page count
 		String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
@@ -170,6 +165,9 @@ public class Document {
 		if (this.auth != null) {
 			if (!this.auth.validateAuth()) {
 				System.out.println("Please Specify AppKey and AppSID");
+				throw new AuthorizationException("Document.SetDocumentProperty: Please Specify AppKey and AppSID");
+
+				
 			} else {
 				signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 						this.auth.getAppSID());
@@ -208,7 +206,6 @@ public class Document {
 	// / </summary>
 	// / <returns></returns>
 	public boolean RemoveAllProperties() throws SignatureException {
-		try {
 
 			// throw new Exception("Resource removeAll throws exception");
 
@@ -227,6 +224,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.RemoveAllProperties: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -250,10 +249,6 @@ public class Document {
 				return true;
 			else
 				return false;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
 
 	}
 
@@ -264,7 +259,6 @@ public class Document {
 	// / <returns>count of the form fields</returns>
 	public int GetFormFieldCount() {
 
-		try {
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
 					+ "/fields";
@@ -272,6 +266,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetFormFieldCount: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -292,10 +288,6 @@ public class Document {
 					FormFieldsResponse.class);
 
 			return formFieldsResponse.getFields().getList().size();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return -1;
-		}
 
 	}
 
@@ -304,7 +296,6 @@ public class Document {
 	// / </summary>
 	// / <returns>list of the form fields</returns>
 	public List<FormField> GetFormFields() {
-		try {
 
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
@@ -313,6 +304,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetFormFields: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -333,10 +326,6 @@ public class Document {
 					FormFieldsResponse.class);
 
 			return formFieldsResponse.getFields().getList();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 
 	}
 
@@ -347,7 +336,6 @@ public class Document {
 	// / <returns>form field</returns>
 	public FormField GetFormField(String fieldName) {
 
-		try {
 
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
@@ -356,6 +344,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetFormField: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -376,12 +366,6 @@ public class Document {
 					FormFieldResponse.class);
 
 			return formFieldResponse.getFormField();
-		}
-
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 
 	// / <summary>
@@ -393,7 +377,6 @@ public class Document {
 	// / <returns></returns>
 	public boolean CreateFromXml(String pdfFileName, String xsltFileName,
 			String xmlFileName) {
-		try {
 
 			String strURI = Product.getBaseProductUri() + "/pdf/" + pdfFileName
 					+ "?templateFile=" + xsltFileName + "&dataFile="
@@ -403,6 +386,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.CreateFromXml: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -428,10 +413,6 @@ public class Document {
 			else
 				return false;
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
 
 	}
 
@@ -442,7 +423,6 @@ public class Document {
 	// / <param name="htmlFileName"></param>
 	// / <returns></returns>
 	public boolean CreateFromHtml(String pdfFileName, String htmlFileName) {
-		try {
 
 			String strURI = Product.getBaseProductUri() + "/pdf/" + pdfFileName
 					+ "?templateFile=" + htmlFileName + "&templateType=html";
@@ -450,6 +430,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.CreateFromHtml: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -475,10 +457,6 @@ public class Document {
 			else
 				return false;
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
 
 	}
 
@@ -490,7 +468,6 @@ public class Document {
 
 	public boolean CreateEmptyPdf(String newDocumentName) {
 
-		try {
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/"
 					+ newDocumentName;
@@ -498,6 +475,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.CreateEmptyPdf: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -523,10 +502,6 @@ public class Document {
 			else
 				return false;
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
 
 	}
 
@@ -538,15 +513,14 @@ public class Document {
 
 	public boolean MergeDocuments(List<String> sourceFiles) {
 
-		try {
 			// New PDF Filename
 			String mergedFileName = FileName;
 
 			if (sourceFiles.isEmpty())
-				throw new Exception("File to merge are not specified");
+				throw new ParameterMissingException("File to merge are not specified");
 
 			if (sourceFiles.size() < 2)
-				throw new Exception("Two or more files are requred to merge");
+				throw new ParameterMissingException("Two or more files are requred to merge");
 
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/"
@@ -555,6 +529,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.MergeDocuments: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -588,10 +564,6 @@ public class Document {
 			else
 				return false;
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
 
 	}
 
@@ -604,7 +576,6 @@ public class Document {
 
 	public boolean AppendDocument(String basePdf, String newPdf) {
 
-		try {
 			// Saving Exisiting File name
 			String sOldFile = FileName;
 
@@ -623,6 +594,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.AppendDocument: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -650,10 +623,6 @@ public class Document {
 			else
 				return false;
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
 
 	}
 
@@ -670,7 +639,6 @@ public class Document {
 	public boolean AppendDocument(String basePdf, String newPdf, int startPage,
 			int endPage) {
 
-		try {
 
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + basePdf
@@ -681,6 +649,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.AppendDocument: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -708,10 +678,6 @@ public class Document {
 			else
 				return false;
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
 
 	}
 
@@ -722,7 +688,6 @@ public class Document {
 
 	public boolean AddNewPage() {
 
-		try {
 
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
@@ -731,6 +696,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.AddNewPage: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -757,10 +724,6 @@ public class Document {
 			else
 				return false;
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
 	}
 
 	// / <summary>
@@ -770,7 +733,6 @@ public class Document {
 	// / <returns></returns>
 
 	public boolean DeletePage(int pageNumber) {
-		try {
 
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
@@ -779,6 +741,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.DeletePage: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -805,10 +769,6 @@ public class Document {
 			else
 				return false;
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
 	}
 
 	// / <summary>
@@ -818,7 +778,6 @@ public class Document {
 	// / <param name="newLocation"></param>
 	// / <returns></returns>
 	public boolean MovePage(int pageNumber, int newLocation) {
-		try {
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
 					+ "/pages/" + Integer.toString(pageNumber)
@@ -827,6 +786,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.MovePage: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -853,11 +814,6 @@ public class Document {
 				return true;
 			else
 				return false;
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
 	}
 
 	// / <summary>
@@ -869,7 +825,6 @@ public class Document {
 	// / <returns></returns>
 	public boolean ReplaceImageUsingStream(int pageNumber, int imageIndex,
 			InputStream imageStream) {
-		try {
 			// build URI to replace image
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
 					+ "/pages/" + pageNumber + "/images/" + imageIndex;
@@ -878,6 +833,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.ReplaceImageUsingStream: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -905,10 +862,6 @@ public class Document {
 			else
 				return false;
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
 	}
 
 	// / <summary>
@@ -920,7 +873,6 @@ public class Document {
 	// / <returns></returns>
 	public boolean ReplaceImageUsingFile(int pageNumber, int imageIndex,
 			String fileName) {
-		try {
 			// build URI to replace image
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
 					+ "/pages/" + pageNumber + "/images/" + imageIndex
@@ -930,6 +882,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.ReplaceImageUsingFile: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -956,18 +910,12 @@ public class Document {
 				return true;
 			else
 				return false;
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
 	}
 	public PdfDocument GetDocument()
 	{ 
-		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = Product.getBaseProductUri()  + "/pdf/" + FileName;
@@ -978,6 +926,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetDocument: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -996,18 +946,14 @@ public class Document {
 					DocumentResponse.class);
 
 			return docResponse.getDocument();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+	
 	}
 
 	public boolean InsertFormField(FormField formField)
 	{
-		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = Product.getBaseProductUri()  + "/pdf/" + FileName + "/fields/"+formField.getName();
@@ -1017,6 +963,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.InsertFormField: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -1043,17 +991,13 @@ public class Document {
 				return true;
 			else
 				return false;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
+	
 	}
 	public boolean InsertFormFields(FormFields formField)
 	{
-		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = Product.getBaseProductUri()  + "/pdf/" + FileName + "/fields";
@@ -1063,6 +1007,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.InsertFormFields: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -1089,17 +1035,13 @@ public class Document {
 				return true;
 			else
 				return false;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
+	
 	}
 	public boolean SaveAsTiff(SaveAsTiffOptions imageOptions, String folderName)
 	{
-		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = Product.getBaseProductUri()  + "/pdf/" + FileName + "/SaveAs/tiff?folder=" + folderName;
@@ -1109,6 +1051,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.SaveAsTiff: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -1135,17 +1079,13 @@ public class Document {
 				return true;
 			else
 				return false;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
+	
 	}
 	public boolean SaveAsTiff(String outputFile, String compression, String folderName)
 	{
-		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = Product.getBaseProductUri()  + "/pdf/" + FileName + "/SaveAs/tiff?resultFile=" + outputFile + "&compression=" + compression + "&folder=" + folderName;
@@ -1155,6 +1095,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.SaveAsTiff: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -1181,17 +1123,12 @@ public class Document {
 				return true;
 			else
 				return false;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
 	}
 	public LinkResponse[] SplitDocument()
 	{
-		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = Product.getBaseProductUri()  + "/pdf/" + FileName + "/split";
@@ -1201,6 +1138,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.SplitDocument: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -1220,17 +1159,12 @@ public class Document {
 					SplitPDFResponse.class);
 
 			return PDFResponse.getResult().getDocuments();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 	public LinkResponse[] SplitDocument(int from, int to)
 	{
-		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = Product.getBaseProductUri()   + "/pdf/" + FileName + "/split?from=" + from + "&to=" + to;
@@ -1240,6 +1174,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.SplitDocument: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -1259,17 +1195,12 @@ public class Document {
 					SplitPDFResponse.class);
 
 			return PDFResponse.getResult().getDocuments();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 	public LinkResponse[] SplitDocument(int from, int to, SplitDocumentFormat format)
 	{
-		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = Product.getBaseProductUri()   + "/pdf/" + FileName + "/split?from=" + from + "&to=" + to + "&format=" + format.toString();
@@ -1279,6 +1210,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.SplitDocument: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -1298,17 +1231,12 @@ public class Document {
 					SplitPDFResponse.class);
 
 			return PDFResponse.getResult().getDocuments();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 	public boolean AddStamp(StampRequest stampRequest)
 	{
-		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = Product.getBaseProductUri()  + "/pdf/" + FileName + "/pages/" + stampRequest.getPageIndex() + "/stamp/";
@@ -1318,6 +1246,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.AddStamp: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -1340,17 +1270,12 @@ public class Document {
 				return true;
 			else
 				return false;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
 	}
 	public boolean AddStampWithTextState(StampRequest stampRequest)
 	{
-		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = Product.getBaseProductUri()  + "/pdf/" + FileName + "/pages/" + stampRequest.getPageIndex() + "/stamp/";
@@ -1360,6 +1285,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.AddStampWithTextState: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -1382,18 +1309,13 @@ public class Document {
 				return true;
 			else
 				return false;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
 	}
 	
 	public int GetTotalWordCount()
 	{ 
-		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName + "/Pages";
@@ -1405,6 +1327,8 @@ public class Document {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Document.GetTotalWordCount: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -1425,9 +1349,5 @@ public class Document {
              for (WordResponse wordResponse : wordsResponse.getWordsPerPage().getList())
                  count += wordResponse.getCount();
              return count;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return -1;
-		}
 	}
 }

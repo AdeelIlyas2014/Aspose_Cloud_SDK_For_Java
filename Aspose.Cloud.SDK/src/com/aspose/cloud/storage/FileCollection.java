@@ -28,8 +28,6 @@ public class FileCollection {
     
     public static List<com.aspose.cloud.storage.File> getFilesList(String strJSON)
     {
-        try
-        {
         //	strJSON=strJSON.replaceFirst("1327228690298-0600", "1327228690298+0600");
         	Gson gson =GsonDateParser.createWcfGson();
             FolderResponse folderResponse = gson.fromJson(strJSON,FolderResponse.class);;
@@ -38,12 +36,5 @@ public class FileCollection {
 
             return files;
 
-        }
-        catch (Exception ex)
-        {
-           ex.printStackTrace();
-           return null;
-        }
-	
     }
 }

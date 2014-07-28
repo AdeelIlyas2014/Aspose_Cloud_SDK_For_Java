@@ -3,11 +3,17 @@
  */
 package com.aspose.cloud.barcode;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 import com.aspose.cloud.common.AsposeApp;
 import com.aspose.cloud.common.AsposeAppNonStatic;
 import com.aspose.cloud.common.Utils;
+import com.aspose.cloud.exceptions.AppKeyMissingException;
+import com.aspose.cloud.exceptions.AppSIDMissingException;
+import com.aspose.cloud.exceptions.AuthorizationException;
+import com.aspose.cloud.exceptions.BarCodeIOException;
+import com.aspose.cloud.exceptions.ParameterMissingException;
 import com.google.gson.Gson;
 
 /**
@@ -120,9 +126,8 @@ public class BarCodeBuilder {
 	public GenerationResponse Save(
 			com.aspose.cloud.barcode.SaveLocation saveLocation, String outputPath,
 			com.aspose.cloud.barcode.ImageFormat imageFormat) {
-		try {
+		
 			PerformValidations();
-
 			// If image needs to be saved locally
 			if (saveLocation == SaveLocation.Local) {
 				// Build URL with querystring request parameters
@@ -132,6 +137,8 @@ public class BarCodeBuilder {
 				if (this.auth != null) {
 					if (!this.auth.validateAuth()) {
 						System.out.println("Please Specify AppSID and AppKey");
+						throw new AuthorizationException("BarCodeBuilder.Save: Please Specify AppKey and AppSID");
+
 					} else {
 						responseStream = Utils.ProcessCommand(Utils.Sign(uri,
 								this.auth.getAppKey(), this.auth.getAppSID()),
@@ -148,8 +155,15 @@ public class BarCodeBuilder {
 
 				com.aspose.cloud.storage.Folder.SaveStreamToFile(outputPath,
 						responseStream);
-				responseStream.close();
-
+				
+					try {
+						responseStream.close();
+					} catch (IOException e) {
+						
+						throw new BarCodeIOException("BarCodeBuilder.Save(): Some IO Error Occurred during Barcode Generation. ",e);
+				
+					}
+				
 				GenerationResponse response = new GenerationResponse();
 				response.setStatus("OK");
 				return response;
@@ -162,6 +176,8 @@ public class BarCodeBuilder {
 				if (this.auth != null) {
 					if (!this.auth.validateAuth()) {
 						System.out.println("Please Specify AppSID and AppKey");
+						throw new AuthorizationException("BarCodeBuilder.Save: Please Specify AppKey and AppSID");
+
 					} else {
 						responseStream = Utils.ProcessCommand(Utils.Sign(uri,
 								this.auth.getAppKey(), this.auth.getAppSID()),
@@ -180,13 +196,10 @@ public class BarCodeBuilder {
 
 				return barcodeGenerationResponse;
 			}
-
+			
 			// Return null, if anything goes wrong
 			return null;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+		
 	}
 
 	// / <summary>
@@ -198,7 +211,7 @@ public class BarCodeBuilder {
 	// public GenerationResponse Save(SaveLocation saveLocation, InputStream
 	// imageStream, ImageFormat imageFormat)
 	public InputStream Save(ImageFormat imageFormat) {
-		try {
+		
 			PerformValidations();
 
 			// Build URL with querystring request parameters
@@ -206,8 +219,10 @@ public class BarCodeBuilder {
 			InputStream responseStream = null;
 			// Send the request to aspose server
 			if (this.auth != null) {
-				System.out.println("Please Specify AppSID and AppKey");
+			
 				if (!this.auth.validateAuth()) {
+					System.out.println("Please Specify AppSID and AppKey");
+					throw new AuthorizationException("BarCodeBuilder.Save: Please Specify AppKey and AppSID");
 
 				} else {
 					responseStream = Utils.ProcessCommand(
@@ -235,10 +250,7 @@ public class BarCodeBuilder {
 			// GenerationResponse response = new GenerationResponse();
 			// response.getStatus() = "OK";
 			// return response;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+
 	}
 
 	// / <summary>
@@ -284,25 +296,25 @@ public class BarCodeBuilder {
 	// / <summary>
 	// / Perform validations locally
 	// / </summary>
-	private void PerformValidations() throws Exception {
+	private void PerformValidations() {
 		// Throw exception if App Key is empty
 		if (this.auth != null) {
 			if (!this.auth.validateAuth()) {
 				if (AsposeApp.getAppKey() == null
 						|| AsposeApp.getAppKey().trim().length() == 0)
-					throw new Exception(
-							"App Key is not specified. Please set the App Key property.");
+					throw new AppKeyMissingException(
+							"BarCodeBuilder.PerformValidation: App Key is not specified. Please set the App Key property.");
 
 				// Throw exception if App SID is empty
 				if (AsposeApp.getAppSID() == null
 						|| AsposeApp.getAppSID().trim().length() == 0)
-					throw new Exception(
-							"App SID is not specified. Please set App SID property.");
+					throw new AppSIDMissingException(
+							"BarCodeBuilder.PerformValidation: App SID is not specified. Please set App SID property.");
 
 				// Throw exception if codetext is empty
 				if (Codetext == null || Codetext.trim().length() == 0)
-					throw new Exception(
-							"Codetext is not specified. Please set Codetext property.");
+					throw new ParameterMissingException(
+							"BarCodeBuilder.PerformValidation: Codetext is not specified. Please set Codetext property.");
 			}
 		}
 	}

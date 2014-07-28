@@ -9,6 +9,8 @@ import java.util.List;
 import com.aspose.cloud.common.AsposeAppNonStatic;
 import com.aspose.cloud.common.Product;
 import com.aspose.cloud.common.Utils;
+import com.aspose.cloud.exceptions.AuthorizationException;
+import com.aspose.cloud.exceptions.CommonIOException;
 import com.google.gson.Gson;
 
 /**
@@ -42,7 +44,6 @@ public class TextEditor {
 	// / </summary>
 	// / <returns></returns>
 	public String GetText() {
-		try {
 
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
@@ -73,10 +74,6 @@ public class TextEditor {
 			}
 
 			return stringBuilder.toString();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 
 	// / <summary>
@@ -84,7 +81,6 @@ public class TextEditor {
 	// / </summary>
 	// / <returns></returns>
 	public String GetText(int pageNumber) {
-		try {
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
 					+ "/pages/" + Integer.toString(pageNumber) + "/TextItems";
@@ -92,6 +88,8 @@ public class TextEditor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("TextEditor.GetText: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -116,10 +114,6 @@ public class TextEditor {
 			}
 
 			return stringBuilder.toString();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 
 	}
 
@@ -128,7 +122,6 @@ public class TextEditor {
 	// / </summary>
 	// / <returns></returns>
 	public List<TextItem> GetTextItems() {
-		try {
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
 					+ "/TextItems";
@@ -136,6 +129,8 @@ public class TextEditor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("TextEditor.GetTextItems: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -154,10 +149,6 @@ public class TextEditor {
 					TextItemsResponse.class);
 
 			return textItemsResponse.getTextItems().getList();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 
 	}
 
@@ -166,7 +157,6 @@ public class TextEditor {
 	// / </summary>
 	// / <returns></returns>
 	public List<TextItem> GetTextItems(int pageNumber) {
-		try {
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
 					+ "/pages/" + Integer.toString(pageNumber) + "/TextItems";
@@ -174,6 +164,8 @@ public class TextEditor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("TextEditor.GetTextItems: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -192,10 +184,6 @@ public class TextEditor {
 					TextItemsResponse.class);
 
 			return textItemsResponse.getTextItems().getList();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 
 	// / <summary>
@@ -203,7 +191,6 @@ public class TextEditor {
 	// / </summary>
 	// / <returns></returns>
 	public List<TextItem> GetTextItems(int pageNumber, int fragmentNumber) {
-		try {
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
 					+ "/pages/" + Integer.toString(pageNumber) + "/fragments/"
@@ -212,6 +199,8 @@ public class TextEditor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("TextEditor.GetTextItems: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -230,10 +219,6 @@ public class TextEditor {
 					TextItemsResponse.class);
 
 			return textItemsResponse.getTextItems().getList();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 
 	// / <summary>
@@ -243,7 +228,6 @@ public class TextEditor {
 	// / <returns></returns>
 	public int GetFragmentCount(int pageNumber) {
 
-		try {
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
 					+ "/pages/" + Integer.toString(pageNumber) + "/fragments";
@@ -251,6 +235,8 @@ public class TextEditor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("TextEditor.GetFragmentCount: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -269,10 +255,6 @@ public class TextEditor {
 					TextItemsResponse.class);
 
 			return textItemsResponse.getTextItems().getList().size();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return -1;
-		}
 	}
 
 	// / <summary>
@@ -282,7 +264,6 @@ public class TextEditor {
 	// / <param name="fragmentNumber"></param>
 	// / <returns></returns>
 	public int GetSegmentCount(int pageNumber, int fragmentNumber) {
-		try {
 
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
@@ -292,6 +273,8 @@ public class TextEditor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("TextEditor.GetSegmentCount: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -309,10 +292,6 @@ public class TextEditor {
 					TextItemsResponse.class);
 
 			return textItemsResponse.getTextItems().getList().size();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return -1;
-		}
 	}
 
 	// / <summary>
@@ -322,7 +301,6 @@ public class TextEditor {
 	// / <param name="fragmentNumber"></param>
 	// / <returns></returns>
 	public TextFormat GetTextFormat(int pageNumber, int fragmentNumber) {
-		try {
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
 					+ "/pages/" + Integer.toString(pageNumber) + "/fragments/"
@@ -331,6 +309,8 @@ public class TextEditor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("TextEditor.GetTextFormat: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -349,10 +329,6 @@ public class TextEditor {
 					TextFormatResponse.class);
 
 			return textformatResponse.getTextFormat();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 
 	// / <summary>
@@ -364,7 +340,6 @@ public class TextEditor {
 	// / <returns></returns>
 	public TextFormat GetTextFormat(int pageNumber, int fragmentNumber,
 			int segmentNumber) {
-		try {
 
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
@@ -375,6 +350,8 @@ public class TextEditor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("TextEditor.GetTextFormat: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -392,10 +369,6 @@ public class TextEditor {
 			TextFormatResponse textformatResponse = gson.fromJson(strJSON,
 					TextFormatResponse.class);
 			return textformatResponse.getTextFormat();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 
 	// / <summary>
@@ -407,7 +380,6 @@ public class TextEditor {
 	// / <returns>Number of Matches</returns>
 	public int ReplaceText(String oldText, String newText,
 			boolean isRegularExpression) {
-		try {
 			// build URI to get replace text
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
 					+ "/replaceText";
@@ -415,6 +387,8 @@ public class TextEditor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("TextEditor.ReplaceText: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -451,10 +425,6 @@ public class TextEditor {
 				return replaceTextResponse.getMatches();
 			else
 				return 0;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return 0;
-		}
 
 	}
 
@@ -468,7 +438,6 @@ public class TextEditor {
 	// / <returns>Number of Matches</returns>
 	public int ReplaceText(int pageNumber, String oldText, String newText,
 			boolean isRegularExpression) {
-		try {
 			// build URI to get replace text
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
 					+ "/pages/" + pageNumber + "/replaceText";
@@ -476,6 +445,8 @@ public class TextEditor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("TextEditor.ReplaceText: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -513,13 +484,8 @@ public class TextEditor {
 				return replaceTextResponse.getMatches();
 			else
 				return 0;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return 0;
-		}
 	}
 	public String GetSegment(int pageNumber, int fragmentNumber, int segmentNumber) {
-		try {
 
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName + "/pages/" +
@@ -530,6 +496,8 @@ public class TextEditor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("TextEditor.GetSegment: Please Specify AppKey and AppSID");
+
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -547,13 +515,8 @@ public class TextEditor {
 					SagmentResponse.class);
 
 			return segmentResponse.getTextItem().getText();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "";
-		}
 	}
 	public int GetAllSegmentCount(int pageNumber, int fragmentNumber) {
-		try {
 
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName + 
@@ -564,6 +527,7 @@ public class TextEditor {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("TextEditor.GetAllSegmentCount: Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -581,10 +545,6 @@ public class TextEditor {
 					TextItemsResponse.class);
 
 			return textItemsResponse.getTextItems().getList().size();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return -1;
-		}
 	}
 
 }

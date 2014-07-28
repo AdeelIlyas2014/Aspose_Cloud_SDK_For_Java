@@ -1,10 +1,14 @@
 ﻿package com.aspose.cloud.cells;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 
 import com.aspose.cloud.common.AsposeAppNonStatic;
 import com.aspose.cloud.common.Utils;
+import com.aspose.cloud.exceptions.AuthorizationException;
+import com.aspose.cloud.exceptions.CellsIOException;
+import com.aspose.cloud.exceptions.ParameterMissingException;
 import com.aspose.cloud.storage.Folder;
 
 public class Converter {
@@ -57,12 +61,11 @@ public class Converter {
 	// / <param name="outputformat"></param>
 	public boolean AutoShapeToImage(int index, String outputFileName,
 			ImageFormat outputformat) {
-		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
-			else if (WorkSheetName == "")
-				throw new Exception("No Worksheet name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
+			else if (WorkSheetName.equals(""))
+				throw new ParameterMissingException("No Worksheet name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -75,6 +78,7 @@ public class Converter {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Converter.AutoShapeToImage: Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -82,16 +86,24 @@ public class Converter {
 			} else {
 				signedURI = Utils.Sign(strURI);
 			}
-
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			boolean response = Folder.SaveStreamToFile(outputFileName,
+			boolean response = false;
+			InputStream responseStream=null;
+			try {
+			responseStream = Utils.ProcessCommand(signedURI, "GET");
+			response = Folder.SaveStreamToFile(outputFileName,
 					responseStream);
-			responseStream.close();
+			
+		    responseStream.close();
+			} catch (IOException e) {
+				try {
+				responseStream.close();
+				} catch (Exception e2) {
+					
+				}
+				throw new CellsIOException("Converter.AutoShapeToImage: Some IO error occured while reading remote stream.",e);
+			}
 			return response;
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
+		
 	}
 
 	// / <summary>
@@ -102,12 +114,12 @@ public class Converter {
 	// / <param name="outputformat"></param>
 	public boolean ChartToImage(int index, String outputFileName,
 			ImageFormat outputformat) {
-		try {
+		
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
-			else if (WorkSheetName == "")
-				throw new Exception("No Worksheet name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
+			else if (WorkSheetName.equals(""))
+				throw new ParameterMissingException("No Worksheet name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -120,6 +132,7 @@ public class Converter {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Converter.ChartToImage: Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -128,15 +141,23 @@ public class Converter {
 				signedURI = Utils.Sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			boolean response = Folder.SaveStreamToFile(outputFileName,
+			boolean response = false;
+			InputStream responseStream=null;
+			try {
+			responseStream = Utils.ProcessCommand(signedURI, "GET");
+			response = Folder.SaveStreamToFile(outputFileName,
 					responseStream);
 			responseStream.close();
+			} catch (IOException e) {
+				try {
+				responseStream.close();
+				} catch (Exception e2) {
+					
+				}
+				throw new CellsIOException("Converter.ChartToImage: Some IO error occured while reading remote stream.",e);
+			}
 			return response;
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
+		
 
 	}
 
@@ -148,12 +169,11 @@ public class Converter {
 	// / <param name="outputformat"></param>
 	public boolean OleObjectToImage(int index, String outputFileName,
 			ImageFormat outputformat) {
-		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
-			else if (WorkSheetName == "")
-				throw new Exception("No Worksheet name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
+			else if (WorkSheetName.equals(""))
+				throw new ParameterMissingException("No Worksheet name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -166,22 +186,33 @@ public class Converter {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Converter.OleObjectToImage: Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
 				signedURI = Utils.Sign(strURI);
+	
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			boolean response = Folder.SaveStreamToFile(outputFileName,
+			boolean response = false;
+			InputStream responseStream=null;
+	        try {
+			     responseStream = Utils.ProcessCommand(signedURI, "GET");
+			     response = Folder.SaveStreamToFile(outputFileName,
 					responseStream);
-			responseStream.close();
+			     responseStream.close();
+	        } catch (IOException e) {
+		     try {
+		            responseStream.close();
+		         } catch (Exception e2) { }
+		     
+		        	 throw new CellsIOException("Converter.OleObjectToImage: Some IO error occured while reading remote stream.",e);
+		    }
+		   
+	
 			return response;
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
+		
 	}
 
 	// / <summary>
@@ -193,12 +224,11 @@ public class Converter {
 	public boolean PictureToImage(int index, String outputFileName,
 			ImageFormat outputformat) {
 
-		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
-			else if (WorkSheetName == "")
-				throw new Exception("No Worksheet name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
+			else if (WorkSheetName.equals(""))
+				throw new ParameterMissingException("No Worksheet name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -211,6 +241,7 @@ public class Converter {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Converter.PictureToImage: Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -218,15 +249,22 @@ public class Converter {
 			} else {
 				signedURI = Utils.Sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			boolean response = Folder.SaveStreamToFile(outputFileName,
+			boolean response = false;
+			InputStream responseStream=null;
+	        try {
+			responseStream = Utils.ProcessCommand(signedURI, "GET");
+			response = Folder.SaveStreamToFile(outputFileName,
 					responseStream);
 			responseStream.close();
+	        } catch (IOException e) {
+			     try {
+			            responseStream.close();
+			         } catch (Exception e2) {}
+			        	 throw new CellsIOException("Converter.PictureToImage: Some IO error occured while reading remote stream.",e);
+			    }
+	        
 			return response;
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
+		
 	}
 
 	// / <summary>
@@ -238,12 +276,11 @@ public class Converter {
 
 	public boolean WorksheetToImage(String outputFileName,
 			ImageFormat outputFormat) {
-		try {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
-			else if (WorkSheetName == "")
-				throw new Exception("No Worksheet name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
+			else if (WorkSheetName.equals(""))
+				throw new ParameterMissingException("No Worksheet name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -256,6 +293,7 @@ public class Converter {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Converter.WorksheetToImage: Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -263,23 +301,27 @@ public class Converter {
 			} else {
 				signedURI = Utils.Sign(strURI);
 			}
-
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			boolean response = Folder.SaveStreamToFile(outputFileName,
+			boolean response = false;
+			InputStream responseStream=null;
+	        try {
+			responseStream = Utils.ProcessCommand(signedURI, "GET");
+			response = Folder.SaveStreamToFile(outputFileName,
 					responseStream);
 			responseStream.close();
+	        } catch (IOException e) {
+			     try {
+			            responseStream.close();
+			         } catch (Exception e2) {}
+			        	 throw new CellsIOException("Converter.WorksheetToImage: Some IO error occured while reading remote stream.",e);
+			    }
+	        
 			return response;
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
 	}
 
-	public boolean Save(String outputFileName, SaveFormat outputFormat) {
-		try {
+	public boolean Save(String outputFileName, SaveFormat outputFormat)  {
 			// check whether file is set or not
-			if (FileName == "")
-				throw new Exception("No file name specified");
+			if (FileName.equals(""))
+				throw new ParameterMissingException("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -291,6 +333,7 @@ public class Converter {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Converter.Save: Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -298,16 +341,21 @@ public class Converter {
 			} else {
 				signedURI = Utils.Sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			boolean response = Folder.SaveStreamToFile(outputFileName,
+			boolean response = false;
+			InputStream responseStream=null;
+	        try {
+			responseStream = Utils.ProcessCommand(signedURI, "GET");
+			response = Folder.SaveStreamToFile(outputFileName,
 					responseStream);
 			responseStream.close();
+	        } catch (IOException e) {
+			     try {
+			            responseStream.close();
+			         } catch (Exception e2) {}
+			        	 throw new CellsIOException("Converter.Save: Some IO error occured while reading remote stream.",e);
+			    }
+	        
 			return response;
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
-
 	}
 
 	// / <summary>
@@ -317,7 +365,6 @@ public class Converter {
 	// / <param name="outputFormat"></param>
 	public void ConvertLocalFile(String inputPath, String outputPath,
 			SaveFormat outputFormat) {
-		try {
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -328,6 +375,7 @@ public class Converter {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Converter.ConvertLocalFile: Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -335,26 +383,33 @@ public class Converter {
 			} else {
 				signedURI = Utils.Sign(strURI);
 			}
-
-			InputStream stream = new FileInputStream(inputPath);
+			InputStream responseStream=null;
+			InputStream stream =null;
+	        try {
+			stream = new FileInputStream(inputPath);
 
 			// get response stream
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT",
+			responseStream = Utils.ProcessCommand(signedURI, "PUT",
 					stream);
 
 			Folder.SaveStreamToFile(outputPath, responseStream);
 
 			responseStream.close();
+			stream.close();
+	        } catch (IOException e) {
+			     try {
+			            responseStream.close();
+			            stream.close();
+			         } catch (Exception e2) {}
+			        	 throw new CellsIOException("Converter.ConvertLocalFile: Some IO error occured while writing to remote stream.",e);
+			    }
+	        
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
 
 	}
 
 	public void ConvertLocalFile(InputStream inputStream, String outputPath,
-			SaveFormat saveFormat) {
-		try {
+			SaveFormat saveFormat)  {
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -365,6 +420,7 @@ public class Converter {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Converter.ConvertLocalFile: Please Specify AppKey and AppSID");
 				} else {
 					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
@@ -372,17 +428,22 @@ public class Converter {
 			} else {
 				signedURI = Utils.Sign(strURI);
 			}
+			InputStream responseStream=null;
+	        try {
 			// get response stream
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT",
+			responseStream = Utils.ProcessCommand(signedURI, "PUT",
 					inputStream);
 
 			Folder.SaveStreamToFile(outputPath, responseStream);
 
 			responseStream.close();
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
+	        } catch (IOException e) {
+			     try {
+			            responseStream.close();
+			         } catch (Exception e2) {}
+			        	 throw new CellsIOException("Converter.ConvertLocalFile: Some IO error occured while writing to remote stream.",e);
+			    }
+	        
 	}
 
 	// / <summary>

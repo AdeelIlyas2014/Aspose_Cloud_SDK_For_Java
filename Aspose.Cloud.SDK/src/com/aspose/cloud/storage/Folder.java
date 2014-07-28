@@ -5,6 +5,7 @@ package com.aspose.cloud.storage;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,6 +18,9 @@ import org.apache.commons.io.IOUtils;
 import com.aspose.cloud.common.AsposeAppNonStatic;
 import com.aspose.cloud.common.BaseResponse;
 import com.aspose.cloud.common.Utils;
+import com.aspose.cloud.exceptions.AuthorizationException;
+import com.aspose.cloud.exceptions.CommonIOException;
+import com.aspose.cloud.exceptions.StorageAPIException;
 import com.google.gson.Gson;
 
 /**
@@ -50,7 +54,6 @@ public class Folder {
 	// / <param name="strFolder"></param>
 	// / <returns></returns>
 	public List<com.aspose.cloud.storage.File> GetFilesList(String strFolder) {
-		try {
 			// StreamReader reader = new StreamReader(Common.
 			// Utils.ProcessCommand(CommonUtils.Sign(this.strURIFolder +
 			// strFolder), "GET") );
@@ -59,6 +62,8 @@ public class Folder {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppSID and AppKey");
+					throw new AuthorizationException("Folder.GetFilesList: Please Specify AppKey and AppSID");
+					
 				} else {
 
 					strJSON = Utils.StreamToString(Utils.ProcessCommand(
@@ -72,19 +77,16 @@ public class Folder {
 			}
 
 			return FileCollection.getFilesList(strJSON);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return null;
-		}
 	}
 
 	public List<com.aspose.cloud.storage.File> GetFilesList(String strFolder,
 			StorageType storageType, String storageName) {
-		try {
 			String strJSON = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppSID and AppKey");
+					throw new AuthorizationException("Folder.GetFilesList: Please Specify AppKey and AppSID");
+					
 				} else {
 					strJSON = Utils.StreamToString(Utils.ProcessCommand(
 							Utils.Sign(this.strURIFolder + strFolder
@@ -99,10 +101,6 @@ public class Folder {
 			}
 
 			return FileCollection.getFilesList(strJSON);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return null;
-		}
 	}
 
 	// / <summary>
@@ -110,8 +108,7 @@ public class Folder {
 	// file under specific folder.
 	// / </summary>
 	// / <param name="strFileName"></param>
-	public boolean DeleteFile(String strFileName) throws Exception {
-		try {
+	public boolean DeleteFile(String strFileName) {
 			InputStream responseStream;
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
@@ -142,19 +139,16 @@ public class Folder {
 			else
 				return false;
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
 	}
 
 	public boolean DeleteFile(String strFileName, StorageType storageType,
-			String storageName) throws Exception {
-		try {
+			String storageName)  {
 			InputStream responseStream = null;
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppSID and AppKey");
+					throw new AuthorizationException("Folder.DeleteFile: Please Specify AppKey and AppSID");
+					
 				} else {
 
 					responseStream = Utils.ProcessCommand(
@@ -181,10 +175,6 @@ public class Folder {
 			else
 				return false;
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
 	}
 
 	public boolean UploadFile(InputStream fileStream, String strRemoteFileName,
@@ -201,12 +191,13 @@ public class Folder {
 	// "FolderName/SubFolderName" for sub folders.
 	// / </summary>
 	// / <param name="strFolderName"></param>
-	public boolean DeleteFolder(String strFolderName) throws Exception {
-		try {
+	public boolean DeleteFolder(String strFolderName) {
 			InputStream responseStream = null;
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppSID and AppKey");
+					throw new AuthorizationException("Folder.DeleteFolder: Please Specify AppKey and AppSID");
+					
 				} else {
 					responseStream = Utils.ProcessCommand(Utils.Sign(
 							this.strURIFolder, this.auth.getAppKey(),
@@ -230,19 +221,16 @@ public class Folder {
 				return true;
 			else
 				return false;
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
 	}
 
 	public boolean DeleteFolder(String strFolderName, StorageType storageType,
-			String storageName) throws Exception {
-		try {
+			String storageName) {
 			InputStream responseStream = null;
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
+					throw new AuthorizationException("Folder.DeleteFolder: Please Specify AppKey and AppSID");
+
 				} else {
 					responseStream = Utils.ProcessCommand(
 							Utils.Sign(this.strURIFolder + strFolderName
@@ -269,17 +257,18 @@ public class Folder {
 				return true;
 			else
 				return false;
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
 	}
-	public boolean UploadFile(String strFile, String strFolder) throws Exception {
+	public boolean UploadFile(String strFile, String strFolder){
 		 return UploadFile(strFile, strFolder, null, null);
 		 }
-	public boolean UploadFile(String strFile, String strFolder,StorageType storageType, String storageName) throws Exception {
+	public boolean UploadFile(String strFile, String strFolder,StorageType storageType, String storageName){
 		File localFile = new File(strFile);
-		FileInputStream fileStream = new FileInputStream(localFile);
+		FileInputStream fileStream;
+		try {
+			fileStream = new FileInputStream(localFile);
+		} catch (FileNotFoundException e) {
+			throw new StorageAPIException("Folder.UploadFile: Specified file not found!",e);
+		}
 		String strRemoteFileName = localFile.getName();
 		return UploadFile(fileStream, strRemoteFileName, strFolder,	storageType, storageName);
 
@@ -288,17 +277,18 @@ public class Folder {
 
 
 	public boolean UploadFile(InputStream fileStream, String strRemoteFileName, String strFolder,
-			StorageType storageType, String storageName) throws Exception {
+			StorageType storageType, String storageName) {
 
-			try {
 				
 				String strURIRequest = this.strURIFile
-						+ (strFolder == "" ? "" : strFolder + "/")
+						+ (strFolder.equals("") ? "" : strFolder + "/")
 						+ strRemoteFileName;
 				String strURISigned = "";
 				if (this.auth != null) {
 					if (!this.auth.validateAuth()) {
 						System.out.println("Please Specify AppSID and AppKey");
+						throw new AuthorizationException("Folder.UploadFile: Please Specify AppKey and AppSID");
+
 					} else {
 						strURISigned = Utils.Sign(strURIRequest,
 								this.auth.getAppKey(), this.auth.getAppSID());
@@ -313,9 +303,7 @@ public class Folder {
 					return true;
 				else
 					return false;
-			} catch (Exception ex) {
-				throw new Exception(ex.getMessage());
-			}
+			
 		}
 
 
@@ -324,13 +312,14 @@ public class Folder {
 	// creates a folder under the root folder.
 	// / </summary>
 	// / <param name="strFolder"></param>
-	public boolean CreateFolder(String strFolder) throws Exception {
-		try {
+	public boolean CreateFolder(String strFolder) {
 			String strURIRequest = this.strURIFolder + strFolder;
 			String strURISigned = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppSID and AppKey");
+					throw new AuthorizationException("Folder.CreateFolder: Please Specify AppKey and AppSID");
+
 				} else {
 					strURISigned = Utils.Sign(strURIRequest,
 							this.auth.getAppKey(), this.auth.getAppSID());
@@ -355,21 +344,18 @@ public class Folder {
 				return true;
 			else
 				return false;
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
 	}
 
 	public boolean CreateFolder(String strFolder, StorageType storageType,
-			String storageName) throws Exception {
-		try {
+			String storageName) {
 			String strURIRequest = this.strURIFolder + strFolder + "?storage="
 					+ storageName;
 			String strURISigned = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppSID and AppKey");
+					throw new AuthorizationException("Folder.CreateFolder: Please Specify AppKey and AppSID");
+
 				} else {
 					strURISigned = Utils.Sign(strURIRequest,
 							this.auth.getAppKey(), this.auth.getAppSID());
@@ -394,10 +380,6 @@ public class Folder {
 				return true;
 			else
 				return false;
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
 	}
 
 	// / <summary>
@@ -406,12 +388,13 @@ public class Folder {
 	// / <param name="strFolderOrFile"></param>
 	// / <returns></returns>
 	public com.aspose.cloud.storage.FileExist FileExist(String strFolderOrFile) {
-		try {
 			String strURIRequest = this.strURIExist + strFolderOrFile;
 			String strURISigned = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppSID and AppKey");
+					throw new AuthorizationException("Folder.FileExist: Please Specify AppKey and AppSID");
+
 				} else {
 					strURISigned = Utils.Sign(strURIRequest,
 							this.auth.getAppKey(), this.auth.getAppSID());
@@ -431,21 +414,18 @@ public class Folder {
 
 			return existResponse.getFileExist();
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return null;
-		}
 	}
 
 	public com.aspose.cloud.storage.FileExist FileExist(String strFolderOrFile,
 			StorageType storageType, String storageName) {
-		try {
 			String strURIRequest = this.strURIExist + strFolderOrFile
 					+ "?storage=" + storageName;
 			String strURISigned = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppSID and AppKey");
+					throw new AuthorizationException("Folder.FileExist: Please Specify AppKey and AppSID");
+
 				} else {
 					strURISigned = Utils.Sign(strURIRequest,
 							this.auth.getAppKey(), this.auth.getAppSID());
@@ -466,10 +446,6 @@ public class Folder {
 
 			return existResponse.getFileExist();
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return null;
-		}
 	}
 
 	// / <summary>
@@ -477,11 +453,12 @@ public class Folder {
 	// / </summary>
 	// / <returns></returns>
 	public DiscUsage GetDiscUsage() {
-		try {
 			InputStream responseStream = null;
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppSID and AppKey");
+					throw new AuthorizationException("Folder.GetDiscUsage: Please Specify AppKey and AppSID");
+
 				} else {
 					responseStream = Utils.ProcessCommand(Utils.Sign(
 							this.strURIDisc, this.auth.getAppKey(),
@@ -501,18 +478,15 @@ public class Folder {
 
 			return discResponse.getDiscUsage();
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return null;
-		}
 	}
 
 	public DiscUsage GetDiscUsage(StorageType storageType, String storageName) {
-		try {
 			InputStream responseStream = null;
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppSID and AppKey");
+					throw new AuthorizationException("Folder.GetDiscUsage: Please Specify AppKey and AppSID");
+
 				} else {
 					responseStream = Utils.ProcessCommand(Utils.Sign(
 							this.strURIDisc + "?storage=" + storageName,
@@ -535,10 +509,6 @@ public class Folder {
 
 			return discResponse.getDiscUsage();
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return null;
-		}
 	}
 
 	// / <summary>
@@ -547,11 +517,11 @@ public class Folder {
 	// / <param name="fileName">file name on the server</param>
 	// / <returns></returns>
 	public InputStream GetFile(String fileName) throws SignatureException {
-		try {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppSID and AppKey");
-					return null;
+					throw new AuthorizationException("Folder.GetFile: Please Specify AppKey and AppSID");
+
 				} else {
 					return Utils.ProcessCommand(
 							Utils.Sign(this.strURIFile + fileName,
@@ -563,21 +533,16 @@ public class Folder {
 						Utils.Sign(this.strURIFile + fileName), "GET");
 			}
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-
 	}
 
 	public InputStream GetFile(String fileName, StorageType storageType,
-			String storageName) throws SignatureException {
-		try {
+			String storageName) throws SignatureException, CommonIOException {
 			if (this.auth != null) {
 
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppSID and AppKey");
-					return null;
+					throw new AuthorizationException("Folder.GetFile: Please Specify AppKey and AppSID");
+
 				} else {
 					return Utils.ProcessCommand(Utils.Sign(this.strURIFile
 							+ fileName + "?storage=" + storageName,
@@ -589,11 +554,6 @@ public class Folder {
 						Utils.Sign(this.strURIFile + fileName + "?storage="
 								+ storageName), "GET");
 			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 
 	}
 
@@ -614,9 +574,10 @@ public class Folder {
 			IOUtils.copy(inputStream, out);
 			return true;
 
+		} catch (FileNotFoundException e) {
+		   throw new StorageAPIException("Folder.SaveStreamToFile: Specified file not found!",e);
 		} catch (IOException e) {
-			e.printStackTrace();
-			return false;
+			   throw new StorageAPIException("Folder.SaveStreamToFile: Cannot write to OutputSteam!",e);
 		}
 	}
 
