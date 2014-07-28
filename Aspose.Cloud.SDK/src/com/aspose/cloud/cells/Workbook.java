@@ -32,7 +32,7 @@ public class Workbook {
 	public List<DocumentProperty> GetProperties() {
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -78,7 +78,7 @@ public class Workbook {
 	public DocumentProperty GetProperty(String propertyName) {
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -172,7 +172,7 @@ public class Workbook {
 	public boolean RemoveAllProperties() {
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -217,7 +217,7 @@ public class Workbook {
 	public boolean RemoveProperty(String propertyName) {
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -437,7 +437,7 @@ public class Workbook {
      {
 		 try {
 				// check whether file is set or not
-				if (FileName == "")
+				if (FileName.equals(""))
 					throw new Exception("No file name specified");
 
 				// build URI
@@ -480,7 +480,7 @@ public class Workbook {
 
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -524,7 +524,7 @@ public class Workbook {
 
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -566,7 +566,7 @@ public class Workbook {
 
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -944,7 +944,7 @@ public class Workbook {
 		try {
 
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -991,7 +991,7 @@ public class Workbook {
 	public boolean MergeWorkbook(String mergefileName) {
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
@@ -1040,7 +1040,7 @@ public class Workbook {
 
 		try {
 			// check whether file is set or not
-			if (FileName == "")
+			if (FileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI

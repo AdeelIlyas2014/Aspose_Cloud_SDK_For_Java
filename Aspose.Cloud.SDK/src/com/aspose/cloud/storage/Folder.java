@@ -293,7 +293,7 @@ public class Folder {
 			try {
 				
 				String strURIRequest = this.strURIFile
-						+ (strFolder == "" ? "" : strFolder + "/")
+						+ (strFolder.equals("") ? "" : strFolder + "/")
 						+ strRemoteFileName;
 				String strURISigned = "";
 				if (this.auth != null) {
