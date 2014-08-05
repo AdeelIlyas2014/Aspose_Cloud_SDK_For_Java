@@ -4,13 +4,13 @@ package com.aspose.cloud.words;
 
 public class DocumentEntryList
 {
-	private java.util.ArrayList<DocumentEntry> DocumentEntries;
+	private java.util.ArrayList<DocumentEntry> documentEntries;
 	public final java.util.ArrayList<DocumentEntry> getDocumentEntries()
 	{
-		return DocumentEntries;
+		return documentEntries;
 	}
 	public final void setDocumentEntries(java.util.ArrayList<DocumentEntry> value)
 	{
-		DocumentEntries = value;
+		documentEntries = value;
 	}
 }

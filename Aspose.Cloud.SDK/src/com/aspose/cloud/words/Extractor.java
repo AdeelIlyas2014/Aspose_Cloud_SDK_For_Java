@@ -20,10 +20,10 @@ public class Extractor {
 		this.auth = auth;
 	}
 
-	public List<Paragraph> GetText(String FileName) {
+	public List<Paragraph> getText(String fileName) {
 		try {
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/words/" + FileName;
+			String strURI = Product.getBaseProductUri() + "/words/" + fileName;
 			strURI += "/textItems";
 
 			// sign URI
@@ -32,16 +32,16 @@ public class Extractor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -62,27 +62,27 @@ public class Extractor {
 	// / <param name="FileName"></param>
 	// / <param name="outputPath"></param>
 	// / <returns></returns>
-	public void GetDrawingObjects(String FileName, String outputPath) {
+	public void getDrawingObjects(String fileName, String outputPath) {
 
 		try {
 			// build URI to get Drawing Objects
-			String strURI = Product.getBaseProductUri() + "/words/" + FileName
+			String strURI = Product.getBaseProductUri() + "/words/" + fileName
 					+ "/drawingObjects";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -90,7 +90,7 @@ public class Extractor {
 					DrawingObjectsResponse.class);
 
 			for (com.aspose.cloud.words.List list : Response.getDrawingObjects().getList()) {
-				GetDrawingObject(list.getlink().getHref(), outputPath);
+				getDrawingObject(list.getlink().getHref(), outputPath);
 
 			}
 		} catch (Exception ex) {
@@ -103,7 +103,7 @@ public class Extractor {
 	// / </summary>
 	// / <param name="strURI"></param>
 	// / <param name="outputPath">C:\Output.jpg</param>
-	public boolean GetDrawingObject(String strURI, String outputPath) {
+	public boolean getDrawingObject(String strURI, String outputPath) {
 
 		try {
 			// build URI to get Drawing Objects
@@ -112,16 +112,16 @@ public class Extractor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -159,15 +159,15 @@ public class Extractor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			responseStream = Utils.ProcessCommand(signedURI, "GET");
-			boolean response = Folder.SaveStreamToFile(outputPath,
+			responseStream = Utils.processCommand(signedURI, "GET");
+			boolean response = Folder.saveStreamToFile(outputPath,
 					responseStream);
 			responseStream.close();
 			return response;
@@ -229,12 +229,12 @@ public class Extractor {
 	// / <param name="index"></param>
 	// / <param name="renderformat"></param>
 	// / <param name="outputPath"></param>
-	public boolean GetoleData(String FileName, int index,
+	public boolean getoleData(String fileName, int index,
 			DrawingObjectsRenderFormat renderformat, String outputPath) {
 
 		try {
 			// build URI to get Image
-			String strURI = Product.getBaseProductUri() + "/words/" + FileName
+			String strURI = Product.getBaseProductUri() + "/words/" + fileName
 					+ "/drawingObjects/" + index + "/oleData";
 
 			String signedURI = "";
@@ -242,15 +242,15 @@ public class Extractor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			boolean response = Folder.SaveStreamToFile(outputPath,
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
+			boolean response = Folder.saveStreamToFile(outputPath,
 					responseStream);
 			responseStream.close();
 			return response;
@@ -267,11 +267,11 @@ public class Extractor {
 	// / <param name="index"></param>
 	// / <param name="renderformat"></param>
 	// / <param name="outputPath"></param>
-	public boolean GetimageData(String FileName, int index,
+	public boolean getimageData(String fileName, int index,
 			DrawingObjectsRenderFormat renderformat, String outputPath) {
 		try {
 			// build URI to get Image
-			String strURI = Product.getBaseProductUri() + "/words/" + FileName
+			String strURI = Product.getBaseProductUri() + "/words/" + fileName
 					+ "/drawingObjects/" + index + "/ImageData";
 
 			String signedURI = "";
@@ -279,14 +279,14 @@ public class Extractor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			boolean response = Folder.SaveStreamToFile(outputPath,
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
+			boolean response = Folder.saveStreamToFile(outputPath,
 					responseStream);
 			responseStream.close();
 			return response;
@@ -303,11 +303,11 @@ public class Extractor {
 	// / <param name="index"></param>
 	// / <param name="renderformat"></param>
 	// / <param name="outputPath"></param>
-	public boolean ConvertDrawingObject(String FileName, int index,
+	public boolean convertDrawingObject(String fileName, int index,
 			DrawingObjectsRenderFormat renderformat, String outputPath) {
 		try {
 			// build URI to get Image
-			String strURI = Product.getBaseProductUri() + "/words/" + FileName
+			String strURI = Product.getBaseProductUri() + "/words/" + fileName
 					+ "/drawingObjects/" + index;
 			strURI = strURI + "?format=" + renderformat.toString();
 			String signedURI = "";
@@ -315,15 +315,15 @@ public class Extractor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			boolean response = Folder.SaveStreamToFile(outputPath,
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
+			boolean response = Folder.saveStreamToFile(outputPath,
 					responseStream);
 			responseStream.close();
 			return response;

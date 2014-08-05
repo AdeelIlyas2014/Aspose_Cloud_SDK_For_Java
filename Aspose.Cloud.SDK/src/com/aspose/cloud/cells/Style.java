@@ -11,52 +11,52 @@ public class Style
         }
 
         private LinkResponse link ;
-        private String Name ;
-        private String CultureCustom ;
-        private String Custom ;
-        private Color BackgroundColor ;
-        private Color ForegroundColor ;
-        private String HorizontalAlignment ;
-        private String VerticalAlignment ;
-        private boolean IsFormulaHidden ;
-        private boolean IsDateTime ;
-        private boolean IsTextWrapped ;
-        private boolean IsGradient ;
-        private boolean IsLocked ;
-        private boolean IsPercent ;
-        private boolean ShrinkToFit ;
-        private int IndentLevel ;
-        private int Number ;
-        private int RotationAngle ;
-        private int Rotation ;
-        private String Pattern ;
-        private String TextDirection ;
-        private List<Border> BorderCollection ;
-        private Font Font ;
+        private String name ;
+        private String cultureCustom ;
+        private String custom ;
+        private Color backgroundColor ;
+        private Color foregroundColor ;
+        private String horizontalAlignment ;
+        private String verticalAlignment ;
+        private boolean isFormulaHidden ;
+        private boolean isDateTime ;
+        private boolean isTextWrapped ;
+        private boolean isGradient ;
+        private boolean isLocked ;
+        private boolean isPercent ;
+        private boolean shrinkToFit ;
+        private int indentLevel ;
+        private int number ;
+        private int rotationAngle ;
+        private int rotation ;
+        private String pattern ;
+        private String textDirection ;
+        private List<Border> borderCollection ;
+        private Font font ;
         
         
         public LinkResponse getlink(){return link;}
-        public String getName(){return Name;}
-        public String getCultureCustom(){return CultureCustom;}
-        public String getCustom(){return Custom;}
-        public Color getBackgroundColor(){return BackgroundColor;}
-        public Color getForegroundColor(){return ForegroundColor;}
-        public String getHorizontalAlignment(){return HorizontalAlignment;}
-        public String getVerticalAlignment(){return VerticalAlignment;}
-        public boolean getIsFormulaHidden(){return IsFormulaHidden;}
-        public boolean getIsDateTime(){return IsDateTime;}
-        public boolean getIsTextWrapped(){return IsTextWrapped;}
-        public boolean getIsGradient(){return IsGradient;}
-        public boolean getIsLocked(){return IsLocked;}
-        public boolean getIsPercent(){return IsPercent;}
-        public boolean getShrinkToFit(){return ShrinkToFit;}
-        public int getIndentLevel(){return IndentLevel;}
-        public int getNumber(){return Number;}
-        public int getRotationAngle(){return RotationAngle;}
-        public int getRotation(){return Rotation;}
-        public String getPattern(){return Pattern;}
-        public String getTextDirection(){return TextDirection;}
-        public List<Border> getBorderCollection(){return BorderCollection;}
-        public Font getFont(){return Font;}
+        public String getName(){return name;}
+        public String getCultureCustom(){return cultureCustom;}
+        public String getCustom(){return custom;}
+        public Color getBackgroundColor(){return backgroundColor;}
+        public Color getForegroundColor(){return foregroundColor;}
+        public String getHorizontalAlignment(){return horizontalAlignment;}
+        public String getVerticalAlignment(){return verticalAlignment;}
+        public boolean getIsFormulaHidden(){return isFormulaHidden;}
+        public boolean getIsDateTime(){return isDateTime;}
+        public boolean getIsTextWrapped(){return isTextWrapped;}
+        public boolean getIsGradient(){return isGradient;}
+        public boolean getIsLocked(){return isLocked;}
+        public boolean getIsPercent(){return isPercent;}
+        public boolean getShrinkToFit(){return shrinkToFit;}
+        public int getIndentLevel(){return indentLevel;}
+        public int getNumber(){return number;}
+        public int getRotationAngle(){return rotationAngle;}
+        public int getRotation(){return rotation;}
+        public String getPattern(){return pattern;}
+        public String getTextDirection(){return textDirection;}
+        public List<Border> getBorderCollection(){return borderCollection;}
+        public Font getFont(){return font;}
 
     }

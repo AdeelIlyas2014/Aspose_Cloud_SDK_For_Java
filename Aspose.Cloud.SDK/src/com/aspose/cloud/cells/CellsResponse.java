@@ -8,20 +8,20 @@ import java.util.List;
     {
         
         private LinkResponse link ;
-        private int CellCount ;               
-        private List<LinkResponse> CellList ;
-        private int MaxRow ;
-        private int MaxColumn ;
-        private Cell Cell ;
-        private Style Style ;
+        private int cellCount ;               
+        private List<LinkResponse> cellList ;
+        private int maxRow ;
+        private int maxColumn ;
+        private Cell cell ;
+        private Style style ;
         
         public LinkResponse getlink(){return link;}
-        public int getCellCount(){return CellCount;}               
-        public List<LinkResponse> getCellList(){return CellList;}
-        public int getMaxRow(){return MaxRow;}
-        public int getMaxColumn(){return MaxColumn;}
-        public Cell getCell(){return Cell;}
-        public Style getStyle(){return Style;}
+        public int getCellCount(){return cellCount;}               
+        public List<LinkResponse> getCellList(){return cellList;}
+        public int getMaxRow(){return maxRow;}
+        public int getMaxColumn(){return maxColumn;}
+        public Cell getCell(){return cell;}
+        public Style getStyle(){return style;}
         
         
     }

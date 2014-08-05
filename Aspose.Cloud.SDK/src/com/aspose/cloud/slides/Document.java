@@ -21,20 +21,20 @@ import com.google.gson.Gson;
 public class Document {
 	private AsposeAppNonStatic auth;
 
-	public Document(String fileName) {
-		FileName = fileName;
+	public Document(String _fileName) {
+		fileName = _fileName;
 		gson = new Gson();
 	}
 
-	public Document(String fileName, AsposeAppNonStatic auth) {
-		this(fileName);
+	public Document(String _fileName, AsposeAppNonStatic auth) {
+		this(_fileName);
 		this.auth = auth;
 	}
 
 	// / <summary>
 	// / Presentation name
 	// / </summary>
-	public String FileName;
+	public String fileName;
 	Gson gson = null;
 
 	public boolean Convert(InputStream stream, String outputPath,
@@ -47,14 +47,14 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT");
-			boolean response = Folder.SaveStreamToFile(outputPath,
+			InputStream responseStream = Utils.processCommand(signedURI, "PUT");
+			boolean response = Folder.saveStreamToFile(outputPath,
 					responseStream);
 			responseStream.close();
 			return response;
@@ -69,26 +69,26 @@ public class Document {
 	// / Finds the slide count of the specified PowerPoint document
 	// / </summary>
 	// / <returns>slide count</returns>
-	public int GetSlideCount() {
+	public int getSlideCount() {
 		try {
 			// build URI to get slide count
 
-			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
+			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
 					+ "/slides";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and deserialize the JSON to a object.
 			SlidesResponse slidesResponse = gson.fromJson(strJSON,
@@ -103,14 +103,14 @@ public class Document {
 
 	}
 
-	public int GetSlideCount(StorageType storageType, String storageName,
+	public int getSlideCount(StorageType storageType, String storageName,
 			String folderName) {
 		try {
 			// build URI to get slide count
 
 			String strURI = Product.getBaseProductUri()
 					+ "/slides/"
-					+ FileName
+					+ fileName
 					+ "/slides"
 					+ (folderName.equals("") || folderName.equals(null) ? ""
 							: "?folder=" + folderName);
@@ -122,16 +122,16 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and deserialize the JSON to a object.
 			SlidesResponse slidesResponse = gson.fromJson(strJSON,
@@ -150,27 +150,27 @@ public class Document {
 	// / Gets a list containing all document properties
 	// / </summary>
 	// / <returns>List of document properties</returns>
-	public int GetDocumentPropertiesCount() {
+	public int getDocumentPropertiesCount() {
 		try {
 			// build URI to get document properties
 
-			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
+			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
 					+ "/documentProperties";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and deserialize the JSON to a object.
 			DocumentPropertiesResponse documentPropertiesResponse = gson
@@ -189,27 +189,27 @@ public class Document {
 	// / Gets a list containing all document properties
 	// / </summary>
 	// / <returns>List of document properties</returns>
-	public List<com.aspose.cloud.slides.DocumentProperty> GetDocumentProperties() {
+	public List<com.aspose.cloud.slides.DocumentProperty> getDocumentProperties() {
 		try {
 			// build URI to get document properties
 
-			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
+			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
 					+ "/documentProperties";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and deserialize the JSON to a object.
 			DocumentPropertiesResponse documentPropertiesResponse = gson
@@ -228,27 +228,27 @@ public class Document {
 	// / </summary>
 	// / <param name="propertyName"></param>
 	// / <returns>value of the specified property</returns>
-	public com.aspose.cloud.slides.DocumentProperty GetDocumentProperty(
+	public com.aspose.cloud.slides.DocumentProperty getDocumentProperty(
 			String propertyName) {
 		try {
 			// build URI to get single property
-			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
+			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
 					+ "/presentation/documentproperties/" + propertyName;
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and deserialize the JSON to a object.
 			DocumentPropertyResponse documentPropertyResponse = gson.fromJson(
@@ -265,27 +265,27 @@ public class Document {
 	// / Removes all the custom properties and resets all the built-in
 	// properties
 	// / </summary>
-	public boolean RemoveAllProperties() {
+	public boolean removeAllProperties() {
 		try {
 			// build URI to remove/reset all the properties
-			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
+			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
 					+ "/documentProperties";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI,
+			InputStream responseStream = Utils.processCommand(signedURI,
 					"DELETE");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and deserialize the JSON to a object.
 			BaseResponse baseResponse = gson.fromJson(strJSON,
@@ -307,10 +307,10 @@ public class Document {
 	// / </summary>
 	// / <param name="oldText"></param>
 	// / <param name="newText"></param>
-	public boolean ReplaceText(String oldText, String newText) {
+	public boolean replaceText(String oldText, String newText) {
 		try {
 			// build URI to replace text
-			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
+			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
 					+ "/replaceText?oldValue=" + oldText + "&newValue="
 					+ newText;// + "&ignoreCase=true";
 			strURI = strURI.replace(" ", "%20");
@@ -319,17 +319,17 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
 			InputStream responseStream = Utils
-					.ProcessCommand(signedURI, "POST");
+					.processCommand(signedURI, "POST");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and deserialize the JSON to a object.
 			BaseResponse baseResponse = gson.fromJson(strJSON,
@@ -353,10 +353,10 @@ public class Document {
 	// / <param name="oldText"></param>
 	// / <param name="newText"></param>
 	// / <param name="slideNumber"></param>
-	public boolean ReplaceText(String oldText, String newText, int slideNumber) {
+	public boolean replaceText(String oldText, String newText, int slideNumber) {
 		try {
 			// build URI to replace text in a particular slide
-			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
+			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
 					+ "/slides/" + Integer.toString(slideNumber)
 					+ "/replaceText?oldValue=" + oldText + "&newValue="
 					+ newText + "&ignoreCase=true";
@@ -366,17 +366,17 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
 			InputStream responseStream = Utils
-					.ProcessCommand(signedURI, "POST");
+					.processCommand(signedURI, "POST");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and deserialize the JSON to a object.
 			BaseResponse baseResponse = gson.fromJson(strJSON,
@@ -399,27 +399,27 @@ public class Document {
 	// property
 	// / </summary>
 	// / <param name="propertyName"></param>
-	public boolean DeleteDocumentProperty(String propertyName) {
+	public boolean deleteDocumentProperty(String propertyName) {
 		try {
 			// build URI to remove single property
-			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
+			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
 					+ "/documentProperties/" + propertyName;
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI,
+			InputStream responseStream = Utils.processCommand(signedURI,
 					"DELETE");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and deserialize the JSON to a object.
 			BaseResponse baseResponse = gson.fromJson(strJSON,
@@ -440,26 +440,26 @@ public class Document {
 	// / Gets all the text items in a presentation
 	// / </summary>
 	// / <returns>A list containing all the text items</returns>
-	public List<TextItem> GetAllTextItems() {
+	public List<TextItem> getAllTextItems() {
 		try {
 			// build URI to get all text items in a presentation
-			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
+			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
 					+ "/textItems";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and deserialize the JSON to a object.
 			TextItemsResponse textItemsResponse = gson.fromJson(strJSON,
@@ -473,13 +473,13 @@ public class Document {
 
 	}
 
-	public List<TextItem> GetAllTextItems(StorageType storageType,
+	public List<TextItem> getAllTextItems(StorageType storageType,
 			String storageName, String folderName) {
 		try {
 			// build URI to get all text items in a presentation
 			String strURI = Product.getBaseProductUri()
 					+ "/slides/"
-					+ FileName
+					+ fileName
 					+ "/textItems"
 					+ (folderName.equals("") || folderName.equals(null) ? ""
 							: "?folder=" + folderName);
@@ -491,15 +491,15 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and deserialize the JSON to a object.
 			TextItemsResponse textItemsResponse = gson.fromJson(strJSON,
@@ -520,10 +520,10 @@ public class Document {
 	// / /// <param name="withEmpty">Set this to true to include items for
 	// shapes without text</param>
 	// / <returns>A list containing all the text items in a slide</returns>
-	public List<TextItem> GetAllTextItems(int slideNumber, boolean withEmpty) {
+	public List<TextItem> getAllTextItems(int slideNumber, boolean withEmpty) {
 		try {
 			// build URI to get all text items in a slide
-			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
+			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
 					+ "/slides/" + Integer.toString(slideNumber)
 					+ "/textItems?withEmpty="
 					+ new Boolean(withEmpty).toString();
@@ -532,15 +532,15 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and deserialize the JSON to a object.
 			TextItemsResponse textItemsResponse = gson.fromJson(strJSON,
@@ -553,13 +553,13 @@ public class Document {
 		}
 	}
 
-	public List<TextItem> GetAllTextItems(int slideNumber, boolean withEmpty,
+	public List<TextItem> getAllTextItems(int slideNumber, boolean withEmpty,
 			StorageType storageType, String storageName, String folderName) {
 		try {
 			// build URI to get all text items in a slide
 			String strURI = Product.getBaseProductUri()
 					+ "/slides/"
-					+ FileName
+					+ fileName
 					+ "/slides/"
 					+ Integer.toString(slideNumber)
 					+ "/textItems?withEmpty="
@@ -574,16 +574,16 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and deserialize the JSON to a object.
 			TextItemsResponse textItemsResponse = gson.fromJson(strJSON,
@@ -601,11 +601,11 @@ public class Document {
 	// / </summary>
 	// / <param name="outputPath"></param>
 	// / <param name="saveFormat"></param>
-	public void SaveAs(String outputPath, SaveFormat saveFormat) {
+	public void saveAs(String outputPath, SaveFormat saveFormat) {
 
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/slides/" + FileName;
+			String strURI = Product.getBaseProductUri() + "/slides/" + fileName;
 			strURI += "?format=" + saveFormat.toString().toLowerCase();
 
 			String signedURI = "";
@@ -613,16 +613,16 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			com.aspose.cloud.storage.Folder.SaveStreamToFile(outputPath,
+			com.aspose.cloud.storage.Folder.saveStreamToFile(outputPath,
 					responseStream);
 
 			responseStream.close();
@@ -633,12 +633,12 @@ public class Document {
 		}
 	}
 
-	public void SaveAs(String outputPath, SaveFormat saveFormat,
+	public void saveAs(String outputPath, SaveFormat saveFormat,
 			StorageType storageType, String storageName, String folderName) {
 
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/slides/" + FileName;
+			String strURI = Product.getBaseProductUri() + "/slides/" + fileName;
 			strURI += "?format="
 					+ saveFormat.toString().toLowerCase()
 					+ (folderName.equals("") || folderName.equals(null) ? ""
@@ -651,16 +651,16 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			com.aspose.cloud.storage.Folder.SaveStreamToFile(outputPath,
+			com.aspose.cloud.storage.Folder.saveStreamToFile(outputPath,
 					responseStream);
 
 			responseStream.close();
@@ -677,14 +677,14 @@ public class Document {
 	// / <param name="outputPath"></param>
 	// / <param name="slideNumber"></param>
 	// / <param name="imageFormat"></param>
-	public void SaveSlideAs(String outputPath, int slideNumber,
+	public void saveSlideAs(String outputPath, int slideNumber,
 			ImageFormat imageFormat)// Returns 100x100 image
 	{
 
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
+			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
 					+ "/slides/" + Integer.toString(slideNumber) + "?format="
 					+ imageFormat.toString().toLowerCase();
 
@@ -693,16 +693,16 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			com.aspose.cloud.storage.Folder.SaveStreamToFile(outputPath,
+			com.aspose.cloud.storage.Folder.saveStreamToFile(outputPath,
 					responseStream);
 
 			responseStream.close();
@@ -713,7 +713,7 @@ public class Document {
 		}
 	}
 
-	public void SaveSlideAs(String outputPath, int slideNumber,
+	public void saveSlideAs(String outputPath, int slideNumber,
 			ImageFormat imageFormat, StorageType storageType,
 			String storageName, String folderName)// Returns 100x100 image
 	{
@@ -723,7 +723,7 @@ public class Document {
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri()
 					+ "/slides/"
-					+ FileName
+					+ fileName
 					+ "/slides/"
 					+ Integer.toString(slideNumber)
 					+ "?format="
@@ -738,16 +738,16 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			com.aspose.cloud.storage.Folder.SaveStreamToFile(outputPath,
+			com.aspose.cloud.storage.Folder.saveStreamToFile(outputPath,
 					responseStream);
 
 			responseStream.close();
@@ -767,7 +767,7 @@ public class Document {
 	// / <param name="imageFormat"></param>
 	// / <param name="width"></param>
 	// / <param name="height"></param>
-	public void SaveSlideAs(String outputPath, int slideNumber,
+	public void saveSlideAs(String outputPath, int slideNumber,
 			ImageFormat imageFormat, int width, int height) {
 		try {
 			// build URI to get page count
@@ -775,7 +775,7 @@ public class Document {
 			// FileName + "/slides/" + slideNumber+"/images" + "?format=" +
 			// imageFormat.toString().toLowerCase() + "&width=" +
 			// Integer.toString(width) + "&height=" + Integer.toString(height);
-			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
+			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
 					+ "/slides/" + slideNumber + "?format="
 					+ imageFormat.toString().toLowerCase() + "&width="
 					+ Integer.toString(width) + "&height="
@@ -786,16 +786,16 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			com.aspose.cloud.storage.Folder.SaveStreamToFile(outputPath,
+			com.aspose.cloud.storage.Folder.saveStreamToFile(outputPath,
 					responseStream);
 
 			responseStream.close();
@@ -806,7 +806,7 @@ public class Document {
 		}
 	}
 
-	public void SaveSlideAs(String outputPath, int slideNumber,
+	public void saveSlideAs(String outputPath, int slideNumber,
 			ImageFormat imageFormat, int width, int height,
 			StorageType storageType, String storageName, String folderName) {
 		try {
@@ -817,7 +817,7 @@ public class Document {
 			// Integer.toString(width) + "&height=" + Integer.toString(height);
 			String strURI = Product.getBaseProductUri()
 					+ "/slides/"
-					+ FileName
+					+ fileName
 					+ "/slides/"
 					+ slideNumber
 					+ "?format="
@@ -836,15 +836,15 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			com.aspose.cloud.storage.Folder.SaveStreamToFile(outputPath,
+			com.aspose.cloud.storage.Folder.saveStreamToFile(outputPath,
 					responseStream);
 
 			responseStream.close();
@@ -861,21 +861,21 @@ public class Document {
 	// / </summary>
 	// / <param name="propertyName"></param>
 	// / <param name="value"></param>
-	public boolean SetDocumentProperty(String propertyName, String value) {
+	public boolean setDocumentProperty(String propertyName, String value) {
 
 		// build URI to remove single property
-		String strURI = Product.getBaseProductUri() + "/slides/" + FileName
+		String strURI = Product.getBaseProductUri() + "/slides/" + fileName
 				+ "/documentProperties/" + propertyName;
 		String signedURI = "";
 		if (this.auth != null) {
 			if (!this.auth.validateAuth()) {
 				System.out.println("Please Specify AppKey and AppSID");
 			} else {
-				signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+				signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 						this.auth.getAppSID());
 			}
 		} else {
-			signedURI = Utils.Sign(strURI);
+			signedURI = Utils.sign(strURI);
 		}
 		// serialize the JSON request content
 		com.aspose.cloud.slides.DocumentProperty docProperty = new com.aspose.cloud.slides.DocumentProperty();
@@ -885,10 +885,10 @@ public class Document {
 		strJSON = gson.toJson(docProperty,
 				com.aspose.cloud.slides.DocumentProperty.class);
 
-		InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT",
+		InputStream responseStream = Utils.processCommand(signedURI, "PUT",
 				strJSON);
 
-		String strResponse = Utils.StreamToString(responseStream);
+		String strResponse = Utils.streamToString(responseStream);
 		// Parse and deserialize the JSON to a object.
 		DocumentPropertyResponse baseResponse = gson.fromJson(strResponse,
 				DocumentPropertyResponse.class);
@@ -902,24 +902,24 @@ public class Document {
 			return false;
 	}
 
-	public boolean DeleteAllSlides() {
+	public boolean deleteAllSlides() {
 		try {
 			String strURI = Product.getBaseProductUri() + "/slides/"
-					+ this.FileName + "/slides";
+					+ this.fileName + "/slides";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI,
+			InputStream responseStream = Utils.processCommand(signedURI,
 					"DELETE");
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 			BaseResponse baseResponse = gson.fromJson(strResponse,
 					BaseResponse.class);
 			if (baseResponse.getCode().equals("200")) {
@@ -934,12 +934,12 @@ public class Document {
 
 	}
 
-	public boolean DeleteAllSlides(StorageType storageType, String storageName,
+	public boolean deleteAllSlides(StorageType storageType, String storageName,
 			String folderName) {
 		try {
 			String strURI = Product.getBaseProductUri()
 					+ "/slides/"
-					+ this.FileName
+					+ this.fileName
 					+ "/slides"
 					+ (folderName.equals("") || folderName.equals(null) ? ""
 							: "?folder=" + folderName);
@@ -951,15 +951,15 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI,
+			InputStream responseStream = Utils.processCommand(signedURI,
 					"DELETE");
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 			BaseResponse baseResponse = gson.fromJson(strResponse,
 					BaseResponse.class);
 			if (baseResponse.getCode().equals("200")) {
@@ -973,11 +973,11 @@ public class Document {
 		}
 
 	}
-	public boolean MergeDocuments(String[] sourceFiles) {
+	public boolean mergeDocuments(String[] sourceFiles) {
 		try
 
 		{
-			String mergedFileName = FileName;
+			String mergedFileName = fileName;
 
 			if (sourceFiles.length < 1)
 			{
@@ -990,11 +990,11 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 			SourceFilesList sourcefileslist = new SourceFilesList();
 			sourcefileslist.setList( sourceFiles);
@@ -1003,10 +1003,10 @@ public class Document {
 			strJSON = gson.toJson(sourcefileslist,
 					SourceFilesList.class);
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "POST",
+			InputStream responseStream = Utils.processCommand(signedURI, "POST",
 					strJSON);
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 			// Parse and deserialize the JSON to a object.
 			BaseResponse baseResponse = gson.fromJson(strResponse,
 					BaseResponse.class);
@@ -1020,25 +1020,25 @@ public class Document {
 			return false;
 		}
 	}
-	public Slide GetSlide(int slideNumber) {
+	public Slide getSlide(int slideNumber) {
 		try {
 			// build URI to get slide count
 
-			String strURI = Product.getBaseProductUri()+ "/slides/" + FileName + "/slides/" + slideNumber;
+			String strURI = Product.getBaseProductUri()+ "/slides/" + fileName + "/slides/" + slideNumber;
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and deserialize the JSON to a object.
 			SlideDetailResponse slidesResponse = gson.fromJson(strJSON,
@@ -1051,23 +1051,23 @@ public class Document {
 		}
 
 	}
-	public boolean DeleteSlide(int slideNumber) {
+	public boolean deleteSlide(int slideNumber) {
 		try {
-			String strURI = Product.getBaseProductUri() + "/slides/" + FileName + "/slides/" + slideNumber;
+			String strURI = Product.getBaseProductUri() + "/slides/" + fileName + "/slides/" + slideNumber;
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI,
+			InputStream responseStream = Utils.processCommand(signedURI,
 					"DELETE");
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 			BaseResponse baseResponse = gson.fromJson(strResponse,
 					BaseResponse.class);
 			if (baseResponse.getCode().equals("200")) {
@@ -1081,25 +1081,25 @@ public class Document {
 		}
 
 	}
-	public Theme GetTheme(int slideNumber) {
+	public Theme getTheme(int slideNumber) {
 		try {
 			// build URI to get slide count
 
-			String strURI = Product.getBaseProductUri()+ "/slides/" + FileName + "/slides/" + slideNumber + "/theme";
+			String strURI = Product.getBaseProductUri()+ "/slides/" + fileName + "/slides/" + slideNumber + "/theme";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and deserialize the JSON to a object.
 			ThemeResponse themeResponse = gson.fromJson(strJSON,

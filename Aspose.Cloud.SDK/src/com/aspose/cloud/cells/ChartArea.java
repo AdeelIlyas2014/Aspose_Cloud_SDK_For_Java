@@ -8,30 +8,30 @@ public class ChartArea
         }
 
         private LinkResponse link ;
-        private boolean AutoScaleFont ;
-        private BackgroundMode BackgroundMode ;
-        private Font Font ;
-        private FillFormat FillFormat ;
-        private int Height ;
-        private boolean IsAutomaticSize ;
-        private boolean IsInnerMode ;
-        private boolean Shadow ;
-        private int Width ;
-        private int X ;
-        private int Y ;
+        private boolean autoScaleFont ;
+        private BackgroundMode backgroundMode ;
+        private Font font ;
+        private FillFormat fillFormat ;
+        private int height ;
+        private boolean isAutomaticSize ;
+        private boolean isInnerMode ;
+        private boolean shadow ;
+        private int width ;
+        private int x ;
+        private int y ;
 
         
         public LinkResponse getlink(){return link;}
-        public boolean getAutoScaleFont(){return AutoScaleFont;}
-        public BackgroundMode getBackgroundMode(){return BackgroundMode;}
-        public Font getFont(){return Font;}
-        public FillFormat getFillFormat(){return FillFormat;}
-        public int getHeight(){return Height;}
-        public boolean getIsAutomaticSize(){return IsAutomaticSize;}
-        public boolean getIsInnerMode(){return IsInnerMode;}
-        public boolean getShadow(){return Shadow;}
-        public int getWidth(){return Width;}
-        public int getX(){return X;}
-        public int getY(){return Y;}
+        public boolean getAutoScaleFont(){return autoScaleFont;}
+        public BackgroundMode getBackgroundMode(){return backgroundMode;}
+        public Font getFont(){return font;}
+        public FillFormat getFillFormat(){return fillFormat;}
+        public int getHeight(){return height;}
+        public boolean getIsAutomaticSize(){return isAutomaticSize;}
+        public boolean getIsInnerMode(){return isInnerMode;}
+        public boolean getShadow(){return shadow;}
+        public int getWidth(){return width;}
+        public int getX(){return x;}
+        public int getY(){return y;}
 
     }

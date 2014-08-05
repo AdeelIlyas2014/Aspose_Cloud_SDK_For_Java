@@ -1,24 +1,24 @@
 package com.aspose.cloud.pdf;
 
 public class TextState {
-	private double FontSize;
-	public double getFontSize(){return FontSize;}
-	public void setFontSize(double FontSize){this.FontSize=FontSize;}
+	private double fontSize;
+	public double getFontSize(){return fontSize;}
+	public void setFontSize(double fontSize){this.fontSize=fontSize;}
 
-	private String Font;
-	public String getFont(){return Font;}
-	public void setFont(String Font){this.Font=Font;}
+	private String font;
+	public String getFont(){return font;}
+	public void setFont(String Font){this.font=Font;}
 
-	private Color ForegroundColor;
-	public Color getForegroundColor(){return ForegroundColor;}
-	public void setForegroundColor(Color ForegroundColor){this.ForegroundColor=ForegroundColor;}
+	private Color foregroundColor;
+	public Color getForegroundColor(){return foregroundColor;}
+	public void setForegroundColor(Color foregroundColor){this.foregroundColor=foregroundColor;}
 
-	private Color BackgroundColor;
-	public Color getBackgroundColor(){return BackgroundColor;}
-	public void setBackgroundColor(Color BackgroundColor){this.BackgroundColor=BackgroundColor;}
+	private Color backgroundColor;
+	public Color getBackgroundColor(){return backgroundColor;}
+	public void setBackgroundColor(Color backgroundColor){this.backgroundColor=backgroundColor;}
 
-	private int FontStyle;
-	public int getFontStyle(){return FontStyle;}
-	public void setFontStyle(int FontStyle){this.FontStyle=FontStyle;}
+	private int fontStyle;
+	public int getFontStyle(){return fontStyle;}
+	public void setFontStyle(int FontStyle){this.fontStyle=FontStyle;}
 
 }

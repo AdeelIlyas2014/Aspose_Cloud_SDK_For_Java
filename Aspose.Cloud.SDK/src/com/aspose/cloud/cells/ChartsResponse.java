@@ -8,14 +8,14 @@ import java.util.List;
     {        
         private LinkResponse link ;
 
-        private List<LinkResponse> ChartList ;
+        private List<LinkResponse> chartList ;
 
-        private Chart Chart ;
+        private Chart chart ;
         
         public LinkResponse getlink() {return link;}
 
-        public List<LinkResponse> getChartList(){return ChartList;}
+        public List<LinkResponse> getChartList(){return chartList;}
 
-        public Chart getChart(){return Chart;}
+        public Chart getChart(){return chart;}
 
     }

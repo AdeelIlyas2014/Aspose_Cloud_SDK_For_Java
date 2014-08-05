@@ -1,33 +1,33 @@
 package com.aspose.cloud.pdf;
 
 public class SaveAsTiffOptions {
-	private float Brightness;
-	public float getBrightness(){return Brightness;}
-	public void setBrightness(float Brightness){this.Brightness=Brightness;}
+	private float brightness;
+	public float getBrightness(){return brightness;}
+	public void setBrightness(float Brightness){this.brightness=Brightness;}
 
-	private String Compression;
-	public String getCompression(){return Compression;}
-	public void setCompression(String Compression){this.Compression=Compression;}
+	private String compression;
+	public String getCompression(){return compression;}
+	public void setCompression(String Compression){this.compression=Compression;}
 
-	private int ColorDepth;
-	public int getColorDepth(){return ColorDepth;}
-	public void setColorDepth(int ColorDepth){this.ColorDepth=ColorDepth;}
+	private int colorDepth;
+	public int getColorDepth(){return colorDepth;}
+	public void setColorDepth(int ColorDepth){this.colorDepth=ColorDepth;}
 
-	private int LeftMargin;
-	public int getLeftMargin(){return LeftMargin;}
-	public void setLeftMargin(int LeftMargin){this.LeftMargin=LeftMargin;}
+	private int leftMargin;
+	public int getLeftMargin(){return leftMargin;}
+	public void setLeftMargin(int LeftMargin){this.leftMargin=LeftMargin;}
 
-	private int RightMargin;
-	public int getRightMargin(){return RightMargin;}
-	public void setRightMargin(int RightMargin){this.RightMargin=RightMargin;}
+	private int rightMargin;
+	public int getRightMargin(){return rightMargin;}
+	public void setRightMargin(int RightMargin){this.rightMargin=RightMargin;}
 
-	private int TopMargin;
-	public int getTopMargin(){return TopMargin;}
-	public void setTopMargin(int TopMargin){this.TopMargin=TopMargin;}
+	private int topMargin;
+	public int getTopMargin(){return topMargin;}
+	public void setTopMargin(int TopMargin){this.topMargin=TopMargin;}
 
-	private int BottomMargin;
-	public int getBottomMargin(){return BottomMargin;}
-	public void setBottomMargin(int BottomMargin){this.BottomMargin=BottomMargin;}
+	private int bottomMargin;
+	public int getBottomMargin(){return bottomMargin;}
+	public void setBottomMargin(int BottomMargin){this.bottomMargin=BottomMargin;}
 
 	private int Orientation;
 	public int getOrientation(){return Orientation;}
@@ -37,32 +37,32 @@ public class SaveAsTiffOptions {
 	public int getskipBlankPages(){return skipBlankPages;}
 	public void setskipBlankPages(int skipBlankPages){this.skipBlankPages=skipBlankPages;}
 
-	private int Width;
-	public int getWidth(){return Width;}
-	public void setWidth(int Width){this.Width=Width;}
+	private int width;
+	public int getWidth(){return width;}
+	public void setWidth(int width){this.width=width;}
 
-	private int Height;
-	public int getHeight(){return Height;}
-	public void setHeight(int Height){this.Height=Height;}
+	private int height;
+	public int getHeight(){return height;}
+	public void setHeight(int height){this.height=height;}
 
-	private int XResolution;
-	public int getXResolution(){return XResolution;}
-	public void setXResolution(int XResolution){this.XResolution=XResolution;}
+	private int xResolution;
+	public int getXResolution(){return xResolution;}
+	public void setXResolution(int xResolution){this.xResolution=xResolution;}
 
-	private int YResolution;
-	public int getYResolution(){return YResolution;}
-	public void setYResolution(int YResolution){this.YResolution=YResolution;}
+	private int yResolution;
+	public int getYResolution(){return yResolution;}
+	public void setYResolution(int yResolution){this.yResolution=yResolution;}
 
-	private int PageIndex;
-	public int getPageIndex(){return PageIndex;}
-	public void setPageIndex(int PageIndex){this.PageIndex=PageIndex;}
+	private int pageIndex;
+	public int getPageIndex(){return pageIndex;}
+	public void setPageIndex(int pageIndex){this.pageIndex=pageIndex;}
   
-	private int PageCount;
-	public int getPageCount(){return PageCount;}
-	public void setPageCount(int PageCount){this.PageCount=PageCount;}
+	private int pageCount;
+	public int getPageCount(){return pageCount;}
+	public void setPageCount(int pageCount){this.pageCount=pageCount;}
 
-	private String ResultFile;
-	public String getResultFile(){return ResultFile;}
-	public void setResultFile(String ResultFile){this.ResultFile=ResultFile;}
+	private String resultFile;
+	public String getResultFile(){return resultFile;}
+	public void setResultFile(String resultFile){this.resultFile=resultFile;}
 
 }

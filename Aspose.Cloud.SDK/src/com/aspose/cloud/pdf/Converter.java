@@ -22,8 +22,8 @@ import java.io.InputStream;
 public class Converter {
 	private AsposeAppNonStatic auth;
 
-	public Converter(String fileName) {
-		FileName = fileName;
+	public Converter(String _fileName) {
+		fileName = _fileName;
 	}
 
 	public Converter(String fileName, AsposeAppNonStatic auth) {
@@ -34,19 +34,19 @@ public class Converter {
 	// / <summary>
 	// / PDF document name
 	// / </summary>
-	public String FileName;
+	public String fileName;
 
 	// / <summary>
 	// / convert a particular page to image
 	// / </summary>
 	// / <param name="outputPath"></param>
 	// / <param name="pageNumber"></param>
-	public boolean GetImage(String outputPath, int pageNumber,
+	public boolean getImage(String outputPath, int pageNumber,
 			ConvertImageFormat imageFormat, SaveLocation saveLocation,
 			int imageHeight, int imageWidth) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber);
 			strURI += "?format=" + imageFormat.toString();
 			strURI += "&width=" + Integer.toString(imageWidth);
@@ -57,15 +57,15 @@ public class Converter {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			boolean response = Folder.SaveStreamToFile(outputPath,
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
+			boolean response = Folder.saveStreamToFile(outputPath,
 					responseStream);
 			responseStream.close();
 			return response;
@@ -81,11 +81,11 @@ public class Converter {
 	// / </summary>
 	// / <param name="outputPath"></param>
 	// / <param name="pageNumber"></param>
-	public boolean GetImage(String outputPath, int pageNumber,
+	public boolean getImage(String outputPath, int pageNumber,
 			ConvertImageFormat imageFormat, SaveLocation saveLocation) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber);
 			strURI += "?format=" + imageFormat.toString();
 
@@ -94,14 +94,14 @@ public class Converter {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			boolean response = Folder.SaveStreamToFile(outputPath,
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
+			boolean response = Folder.saveStreamToFile(outputPath,
 					responseStream);
 			responseStream.close();
 			return response;
@@ -117,12 +117,12 @@ public class Converter {
 	// / </summary>
 	// / <param name="outputPath"></param>
 	// / <param name="saveFormat"></param>
-	public boolean Convert(String outputPath, SaveFormat saveFormat) {
+	public boolean convert(String outputPath, SaveFormat saveFormat) {
 
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName;
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName;
 			strURI += "?format=" + saveFormat.toString();
 
 			String signedURI = "";
@@ -130,15 +130,15 @@ public class Converter {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			boolean response = Folder.SaveStreamToFile(outputPath,
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
+			boolean response = Folder.saveStreamToFile(outputPath,
 					responseStream);
 			responseStream.close();
 			return response;
@@ -154,7 +154,7 @@ public class Converter {
 	// / </summary>
 	// / <param name="outputFileName"></param>
 	// / <param name="outputFormat"></param>
-	public void ConvertLocalFile(String inputPath, String outputPath,
+	public void convertLocalFile(String inputPath, String outputPath,
 			SaveFormat outputFormat) {
 		try {
 
@@ -168,20 +168,20 @@ public class Converter {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
 			InputStream fileStream = new FileInputStream(inputPath);
 
 			// get response stream
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT",
+			InputStream responseStream = Utils.processCommand(signedURI, "PUT",
 					fileStream);
 
-			Folder.SaveStreamToFile(outputPath, responseStream);
+			Folder.saveStreamToFile(outputPath, responseStream);
 
 			responseStream.close();
 
@@ -196,7 +196,7 @@ public class Converter {
 	// / </summary>
 	// / <param name="outputFileName"></param>
 	// / <param name="outputFormat"></param>
-	public InputStream ConvertLocalFile(InputStream inputStream,
+	public InputStream convertLocalFile(InputStream inputStream,
 			SaveFormat outputFormat) {
 		try {
 			// build URI
@@ -209,14 +209,14 @@ public class Converter {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			return Utils.ProcessCommand(signedURI, "PUT", inputStream);
+			return Utils.processCommand(signedURI, "PUT", inputStream);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			return null;

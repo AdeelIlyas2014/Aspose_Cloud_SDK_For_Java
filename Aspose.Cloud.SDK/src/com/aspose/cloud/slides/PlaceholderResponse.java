@@ -3,13 +3,13 @@ package com.aspose.cloud.slides;
 import com.aspose.cloud.common.BaseResponse;
 
 public class PlaceholderResponse extends BaseResponse {
-	private Placeholder Placeholder;
+	private Placeholder placeholder;
 
 	public Placeholder getPlaceholder() {
-		return Placeholder;
+		return placeholder;
 	}
 
-	public void setPlaceholder(Placeholder placeholder) {
-		Placeholder = placeholder;
+	public void setPlaceholder(Placeholder _placeholder) {
+		placeholder = _placeholder;
 	}
 }

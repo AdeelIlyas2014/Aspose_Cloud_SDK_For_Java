@@ -12,24 +12,24 @@ public class DocumentEntry
 		setImportFormatMode(importFormatMode);
 	}
 
-	private String Href;
+	private String href;
 	public final String getHref()
 	{
-		return Href;
+		return href;
 	}
 	public final void setHref(String value)
 	{
-		Href = value;
+		href = value;
 	}
 
-	private String ImportFormatMode;
+	private String importFormatMode;
 	public final String getImportFormatMode()
 	{
-		return ImportFormatMode;
+		return importFormatMode;
 	}
 	public final void setImportFormatMode(String value)
 	{
-		ImportFormatMode = value;
+		importFormatMode = value;
 	}
 }
 

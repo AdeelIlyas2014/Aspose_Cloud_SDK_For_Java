@@ -13,7 +13,7 @@ package com.aspose.cloud.pdf;
 /// </summary>
 public class DocumentPropertiesResponse extends com.aspose.cloud.common.BaseResponse 
 {
-	 private DocumentPropertiesEnvelop DocumentProperties;
+	 private DocumentPropertiesEnvelop documentProperties;
 	 
-	 public DocumentPropertiesEnvelop getDocumentProperties(){return DocumentProperties;}
+	 public DocumentPropertiesEnvelop getDocumentProperties(){return documentProperties;}
 }

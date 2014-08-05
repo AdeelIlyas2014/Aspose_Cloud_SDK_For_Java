@@ -12,7 +12,7 @@ package com.aspose.cloud.slides;
 /// </summary>
 public class DocumentPropertyResponse extends com.aspose.cloud.common.BaseResponse
 {
-   private DocumentProperty DocumentProperty;
+   private DocumentProperty documentProperty;
 
-   public DocumentProperty getDocumentProperty(){return DocumentProperty;}
+   public DocumentProperty getDocumentProperty(){return documentProperty;}
 }

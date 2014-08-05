@@ -25,8 +25,8 @@ import com.google.gson.Gson;
 public class AnnotationEditor {
 	private AsposeAppNonStatic auth;
 
-	public AnnotationEditor(String fileName) {
-		FileName = fileName;
+	public AnnotationEditor(String _fileName) {
+		fileName = _fileName;
 		gson = new Gson();
 	}
 
@@ -38,7 +38,7 @@ public class AnnotationEditor {
 	// / <summary>
 	// / PDF document name
 	// / </summary>
-	public String FileName;
+	public String fileName;
 
 	Gson gson = null;
 
@@ -52,23 +52,23 @@ public class AnnotationEditor {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber) + "/annotations";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse the json String to JObject and Deserializes the JSON to a
 			// object.
@@ -90,12 +90,12 @@ public class AnnotationEditor {
 	// / <param name="pageNumber"></param>
 	// / <returns>List of annotations on a page</returns>
 
-	public List<Annotation> GetAllAnnotations(int pageNumber)
+	public List<Annotation> getAllAnnotations(int pageNumber)
 			throws SignatureException {
 		List<Annotation> ListAnnotations = new java.util.ArrayList<Annotation>();
 		int iTotalAnnotation = GetAnnotationsCount(pageNumber);
 		for (int index = 1; index <= iTotalAnnotation; index++) {
-			ListAnnotations.add(GetAnnotation(pageNumber, index));
+			ListAnnotations.add(getAnnotation(pageNumber, index));
 		}
 		return ListAnnotations;
 
@@ -108,10 +108,10 @@ public class AnnotationEditor {
 	// / <param name="annotationIndex"></param>
 	// / <returns>Selected annotation on a page</returns>
 
-	public Annotation GetAnnotation(int pageNumber, int annotationIndex) {
+	public Annotation getAnnotation(int pageNumber, int annotationIndex) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber)
 					+ "/annotations/" + Integer.toString(annotationIndex);
 			String signedURI = "";
@@ -119,15 +119,15 @@ public class AnnotationEditor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse the json String to JObject and Deserializes the JSON to a
 			// object.
@@ -146,26 +146,26 @@ public class AnnotationEditor {
 	// / </summary>
 	// / <returns>Total number of Bookmarks</returns>
 
-	public int GetBookmarksCount() {
+	public int getBookmarksCount() {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/bookmarks/";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and Deserializes the JSON to a object.
 			BookmarksResponse bookmarksResponse = gson.fromJson(strJSON,
@@ -190,27 +190,27 @@ public class AnnotationEditor {
 	// / <returns>Toatl number of child bookmarks in a specific parent
 	// bookmark</returns>
 
-	public int GetChildBookmarksCount(int iParent) {
+	public int getChildBookmarksCount(int iParent) {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/bookmarks/" + Integer.toString(iParent) + "/bookmarks";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and Deserializes the JSON to a object.
 			BookmarksResponse bookmarksResponse = gson.fromJson(strJSON,
@@ -232,17 +232,17 @@ public class AnnotationEditor {
 	// / <param name="getChildBookmarks"></param>
 	// / <returns>List of all the Bookmarks in Pdf document</returns>
 
-	public List<Bookmark> GetAllBookmarks(boolean getChildBookmarks) {
+	public List<Bookmark> getAllBookmarks(boolean getChildBookmarks) {
 
 		List<Bookmark> ListBookmarks = new ArrayList<Bookmark>();
 
-		int iTotalBookmarks = GetBookmarksCount();
+		int iTotalBookmarks = getBookmarksCount();
 		int[] ChildNum = new int[iTotalBookmarks];
 		int temChildCount = 0;
 		int iTotalParent = iTotalBookmarks;
 
 		for (int iTem = 1; iTem <= iTotalParent; iTem++) {
-			temChildCount = GetChildBookmarksCount(iTem);
+			temChildCount = getChildBookmarksCount(iTem);
 			if (temChildCount > 0) {
 				iTotalParent -= temChildCount;
 				ChildNum[iTem] = temChildCount;
@@ -251,7 +251,7 @@ public class AnnotationEditor {
 
 		for (int index = 1; index <= iTotalParent; index++) {
 			try {
-				ListBookmarks.add(GetBookmark(index));
+				ListBookmarks.add(getBookmark(index));
 			} catch (Exception ex) {
 				// throw new Exception(ex.Message);
 			}
@@ -262,7 +262,7 @@ public class AnnotationEditor {
 			for (int iParent = 1; iParent <= iTotalParent; iParent++) {
 				for (int iChild = 1; iChild <= ChildNum[iParent]; iChild++) {
 					try {
-						ListBookmarks.add(GetChildBookmark(iParent, iChild));
+						ListBookmarks.add(getChildBookmark(iParent, iChild));
 					} catch (Exception ex) {
 						// throw new Exception(ex.Message);
 					}
@@ -282,11 +282,11 @@ public class AnnotationEditor {
 	// / <param name="bookmarkIndex"></param>
 	// / <returns>Selected Bookmark</returns>
 
-	public Bookmark GetBookmark(int bookmarkIndex) {
+	public Bookmark getBookmark(int bookmarkIndex) {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/bookmarks/" + Integer.toString(bookmarkIndex);
 
 			String signedURI = "";
@@ -294,16 +294,16 @@ public class AnnotationEditor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and Deserializes the JSON to a object.
 			BookmarkResponse bookmarkResponse = gson.fromJson(strJSON,
@@ -327,11 +327,11 @@ public class AnnotationEditor {
 	// / <param name="childBookmarkIndex"></param>
 	// / <returns>Selected child Bookmark</returns>
 
-	public Bookmark GetChildBookmark(int parentBookmarkIndex,
+	public Bookmark getChildBookmark(int parentBookmarkIndex,
 			int childBookmarkIndex) {
 		try { // build URI to get page count
 
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/bookmarks/" + Integer.toString(parentBookmarkIndex)
 					+ "/bookmarks/" + Integer.toString(childBookmarkIndex);
 
@@ -340,16 +340,16 @@ public class AnnotationEditor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and Deserializes the JSON to a object.
 			BookmarkResponse bookmarkResponse = gson.fromJson(strJSON,
@@ -369,10 +369,10 @@ public class AnnotationEditor {
 	// / <param name="bookmarkIndex"></param>
 	// / <returns>True if child bookmark; false otherwise</returns>
 
-	public boolean IsChildBookmark(int bookmarkIndex) {
+	public boolean isChildBookmark(int bookmarkIndex) {
 		try { // build URI to get page count
 
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/bookmarks/" + Integer.toString(bookmarkIndex);
 
 			String signedURI = "";
@@ -380,16 +380,16 @@ public class AnnotationEditor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and Deserializes the JSON to a object.
 			BookmarkResponse bookmarkResponse = gson.fromJson(strJSON,
@@ -411,27 +411,27 @@ public class AnnotationEditor {
 	// / </summary>
 	// / <returns>Number of attachments in Pdf document</returns>
 
-	public int GetAttachmentsCount() {
+	public int getAttachmentsCount() {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/attachments";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and Deserializes the JSON to a object.
 			AttachmentsResponse attachmentsResponse = gson.fromJson(strJSON,
@@ -451,14 +451,14 @@ public class AnnotationEditor {
 	// / </summary>
 	// / <returns>List of attachments in a Pdf document</returns>
 
-	public List<Attachment> GetAllAttachments() {
+	public List<Attachment> getAllAttachments() {
 		List<Attachment> ListAttachments = new ArrayList<Attachment>();
 
-		int iTotalAttachments = GetAttachmentsCount();
+		int iTotalAttachments = getAttachmentsCount();
 
 		for (int index = 1; index <= iTotalAttachments; index++) {
 
-			ListAttachments.add(GetAttachment(index));
+			ListAttachments.add(getAttachment(index));
 		}
 		return ListAttachments;
 
@@ -470,27 +470,27 @@ public class AnnotationEditor {
 	// / <param name="attachmentIndex"></param>
 	// / <returns>Selected attachment at specfied index</returns>
 
-	public Attachment GetAttachment(int attachmentIndex) {
+	public Attachment getAttachment(int attachmentIndex) {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/attachments/" + Integer.toString(attachmentIndex);
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and Deserializes the JSON to a object.
 			AttachmentResponse attachmentResponse = gson.fromJson(strJSON,
@@ -511,13 +511,13 @@ public class AnnotationEditor {
 	// / <returns>Saves the selected attchment on specified output
 	// path</returns>
 
-	public boolean DownloadAttachment(String outputPath, int attachmentIndex) {
+	public boolean downloadAttachment(String outputPath, int attachmentIndex) {
 		try {
 
-			Attachment FileInformation = GetAttachment(attachmentIndex);
+			Attachment FileInformation = getAttachment(attachmentIndex);
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/attachments/" + Integer.toString(attachmentIndex)
 					+ "/download";
 			String signedURI = "";
@@ -525,16 +525,16 @@ public class AnnotationEditor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			boolean response = Folder.SaveStreamToFile(outputPath + "\\"
+			boolean response = Folder.saveStreamToFile(outputPath + "\\"
 					+ FileInformation.getName(), responseStream);
 			responseStream.close();
 			return response;
@@ -551,26 +551,26 @@ public class AnnotationEditor {
 	// / <param name="pageNumber"></param>
 	// / <returns>Get total number of links in a page</returns>
 
-	public int GetLinksCount(int pageNumber) {
+	public int getLinksCount(int pageNumber) {
 		try {
 			// build URI to get page count
 
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber) + "/links";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and Deserializes the JSON to a object.
 			PdfLinksResponse pdfLinksResponse = gson.fromJson(strJSON,
@@ -591,14 +591,14 @@ public class AnnotationEditor {
 	// / <param name="pageNumber"></param>
 	// / <returns>List of links on a page</returns>
 
-	public List<Link> GetAllLinks(int pageNumber) {
+	public List<Link> getAllLinks(int pageNumber) {
 		List<Link> ListLinks = new ArrayList<Link>();
 
-		int iTotalLinks = GetLinksCount(pageNumber);
+		int iTotalLinks = getLinksCount(pageNumber);
 
 		for (int index = 1; index <= iTotalLinks; index++) {
 
-			ListLinks.add(GetLink(pageNumber, index));
+			ListLinks.add(getLink(pageNumber, index));
 		}
 		return ListLinks;
 
@@ -612,10 +612,10 @@ public class AnnotationEditor {
 	// / <returns>Selected link at a specified index in a specified Pdf document
 	// page</returns>
 
-	public com.aspose.cloud.pdf.Link GetLink(int pageNumber, int attachmentIndex) {
+	public com.aspose.cloud.pdf.Link getLink(int pageNumber, int attachmentIndex) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber) + "/links/"
 					+ Integer.toString(attachmentIndex);
 			String signedURI = "";
@@ -623,16 +623,16 @@ public class AnnotationEditor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse the json String to JObject
 

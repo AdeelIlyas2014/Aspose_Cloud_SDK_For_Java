@@ -9,24 +9,24 @@ public class DocumentProperty
 
         public DocumentProperty(String propName, String propValue)
         {
-            Name = propName;
-            Value = propValue;
+            name = propName;
+            value = propValue;
         }
 
-        private LinkResponse Link ;
-        private String Name ;
-        private String Value;
-        private boolean BuiltIn ;
+        private LinkResponse link ;
+        private String name ;
+        private String value;
+        private boolean builtIn ;
         
         
-        public LinkResponse getLink(){return Link;}
-        public boolean getIsBuiltIn(){return BuiltIn;}
-        public String getName(){return Name;}
-        public String getValue(){return Value;}
+        public LinkResponse getLink(){return link;}
+        public boolean getIsBuiltIn(){return builtIn;}
+        public String getName(){return name;}
+        public String getValue(){return value;}
 
-        public void setIsBuiltIn(boolean BuiltIn){ this.BuiltIn=BuiltIn;}
-        public void setName(String Name ){ this.Name=Name;}
-        public void setValue(String Value){ this.Value=Value;}
+        public void setIsBuiltIn(boolean BuiltIn){ this.builtIn=BuiltIn;}
+        public void setName(String Name ){ this.name=Name;}
+        public void setValue(String Value){ this.value=Value;}
 
 
     }

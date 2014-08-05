@@ -2,93 +2,93 @@ package com.aspose.cloud.pdf;
 
 public class StampRequest {
 	
-	private int Type;
-	public int getType(){return Type;}
-	public void setType(int Type){this.Type=Type;}
+	private int type;
+	public int getType(){return type;}
+	public void setType(int type){this.type=type;}
 
-	private boolean Background;
-	public boolean getBackground(){return Background;}
-	public void setBackground(boolean Background){this.Background=Background;}
+	private boolean background;
+	public boolean getBackground(){return background;}
+	public void setBackground(boolean background){this.background=background;}
 
-	private double BottomMargin;
-	public double getBottomMargin(){return BottomMargin;}
-	public void setBottomMargin(double BottomMargin){this.BottomMargin=BottomMargin;}
+	private double bottomMargin;
+	public double getBottomMargin(){return bottomMargin;}
+	public void setBottomMargin(double bottomMargin){this.bottomMargin=bottomMargin;}
 
-	private int HorizontalAlignment;
-	public int getHorizontalAlignment(){return HorizontalAlignment;}
-	public void setHorizontalAlignment(int HorizontalAlignment){this.HorizontalAlignment=HorizontalAlignment;}
+	private int horizontalAlignment;
+	public int getHorizontalAlignment(){return horizontalAlignment;}
+	public void setHorizontalAlignment(int horizontalAlignment){this.horizontalAlignment=horizontalAlignment;}
 
-	private double LeftMargin;
-	public double getLeftMargin(){return LeftMargin;}
-	public void setLeftMargin(double LeftMargin){this.LeftMargin=LeftMargin;}
+	private double leftMargin;
+	public double getLeftMargin(){return leftMargin;}
+	public void setLeftMargin(double leftMargin){this.leftMargin=leftMargin;}
 
-	private double Opacity;
-	public double getOpacity(){return Opacity;}
-	public void setOpacity(double Opacity){this.Opacity=Opacity;}
+	private double opacity;
+	public double getOpacity(){return opacity;}
+	public void setOpacity(double opacity){this.opacity=opacity;}
 
-	private double RightMargin;
-	public double getRightMargin(){return RightMargin;}
-	public void setRightMargin(double RightMargin){this.RightMargin=RightMargin;}
+	private double rightMargin;
+	public double getRightMargin(){return rightMargin;}
+	public void setRightMargin(double rightMargin){this.rightMargin=rightMargin;}
 
-	private int Rotate;
-	public int getRotate(){return Rotate;}
-	public void setRotate(int Rotate){this.Rotate=Rotate;}
+	private int rotate;
+	public int getRotate(){return rotate;}
+	public void setRotate(int rotate){this.rotate=rotate;}
 
-	private double RotateAngle;
-	public double getRotateAngle(){return RotateAngle;}
-	public void setRotateAngle(double RotateAngle){this.RotateAngle=RotateAngle;}
+	private double rotateAngle;
+	public double getRotateAngle(){return rotateAngle;}
+	public void setRotateAngle(double rotateAngle){this.rotateAngle=rotateAngle;}
 
-	private double TopMargin;
-	public double getTopMargin(){return TopMargin;}
-	public void setTopMargin(double TopMargin){this.TopMargin=TopMargin;}
+	private double topMargin;
+	public double getTopMargin(){return topMargin;}
+	public void setTopMargin(double topMargin){this.topMargin=topMargin;}
 
-	private int VerticalAlignment;
-	public int getVerticalAlignment(){return VerticalAlignment;}
-	public void setVerticalAlignment(int VerticalAlignment){this.VerticalAlignment=VerticalAlignment;}
+	private int verticalAlignment;
+	public int getVerticalAlignment(){return verticalAlignment;}
+	public void setVerticalAlignment(int verticalAlignment){this.verticalAlignment=verticalAlignment;}
 
-	private double XIndent;
-	public double getXIndent(){return XIndent;}
-	public void setXIndent(double XIndent){this.XIndent=XIndent;}
+	private double xIndent;
+	public double getXIndent(){return xIndent;}
+	public void setXIndent(double xIndent){this.xIndent=xIndent;}
 
-	private double YIndent;
-	public double getYIndent(){return YIndent;}
-	public void setYIndent(double YIndent){this.YIndent=YIndent;}
+	private double yIndent;
+	public double getYIndent(){return yIndent;}
+	public void setYIndent(double yIndent){this.yIndent=yIndent;}
 
-	private double Zoom;
-	public double getZoom(){return Zoom;}
-	public void setZoom(double Zoom){this.Zoom=Zoom;}
+	private double zoom;
+	public double getZoom(){return zoom;}
+	public void setZoom(double Zoom){this.zoom=Zoom;}
 
-	private int TextAlignment;
-	public int getTextAlignment(){return TextAlignment;}
-	public void setTextAlignment(int TextAlignment){this.TextAlignment=TextAlignment;}
+	private int textAlignment;
+	public int getTextAlignment(){return textAlignment;}
+	public void setTextAlignment(int textAlignment){this.textAlignment=textAlignment;}
 
-	private String Value;
-	public String getValue(){return Value;}
-	public void setValue(String Value){this.Value=Value;}
+	private String value;
+	public String getValue(){return value;}
+	public void setValue(String value){this.value=value;}
 
-	private TextState TextState;
-	public TextState getTextState(){return TextState;}
-	public void setTextState(TextState TextState){this.TextState=TextState;}
+	private TextState textState;
+	public TextState getTextState(){return textState;}
+	public void setTextState(TextState TextState){this.textState=TextState;}
 
-	private String FileName;
-	public String getFileName(){return FileName;}
-	public void setFileName(String FileName){this.FileName=FileName;}
+	private String fileName;
+	public String getFileName(){return fileName;}
+	public void setFileName(String fileName){this.fileName=fileName;}
 
-	private double Width;
-	public double getWidth(){return Width;}
-	public void setWidth(double Width){this.Width=Width;}
+	private double width;
+	public double getWidth(){return width;}
+	public void setWidth(double width){this.width=width;}
 
-	private double Height;
-	public double getHeight(){return Height;}
-	public void setHeight(double Height){this.Height=Height;}
+	private double height;
+	public double getHeight(){return height;}
+	public void setHeight(double Height){this.height=Height;}
 
-	private int PageIndex;
-	public int getPageIndex(){return PageIndex;}
-	public void setPageIndex(int PageIndex){this.PageIndex=PageIndex;}
+	private int pageIndex;
+	public int getPageIndex(){return pageIndex;}
+	public void setPageIndex(int pageIndex){this.pageIndex=pageIndex;}
 
-	private int StartingNumber;
-	public int getStartingNumber(){return StartingNumber;}
-	public void setStartingNumber(int StartingNumber){this.StartingNumber=StartingNumber;}
+	private int startingNumber;
+	public int getStartingNumber(){return startingNumber;}
+	public void setStartingNumber(int startingNumber){this.startingNumber=startingNumber;}
 
     
 }

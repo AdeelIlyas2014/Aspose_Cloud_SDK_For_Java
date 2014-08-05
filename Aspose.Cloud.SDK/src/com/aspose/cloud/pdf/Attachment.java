@@ -17,19 +17,19 @@ public class Attachment
     public Attachment() { }
 
   //  public List<LinkResponse> Links { get; set; }
-    private Color Color;
-    private String MimeType;
-    private String Name;
+    private Color color;
+    private String mimeType;
+    private String name;
     //Consider adding it as Date
-    private String CreationDate;
-    private String ModificationDate;
-    private int Size;
+    private String creationDate;
+    private String modificationDate;
+    private int size;
     
-    public Color getColor(){return Color;}
-    public String getMimeType(){return MimeType;}
-    public String getName(){return Name;}
-    public String getCreationDate(){return CreationDate;}
-    public String getModificationDate(){return ModificationDate;}
-    public int getAttachmentSize(){return Size;}
+    public Color getColor(){return color;}
+    public String getMimeType(){return mimeType;}
+    public String getName(){return name;}
+    public String getCreationDate(){return creationDate;}
+    public String getModificationDate(){return modificationDate;}
+    public int getAttachmentSize(){return size;}
   
 }

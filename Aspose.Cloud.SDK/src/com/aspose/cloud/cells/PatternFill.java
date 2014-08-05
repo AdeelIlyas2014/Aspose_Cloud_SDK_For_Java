@@ -7,11 +7,11 @@ public class PatternFill
         
         }
 
-        private FillPattern Pattern;
-        private Color ForegroundColor;
-        private Color BackgroundColor;
+        private FillPattern pattern;
+        private Color foregroundColor;
+        private Color backgroundColor;
         
-        public FillPattern getPattern(){return Pattern;}
-        public Color getForegroundColor(){return ForegroundColor;}
-        public Color getBackgroundColor(){return BackgroundColor;}
+        public FillPattern getPattern(){return pattern;}
+        public Color getForegroundColor(){return foregroundColor;}
+        public Color getBackgroundColor(){return backgroundColor;}
     }

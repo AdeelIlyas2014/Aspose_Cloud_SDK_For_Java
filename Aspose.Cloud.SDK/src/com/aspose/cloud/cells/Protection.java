@@ -8,14 +8,14 @@ public class Protection
         
         }
 
-        private ProtectionType ProtectionType;
-        private String Password;
+        private ProtectionType protectionType;
+        private String password;
         
-        public ProtectionType getProtectionType(){return ProtectionType;}
-        public String getPassword(){return Password;}
+        public ProtectionType getProtectionType(){return protectionType;}
+        public String getPassword(){return password;}
         
-        public void setProtectionType(ProtectionType ProtectionType){ this.ProtectionType=ProtectionType;}
-        public void setPassword(String Password ){ this.Password=Password;}
+        public void setProtectionType(ProtectionType ProtectionType){ this.protectionType=ProtectionType;}
+        public void setPassword(String Password ){ this.password=Password;}
        
  
     }

@@ -15,7 +15,7 @@ import com.aspose.cloud.common.BaseResponse;
 public class SlidesResponse extends BaseResponse
 {
 
-    private SlidesEnvelop Slides;
-    public SlidesEnvelop getSlides(){return Slides;}
+    private SlidesEnvelop slides;
+    public SlidesEnvelop getSlides(){return slides;}
             
 }

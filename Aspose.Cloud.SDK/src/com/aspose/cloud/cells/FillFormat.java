@@ -8,17 +8,17 @@ public class FillFormat
         }
 
         private LinkResponse link ;
-        private FillType Type ;
-        private SolidFill SolidFill ;
-        private PatternFill PatternFill ;
-        private TextureFill TextureFill ;
-        private GradientFill GradientFill ;
+        private FillType type ;
+        private SolidFill solidFill ;
+        private PatternFill patternFill ;
+        private TextureFill textureFill ;
+        private GradientFill gradientFill ;
         
         public LinkResponse getlink(){return link;}
-        public FillType getType(){return Type;}
-        public SolidFill getSolidFill(){return SolidFill;}
-        public PatternFill getPatternFill(){return PatternFill;}
-        public TextureFill getTextureFill(){return TextureFill;}
-        public GradientFill getGradientFill(){return GradientFill;}
+        public FillType getType(){return type;}
+        public SolidFill getSolidFill(){return solidFill;}
+        public PatternFill getPatternFill(){return patternFill;}
+        public TextureFill getTextureFill(){return textureFill;}
+        public GradientFill getGradientFill(){return gradientFill;}
        
     }

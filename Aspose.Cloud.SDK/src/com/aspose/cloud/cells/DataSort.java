@@ -8,19 +8,19 @@ public class DataSort
         
         }
 
-        private boolean CaseSensitive ;
-        private boolean HasHeaders ;
-        private boolean SortLeftToRight ;
-        private List <SortKey> KeyList ;
+        private boolean caseSensitive ;
+        private boolean hasHeaders ;
+        private boolean sortLeftToRight ;
+        private List <SortKey> keyList ;
         
         
-        public boolean getCaseSensitive(){return CaseSensitive;}
-        public boolean getHasHeaders(){return HasHeaders;}
-        public boolean getSortLeftToRight(){return SortLeftToRight;}
-        public List <SortKey> getKeyList(){return KeyList;}
+        public boolean getCaseSensitive(){return caseSensitive;}
+        public boolean getHasHeaders(){return hasHeaders;}
+        public boolean getSortLeftToRight(){return sortLeftToRight;}
+        public List <SortKey> getKeyList(){return keyList;}
 
-		public void setCaseSensitive(boolean CaseSensitive) { this.CaseSensitive = CaseSensitive; }
-		public void setHasHeaders(boolean HasHeaders) { this.HasHeaders = HasHeaders; }
-		public void setSortLeftToRight(boolean SortLeftToRight) { this.SortLeftToRight = SortLeftToRight; }
-		public void setKeyList(List<SortKey> KeyList) { this.KeyList = KeyList; }
+		public void setCaseSensitive(boolean CaseSensitive) { this.caseSensitive = CaseSensitive; }
+		public void setHasHeaders(boolean HasHeaders) { this.hasHeaders = HasHeaders; }
+		public void setSortLeftToRight(boolean SortLeftToRight) { this.sortLeftToRight = SortLeftToRight; }
+		public void setKeyList(List<SortKey> KeyList) { this.keyList = KeyList; }
     }

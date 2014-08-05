@@ -18,9 +18,9 @@ import java.util.List;
         /// <summary>
         /// TextItem of document
         /// </summary>
-        private List<Paragraph> List;
-        public List<Paragraph> getList(){return List;}
-        public void setList(List<Paragraph> List){this.List=List;}
+        private List<Paragraph> list;
+        public List<Paragraph> getList(){return list;}
+        public void setList(List<Paragraph> list){this.list=list;}
 
 
     }

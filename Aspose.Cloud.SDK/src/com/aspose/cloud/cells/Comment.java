@@ -8,28 +8,28 @@ public class Comment
         
         }
 
-        private String CellName ;
-        private String Author ;
-        private String HtmlNote ;
-        private String Note ;
-        private boolean AutoSize ;
-        private boolean IsVisible ;
-        private int Width ;
-        private int Height ;
-        private String TextHorizontalAlignment ;
-        private String TextOrientationType ;
-        private String TextVerticalAlignment ;
+        private String cellName ;
+        private String author ;
+        private String htmlNote ;
+        private String note ;
+        private boolean autoSize ;
+        private boolean isVisible ;
+        private int width ;
+        private int height ;
+        private String textHorizontalAlignment ;
+        private String textOrientationType ;
+        private String textVerticalAlignment ;
         
-        public String getCellName(){return CellName;}
-        public String getAuthor(){return Author;}
-        public String getHtmlNote(){return HtmlNote;}
-        public String getNote(){return Note;}
-        public boolean getAutoSize(){return AutoSize;}
-        public boolean getIsVisible(){return IsVisible;}
-        public int getWidth(){return Width;}
-        public int getHeight(){return Height;}
-        public String getTextHorizontalAlignment(){return TextHorizontalAlignment;}
-        public String getTextOrientationType(){return TextOrientationType;}
-        public String getTextVerticalAlignment(){return TextVerticalAlignment;}
+        public String getCellName(){return cellName;}
+        public String getAuthor(){return author;}
+        public String getHtmlNote(){return htmlNote;}
+        public String getNote(){return note;}
+        public boolean getAutoSize(){return autoSize;}
+        public boolean getIsVisible(){return isVisible;}
+        public int getWidth(){return width;}
+        public int getHeight(){return height;}
+        public String getTextHorizontalAlignment(){return textHorizontalAlignment;}
+        public String getTextOrientationType(){return textOrientationType;}
+        public String getTextVerticalAlignment(){return textVerticalAlignment;}
 
     }

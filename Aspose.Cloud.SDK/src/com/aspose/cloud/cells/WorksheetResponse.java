@@ -6,33 +6,33 @@
     public class WorksheetResponse extends com.aspose.cloud.common.BaseResponse
     {
        
-        private AutoShapesResponse AutoShapes;
-        private CellsResponse Cells;
-        private ChartsResponse Charts;
-        private CommentsResponse Comments;
-        private ConditionalFormattingResponse ConditionalFormattings;
-        private HyperlinksResponse Hyperlinks;
-        private MergedCellsResponse MergedCells;
-        private OleObjectsResponse OleObjects;
-        private PicturesResponse Pictures;
+        private AutoShapesResponse autoShapes;
+        private CellsResponse cells;
+        private ChartsResponse charts;
+        private CommentsResponse comments;
+        private ConditionalFormattingResponse conditionalFormattings;
+        private HyperlinksResponse hyperlinks;
+        private MergedCellsResponse mergedCells;
+        private OleObjectsResponse oleObjects;
+        private PicturesResponse pictures;
         private LinkResponse link;
-        private ValidationsResponse Validations;
-        private RowsResponse Rows;
-        private ColumnsResponse Columns;
-        private Worksheet Worksheet;
+        private ValidationsResponse validations;
+        private RowsResponse rows;
+        private ColumnsResponse columns;
+        private Worksheet worksheet;
 
-        public AutoShapesResponse getAutoShapes(){return AutoShapes;}
-        public CellsResponse getCells(){return Cells;}
-        public ChartsResponse getCharts(){return Charts;}
-        public CommentsResponse getComments(){return Comments;}
-        public ConditionalFormattingResponse getConditionalFormattings(){return ConditionalFormattings;}
-        public HyperlinksResponse getHyperlinks(){return Hyperlinks;}
-        public MergedCellsResponse getMergedCells(){return MergedCells;}
-        public OleObjectsResponse getOleObjects(){return OleObjects;}
-        public PicturesResponse getPictures(){return Pictures;}
+        public AutoShapesResponse getAutoShapes(){return autoShapes;}
+        public CellsResponse getCells(){return cells;}
+        public ChartsResponse getCharts(){return charts;}
+        public CommentsResponse getComments(){return comments;}
+        public ConditionalFormattingResponse getConditionalFormattings(){return conditionalFormattings;}
+        public HyperlinksResponse getHyperlinks(){return hyperlinks;}
+        public MergedCellsResponse getMergedCells(){return mergedCells;}
+        public OleObjectsResponse getOleObjects(){return oleObjects;}
+        public PicturesResponse getPictures(){return pictures;}
         public LinkResponse getlink(){return link;}
-        public ValidationsResponse getValidations(){return Validations;}
-        public RowsResponse getRows(){return Rows;}
-        public ColumnsResponse getColumns(){return Columns;}
-        public Worksheet getWorksheet(){return Worksheet;}
+        public ValidationsResponse getValidations(){return validations;}
+        public RowsResponse getRows(){return rows;}
+        public ColumnsResponse getColumns(){return columns;}
+        public Worksheet getWorksheet(){return worksheet;}
     }

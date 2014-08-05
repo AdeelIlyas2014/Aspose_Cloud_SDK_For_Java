@@ -49,7 +49,7 @@ public class Folder {
 	// / </summary>
 	// / <param name="strFolder"></param>
 	// / <returns></returns>
-	public List<com.aspose.cloud.storage.File> GetFilesList(String strFolder) {
+	public List<com.aspose.cloud.storage.File> getFilesList(String strFolder) {
 		try {
 			// StreamReader reader = new StreamReader(Common.
 			// Utils.ProcessCommand(CommonUtils.Sign(this.strURIFolder +
@@ -61,14 +61,14 @@ public class Folder {
 					System.out.println("Please Specify AppSID and AppKey");
 				} else {
 
-					strJSON = Utils.StreamToString(Utils.ProcessCommand(
-							Utils.Sign(this.strURIFolder + strFolder,
+					strJSON = Utils.streamToString(Utils.processCommand(
+							Utils.sign(this.strURIFolder + strFolder,
 									this.auth.getAppKey(),
 									this.auth.getAppSID()), "GET"));
 				}
 			} else {
-				strJSON = Utils.StreamToString(Utils.ProcessCommand(
-						Utils.Sign(this.strURIFolder + strFolder), "GET"));
+				strJSON = Utils.streamToString(Utils.processCommand(
+						Utils.sign(this.strURIFolder + strFolder), "GET"));
 			}
 
 			return FileCollection.getFilesList(strJSON);
@@ -78,7 +78,7 @@ public class Folder {
 		}
 	}
 
-	public List<com.aspose.cloud.storage.File> GetFilesList(String strFolder,
+	public List<com.aspose.cloud.storage.File> getFilesList(String strFolder,
 			StorageType storageType, String storageName) {
 		try {
 			String strJSON = "";
@@ -86,15 +86,15 @@ public class Folder {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppSID and AppKey");
 				} else {
-					strJSON = Utils.StreamToString(Utils.ProcessCommand(
-							Utils.Sign(this.strURIFolder + strFolder
+					strJSON = Utils.streamToString(Utils.processCommand(
+							Utils.sign(this.strURIFolder + strFolder
 									+ "?storage=" + storageName,
 									this.auth.getAppKey(),
 									this.auth.getAppSID()), "GET"));
 				}
 			} else {
-				strJSON = Utils.StreamToString(Utils.ProcessCommand(
-						Utils.Sign(this.strURIFolder + strFolder + "?storage="
+				strJSON = Utils.streamToString(Utils.processCommand(
+						Utils.sign(this.strURIFolder + strFolder + "?storage="
 								+ storageName), "GET"));
 			}
 
@@ -110,26 +110,26 @@ public class Folder {
 	// file under specific folder.
 	// / </summary>
 	// / <param name="strFileName"></param>
-	public boolean DeleteFile(String strFileName) throws Exception {
+	public boolean deleteFile(String strFileName) throws Exception {
 		try {
 			InputStream responseStream;
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					responseStream = Utils
-							.ProcessCommand(
-									Utils.Sign(this.strURIFile + strFileName),
+							.processCommand(
+									Utils.sign(this.strURIFile + strFileName),
 									"DELETE");
 				} else {
-					responseStream = Utils.ProcessCommand(
-							Utils.Sign(this.strURIFile + strFileName,
+					responseStream = Utils.processCommand(
+							Utils.sign(this.strURIFile + strFileName,
 									this.auth.getAppKey(),
 									this.auth.getAppSID()), "DELETE");
 				}
 			} else {
-				responseStream = Utils.ProcessCommand(
-						Utils.Sign(this.strURIFile + strFileName), "DELETE");
+				responseStream = Utils.processCommand(
+						Utils.sign(this.strURIFile + strFileName), "DELETE");
 			}
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 			// Parse the json string to JObject
@@ -148,7 +148,7 @@ public class Folder {
 		}
 	}
 
-	public boolean DeleteFile(String strFileName, StorageType storageType,
+	public boolean deleteFile(String strFileName, StorageType storageType,
 			String storageName) throws Exception {
 		try {
 			InputStream responseStream = null;
@@ -157,18 +157,18 @@ public class Folder {
 					System.out.println("Please Specify AppSID and AppKey");
 				} else {
 
-					responseStream = Utils.ProcessCommand(
-							Utils.Sign(this.strURIFile + strFileName
+					responseStream = Utils.processCommand(
+							Utils.sign(this.strURIFile + strFileName
 									+ "?storage=" + storageName,
 									this.auth.getAppKey(),
 									this.auth.getAppSID()), "DELETE");
 				}
 			} else {
-				responseStream = Utils.ProcessCommand(
-						Utils.Sign(this.strURIFile + strFileName + "?storage="
+				responseStream = Utils.processCommand(
+						Utils.sign(this.strURIFile + strFileName + "?storage="
 								+ storageName), "DELETE");
 			}
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 			// Parse the json string to JObject
@@ -187,9 +187,9 @@ public class Folder {
 		}
 	}
 
-	public boolean UploadFile(InputStream fileStream, String strRemoteFileName,
+	public boolean uploadFile(InputStream fileStream, String strRemoteFileName,
 			String strFolder) throws Exception {
-		return UploadFile(fileStream, strRemoteFileName, strFolder, null, null);
+		return uploadFile(fileStream, strRemoteFileName, strFolder, null, null);
 	}
 
 	
@@ -201,24 +201,24 @@ public class Folder {
 	// "FolderName/SubFolderName" for sub folders.
 	// / </summary>
 	// / <param name="strFolderName"></param>
-	public boolean DeleteFolder(String strFolderName) throws Exception {
+	public boolean deleteFolder(String strFolderName) throws Exception {
 		try {
 			InputStream responseStream = null;
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppSID and AppKey");
 				} else {
-					responseStream = Utils.ProcessCommand(Utils.Sign(
+					responseStream = Utils.processCommand(Utils.sign(
 							this.strURIFolder, this.auth.getAppKey(),
 							this.auth.getAppSID()), "DELETE");
 				}
 			} else {
 				responseStream = Utils
-						.ProcessCommand(
-								Utils.Sign(this.strURIFolder + strFolderName),
+						.processCommand(
+								Utils.sign(this.strURIFolder + strFolderName),
 								"DELETE");
 			}
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 			// Parse the json string to JObject
@@ -236,7 +236,7 @@ public class Folder {
 		}
 	}
 
-	public boolean DeleteFolder(String strFolderName, StorageType storageType,
+	public boolean deleteFolder(String strFolderName, StorageType storageType,
 			String storageName) throws Exception {
 		try {
 			InputStream responseStream = null;
@@ -244,20 +244,20 @@ public class Folder {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					responseStream = Utils.ProcessCommand(
-							Utils.Sign(this.strURIFolder + strFolderName
+					responseStream = Utils.processCommand(
+							Utils.sign(this.strURIFolder + strFolderName
 									+ "?storage=" + storageName,
 									this.auth.getAppKey(),
 									this.auth.getAppSID()), "DELETE");
 				}
 
 			} else {
-				responseStream = Utils.ProcessCommand(
-						Utils.Sign(this.strURIFolder + strFolderName
+				responseStream = Utils.processCommand(
+						Utils.sign(this.strURIFolder + strFolderName
 								+ "?storage=" + storageName), "DELETE");
 			}
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 			// Parse the json string to JObject
@@ -274,20 +274,20 @@ public class Folder {
 			return false;
 		}
 	}
-	public boolean UploadFile(String strFile, String strFolder) throws Exception {
-		 return UploadFile(strFile, strFolder, null, null);
+	public boolean uploadFile(String strFile, String strFolder) throws Exception {
+		 return uploadFile(strFile, strFolder, null, null);
 		 }
-	public boolean UploadFile(String strFile, String strFolder,StorageType storageType, String storageName) throws Exception {
+	public boolean uploadFile(String strFile, String strFolder,StorageType storageType, String storageName) throws Exception {
 		File localFile = new File(strFile);
 		FileInputStream fileStream = new FileInputStream(localFile);
 		String strRemoteFileName = localFile.getName();
-		return UploadFile(fileStream, strRemoteFileName, strFolder,	storageType, storageName);
+		return uploadFile(fileStream, strRemoteFileName, strFolder,	storageType, storageName);
 
 	}
 	
 
 
-	public boolean UploadFile(InputStream fileStream, String strRemoteFileName, String strFolder,
+	public boolean uploadFile(InputStream fileStream, String strRemoteFileName, String strFolder,
 			StorageType storageType, String storageName) throws Exception {
 
 			try {
@@ -300,13 +300,13 @@ public class Folder {
 					if (!this.auth.validateAuth()) {
 						System.out.println("Please Specify AppSID and AppKey");
 					} else {
-						strURISigned = Utils.Sign(strURIRequest,
+						strURISigned = Utils.sign(strURIRequest,
 								this.auth.getAppKey(), this.auth.getAppSID());
 					}
 				} else {
-					strURISigned = Utils.Sign(strURIRequest);
+					strURISigned = Utils.sign(strURIRequest);
 				}
-				String strResponse = Utils.UploadFileBinary(fileStream,
+				String strResponse = Utils.uploadFileBinary(fileStream,
 						strURISigned, "PUT");
 
 				if (strResponse.contains("OK"))
@@ -324,7 +324,7 @@ public class Folder {
 	// creates a folder under the root folder.
 	// / </summary>
 	// / <param name="strFolder"></param>
-	public boolean CreateFolder(String strFolder) throws Exception {
+	public boolean createFolder(String strFolder) throws Exception {
 		try {
 			String strURIRequest = this.strURIFolder + strFolder;
 			String strURISigned = "";
@@ -332,18 +332,18 @@ public class Folder {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppSID and AppKey");
 				} else {
-					strURISigned = Utils.Sign(strURIRequest,
+					strURISigned = Utils.sign(strURIRequest,
 							this.auth.getAppKey(), this.auth.getAppSID());
 				}
 			} else {
-				strURISigned = Utils.Sign(strURIRequest);
+				strURISigned = Utils.sign(strURIRequest);
 			}
 
-			Utils.ProcessCommand(strURISigned, "PUT");
-			InputStream responseStream = Utils.ProcessCommand(strURISigned,
+			Utils.processCommand(strURISigned, "PUT");
+			InputStream responseStream = Utils.processCommand(strURISigned,
 					"PUT");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 			// Parse and Deserializes the JSON to a object.
@@ -361,7 +361,7 @@ public class Folder {
 		}
 	}
 
-	public boolean CreateFolder(String strFolder, StorageType storageType,
+	public boolean createFolder(String strFolder, StorageType storageType,
 			String storageName) throws Exception {
 		try {
 			String strURIRequest = this.strURIFolder + strFolder + "?storage="
@@ -371,18 +371,18 @@ public class Folder {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppSID and AppKey");
 				} else {
-					strURISigned = Utils.Sign(strURIRequest,
+					strURISigned = Utils.sign(strURIRequest,
 							this.auth.getAppKey(), this.auth.getAppSID());
 				}
 			} else {
-				strURISigned = Utils.Sign(strURIRequest);
+				strURISigned = Utils.sign(strURIRequest);
 			}
 
-			Utils.ProcessCommand(strURISigned, "PUT");
-			InputStream responseStream = Utils.ProcessCommand(strURISigned,
+			Utils.processCommand(strURISigned, "PUT");
+			InputStream responseStream = Utils.processCommand(strURISigned,
 					"PUT");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 			// Parse and Deserializes the JSON to a object.
@@ -405,7 +405,7 @@ public class Folder {
 	// / </summary>
 	// / <param name="strFolderOrFile"></param>
 	// / <returns></returns>
-	public com.aspose.cloud.storage.FileExist FileExist(String strFolderOrFile) {
+	public com.aspose.cloud.storage.FileExist fileExist(String strFolderOrFile) {
 		try {
 			String strURIRequest = this.strURIExist + strFolderOrFile;
 			String strURISigned = "";
@@ -413,16 +413,16 @@ public class Folder {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppSID and AppKey");
 				} else {
-					strURISigned = Utils.Sign(strURIRequest,
+					strURISigned = Utils.sign(strURIRequest,
 							this.auth.getAppKey(), this.auth.getAppSID());
 				}
 			} else {
-				strURISigned = Utils.Sign(strURIRequest);
+				strURISigned = Utils.sign(strURIRequest);
 			}
-			InputStream responseStream = Utils.ProcessCommand(strURISigned,
+			InputStream responseStream = Utils.processCommand(strURISigned,
 					"GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 			// Parse the json string to JObject
@@ -437,7 +437,7 @@ public class Folder {
 		}
 	}
 
-	public com.aspose.cloud.storage.FileExist FileExist(String strFolderOrFile,
+	public com.aspose.cloud.storage.FileExist fileExist(String strFolderOrFile,
 			StorageType storageType, String storageName) {
 		try {
 			String strURIRequest = this.strURIExist + strFolderOrFile
@@ -447,17 +447,17 @@ public class Folder {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppSID and AppKey");
 				} else {
-					strURISigned = Utils.Sign(strURIRequest,
+					strURISigned = Utils.sign(strURIRequest,
 							this.auth.getAppKey(), this.auth.getAppSID());
 				}
 			} else {
-				strURISigned = Utils.Sign(strURIRequest);
+				strURISigned = Utils.sign(strURIRequest);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(strURISigned,
+			InputStream responseStream = Utils.processCommand(strURISigned,
 					"GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 			// Parse the json string to JObject
@@ -476,23 +476,23 @@ public class Folder {
 	// / Provides the total / free disc size in bytes for your app.
 	// / </summary>
 	// / <returns></returns>
-	public DiscUsage GetDiscUsage() {
+	public DiscUsage getDiscUsage() {
 		try {
 			InputStream responseStream = null;
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppSID and AppKey");
 				} else {
-					responseStream = Utils.ProcessCommand(Utils.Sign(
+					responseStream = Utils.processCommand(Utils.sign(
 							this.strURIDisc, this.auth.getAppKey(),
 							this.auth.getAppSID()), "GET");
 				}
 			} else {
-				responseStream = Utils.ProcessCommand(
-						Utils.Sign(this.strURIDisc), "GET");
+				responseStream = Utils.processCommand(
+						Utils.sign(this.strURIDisc), "GET");
 			}
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 			// Parse the json string to JObject
@@ -507,26 +507,26 @@ public class Folder {
 		}
 	}
 
-	public DiscUsage GetDiscUsage(StorageType storageType, String storageName) {
+	public DiscUsage getDiscUsage(StorageType storageType, String storageName) {
 		try {
 			InputStream responseStream = null;
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppSID and AppKey");
 				} else {
-					responseStream = Utils.ProcessCommand(Utils.Sign(
+					responseStream = Utils.processCommand(Utils.sign(
 							this.strURIDisc + "?storage=" + storageName,
 							this.auth.getAppKey(), this.auth.getAppSID()),
 							"GET");
 				}
 			} else {
 				responseStream = Utils
-						.ProcessCommand(
-								Utils.Sign(this.strURIDisc + "?storage="
+						.processCommand(
+								Utils.sign(this.strURIDisc + "?storage="
 										+ storageName), "GET");
 			}
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 			// Parse the json string to JObject
@@ -546,21 +546,21 @@ public class Folder {
 	// / </summary>
 	// / <param name="fileName">file name on the server</param>
 	// / <returns></returns>
-	public InputStream GetFile(String fileName) throws SignatureException {
+	public InputStream getFile(String fileName) throws SignatureException {
 		try {
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppSID and AppKey");
 					return null;
 				} else {
-					return Utils.ProcessCommand(
-							Utils.Sign(this.strURIFile + fileName,
+					return Utils.processCommand(
+							Utils.sign(this.strURIFile + fileName,
 									this.auth.getAppKey(),
 									this.auth.getAppSID()), "GET");
 				}
 			} else {
-				return Utils.ProcessCommand(
-						Utils.Sign(this.strURIFile + fileName), "GET");
+				return Utils.processCommand(
+						Utils.sign(this.strURIFile + fileName), "GET");
 			}
 
 		} catch (Exception e) {
@@ -570,7 +570,7 @@ public class Folder {
 
 	}
 
-	public InputStream GetFile(String fileName, StorageType storageType,
+	public InputStream getFile(String fileName, StorageType storageType,
 			String storageName) throws SignatureException {
 		try {
 			if (this.auth != null) {
@@ -579,14 +579,14 @@ public class Folder {
 					System.out.println("Please Specify AppSID and AppKey");
 					return null;
 				} else {
-					return Utils.ProcessCommand(Utils.Sign(this.strURIFile
+					return Utils.processCommand(Utils.sign(this.strURIFile
 							+ fileName + "?storage=" + storageName,
 							this.auth.getAppKey(), this.auth.getAppSID()),
 							"GET");
 				}
 			} else {
-				return Utils.ProcessCommand(
-						Utils.Sign(this.strURIFile + fileName + "?storage="
+				return Utils.processCommand(
+						Utils.sign(this.strURIFile + fileName + "?storage="
 								+ storageName), "GET");
 			}
 
@@ -604,7 +604,7 @@ public class Folder {
 
 	// / <returns></returns>
 
-	public static boolean SaveStreamToFile(String FileNameWithPath,
+	public static boolean saveStreamToFile(String FileNameWithPath,
 			InputStream inputStream) {
 
 		try {

@@ -9,14 +9,14 @@ import java.util.List;
        
         private LinkResponse link ;
                 
-        private List<LinkResponse> AuotShapeList ;
+        private List<LinkResponse> autoShapeList ;
 
-        private AutoShape AutoShape ;
+        private AutoShape autoShape ;
         
         
         public LinkResponse getlink(){return link;}
         
-        public List<LinkResponse> getAuotShapeList(){return AuotShapeList;}
+        public List<LinkResponse> getAuotShapeList(){return autoShapeList;}
         
-        public AutoShape getAutoShape(){return AutoShape;}
+        public AutoShape getAutoShape(){return autoShape;}
     }

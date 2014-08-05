@@ -12,7 +12,7 @@ package com.aspose.cloud.slides;
 /// </summary>
 class ShapesResponse extends com.aspose.cloud.common.BaseResponse
 {
-    private ShapesEnvelop ShapeList ;
-    public ShapesEnvelop getShapes(){return ShapeList;}
+    private ShapesEnvelop shapeList ;
+    public ShapesEnvelop getShapes(){return shapeList;}
 
 }

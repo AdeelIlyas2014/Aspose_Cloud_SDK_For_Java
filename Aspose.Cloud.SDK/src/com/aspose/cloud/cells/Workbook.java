@@ -16,8 +16,8 @@ public class Workbook {
 	// / Workbook Constructor, set the file name and password
 	// / </summary>
 	// / <param name="fileName"> File Name</param>
-	public Workbook(String fileName) {
-		FileName = fileName;
+	public Workbook(String _fileName) {
+		fileName = _fileName;
 	}
 
 	public Workbook(String fileName, AsposeAppNonStatic auth) {
@@ -29,15 +29,15 @@ public class Workbook {
 	// / Get Document's properties
 	// / </summary>
 	// / <returns>List of document properties</returns>
-	public List<DocumentProperty> GetProperties() {
+	public List<DocumentProperty> getProperties() {
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
+					+ "/cells/" + fileName;
 			strURI += "/documentProperties";
 
 			// sign URI
@@ -46,16 +46,16 @@ public class Workbook {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -75,15 +75,15 @@ public class Workbook {
 	// / </summary>
 	// / <param name="propertyName"></param>
 	// / <returns></returns>
-	public DocumentProperty GetProperty(String propertyName) {
+	public DocumentProperty getProperty(String propertyName) {
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
+					+ "/cells/" + fileName;
 			strURI += "/documentProperties/" + propertyName;
 
 			// sign URI
@@ -92,16 +92,16 @@ public class Workbook {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -120,22 +120,22 @@ public class Workbook {
 	// / </summary>
 	// / <param name="propertyName">property name</param>
 	// / <param name="propertyValue">property value</param>
-	public boolean SetProperty(String propertyName, String propertyValue) {
+	public boolean setProperty(String propertyName, String propertyValue) {
 		try {
 			// build URI to get page count
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName + "/documentProperties/"
+					+ "/cells/" + fileName + "/documentProperties/"
 					+ propertyName;
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
 			// serialize the JSON request content
@@ -148,10 +148,10 @@ public class Workbook {
 
 			strJSON = gson.toJson(docProperty, DocumentProperty.class);
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT",
+			InputStream responseStream = Utils.processCommand(signedURI, "PUT",
 					strJSON);
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Parse the json string to JObject
 			BaseResponse baseResponse = gson.fromJson(strResponse,
@@ -169,15 +169,15 @@ public class Workbook {
 
 	}
 
-	public boolean RemoveAllProperties() {
+	public boolean removeAllProperties() {
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
+					+ "/cells/" + fileName;
 			strURI += "/documentProperties";
 
 			// sign URI
@@ -186,17 +186,17 @@ public class Workbook {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI,
+			InputStream responseStream = Utils.processCommand(signedURI,
 					"DELETE");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -214,15 +214,15 @@ public class Workbook {
 		}
 	}
 
-	public boolean RemoveProperty(String propertyName) {
+	public boolean removeProperty(String propertyName) {
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
+					+ "/cells/" + fileName;
 			strURI += "/documentProperties/" + propertyName;
 
 			// sign URI
@@ -231,17 +231,17 @@ public class Workbook {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI,
+			InputStream responseStream = Utils.processCommand(signedURI,
 					"DELETE");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -263,26 +263,26 @@ public class Workbook {
 	// /
 	// / </summary>
 	// / <param name="newWorkbookName"></param>
-	public boolean CreateEmptyWorkbook() {
+	public boolean createEmptyWorkbook() {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/cells/" + FileName;
+			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
 
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT");
+			InputStream responseStream = Utils.processCommand(signedURI, "PUT");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -303,26 +303,26 @@ public class Workbook {
 		}
 	}
 
-	public boolean CreateWorkbookFromTemplate(String templateFileName) {
+	public boolean createWorkbookFromTemplate(String templateFileName) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/cells/" + FileName
+			String strURI = Product.getBaseProductUri() + "/cells/" + fileName
 					+ "?templatefile=" + templateFileName;
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT");
+			InputStream responseStream = Utils.processCommand(signedURI, "PUT");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -349,11 +349,11 @@ public class Workbook {
 	// / <param name="newWorkbookName"></param>
 	// / <param name="templateFileName"></param>
 	// / <param name="dataFile"></param>
-	public boolean CreateWorkbookFromSmartMarkerTemplate(
+	public boolean createWorkbookFromSmartMarkerTemplate(
 			String templateFileName, String dataFile) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/cells/" + FileName
+			String strURI = Product.getBaseProductUri() + "/cells/" + fileName
 					+ "?templatefile=" + templateFileName + "&dataFile="
 					+ dataFile;
 			String signedURI = "";
@@ -361,16 +361,16 @@ public class Workbook {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT");
+			InputStream responseStream = Utils.processCommand(signedURI, "PUT");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -391,28 +391,28 @@ public class Workbook {
 		}
 	}
 
-	public boolean ProcessSmartMarker(String dataFile) {
+	public boolean processSmartMarker(String dataFile) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/cells/" + FileName
+			String strURI = Product.getBaseProductUri() + "/cells/" + fileName
 					+ "/smartmarker?xmlFile=" + dataFile;
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
 			InputStream responseStream = Utils
-					.ProcessCommand(signedURI, "POST");
+					.processCommand(signedURI, "POST");
 
 			// further process JSON response
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -433,15 +433,15 @@ public class Workbook {
 		}
 	}
 
-	 public Name GetName(String name)
+	 public Name getName(String name)
      {
 		 try {
 				// check whether file is set or not
-				if (FileName.equals(""))
+				if (fileName.equals(""))
 					throw new Exception("No file name specified");
 
 				// build URI
-				String strURI = com.aspose.cloud.common.Product.getBaseProductUri()+ "/cells/" + FileName;
+				String strURI = com.aspose.cloud.common.Product.getBaseProductUri()+ "/cells/" + fileName;
 	             strURI += "/names/"+name;
 
 				// sign URI
@@ -450,16 +450,16 @@ public class Workbook {
 					if (!this.auth.validateAuth()) {
 						System.out.println("Please Specify AppKey and AppSID");
 					} else {
-						signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+						signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 								this.auth.getAppSID());
 					}
 				} else {
-					signedURI = Utils.Sign(strURI);
+					signedURI = Utils.sign(strURI);
 				}
 
-				InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+				InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-				String strJSON = Utils.StreamToString(responseStream);
+				String strJSON = Utils.streamToString(responseStream);
 
 				Gson gson = new Gson();
 
@@ -476,16 +476,16 @@ public class Workbook {
 				return null;
 			}
 }
-	public int GetWorksheetsCount() {
+	public int getWorksheetsCount() {
 
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
+					+ "/cells/" + fileName;
 			strURI += "/worksheets";
 
 			// sign URI
@@ -494,16 +494,16 @@ public class Workbook {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -520,16 +520,16 @@ public class Workbook {
 
 	}
 
-	public int GetNamesCount() {
+	public int getNamesCount() {
 
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
+					+ "/cells/" + fileName;
 			strURI += "/names";
 
 			// sign URI
@@ -538,16 +538,16 @@ public class Workbook {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -566,12 +566,12 @@ public class Workbook {
 
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
+					+ "/cells/" + fileName;
 			strURI += "/defaultStyle";
 
 			// sign URI
@@ -580,15 +580,15 @@ public class Workbook {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -602,22 +602,22 @@ public class Workbook {
 		}
 	}
 
-	public boolean EncryptWorkbook(EncryptionType encryptionType,
+	public boolean encryptWorkbook(EncryptionType encryptionType,
 			String password, int keyLength) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/cells/" + FileName
+			String strURI = Product.getBaseProductUri() + "/cells/" + fileName
 					+ "/encryption";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
 			// serialize the JSON request content
@@ -632,10 +632,10 @@ public class Workbook {
 
 			strJSON = gson.toJson(encryption, Encryption.class);
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI,
+			InputStream responseStream = Utils.processCommand(signedURI,
 					"POST", strJSON);
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Parse the json string to JObject
 			BaseResponse baseResponse = gson.fromJson(strResponse,
@@ -652,22 +652,22 @@ public class Workbook {
 		}
 	}
 
-	public boolean ProtectWorkbook(ProtectionType protectionType,
+	public boolean protectWorkbook(ProtectionType protectionType,
 			String password) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/cells/" + FileName
+			String strURI = Product.getBaseProductUri() + "/cells/" + fileName
 					+ "/protection";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
 			// serialize the JSON request content
@@ -681,10 +681,10 @@ public class Workbook {
 
 			strJSON = gson.toJson(protection, Protection.class);
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI,
+			InputStream responseStream = Utils.processCommand(signedURI,
 					"POST", strJSON);
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Parse the json string to JObject
 			BaseResponse baseResponse = gson.fromJson(strResponse,
@@ -701,21 +701,21 @@ public class Workbook {
 		}
 	}
 
-	public boolean UnprotectWorkbook(String password) {
+	public boolean unprotectWorkbook(String password) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/cells/" + FileName
+			String strURI = Product.getBaseProductUri() + "/cells/" + fileName
 					+ "/protection";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
 			// serialize the JSON request content
@@ -728,10 +728,10 @@ public class Workbook {
 
 			strJSON = gson.toJson(protection, Protection.class);
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI,
+			InputStream responseStream = Utils.processCommand(signedURI,
 					"POST", strJSON);
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Parse the json string to JObject
 			BaseResponse baseResponse = gson.fromJson(strResponse,
@@ -748,21 +748,21 @@ public class Workbook {
 		}
 	}
 
-	public boolean SetModifyPassword(String password) {
+	public boolean setModifyPassword(String password) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/cells/" + FileName
+			String strURI = Product.getBaseProductUri() + "/cells/" + fileName
 					+ "/writeProtection";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
 			// serialize the JSON request content
@@ -775,10 +775,10 @@ public class Workbook {
 
 			strJSON = gson.toJson(protection, Protection.class);
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI,
+			InputStream responseStream = Utils.processCommand(signedURI,
 					"POST", strJSON);
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Parse the json string to JObject
 			BaseResponse baseResponse = gson.fromJson(strResponse,
@@ -795,21 +795,21 @@ public class Workbook {
 		}
 	}
 
-	public boolean ClearModifyPassword(String password) {
+	public boolean clearModifyPassword(String password) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/cells/" + FileName
+			String strURI = Product.getBaseProductUri() + "/cells/" + fileName
 					+ "/writeProtection";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
 			// serialize the JSON request content
@@ -822,10 +822,10 @@ public class Workbook {
 
 			strJSON = gson.toJson(protection, Protection.class);
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI,
+			InputStream responseStream = Utils.processCommand(signedURI,
 					"DELETE", strJSON);
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Parse the json string to JObject
 			BaseResponse baseResponse = gson.fromJson(strResponse,
@@ -842,22 +842,22 @@ public class Workbook {
 		}
 	}
 
-	public boolean DecryptWorkbook(String password) {
+	public boolean decryptWorkbook(String password) {
 
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/cells/" + FileName
+			String strURI = Product.getBaseProductUri() + "/cells/" + fileName
 					+ "/encryption";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 			// serialize the JSON request content
 			Encryption encryption = new Encryption();
@@ -870,10 +870,10 @@ public class Workbook {
 
 			strJSON = gson.toJson(encryption, Encryption.class);
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI,
+			InputStream responseStream = Utils.processCommand(signedURI,
 					"DELETE", strJSON);
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Parse the json string to JObject
 			BaseResponse baseResponse = gson.fromJson(strResponse,
@@ -895,26 +895,26 @@ public class Workbook {
 	// / </summary>
 	// / <param name="worksheetName"></param>
 
-	public boolean AddWorksheet(String worksheetName) {
+	public boolean addWorksheet(String worksheetName) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/cells/" + FileName
+			String strURI = Product.getBaseProductUri() + "/cells/" + fileName
 					+ "/worksheets/" + worksheetName;
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT");
+			InputStream responseStream = Utils.processCommand(signedURI, "PUT");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -939,17 +939,17 @@ public class Workbook {
 	// / </summary>
 	// / <param name="worksheetName"></param>
 	// / <returns></returns>
-	public boolean RemoveWorksheet(String worksheetName) {
+	public boolean removeWorksheet(String worksheetName) {
 
 		try {
 
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
+					+ "/cells/" + fileName;
 			strURI += "/worksheets/" + worksheetName;
 
 			// sign URI
@@ -958,16 +958,16 @@ public class Workbook {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT");
+			InputStream responseStream = Utils.processCommand(signedURI, "PUT");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -988,15 +988,15 @@ public class Workbook {
 		}
 	}
 
-	public boolean MergeWorkbook(String mergefileName) {
+	public boolean mergeWorkbook(String mergefileName) {
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
+					+ "/cells/" + fileName;
 			strURI += "/merge?mergeWith=" + mergefileName;
 
 			// sign URI
@@ -1005,18 +1005,18 @@ public class Workbook {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
 			InputStream responseStream = Utils
-					.ProcessCommand(signedURI, "POST");
+					.processCommand(signedURI, "POST");
 
 			// further process JSON response
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -1036,16 +1036,16 @@ public class Workbook {
 			return false;
 		}
 	}
-	public boolean SplitDocument(SplitDocumentFormats format, int from, int to) {
+	public boolean splitDocument(SplitDocumentFormats format, int from, int to) {
 
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
+					+ "/cells/" + fileName;
             strURI += "/split?" +
                 (format == null ? "" : "format=" + format) +
                 (from == 0 ? "" : "&from=" + from) +
@@ -1056,15 +1056,15 @@ public class Workbook {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "POST");
-			String strJSON = Utils.StreamToString(responseStream);
+			InputStream responseStream = Utils.processCommand(signedURI, "POST");
+			String strJSON = Utils.streamToString(responseStream);
 			Gson gson = new Gson();
 
 			// Parse the json string to JObject and Deserializes the JSON to a
@@ -1087,6 +1087,6 @@ public class Workbook {
 	// / <summary>
 	// / Workbook name
 	// / </summary>
-	public String FileName;
+	public String fileName;
 
 }

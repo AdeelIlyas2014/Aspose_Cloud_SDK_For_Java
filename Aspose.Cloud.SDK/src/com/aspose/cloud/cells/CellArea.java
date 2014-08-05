@@ -7,15 +7,15 @@ public class CellArea
         
         }
 
-        private int StartRow ;
-        private int EndRow ;
-        private int StartColumn ;
-        private int EndColumn ;
+        private int startRow ;
+        private int endRow ;
+        private int startColumn ;
+        private int endColumn ;
         
-        public int getStartRow(){return StartRow;}
-        public int getEndRow(){return EndRow;}
-        public int getStartColumn(){return StartColumn;}
-        public int getEndColumn(){return EndColumn;}
+        public int getStartRow(){return startRow;}
+        public int getEndRow(){return endRow;}
+        public int getStartColumn(){return startColumn;}
+        public int getEndColumn(){return endColumn;}
 
     }
 

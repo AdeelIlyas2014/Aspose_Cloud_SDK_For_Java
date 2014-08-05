@@ -2,13 +2,13 @@
 
     public class TextEditorResponse extends com.aspose.cloud.common.BaseResponse
     {
-        private TextItemsResponse TextItems ;
-        private TextItem TextItem ;
-        private int Matches ;
+        private TextItemsResponse textItems ;
+        private TextItem textItem ;
+        private int matches ;
         
-        public TextItemsResponse getTextItems(){return TextItems;}
-        public TextItem getTextItem(){return TextItem;}
-        public int getMatches(){return Matches;}
+        public TextItemsResponse getTextItems(){return textItems;}
+        public TextItem getTextItem(){return textItem;}
+        public int getMatches(){return matches;}
         
         
     }

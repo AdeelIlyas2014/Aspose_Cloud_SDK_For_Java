@@ -14,17 +14,17 @@ public class DocumentProperty
     public DocumentProperty() { }
 
  //   public List<LinkResponse> Links;
-    private boolean BuiltIn;
-    private String Name;
-    private String Value;
+    private boolean builtIn;
+    private String name;
+    private String value;
     
-    public boolean getIsBuiltIn(){return BuiltIn;}
-    public String getName(){return Name;}
-    public String getValue(){return Value;}
+    public boolean getIsBuiltIn(){return builtIn;}
+    public String getName(){return name;}
+    public String getValue(){return value;}
 
-    public void setIsBuiltIn(boolean temBuiltIn){ BuiltIn=temBuiltIn;}
-    public void setName(String temName){ Name=temName;}
+    public void setIsBuiltIn(boolean temBuiltIn){ builtIn=temBuiltIn;}
+    public void setName(String temName){ name=temName;}
     public void setValue(String temValue){ 
-    	Value=temValue;}
+    	value=temValue;}
 
 }

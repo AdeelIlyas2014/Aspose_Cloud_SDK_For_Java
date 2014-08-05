@@ -7,22 +7,22 @@
         /// <summary>
         /// Resource BuiltIn Property
         /// </summary>
-        private Boolean BuiltIn;
-        public Boolean getBuiltIn(){return BuiltIn;}
-        public void setBuiltIn(Boolean BuiltIn){this.BuiltIn=BuiltIn;}
+        private Boolean builtIn;
+        public Boolean getBuiltIn(){return builtIn;}
+        public void setBuiltIn(Boolean BuiltIn){this.builtIn=BuiltIn;}
         /// <summary>
         /// Resource Name Property
         /// </summary>
-        private String Name;
-        public String getName(){return Name;}
-        public void setName(String Name){this.Name=Name;}
+        private String name;
+        public String getName(){return name;}
+        public void setName(String Name){this.name=Name;}
 
         /// <summary>
         /// Resource Value Property
         /// </summary>
-        private String Value;
-        public String getValue(){return Value;}
-        public void setValue(String Value){this.Value=Value;}
+        private String value;
+        public String getValue(){return value;}
+        public void setValue(String Value){this.value=Value;}
 
 
         /// <summary>
@@ -36,7 +36,7 @@
 
         public DocumentProperty(String propName, String propValue)
         {
-            Name = propName;
-            Value = propValue;
+            name = propName;
+            value = propValue;
         }
     }

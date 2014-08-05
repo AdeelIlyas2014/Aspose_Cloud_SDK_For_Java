@@ -18,9 +18,9 @@ public class FileCollection {
     /// <summary>
     /// Represents a list fo File Objects.
     /// </summary>
-    private FileCollection File;
-    public FileCollection getFile(){return File;}
-    public void setFile(FileCollection File){this.File=File;}
+    private FileCollection file;
+    public FileCollection getFile(){return file;}
+    public void setFile(FileCollection file){this.file=file;}
 /// <summary>
     /// returns a list of File objects
     /// </summary>

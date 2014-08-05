@@ -12,6 +12,6 @@ package com.aspose.cloud.slides;
 /// </summary>
 public class FillFormatURI
 {
-    private UriResponse Uri;
-    public UriResponse getUriResponse(){return Uri;}
+    private UriResponse uri;
+    public UriResponse getUriResponse(){return uri;}
 }

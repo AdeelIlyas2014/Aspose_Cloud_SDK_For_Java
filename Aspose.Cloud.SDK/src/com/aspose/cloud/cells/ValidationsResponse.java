@@ -7,13 +7,13 @@ import java.util.List;
     public class ValidationsResponse extends com.aspose.cloud.common.BaseResponse
     {       
         private LinkResponse link;
-        private int Count;            
-        private List<LinkResponse> ValidationList;
-        private Validation Validation;
+        private int count;            
+        private List<LinkResponse> validationList;
+        private Validation validation;
         
         public LinkResponse getLink(){return link;}
-        public int getCount(){return Count;}            
-        public List<LinkResponse> getValidationList(){return ValidationList;}
-        public Validation getValidation(){return Validation;};
+        public int getCount(){return count;}            
+        public List<LinkResponse> getValidationList(){return validationList;}
+        public Validation getValidation(){return validation;};
 
     }

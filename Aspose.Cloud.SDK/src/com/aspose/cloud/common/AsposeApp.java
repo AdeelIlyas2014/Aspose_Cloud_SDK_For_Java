@@ -10,20 +10,20 @@ public class AsposeApp {
     /// <summary>
     /// Represents AppSID for the app.
     /// </summary>
-    private static String AppSID;
+    private static String appSID;
     /// <summary>
     /// Represnts the AppKey for the app.
     /// </summary>
-    private static String AppKey;
+    private static String appKey;
     
-    public static String getAppSID(){return AppSID;}
-    public static String getAppKey(){return AppKey;}
-    public static void setAppSID(String appSID){ AppSID=appSID;}
-    public static void setAppKey(String appKey){ AppKey=appKey;}
-    public static void setAppInfo(String appKey, String appSID)
+    public static String getAppSID(){return appSID;}
+    public static String getAppKey(){return appKey;}
+    public static void setAppSID(String _appSID){ appSID=_appSID;}
+    public static void setAppKey(String _appKey){ appKey=_appKey;}
+    public static void setAppInfo(String _appKey, String _appSID)
     {
-    	AppSID=appSID;
-    	AppKey=appKey;
+    	appSID=_appSID;
+    	appKey=_appKey;
     }
 
 }

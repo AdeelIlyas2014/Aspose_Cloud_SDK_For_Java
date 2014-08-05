@@ -33,9 +33,9 @@ public class BarCodeBuilder {
 	// / Default symbology is Code128
 	// / </summary>
 	public BarCodeBuilder() {
-		this.BarCodeType = com.aspose.cloud.barcode.BarCodeType.Code128;
-		this.Codetext = "test-123";
-		this.ImageFormat = com.aspose.cloud.barcode.ImageFormat.PNG;
+		this.barCodeType = com.aspose.cloud.barcode.BarCodeType.Code128;
+		this.codetext = "test-123";
+		this.imageFormat = com.aspose.cloud.barcode.ImageFormat.PNG;
 		this.gson = new Gson();
 	}
 
@@ -50,9 +50,9 @@ public class BarCodeBuilder {
 	// / <param name="codetext">Barcode value</param>
 	// / <param name="barcodeType">Barcode type</param>
 	public BarCodeBuilder(String codetext, BarCodeType barcodeType) {
-		this.BarCodeType = barcodeType;
-		this.Codetext = codetext;
-		this.ImageFormat = com.aspose.cloud.barcode.ImageFormat.PNG;
+		this.barCodeType = barcodeType;
+		this.codetext = codetext;
+		this.imageFormat = com.aspose.cloud.barcode.ImageFormat.PNG;
 		this.gson = new Gson();
 	}
 
@@ -65,44 +65,44 @@ public class BarCodeBuilder {
 	// / <summary>
 	// / Get or set Codetext of the barcode
 	// / </summary>
-	public String Codetext;
+	public String codetext;
 
 	// / <summary>
 	// / Get or set the type of barcode to be generated e.g. Code128,
 	// Code39Standard, Pdf417 etc
 	// / </summary>
-	public BarCodeType BarCodeType;
+	public BarCodeType barCodeType;
 
 	// / <summary>
 	// / Get or set the image format of the barcode. Default is PNG
 	// / </summary>
-	public ImageFormat ImageFormat;
+	public ImageFormat imageFormat;
 
 	// / <summary>
 	// / Set X resolution in DPI. Default is 96.
 	// / </summary>
-	public float ResolutionX;
+	public float resolutionX;
 
 	// / <summary>
 	// / Set Y resolution in DPI. Default is 96.
 	// / </summary>
-	public float ResolutionY;
+	public float resolutionY;
 
 	// / <summary>
 	// / Set X dimension. Default is 0.7.
 	// / </summary>
-	public float DimensionX;
+	public float dimensionX;
 
 	// / <summary>
 	// / Set Y dimension. Default is 2.
 	// / </summary>
-	public float DimensionY;
+	public float dimensionY;
 
 	// / <summary>
 	// / Folder name on server, where barcode is to be saved. To be used with
 	// Save() method with SaveLocation.Server parameter
 	// / </summary>
-	public String FolderName;
+	public String folderName;
 
 	Gson gson = null;
 
@@ -121,24 +121,24 @@ public class BarCodeBuilder {
 			com.aspose.cloud.barcode.SaveLocation saveLocation, String outputPath,
 			com.aspose.cloud.barcode.ImageFormat imageFormat) {
 		try {
-			PerformValidations();
+			performValidations();
 
 			// If image needs to be saved locally
 			if (saveLocation == SaveLocation.Local) {
 				// Build URL with querystring request parameters
-				String uri = UriBuilder("");
+				String uri = uriBuilder("");
 				InputStream responseStream = null;
 				// Send the request to aspose server
 				if (this.auth != null) {
 					if (!this.auth.validateAuth()) {
 						System.out.println("Please Specify AppSID and AppKey");
 					} else {
-						responseStream = Utils.ProcessCommand(Utils.Sign(uri,
+						responseStream = Utils.processCommand(Utils.sign(uri,
 								this.auth.getAppKey(), this.auth.getAppSID()),
 								"GET");
 					}
 				} else {
-					responseStream = Utils.ProcessCommand(Utils.Sign(uri),
+					responseStream = Utils.processCommand(Utils.sign(uri),
 							"GET");
 				}
 
@@ -146,7 +146,7 @@ public class BarCodeBuilder {
 				// that contains barcode image
 				// So, just save the response stream to a local image file
 
-				com.aspose.cloud.storage.Folder.SaveStreamToFile(outputPath,
+				com.aspose.cloud.storage.Folder.saveStreamToFile(outputPath,
 						responseStream);
 				responseStream.close();
 
@@ -155,7 +155,7 @@ public class BarCodeBuilder {
 				return response;
 			} else if (saveLocation == SaveLocation.Server) {
 				// Build URL with querystring request parameters
-				String uri = UriBuilder(outputPath);
+				String uri = uriBuilder(outputPath);
 
 				// Send the request to aspose server
 				InputStream responseStream = null;
@@ -163,16 +163,16 @@ public class BarCodeBuilder {
 					if (!this.auth.validateAuth()) {
 						System.out.println("Please Specify AppSID and AppKey");
 					} else {
-						responseStream = Utils.ProcessCommand(Utils.Sign(uri,
+						responseStream = Utils.processCommand(Utils.sign(uri,
 								this.auth.getAppKey(), this.auth.getAppSID()),
 								"GET");
 					}
 				} else {
-					responseStream = Utils.ProcessCommand(Utils.Sign(uri),
+					responseStream = Utils.processCommand(Utils.sign(uri),
 							"PUT");
 				}
 				// Read the response
-				String strJSON = Utils.StreamToString(responseStream);
+				String strJSON = Utils.streamToString(responseStream);
 
 				// Parse and Deserializes the JSON to a object.
 				GenerationResponse barcodeGenerationResponse = gson.fromJson(
@@ -197,12 +197,12 @@ public class BarCodeBuilder {
 	// / <param name="ImageFormat">Image format</param>
 	// public GenerationResponse Save(SaveLocation saveLocation, InputStream
 	// imageStream, ImageFormat imageFormat)
-	public InputStream Save(ImageFormat imageFormat) {
+	public InputStream save(ImageFormat imageFormat) {
 		try {
-			PerformValidations();
+			performValidations();
 
 			// Build URL with querystring request parameters
-			String uri = UriBuilder("");
+			String uri = uriBuilder("");
 			InputStream responseStream = null;
 			// Send the request to aspose server
 			if (this.auth != null) {
@@ -210,12 +210,12 @@ public class BarCodeBuilder {
 				if (!this.auth.validateAuth()) {
 
 				} else {
-					responseStream = Utils.ProcessCommand(
-							Utils.Sign(uri, this.auth.getAppKey(),
+					responseStream = Utils.processCommand(
+							Utils.sign(uri, this.auth.getAppKey(),
 									this.auth.getAppSID()), "GET");
 				}
 			} else {
-				responseStream = Utils.ProcessCommand(Utils.Sign(uri), "GET");
+				responseStream = Utils.processCommand(Utils.sign(uri), "GET");
 			}
 
 			return responseStream;
@@ -244,7 +244,7 @@ public class BarCodeBuilder {
 	// / <summary>
 	// / Build the URI
 	// / </summary>
-	private String UriBuilder(String imageFileName) {
+	private String uriBuilder(String imageFileName) {
 		// Initialize with server URI, text and type, which are must
 		String uri = com.aspose.cloud.common.Product.getBaseProductUri()
 				+ "/barcode/";
@@ -252,30 +252,30 @@ public class BarCodeBuilder {
 		// is to be saved on aspose server
 		if (imageFileName != null && imageFileName.trim().length() > 0)
 			uri += imageFileName + "/";
-		uri += "generate?text=" + Codetext + "&type=" + BarCodeType;
+		uri += "generate?text=" + codetext + "&type=" + barCodeType;
 
 		// Add image format parameter
-		uri += "&format=" + ImageFormat;
+		uri += "&format=" + imageFormat;
 
 		// Add folder parameter
-		if (FolderName != null && FolderName.trim().length() > 0)
-			uri += "&folder=" + FolderName;
+		if (folderName != null && folderName.trim().length() > 0)
+			uri += "&folder=" + folderName;
 
 		// Add x resolution parameter
-		if (ResolutionX != 0.0f)
-			uri += "&resolutionX=" + ResolutionX;
+		if (resolutionX != 0.0f)
+			uri += "&resolutionX=" + resolutionX;
 
 		// Add y resolution parameter
-		if (ResolutionY != 0.0f)
-			uri += "&resolutionY=" + ResolutionY;
+		if (resolutionY != 0.0f)
+			uri += "&resolutionY=" + resolutionY;
 
 		// Add x dimension parameter
-		if (DimensionX != 0.0f)
-			uri += "&dimensionX=" + DimensionX;
+		if (dimensionX != 0.0f)
+			uri += "&dimensionX=" + dimensionX;
 
 		// Add y dimension parameter
-		if (DimensionY != 0.0f)
-			uri += "&dimensionY=" + DimensionY;
+		if (dimensionY != 0.0f)
+			uri += "&dimensionY=" + dimensionY;
 
 		// return the URI
 		return uri;
@@ -284,7 +284,7 @@ public class BarCodeBuilder {
 	// / <summary>
 	// / Perform validations locally
 	// / </summary>
-	private void PerformValidations() throws Exception {
+	private void performValidations() throws Exception {
 		// Throw exception if App Key is empty
 		if (this.auth != null) {
 			if (!this.auth.validateAuth()) {
@@ -300,7 +300,7 @@ public class BarCodeBuilder {
 							"App SID is not specified. Please set App SID property.");
 
 				// Throw exception if codetext is empty
-				if (Codetext == null || Codetext.trim().length() == 0)
+				if (codetext == null || codetext.trim().length() == 0)
 					throw new Exception(
 							"Codetext is not specified. Please set Codetext property.");
 			}

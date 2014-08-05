@@ -16,13 +16,13 @@ public class FileExist
         /// <summary>
         /// Indicates whether a file exists or not.
         /// </summary>
-        private boolean IsExist;
+        private boolean isExist;
         /// <summary>
         /// Indicates whether the file or folder.
         /// </summary>
-        private boolean IsFolder;
+        private boolean isFolder;
         
-        public boolean getIsExist(){return IsExist;}
-        public boolean getIsFolder(){return IsFolder;}
+        public boolean getIsExist(){return isExist;}
+        public boolean getIsFolder(){return isFolder;}
    
 }

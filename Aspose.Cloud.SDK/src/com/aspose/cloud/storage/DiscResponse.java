@@ -12,6 +12,6 @@ package com.aspose.cloud.storage;
 /// </summary>
 public  class DiscResponse extends com.aspose.cloud.common.BaseResponse
 {
-    private DiscUsage DiscUsage;
-    public DiscUsage getDiscUsage(){return DiscUsage;}
+    private DiscUsage discUsage;
+    public DiscUsage getDiscUsage(){return discUsage;}
 }

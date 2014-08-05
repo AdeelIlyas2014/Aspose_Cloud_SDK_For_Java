@@ -14,9 +14,9 @@ public class ImageResponse
 {
   
 //    public List<LinkResponse> Links;
-    private Image Image;
+    private Image image;
     
     
-    public Image getImage(){return Image;}
+    public Image getImage(){return image;}
    
 }

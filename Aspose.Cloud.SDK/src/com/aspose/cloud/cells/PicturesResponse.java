@@ -8,11 +8,11 @@ import java.util.List;
     {
         
         private LinkResponse link;
-        private List<LinkResponse> PictureList;
-        private Picture Picture;
+        private List<LinkResponse> pictureList;
+        private Picture picture;
         
         public LinkResponse getLink(){return link;}
-        public List<LinkResponse> getPictureList(){return PictureList;}
-        public Picture getPicture(){return Picture;}
+        public List<LinkResponse> getPictureList(){return pictureList;}
+        public Picture getPicture(){return picture;}
 
     }

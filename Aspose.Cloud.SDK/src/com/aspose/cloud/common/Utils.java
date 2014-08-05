@@ -40,7 +40,7 @@ public class Utils {
 	 * @throws java.security.SignatureException
 	 *             when signature generation fails
 	 */
-	public static String Sign(String data) {
+	public static String sign(String data) {
 		try {
 
 			data = data.replace(" ", "%20");
@@ -96,7 +96,7 @@ public class Utils {
 
 	}
 
-	public static String Sign(String data, String AppKey, String AppSID) {
+	public static String sign(String data, String AppKey, String AppSID) {
 		try {
 
 			data = data.replace(" ", "%20");
@@ -152,12 +152,12 @@ public class Utils {
 
 	}
 
-	public static String UploadFileBinary(File localFile, String uploadUrl,
+	public static String uploadFileBinary(File localFile, String uploadUrl,
 			String strHttpCommand) {
 		try {
 			InputStream is = new FileInputStream(localFile);
 			
-			return UploadFileBinary(is, uploadUrl, strHttpCommand);
+			return uploadFileBinary(is, uploadUrl, strHttpCommand);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -166,7 +166,7 @@ public class Utils {
 
 	}
 	
-	public static String UploadFileBinary(InputStream inputStream, String uploadUrl,String strHttpCommand) {
+	public static String uploadFileBinary(InputStream inputStream, String uploadUrl,String strHttpCommand) {
 			try {
 			URL url = new URL(uploadUrl);
 			byte[] buf = IOUtils.toByteArray(inputStream);
@@ -187,7 +187,7 @@ public class Utils {
 
 			InputStream response = m_connection.getInputStream();
 
-			String res = StreamToString(response);
+			String res = streamToString(response);
 
 			return res;
 		} catch (Exception e) {
@@ -196,7 +196,7 @@ public class Utils {
 		}
 	}
 
-	public static InputStream ProcessCommand(String strURI,
+	public static InputStream processCommand(String strURI,
 			String strHttpCommand, String strContent) {
 		
 		URL address = null;
@@ -219,7 +219,7 @@ public class Utils {
 			return httpCon.getInputStream();
 		} catch (Exception Ex) {
 			InputStream error = httpCon.getErrorStream();
-			String s = Utils.StreamToString(error);
+			String s = Utils.streamToString(error);
 			System.out.println(s);
 			Ex.printStackTrace();
 			return null;
@@ -227,7 +227,7 @@ public class Utils {
 
 	}
 
-	public static InputStream ProcessCommand(String strURI,
+	public static InputStream processCommand(String strURI,
 			String strHttpCommand, InputStream strContent) {
 		
 		URL address = null;
@@ -253,7 +253,7 @@ public class Utils {
 			return httpCon.getInputStream();
 		} catch (Exception Ex) {
 			InputStream error = httpCon.getErrorStream();
-			String s = Utils.StreamToString(error);
+			String s = Utils.streamToString(error);
 			System.out.println(s);
 			
 			Ex.printStackTrace();
@@ -262,7 +262,7 @@ public class Utils {
 
 	}
 
-	public static InputStream ProcessCommand(String strURI,
+	public static InputStream processCommand(String strURI,
 			String strHttpCommand)  {
 		
 		URL address = null;
@@ -283,7 +283,7 @@ public class Utils {
 			
 		} catch (Exception ex) {
 			InputStream error = httpCon.getErrorStream();
-			String s = Utils.StreamToString(error);
+			String s = Utils.streamToString(error);
 			System.out.println(s);
 			
 			ex.printStackTrace();
@@ -294,7 +294,7 @@ public class Utils {
 
 	}
 
-	public static InputStream ProcessCommand(String strURI,
+	public static InputStream processCommand(String strURI,
 			String strHttpCommand, String strContent, String ContentType) {
 		
 		URL address = null;
@@ -325,7 +325,7 @@ public class Utils {
 			return httpCon.getInputStream();
 		} catch (Exception Ex) {
 			InputStream error = httpCon.getErrorStream();
-			String s = Utils.StreamToString(error);
+			String s = Utils.streamToString(error);
 			System.out.println(s);
 			
 			Ex.printStackTrace();
@@ -333,7 +333,7 @@ public class Utils {
 		}
 	}
 
-	public static String StreamToString(InputStream stream) {
+	public static String streamToString(InputStream stream) {
 		try {
 		    return IOUtils.toString(stream);
 		} catch (Exception e) {

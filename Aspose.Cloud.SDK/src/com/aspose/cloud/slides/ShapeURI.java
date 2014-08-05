@@ -12,6 +12,6 @@ package com.aspose.cloud.slides;
 /// </summary>
 public class ShapeURI
 {
-    private UriResponse Uri ;
-    public UriResponse getUri(){return Uri;} 
+    private UriResponse uri ;
+    public UriResponse getUri(){return uri;} 
 }

@@ -13,7 +13,7 @@ package com.aspose.cloud.pdf;
 public class PagesResponse extends com.aspose.cloud.common.BaseResponse
 {
     
-    private PagesEnvelop Pages;
-    public PagesEnvelop getPages(){return Pages;}
+    private PagesEnvelop pages;
+    public PagesEnvelop getPages(){return pages;}
             
 }

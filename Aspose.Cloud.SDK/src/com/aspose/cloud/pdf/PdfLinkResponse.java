@@ -14,7 +14,7 @@ public class PdfLinkResponse extends com.aspose.cloud.common.BaseResponse
 {
     public PdfLinkResponse() { }
 
-    private Link Link;
-    public Link getLink(){return Link;}
+    private Link link;
+    public Link getLink(){return link;}
 
 }

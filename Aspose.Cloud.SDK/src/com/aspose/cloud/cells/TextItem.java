@@ -8,10 +8,10 @@ public class TextItem
         }
 
         private LinkResponse link ;
-        private String Text ;
+        private String text ;
         
         public LinkResponse getLink(){return link;}
-        public String getText(){return Text;}
+        public String getText(){return text;}
         
     }
 

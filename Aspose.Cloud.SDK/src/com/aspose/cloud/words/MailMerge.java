@@ -31,11 +31,11 @@ public class MailMerge {
 	// / <param name="saveformat"></param>
 	// / <param name="output"></param>
 
-	public void ExecuteMailMerege(String FileName, String strXML,
+	public void executeMailMerege(String fileName, String strXML,
 			SaveFormat saveformat, String outputPath) {
 		try {
 			// build URI to get Image
-			String strURI = Product.getBaseProductUri() + "/words/" + FileName
+			String strURI = Product.getBaseProductUri() + "/words/" + fileName
 					+ "/executeMailMerge";
 
 			String signedURI = "";
@@ -43,17 +43,17 @@ public class MailMerge {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI,
+			InputStream responseStream = Utils.processCommand(signedURI,
 					"POST", strXML, "xml");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			InputSource source = new InputSource(new StringReader(strJSON));
 
@@ -78,17 +78,17 @@ public class MailMerge {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
 			// get response stream
-			responseStream = Utils.ProcessCommand(signedURI, "GET");
+			responseStream = Utils.processCommand(signedURI, "GET");
 
-			Folder.SaveStreamToFile(outputPath, responseStream);
+			Folder.saveStreamToFile(outputPath, responseStream);
 			responseStream.close();
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -102,11 +102,11 @@ public class MailMerge {
 	// / <param name="strXML"></param>
 	// / <param name="saveformat"></param>
 	// / <param name="output"></param>
-	public void ExecuteMailMeregewithRegions(String FileName, String strXML,
+	public void executeMailMeregewithRegions(String fileName, String strXML,
 			SaveFormat saveformat, String outputPath) {
 		try {
 			// build URI to get Image
-			String strURI = Product.getBaseProductUri() + "/words/" + FileName
+			String strURI = Product.getBaseProductUri() + "/words/" + fileName
 					+ "/executeMailMerge?withRegions=true";
 
 			String signedURI = "";
@@ -114,17 +114,17 @@ public class MailMerge {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI,
+			InputStream responseStream = Utils.processCommand(signedURI,
 					"POST", strXML, "xml");
 
 			// further process JSON response
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			InputSource source = new InputSource(new StringReader(strResponse));
 
@@ -149,17 +149,17 @@ public class MailMerge {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
 			// get response stream
-			responseStream = Utils.ProcessCommand(signedURI, "GET");
+			responseStream = Utils.processCommand(signedURI, "GET");
 
-			Folder.SaveStreamToFile(outputPath, responseStream);
+			Folder.saveStreamToFile(outputPath, responseStream);
 			responseStream.close();
 
 		} catch (Exception ex) {
@@ -174,28 +174,28 @@ public class MailMerge {
 	// / <param name="strXML"></param>
 	// / <param name="saveformat"></param>
 	// / <param name="output"></param>
-	public void ExecuteTemplate(String FileName, String strXML,
+	public void executeTemplate(String fileName, String strXML,
 			SaveFormat saveformat, String outputPath) {
 		try {
 			// build URI to get Image
-			String strURI = Product.getBaseProductUri() + "/words/" + FileName
+			String strURI = Product.getBaseProductUri() + "/words/" + fileName
 					+ "/executeTemplate";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI,
+			InputStream responseStream = Utils.processCommand(signedURI,
 					"POST", strXML, "xml");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			InputSource source = new InputSource(new StringReader(strJSON));
 
@@ -220,16 +220,16 @@ public class MailMerge {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 			// get response stream
-			responseStream = Utils.ProcessCommand(signedURI, "GET");
+			responseStream = Utils.processCommand(signedURI, "GET");
 
-			Folder.SaveStreamToFile(outputPath, responseStream);
+			Folder.saveStreamToFile(outputPath, responseStream);
 			responseStream.close();
 		} catch (Exception ex) {
 			ex.printStackTrace();

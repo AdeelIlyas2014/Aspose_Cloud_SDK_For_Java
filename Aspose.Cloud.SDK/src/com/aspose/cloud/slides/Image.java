@@ -9,12 +9,12 @@ package com.aspose.cloud.slides;
  */
 public class Image {
 
-	private UriResponse ParentUri;
-	    private int Height;
-	    private int Width;
+	private UriResponse parentUri;
+	    private int height;
+	    private int width;
 	    
-	    public UriResponse getParentUri(){return ParentUri;}
-	    public int getHeight(){return Height;}
-	    public int getWidth(){return Width;}
+	    public UriResponse getParentUri(){return parentUri;}
+	    public int getHeight(){return height;}
+	    public int getWidth(){return width;}
 
 }

@@ -15,6 +15,6 @@ public class FormFieldsEnvelop
 {
 
  //   public List<LinkResponse> Links;
-    private List<FormField> List;
-    public List<FormField> getList(){return List;}
+    private List<FormField> list;
+    public List<FormField> getList(){return list;}
 }

@@ -16,11 +16,11 @@ public class PageResponse
 {
   
   //  public List<LinkResponse> Links;
-    private int Id;
-    private String Images;
+    private int id;
+    private String images;
     
-    public int getId(){return Id;}
-    public String getImages(){return Images;}
+    public int getId(){return id;}
+    public String getImages(){return images;}
     
 
 }

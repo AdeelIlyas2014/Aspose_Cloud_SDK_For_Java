@@ -10,25 +10,25 @@ import java.util.List;
         public LinkResponse getlink(){return link;}
         public void setlink(LinkResponse link){this.link=link;}
 
-        private float Height;
-        public float getHeight(){return Height;}
-        public void setHeight(float Height){this.Height=Height;}
+        private float height;
+        public float getHeight(){return height;}
+        public void setHeight(float height){this.height=height;}
 
-        private LinkResponse ImageDataLink;
-        public LinkResponse getImageDataLink(){return ImageDataLink;}
-        public void setImageDataLink(LinkResponse ImageDataLink){this.ImageDataLink=ImageDataLink;}
+        private LinkResponse imageDataLink;
+        public LinkResponse getImageDataLink(){return imageDataLink;}
+        public void setImageDataLink(LinkResponse imageDataLink){this.imageDataLink=imageDataLink;}
 
-        private LinkResponse OleDataLink;
-        public LinkResponse getOleDataLink(){return OleDataLink;}
-        public void setOleDataLink(LinkResponse OleDataLink){this.OleDataLink=OleDataLink;}
+        private LinkResponse oleDataLink;
+        public LinkResponse getOleDataLink(){return oleDataLink;}
+        public void setOleDataLink(LinkResponse oleDataLink){this.oleDataLink=oleDataLink;}
 
-        private List<LinkResponse> RenderLinks;
-        public List<LinkResponse> getRenderLinks(){return RenderLinks;}
-        public void setRenderLinks(List<LinkResponse> RenderLinks){this.RenderLinks=RenderLinks;}
+        private List<LinkResponse> renderLinks;
+        public List<LinkResponse> getRenderLinks(){return renderLinks;}
+        public void setRenderLinks(List<LinkResponse> renderLinks){this.renderLinks=renderLinks;}
 
-        private float Width;
-        public float getWidth(){return Width;}
-        public void setWidth(float Width){this.Width=Width;}
+        private float width;
+        public float getWidth(){return width;}
+        public void setWidth(float width){this.width=width;}
 
 
     }

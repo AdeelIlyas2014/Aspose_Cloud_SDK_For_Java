@@ -8,13 +8,13 @@ import java.util.List;
     {
         
         private LinkResponse link;
-        private int RowCount;               
-        private List<LinkResponse> RowsList;
-        private Row Row;
+        private int rowCount;               
+        private List<LinkResponse> rowsList;
+        private Row row;
         
         public LinkResponse getLink(){return link;}
-        public int getRowCount(){return RowCount;}               
-        public List<LinkResponse> getRowsList(){return RowsList;}
-        public Row getRow(){return Row;}
+        public int getRowCount(){return rowCount;}               
+        public List<LinkResponse> getRowsList(){return rowsList;}
+        public Row getRow(){return row;}
        
     }

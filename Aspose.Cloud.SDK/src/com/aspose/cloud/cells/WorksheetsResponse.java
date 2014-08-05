@@ -7,10 +7,10 @@ import java.util.List;
     public class WorksheetsResponse extends com.aspose.cloud.common.BaseResponse
     {
 
-        private List<Worksheet> WorksheetList;
-        private LinkResponse Link ;
+        private List<Worksheet> worksheetList;
+        private LinkResponse link ;
         
-        public List<Worksheet> getWorksheetList(){return WorksheetList;}
-        public LinkResponse getLink(){return Link;}
+        public List<Worksheet> getWorksheetList(){return worksheetList;}
+        public LinkResponse getLink(){return link;}
 
     }

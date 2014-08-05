@@ -12,15 +12,15 @@ public class Column
         }
        
         private LinkResponse link ;
-        private String Index ;
-        private int GroupLevel ;
-        private double Width ;
-        private boolean IsHidden ;       
+        private String index ;
+        private int groupLevel ;
+        private double width ;
+        private boolean isHidden ;       
         
         public LinkResponse getlink(){return link;}
-        public String getIndex(){return Index;}
-        public int getGroupLevel(){return GroupLevel;}
-        public double getWidth(){return Width;}
-        public boolean getIsHidden(){return IsHidden;}    
+        public String getIndex(){return index;}
+        public int getGroupLevel(){return groupLevel;}
+        public double getWidth(){return width;}
+        public boolean getIsHidden(){return isHidden;}    
 
     }

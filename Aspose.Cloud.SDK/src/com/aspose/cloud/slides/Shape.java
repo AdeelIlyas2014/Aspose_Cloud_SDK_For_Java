@@ -16,54 +16,54 @@ public class Shape {
 	public Shape() {
 	}
 
-	private String AlternativeText;
-	private float Height;
-	private boolean Hidden;
-	private String Name;
-	public String getName(){return Name;}
-	public void setName(String Name){this.Name=Name;}
+	private String alternativeText;
+	private float height;
+	private boolean hidden;
+	private String name;
+	public String getName(){return name;}
+	public void setName(String name){this.name=name;}
 
-	private float Width;
-	private float X;
-	private float Y;
-	private List<LinkResponse> Shapes;
-	private FillFormatURI FillFormat;
-	private LineFormatURI LineFormat;
+	private float width;
+	private float x;
+	private float y;
+	private List<LinkResponse> shapes;
+	private FillFormatURI fillFormat;
+	private LineFormatURI lineFormat;
 
 	public String getAlternativeText() {
-		return AlternativeText;
+		return alternativeText;
 	}
 
 	public float getHeight() {
-		return Height;
+		return height;
 	}
 
 	public float getWidth() {
-		return Width;
+		return width;
 	}
 
 	public float getX() {
-		return X;
+		return x;
 	}
 
 	public float getY() {
-		return Y;
+		return y;
 	}
 
 	public boolean getIsHidden() {
-		return Hidden;
+		return hidden;
 	};
 
 	public FillFormatURI getFillFormat() {
-		return FillFormat;
+		return fillFormat;
 	}
 
 	public LineFormatURI getLineFormat() {
-		return LineFormat;
+		return lineFormat;
 	}
 
 	public List<LinkResponse> getLinkResponse() {
-		return Shapes;
+		return shapes;
 	}
 
 }

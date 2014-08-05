@@ -22,46 +22,46 @@ import com.google.gson.Gson;
 public class Extractor {
 	private AsposeAppNonStatic auth;
 
-	public Extractor(String fileName) {
-		FileName = fileName;
+	public Extractor(String _fileName) {
+		fileName = _fileName;
 		gson = new Gson();
 	}
 
-	public Extractor(String fileName, AsposeAppNonStatic auth) {
-		this(fileName);
+	public Extractor(String _fileName, AsposeAppNonStatic auth) {
+		this(_fileName);
 		this.auth = auth;
 	}
 
 	// / <summary>
 	// / Presentation name
 	// / </summary>
-	public String FileName;
+	public String fileName;
 	Gson gson = null;
 
 	// / <summary>
 	// / Gets total number of images in a presentation
 	// / </summary>
 	// / <returns>Total number of images</returns>
-	public int GetImageCount() {
+	public int getImageCount() {
 		try {
 			// build URI to get image count
-			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
+			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
 					+ "/images";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and deserialize the JSON to a object.
 			ImagesResponse imagesResponse = gson.fromJson(strJSON,
@@ -74,13 +74,13 @@ public class Extractor {
 		}
 	}
 
-	public int GetImageCount(StorageType storageType, String storageName,
+	public int getImageCount(StorageType storageType, String storageName,
 			String folderName) {
 		try {
 			// build URI to get image count
 			String strURI = Product.getBaseProductUri()
 					+ "/slides/"
-					+ FileName
+					+ fileName
 					+ "/images"
 					+ (folderName.equals("") || folderName.equals(null) ? ""
 							: "?folder=" + folderName);
@@ -92,16 +92,16 @@ public class Extractor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and deserialize the JSON to a object.
 			ImagesResponse imagesResponse = gson.fromJson(strJSON,
@@ -118,26 +118,26 @@ public class Extractor {
 	// / Gets total number of images in a presentation
 	// / </summary>
 	// / <returns>Total number of images</returns>
-	public List<com.aspose.cloud.slides.Image> GetPresentationImages() {
+	public List<com.aspose.cloud.slides.Image> getPresentationImages() {
 		try {
 			// build URI to get image count
-			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
+			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
 					+ "/images";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and deserialize the JSON to a object.
 			ImagesResponse imagesResponse = gson.fromJson(strJSON,
@@ -155,26 +155,26 @@ public class Extractor {
 	// / </summary>
 	// / <param name="slideNumber"></param>
 	// / <returns></returns>
-	public int GetImageCount(int slideNumber) {
+	public int getImageCount(int slideNumber) {
 		try {
 			// build URI to get image count
-			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
+			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
 					+ "/slides/" + Integer.toString(slideNumber) + "/images";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and deserialize the JSON to a object.
 			ImagesResponse imagesResponse = gson.fromJson(strJSON,
@@ -187,13 +187,13 @@ public class Extractor {
 		}
 	}
 
-	public int GetImageCount(int slideNumber, StorageType storageType,
+	public int getImageCount(int slideNumber, StorageType storageType,
 			String storageName, String folderName) {
 		try {
 			// build URI to get image count
 			String strURI = Product.getBaseProductUri()
 					+ "/slides/"
-					+ FileName
+					+ fileName
 					+ "/slides/"
 					+ Integer.toString(slideNumber)
 					+ "/images"
@@ -207,16 +207,16 @@ public class Extractor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and deserialize the JSON to a object.
 			ImagesResponse imagesResponse = gson.fromJson(strJSON,
@@ -234,26 +234,26 @@ public class Extractor {
 	// / </summary>
 	// / <param name="slideNumber"></param>
 	// / <returns></returns>
-	public List<Shape> GetShapes(int slideNumber) {
+	public List<Shape> getShapes(int slideNumber) {
 		try {
 			// build URI to get shapes
-			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
+			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
 					+ "/slides/" + Integer.toString(slideNumber) + "/shapes";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 			System.out.println(strJSON);
 			
 			// Parse and deserialize the JSON to a object.
@@ -263,7 +263,7 @@ public class Extractor {
 			List<Shape> shapes = new java.util.ArrayList<Shape>();
 			for (ShapeURI shapeURI : shapesResponse.getShapes().getList()) {
 				// Parse the json String to JObject
-				String strResponse = ProcessURI(shapeURI.getUri().getHref());
+				String strResponse = processURI(shapeURI.getUri().getHref());
 
 				// Parse and deserialize the JSON to a object.
 				ShapeResponse shapeResponse = gson.fromJson(strResponse,
@@ -278,13 +278,13 @@ public class Extractor {
 		}
 	}
 
-	public List<Shape> GetShapes(int slideNumber, StorageType storageType,
+	public List<Shape> getShapes(int slideNumber, StorageType storageType,
 			String storageName, String folderName) {
 		try {
 			// build URI to get shapes
 			String strURI = Product.getBaseProductUri()
 					+ "/slides/"
-					+ FileName
+					+ fileName
 					+ "/slides/"
 					+ Integer.toString(slideNumber)
 					+ "/shapes"
@@ -298,16 +298,16 @@ public class Extractor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and deserialize the JSON to a object.
 			ShapesResponse shapesResponse = gson.fromJson(strJSON,
@@ -316,7 +316,7 @@ public class Extractor {
 			List<Shape> shapes = new java.util.ArrayList<Shape>();
 			for (ShapeURI shapeURI : shapesResponse.getShapes().getList()) {
 				// Parse the json String to JObject
-				String strResponse = ProcessURI(shapeURI.getUri().getHref());
+				String strResponse = processURI(shapeURI.getUri().getHref());
 
 				// Parse and deserialize the JSON to a object.
 				ShapeResponse shapeResponse = gson.fromJson(strResponse,
@@ -336,26 +336,26 @@ public class Extractor {
 	// / </summary>
 	// / <param name="slideNumber"></param>
 	// / <returns></returns>
-	public int GetShapesCount(int slideNumber) {
+	public int getShapesCount(int slideNumber) {
 		try {
 			// build URI to get shapes
-			String strURI = Product.getBaseProductUri() + "/slides/" + FileName
+			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
 					+ "/slides/" + Integer.toString(slideNumber) + "/shapes";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and deserialize the JSON to a object.
 			ShapesResponse shapesResponse = gson.fromJson(strJSON,
@@ -364,7 +364,7 @@ public class Extractor {
 			List<Shape> shapes = new java.util.ArrayList<Shape>();
 			for (ShapeURI shapeURI : shapesResponse.getShapes().getList()) {
 				// Parse the json String to JObject
-				String strResponse = ProcessURI(shapeURI.getUri().getHref());
+				String strResponse = processURI(shapeURI.getUri().getHref());
 
 				// Parse and deserialize the JSON to a object.
 				ShapeResponse shapeResponse = gson.fromJson(strResponse,
@@ -384,7 +384,7 @@ public class Extractor {
 	// / </summary>
 	// / <param name="strURI"></param>
 	// / <returns></returns>
-	private String ProcessURI(String strURI) {
+	private String processURI(String strURI) {
 		try {
 			// build URI
 			String signedURI = "";
@@ -392,16 +392,16 @@ public class Extractor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
 			// Parse the json String to JObject
-			return Utils.StreamToString(responseStream);
+			return Utils.streamToString(responseStream);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -409,24 +409,24 @@ public class Extractor {
 
 	}
 
-	public ColorScheme GetColorScheme(int slideNumber) {
+	public ColorScheme getColorScheme(int slideNumber) {
 		try {
 			String strURI = Product.getBaseProductUri() + "/slides/"
-					+ this.FileName + "/slides/"
+					+ this.fileName + "/slides/"
 					+ Integer.toString(slideNumber) + "/theme/colorScheme";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			String strJSON = Utils.StreamToString(responseStream);
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
+			String strJSON = Utils.streamToString(responseStream);
 			ColorSchemeResponse colorSchemeResponse = gson.fromJson(strJSON,
 					ColorSchemeResponse.class);
 			return colorSchemeResponse.getColorScheme();
@@ -436,11 +436,11 @@ public class Extractor {
 		}
 	}
 
-	public ColorScheme GetColorScheme(int slideNumber, StorageType storageType,
+	public ColorScheme getColorScheme(int slideNumber, StorageType storageType,
 			String storageName) {
 		try {
 			String strURI = Product.getBaseProductUri() + "/slides/"
-					+ this.FileName + "/slides/"
+					+ this.fileName + "/slides/"
 					+ Integer.toString(slideNumber) + "/theme/colorScheme";
 			if (storageType.equals(StorageType.AmazonS3)) {
 				strURI.concat("?storage=" + storageName);
@@ -450,14 +450,14 @@ public class Extractor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			String strJSON = Utils.StreamToString(responseStream);
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
+			String strJSON = Utils.streamToString(responseStream);
 			ColorSchemeResponse colorSchemeResponse = gson.fromJson(strJSON,
 					ColorSchemeResponse.class);
 			return colorSchemeResponse.getColorScheme();
@@ -470,21 +470,21 @@ public class Extractor {
 	public FontScheme getFontScheme(int slideNumber) {
 		try {
 			String strURI = Product.getBaseProductUri() + "/slides/"
-					+ this.FileName + "/slides/"
+					+ this.fileName + "/slides/"
 					+ Integer.toString(slideNumber) + "/theme/fontScheme";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			String strJSON = Utils.StreamToString(responseStream);
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
+			String strJSON = Utils.streamToString(responseStream);
 			FontSchemeResponse fontSchemeResponse = gson.fromJson(strJSON,
 					FontSchemeResponse.class);
 			return fontSchemeResponse.getFontScheme();
@@ -498,7 +498,7 @@ public class Extractor {
 			String storageName) {
 		try {
 			String strURI = Product.getBaseProductUri() + "/slides/"
-					+ this.FileName + "/slides/"
+					+ this.fileName + "/slides/"
 					+ Integer.toString(slideNumber) + "/theme/fontScheme";
 			if (storageType.equals(StorageType.AmazonS3)) {
 				strURI.concat("?storage=" + storageName);
@@ -508,14 +508,14 @@ public class Extractor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			String strJSON = Utils.StreamToString(responseStream);
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
+			String strJSON = Utils.streamToString(responseStream);
 			FontSchemeResponse fontSchemeResponse = gson.fromJson(strJSON,
 					FontSchemeResponse.class);
 			return fontSchemeResponse.getFontScheme();
@@ -528,21 +528,21 @@ public class Extractor {
 	public FormatScheme getFormatScheme(int slideNumber) {
 		try {
 			String strURI = Product.getBaseProductUri() + "/slides/"
-					+ this.FileName + "/slides/"
+					+ this.fileName + "/slides/"
 					+ Integer.toString(slideNumber) + "/theme/formatScheme";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			String strJSON = Utils.StreamToString(responseStream);
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
+			String strJSON = Utils.streamToString(responseStream);
 			FormatSchemeResponse fontSchemeResponse = gson.fromJson(strJSON,
 					FormatSchemeResponse.class);
 			return fontSchemeResponse.getFormatScheme();
@@ -556,7 +556,7 @@ public class Extractor {
 			StorageType storageType, String storageName) {
 		try {
 			String strURI = Product.getBaseProductUri() + "/slides/"
-					+ this.FileName + "/slides/"
+					+ this.fileName + "/slides/"
 					+ Integer.toString(slideNumber) + "/theme/formatScheme";
 			if (storageType.equals(StorageType.AmazonS3)) {
 				strURI.concat("?storage=" + storageName);
@@ -566,14 +566,14 @@ public class Extractor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			String strJSON = Utils.StreamToString(responseStream);
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
+			String strJSON = Utils.streamToString(responseStream);
 			FormatSchemeResponse fontSchemeResponse = gson.fromJson(strJSON,
 					FormatSchemeResponse.class);
 			return fontSchemeResponse.getFormatScheme();
@@ -586,21 +586,21 @@ public class Extractor {
 	public int getPlaceholderCount(int slideNumber) {
 		try {
 			String strURI = Product.getBaseProductUri() + "/slides/"
-					+ this.FileName + "/slides/"
+					+ this.fileName + "/slides/"
 					+ Integer.toString(slideNumber) + "/placeholders";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			String strJSON = Utils.StreamToString(responseStream);
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
+			String strJSON = Utils.streamToString(responseStream);
 			PlaceholdersResponse placeholderResponse = gson.fromJson(strJSON,
 					PlaceholdersResponse.class);
 			return placeholderResponse.getPlaceholders().getPlaceholderLinks().size();
@@ -616,7 +616,7 @@ public class Extractor {
 		try {
 			String strURI = Product.getBaseProductUri()
 					+ "/slides/"
-					+ this.FileName
+					+ this.fileName
 					+ "/slides/"
 					+ Integer.toString(slideNumber)
 					+ "/placeholders"
@@ -630,14 +630,14 @@ public class Extractor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			String strJSON = Utils.StreamToString(responseStream);
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
+			String strJSON = Utils.streamToString(responseStream);
 			PlaceholdersResponse placeholderResponse = gson.fromJson(strJSON,
 					PlaceholdersResponse.class);
 			return placeholderResponse.getPlaceholders().getPlaceholderLinks().size();
@@ -648,10 +648,10 @@ public class Extractor {
 
 	}
 
-	public Placeholder GetPlaceholder(int slideNumber, int placeholderIndex) {
+	public Placeholder getPlaceholder(int slideNumber, int placeholderIndex) {
 		try {
 			String strURI = Product.getBaseProductUri() + "/slides/"
-					+ this.FileName + "/slides/"
+					+ this.fileName + "/slides/"
 					+ Integer.toString(slideNumber) + "/placeholders/"
 					+ Integer.toString(placeholderIndex);
 			String signedURI = "";
@@ -659,14 +659,14 @@ public class Extractor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			String strJSON = Utils.StreamToString(responseStream);
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
+			String strJSON = Utils.streamToString(responseStream);
 			PlaceholderResponse placeholderResponse = gson.fromJson(strJSON,
 					PlaceholderResponse.class);
 			return placeholderResponse.getPlaceholder();
@@ -677,12 +677,12 @@ public class Extractor {
 
 	}
 
-	public Placeholder GetPlaceholder(int slideNumber, int placeholderIndex,
+	public Placeholder getPlaceholder(int slideNumber, int placeholderIndex,
 			StorageType storageType, String storageName, String folderName) {
 		try {
 			String strURI = Product.getBaseProductUri()
 					+ "/slides/"
-					+ this.FileName
+					+ this.fileName
 					+ "/slides/"
 					+ Integer.toString(slideNumber)
 					+ "/placeholders/"
@@ -697,14 +697,14 @@ public class Extractor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			String strJSON = Utils.StreamToString(responseStream);
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
+			String strJSON = Utils.streamToString(responseStream);
 			PlaceholderResponse placeholderResponse = gson.fromJson(strJSON,
 					PlaceholderResponse.class);
 			return placeholderResponse.getPlaceholder();

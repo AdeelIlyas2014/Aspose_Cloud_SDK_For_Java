@@ -9,9 +9,9 @@ import java.lang.String;
  */
 public class RecognizedBarCode
 {
-    private String BarcodeType ;
-    private String BarcodeValue;
-    public String getBarcodeType(){return BarcodeType;}
-    public String BarcodeValue(){return BarcodeValue;}
+    private String barcodeType ;
+    private String barcodeValue;
+    public String getBarcodeType(){return barcodeType;}
+    public String BarcodeValue(){return barcodeValue;}
        
 }

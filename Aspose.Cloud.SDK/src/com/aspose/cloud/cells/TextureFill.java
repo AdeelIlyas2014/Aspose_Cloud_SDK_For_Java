@@ -8,16 +8,16 @@ import java.lang.String;
         
         }
 
-        private TextureType Type;
-        private double Transperancy;
-        private TilePicOption TilePicOption;
-        private PicFormatOption PicFormatOption;
-        private String Image;
+        private TextureType type;
+        private double transperancy;
+        private TilePicOption tilePicOption;
+        private PicFormatOption picFormatOption;
+        private String image;
         
-        public TextureType getType(){return Type;}
-        public double getTransperancy(){return Transperancy;}
-        public TilePicOption getTilePicOption(){return TilePicOption;}
-        public PicFormatOption PicFormatOption(){return PicFormatOption;}
-        public String getImage(){return Image;}
+        public TextureType getType(){return type;}
+        public double getTransperancy(){return transperancy;}
+        public TilePicOption getTilePicOption(){return tilePicOption;}
+        public PicFormatOption PicFormatOption(){return picFormatOption;}
+        public String getImage(){return image;}
         
     }

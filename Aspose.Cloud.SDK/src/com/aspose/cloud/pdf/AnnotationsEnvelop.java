@@ -13,16 +13,16 @@ import java.util.List;
 /// </summary>
 public  class AnnotationsEnvelop
 {
-    private List<LinkResponse> Links;
-    private List<Annotation> List;
+    private List<LinkResponse> links;
+    private List<Annotation> list;
     
-    public List<LinkResponse> getLinkResponseList(){return Links;}
+    public List<LinkResponse> getLinkResponseList(){return links;}
     public List<Annotation> getAnnotationList(){return getList();}
 	public List<Annotation> getList() {
-		return List;
+		return list;
 	}
-	public void setList(List<Annotation> list) {
-		List = list;
+	public void setList(List<Annotation> _list) {
+		list = _list;
 	}
     
 

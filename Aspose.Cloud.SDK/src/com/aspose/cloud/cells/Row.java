@@ -12,18 +12,18 @@ public class Row
         }
        
         private LinkResponse link ;
-        private String Index ;
-        private int GroupLevel ;
-        private double Height ;
-        private boolean IsHidden ;
-        private boolean IsBlank ;
-        private boolean IsHeightMatched ;       
+        private String index ;
+        private int groupLevel ;
+        private double height ;
+        private boolean isHidden ;
+        private boolean isBlank ;
+        private boolean isHeightMatched ;       
 
         public LinkResponse getLink(){return link;}
-        public String getIndex(){return Index;}
-        public int getGroupLevel(){return GroupLevel;}
-        public double getHeight(){return Height;}
-        public boolean getIsHidden(){return IsHidden;}
-        public boolean getIsBlank(){return IsBlank;}
-        public boolean getIsHeightMatched(){return IsHeightMatched;}
+        public String getIndex(){return index;}
+        public int getGroupLevel(){return groupLevel;}
+        public double getHeight(){return height;}
+        public boolean getIsHidden(){return isHidden;}
+        public boolean getIsBlank(){return isBlank;}
+        public boolean getIsHeightMatched(){return isHeightMatched;}
     }

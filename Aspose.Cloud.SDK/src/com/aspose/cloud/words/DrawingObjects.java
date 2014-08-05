@@ -6,9 +6,9 @@ import java.util.List;
 
         public DrawingObjects() { }
 
-        private List<com.aspose.cloud.words.List> List;
-        public List<com.aspose.cloud.words.List> getList(){return List;}
-        public void setList(List<com.aspose.cloud.words.List> List){this.List=List;}
+        private List<com.aspose.cloud.words.List> list;
+        public List<com.aspose.cloud.words.List> getList(){return list;}
+        public void setList(List<com.aspose.cloud.words.List> list){this.list=list;}
 
         private LinkResponse link;
         public LinkResponse getlink(){return link;}

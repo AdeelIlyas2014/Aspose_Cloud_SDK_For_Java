@@ -13,7 +13,7 @@ package com.aspose.cloud.slides;
 public class TextItemsResponse extends com.aspose.cloud.common.BaseResponse
 {
 
-    private TextItemsEnvelop TextItems;
-    public TextItemsEnvelop getTextItems(){return TextItems;}
+    private TextItemsEnvelop textItems;
+    public TextItemsEnvelop getTextItems(){return textItems;}
             
 }

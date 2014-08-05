@@ -9,22 +9,22 @@ import com.aspose.cloud.common.Utils;
 import com.google.gson.Gson;
 
 public class Protection {
-	public String FileName;
+	public String fileName;
 	private AsposeAppNonStatic auth;
 	
-    public Protection(String fileName)
+    public Protection(String _fileName)
     {
-        FileName = fileName;
+        fileName = _fileName;
     }
-    public String GetProtection()
+    public String getProtection()
     { 
     	try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/words/" + FileName;
+			String strURI = Product.getBaseProductUri() + "/words/" + fileName;
 			strURI += "/protection";
 
 			// sign URI
@@ -33,16 +33,16 @@ public class Protection {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -55,15 +55,15 @@ public class Protection {
 			return null;
 		}
     }
-    public boolean ProtectDocument(String password, ProtectionType protectionType)
+    public boolean protectDocument(String password, ProtectionType protectionType)
     {
     	try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/words/" + FileName;
+			String strURI = Product.getBaseProductUri() + "/words/" + fileName;
 			strURI += "/protection";
 
 			// sign URI
@@ -72,11 +72,11 @@ public class Protection {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 			Gson gson = new Gson();
 
@@ -88,9 +88,9 @@ public class Protection {
 	        String strJSON = "";
 			strJSON = gson.toJson(protectionRequest, ProtectionRequest.class);
 			
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT",strJSON);
+			InputStream responseStream = Utils.processCommand(signedURI, "PUT",strJSON);
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Parse the json string to JObject
 			BaseResponse baseResponse = gson.fromJson(strResponse,
@@ -106,15 +106,15 @@ public class Protection {
 			return false;
 		}
     }
-    public boolean ChangeProtection(String oldPassword,String newPassword, ProtectionType protectionType)
+    public boolean changeProtection(String oldPassword,String newPassword, ProtectionType protectionType)
     {
     	try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/words/" + FileName;
+			String strURI = Product.getBaseProductUri() + "/words/" + fileName;
 			strURI += "/protection";
 
 			// sign URI
@@ -123,11 +123,11 @@ public class Protection {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 			Gson gson = new Gson();
 
@@ -140,9 +140,9 @@ public class Protection {
 	        String strJSON = "";
 			strJSON = gson.toJson(protectionRequest, ProtectionRequest.class);
 			
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "POST",strJSON);
+			InputStream responseStream = Utils.processCommand(signedURI, "POST",strJSON);
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Parse the json string to JObject
 			BaseResponse baseResponse = gson.fromJson(strResponse,
@@ -158,15 +158,15 @@ public class Protection {
 			return false;
 		}
     }
-    public boolean UnProtectDocument(String password)
+    public boolean unProtectDocument(String password)
     {
     	try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/words/" + FileName;
+			String strURI = Product.getBaseProductUri() + "/words/" + fileName;
 			strURI += "/protection";
 
 			// sign URI
@@ -175,11 +175,11 @@ public class Protection {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 			Gson gson = new Gson();
 
@@ -190,9 +190,9 @@ public class Protection {
 	        String strJSON = "";
 			strJSON = gson.toJson(protectionRequest, ProtectionRequest.class);
 			
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "DELETE",strJSON);
+			InputStream responseStream = Utils.processCommand(signedURI, "DELETE",strJSON);
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Parse the json string to JObject
 			BaseResponse baseResponse = gson.fromJson(strResponse,

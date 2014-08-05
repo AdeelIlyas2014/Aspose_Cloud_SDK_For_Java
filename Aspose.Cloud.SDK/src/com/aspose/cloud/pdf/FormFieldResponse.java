@@ -12,7 +12,7 @@ package com.aspose.cloud.pdf;
 /// </summary>
 public class FormFieldResponse extends com.aspose.cloud.common.BaseResponse
 {
-    private FormField Field ;
-    public FormField getFormField(){return Field;}
+    private FormField field ;
+    public FormField getFormField(){return field;}
 
 }

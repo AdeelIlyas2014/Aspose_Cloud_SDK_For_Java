@@ -7,10 +7,10 @@ import java.util.List;
     public class CommentsResponse extends com.aspose.cloud.common.BaseResponse
     {        
         private LinkResponse link ;
-        private List<LinkResponse> CommentList ;
-        private Comment Comment ;
+        private List<LinkResponse> commentList ;
+        private Comment comment ;
         
         public LinkResponse getlink(){return link;}
-        public List<LinkResponse> getCommentList(){return CommentList;}
-        public Comment getComment(){return Comment;}
+        public List<LinkResponse> getCommentList(){return commentList;}
+        public Comment getComment(){return comment;}
     }

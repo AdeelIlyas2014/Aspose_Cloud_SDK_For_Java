@@ -16,7 +16,7 @@ public class ImagesEnvelop
 {
 
  //   public List<LinkResponse> Links;
-    private List<Image> List;
+    private List<Image> list;
 
-    public List<Image> getList(){return List;}
+    public List<Image> getList(){return list;}
 }

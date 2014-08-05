@@ -13,6 +13,6 @@ import java.util.List;
 public class ShapesEnvelop
 {
 
-	private List<ShapeURI> Links ; 
-    public List<ShapeURI> getList(){return Links;}
+	private List<ShapeURI> links ; 
+    public List<ShapeURI> getList(){return links;}
 }

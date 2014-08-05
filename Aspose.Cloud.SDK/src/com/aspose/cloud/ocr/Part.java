@@ -4,34 +4,34 @@ public class Part {
 	public Part() {
 	}
 
-	private String FontName;
-	private float FontSize;
-	private boolean Bold;
-	private boolean Italic;
-	private boolean Underline;
-	private String Text;
+	private String fontName;
+	private float fontSize;
+	private boolean bold;
+	private boolean italic;
+	private boolean underline;
+	private String text;
 
 	public String getFontName() {
-		return FontName;
+		return fontName;
 	}
 
 	public float getFontSize() {
-		return FontSize;
+		return fontSize;
 	}
 
 	public boolean getBold() {
-		return Bold;
+		return bold;
 	}
 
 	public boolean getItalic() {
-		return Italic;
+		return italic;
 	};
 
 	public boolean getUnderline() {
-		return Underline;
+		return underline;
 	}
 
 	public String getText() {
-		return Text;
+		return text;
 	}
 }

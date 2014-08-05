@@ -15,15 +15,15 @@ public class Link
 {
     public Link() { }
 
-    private LinkActionType ActionType;
-    private String Action;
-    private LinkHighlightingMode Highlighting;
-    private Color Color;
+    private LinkActionType actionType;
+    private String action;
+    private LinkHighlightingMode highlighting;
+    private Color color;
 
-    public LinkActionType getLinkActionType(){return ActionType;}
-    public LinkHighlightingMode getLinkHighlightingMode(){return Highlighting;}
-    public Color getColor(){return Color;}
-    public String getAction(){return Action;}
+    public LinkActionType getLinkActionType(){return actionType;}
+    public LinkHighlightingMode getLinkHighlightingMode(){return highlighting;}
+    public Color getColor(){return color;}
+    public String getAction(){return action;}
     
     
 }

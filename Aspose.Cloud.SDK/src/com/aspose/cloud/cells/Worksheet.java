@@ -14,9 +14,9 @@ import com.google.gson.Gson;
 public class Worksheet {
 	private AsposeAppNonStatic auth;
 
-	public Worksheet(String fileName, String worksheetName) {
-		FileName = fileName;
-		WorkSheetName = worksheetName;
+	public Worksheet(String _fileName, String worksheetName) {
+		fileName = _fileName;
+		workSheetName = worksheetName;
 	}
 
 	public Worksheet(String fileName, String worksheetName,
@@ -27,17 +27,17 @@ public class Worksheet {
 
 	public LinkResponse Link;
 
-	public List<LinkResponse> GetCellsList(int offset, int count) {
+	public List<LinkResponse> getCellsList(int offset, int count) {
 
 		try {
 
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/cells?offset="
+			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/cells?offset="
 					+ offset + "&count=" + count;
 
 			// sign URI
@@ -46,16 +46,16 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -70,17 +70,17 @@ public class Worksheet {
 
 	}
 
-	public List<LinkResponse> GetRowsList(int offset, int count) {
+	public List<LinkResponse> getRowsList(int offset, int count) {
 
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/cells/rows?offset="
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/cells/rows?offset="
 					+ offset + "&count=" + count;
 
 			// sign URI
@@ -89,16 +89,16 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -112,17 +112,17 @@ public class Worksheet {
 		}
 	}
 
-	public List<LinkResponse> GetColumnsList(int offset, int count) {
+	public List<LinkResponse> getColumnsList(int offset, int count) {
 		try {
 
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/cells/columns?offset="
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/cells/columns?offset="
 					+ offset + "&count=" + count;
 
 			// sign URI
@@ -132,15 +132,15 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -160,17 +160,17 @@ public class Worksheet {
 	// / <param name="offset"></param>
 	// / <param name="count"></param>
 	// / <returns></returns>
-	public int GetMaxColumn(int offset, int count) {
+	public int getMaxColumn(int offset, int count) {
 		try {
 
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/cells?offset="
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/cells?offset="
 					+ offset + "&count=" + count;
 
 			// sign URI
@@ -179,16 +179,16 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -208,17 +208,17 @@ public class Worksheet {
 	// / <param name="offset"></param>
 	// / <param name="count"></param>
 	// / <returns></returns>
-	public int GetMaxRow(int offset, int count) {
+	public int getMaxRow(int offset, int count) {
 		try {
 
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/cells?offset="
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/cells?offset="
 					+ offset + "&count=" + count;
 
 			// sign URI
@@ -227,16 +227,16 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -256,17 +256,17 @@ public class Worksheet {
 	// / <param name="offset"></param>
 	// / <param name="count"></param>
 	// / <returns></returns>
-	public int GetCellsCount(int offset, int count) {
+	public int getCellsCount(int offset, int count) {
 		try {
 
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/cells?offset="
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/cells?offset="
 					+ offset + "&count=" + count;
 
 			// sign URI
@@ -275,16 +275,16 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -302,17 +302,17 @@ public class Worksheet {
 	// /
 	// / </summary>
 	// / <returns></returns>
-	public int GetAutoShapesCount() {
+	public int getAutoShapesCount() {
 
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/autoshapes";
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/autoshapes";
 
 			// sign URI
 			String signedURI = "";
@@ -320,16 +320,16 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -348,18 +348,18 @@ public class Worksheet {
 	// / </summary>
 	// / <param name="index"></param>
 	// / <returns></returns>
-	public AutoShape GetAutoShapeByIndex(int index) {
+	public AutoShape getAutoShapeByIndex(int index) {
 
 		try {
 
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/autoshapes/" + index;
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/autoshapes/" + index;
 
 			// sign URI
 			String signedURI = "";
@@ -367,16 +367,16 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -391,17 +391,17 @@ public class Worksheet {
 
 	}
 	/***********Method  ProtectWorksheet Added by:Zeeshan*******/
-	public Boolean ProtectWorksheet(String password, WorksheetProtectionType type, ProtectionOptions opts)
+	public Boolean protectWorksheet(String password, WorksheetProtectionType type, ProtectionOptions opts)
 	{
 		try
 		{
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName ;
-			strURI +=  "/worksheets/" +WorkSheetName + "/protection";
+					+ "/cells/" + fileName ;
+			strURI +=  "/worksheets/" +workSheetName + "/protection";
 
 			// sign URI
 			String signedURI = "";
@@ -409,11 +409,11 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 			Gson gson = new Gson();
 
@@ -438,9 +438,9 @@ public class Worksheet {
 			
 	        String strJSON = "";
 			strJSON = gson.toJson(protectionRequest, WorksheetProtectionRequest.class);
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT",strJSON);
+			InputStream responseStream = Utils.processCommand(signedURI, "PUT",strJSON);
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Parse the json string to JObject
 			BaseResponse baseResponse = gson.fromJson(strResponse,
@@ -466,18 +466,18 @@ public class Worksheet {
 	// / </summary>
 	// / <param name="cellName"></param>
 	// / <returns></returns>
-	public Cell GetCell(String cellName) {
+	public Cell getCell(String cellName) {
 
 		try {
 
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/cells/" + cellName;
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/cells/" + cellName;
 
 			// sign URI
 			String signedURI = "";
@@ -485,16 +485,16 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -513,17 +513,17 @@ public class Worksheet {
 	// / </summary>
 	// / <param name="cellName"></param>
 	// / <returns></returns>
-	public Style GetCellStyle(String cellName) {
+	public Style getCellStyle(String cellName) {
 
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/cells/" + cellName
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/cells/" + cellName
 					+ "/style";
 
 			// sign URI
@@ -532,16 +532,16 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -561,18 +561,18 @@ public class Worksheet {
 	// / <param name="cellName"></param>
 	// / <param name="style"></param>
 	// / <returns></returns>
-	public boolean SetCellStyle(String cellName, Style style) {
+	public boolean setCellStyle(String cellName, Style style) {
 
 		try {
 
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/cells/" + cellName
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/cells/" + cellName
 					+ "/style";
 
 			// sign URI
@@ -581,11 +581,11 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
 			String strJSON = "";
@@ -594,10 +594,10 @@ public class Worksheet {
 
 			strJSON = gson.toJson(style, Style.class);
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI,
+			InputStream responseStream = Utils.processCommand(signedURI,
 					"POST", strJSON);
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Parse the json string to JObject
 			BaseResponse baseResponse = gson.fromJson(strResponse,
@@ -619,18 +619,18 @@ public class Worksheet {
 	// / </summary>
 	// / <param name="index"></param>
 	// / <returns></returns>
-	public Chart GetChartByIndex(int index) {
+	public Chart getChartByIndex(int index) {
 
 		try {
 
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/charts/" + index;
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/charts/" + index;
 
 			// sign URI
 			String signedURI = "";
@@ -638,18 +638,18 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
 			Gson gson = new Gson();
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Deserializes the JSON to a object.
 			ChartsResponse chartsResponse = gson.fromJson(strResponse,
@@ -667,16 +667,16 @@ public class Worksheet {
 	// / </summary>
 	// / <param name="index"></param>
 	// / <returns></returns>
-	public Hyperlink GetHyperlinkByIndex(int index) {
+	public Hyperlink getHyperlinkByIndex(int index) {
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/hyperlinks/" + index;
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/hyperlinks/" + index;
 
 			// sign URI
 			String signedURI = "";
@@ -684,18 +684,18 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
 			Gson gson = new Gson();
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Deserializes the JSON to a object.
 			HyperlinksResponse hyperlinksResponse = gson.fromJson(strResponse,
@@ -714,16 +714,16 @@ public class Worksheet {
 	// / </summary>
 	// / <param name="cellName"></param>
 	// / <returns></returns>
-	public Comment GetComment(String cellName) {
+	public Comment getComment(String cellName) {
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/comments/" + cellName;
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/comments/" + cellName;
 
 			// sign URI
 			String signedURI = "";
@@ -731,18 +731,18 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
 			Gson gson = new Gson();
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 			// Deserializes the JSON to a object.
 			CommentsResponse commentResponse = gson.fromJson(strResponse,
 					CommentsResponse.class);
@@ -762,16 +762,16 @@ public class Worksheet {
 	// / </summary>
 	// / <param name="index"></param>
 	// / <returns></returns>
-	public OleObject GetOleObjectByIndex(int index) {
+	public OleObject getOleObjectByIndex(int index) {
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/oleobjects/" + index;
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/oleobjects/" + index;
 
 			// sign URI
 			String signedURI = "";
@@ -779,17 +779,17 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
 			Gson gson = new Gson();
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Deserializes the JSON to a object.
 			OleObjectsResponse oleObjectsResponse = gson.fromJson(strResponse,
@@ -811,17 +811,17 @@ public class Worksheet {
 	// / </summary>
 	// / <param name="index"></param>
 	// / <returns></returns>
-	public Picture GetPictureByIndex(int index) {
+	public Picture getPictureByIndex(int index) {
 
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/pictures/" + index;
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/pictures/" + index;
 
 			// sign URI
 			String signedURI = "";
@@ -829,18 +829,18 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
 			Gson gson = new Gson();
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Deserializes the JSON to a object.
 			PicturesResponse picturesResponse = gson.fromJson(strResponse,
@@ -857,21 +857,21 @@ public class Worksheet {
 
 	}
 
-	public boolean AddPicture(String picturePath, PictureLocation location,
+	public boolean addPicture(String picturePath, PictureLocation location,
 			int upperLeftRow, int upperLeftColumn, int lowerRightRow,
 			int lowerRightColumn) {
 		try {
-			if (this.FileName.equals("")) {
+			if (this.fileName.equals("")) {
 				throw new Exception("File Name Not Specified");
 			}
-			if (this.WorkSheetName.equals("")) {
+			if (this.workSheetName.equals("")) {
 				throw new Exception("Worksheet Name Not Specified");
 			}
 			InputStream response = null;
 			if (location.equals(PictureLocation.Server)) {
 				String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-						+ "/cells/" + this.FileName;
-				strURI += "/worksheets/" + this.WorkSheetName
+						+ "/cells/" + this.fileName;
+				strURI += "/worksheets/" + this.workSheetName
 						+ "/pictures?upperLeftRow=" + upperLeftRow
 						+ "&upperLeftColumn=" + upperLeftColumn
 						+ "&lowerRightRow=" + lowerRightRow
@@ -882,19 +882,19 @@ public class Worksheet {
 					if (!this.auth.validateAuth()) {
 						System.out.println("Please Specify AppKey and AppSID");
 					} else {
-						signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+						signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 								this.auth.getAppSID());
 					}
 				} else {
-					signedURI = Utils.Sign(strURI);
+					signedURI = Utils.sign(strURI);
 				}
-				response = Utils.ProcessCommand(signedURI, "PUT");
+				response = Utils.processCommand(signedURI, "PUT");
 			} else {
 				InputStream fileStream = new FileInputStream(new File(
 						picturePath));
 				String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-						+ "/cells/" + FileName;
-				strURI += "/worksheets/" + WorkSheetName
+						+ "/cells/" + fileName;
+				strURI += "/worksheets/" + workSheetName
 						+ "/pictures?upperLeftRow=" + upperLeftRow
 						+ "&upperLeftColumn=" + upperLeftColumn
 						+ "&lowerRightRow=" + lowerRightRow
@@ -904,16 +904,16 @@ public class Worksheet {
 					if (!this.auth.validateAuth()) {
 						System.out.println("Please Specify AppKey and AppSID");
 					} else {
-						signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+						signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 								this.auth.getAppSID());
 					}
 				} else {
-					signedURI = Utils.Sign(strURI);
+					signedURI = Utils.sign(strURI);
 				}
-				response = Utils.ProcessCommand(signedURI, "PUT", fileStream);
+				response = Utils.processCommand(signedURI, "PUT", fileStream);
 			}
 			Gson gson = new Gson();
-			String responseString = Utils.StreamToString(response);
+			String responseString = Utils.streamToString(response);
 			BaseResponse finalResponse = gson.fromJson(responseString,
 					BaseResponse.class);
 			if (finalResponse.getCode().equals("200")) {
@@ -933,16 +933,16 @@ public class Worksheet {
 	// / </summary>
 	// / <param name="index"></param>
 	// / <returns></returns>
-	public Validation GetValidationByIndex(int index) {
+	public Validation getValidationByIndex(int index) {
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/validations/" + index;
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/validations/" + index;
 
 			// sign URI
 			String signedURI = "";
@@ -950,18 +950,18 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
 			Gson gson = new Gson();
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Deserializes the JSON to a object.
 			ValidationsResponse validationsResponse = gson.fromJson(
@@ -983,17 +983,17 @@ public class Worksheet {
 	// / </summary>
 	// / <param name="index"></param>
 	// / <returns></returns>
-	public MergedCell GetMergedCellByIndex(int index) {
+	public MergedCell getMergedCellByIndex(int index) {
 
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/mergedCells/" + index;
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/mergedCells/" + index;
 
 			// sign URI
 			String signedURI = "";
@@ -1001,18 +1001,18 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
 			Gson gson = new Gson();
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Deserializes the JSON to a object.
 			MergedCellsResponse mergedCellsResponse = gson.fromJson(
@@ -1032,18 +1032,18 @@ public class Worksheet {
 	// /
 	// / </summary>
 	// / <returns></returns>
-	public int GetMergedCellsCount() {
+	public int getMergedCellsCount() {
 
 		try {
 
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/mergedCells";
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/mergedCells";
 
 			// sign URI
 			String signedURI = "";
@@ -1051,18 +1051,18 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
 			Gson gson = new Gson();
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Deserializes the JSON to a object.
 			WorksheetResponse worksheetResponse = gson.fromJson(strResponse,
@@ -1083,18 +1083,18 @@ public class Worksheet {
 	// /
 	// / </summary>
 	// / <returns></returns>
-	public int GetValidationsCount() {
+	public int getValidationsCount() {
 
 		try {
 
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/validations";
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/validations";
 
 			// sign URI
 			String signedURI = "";
@@ -1102,18 +1102,18 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
 			Gson gson = new Gson();
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Deserializes the JSON to a object.
 			WorksheetResponse worksheetResponse = gson.fromJson(strResponse,
@@ -1133,18 +1133,18 @@ public class Worksheet {
 	// /
 	// / </summary>
 	// / <returns></returns>
-	public int GetPicturesCount() {
+	public int getPicturesCount() {
 
 		try {
 
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/pictures";
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/pictures";
 
 			// sign URI
 			String signedURI = "";
@@ -1152,18 +1152,18 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
 			Gson gson = new Gson();
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Deserializes the JSON to a object.
 			WorksheetResponse worksheetResponse = gson.fromJson(strResponse,
@@ -1183,17 +1183,17 @@ public class Worksheet {
 	// /
 	// / </summary>
 	// / <returns></returns>
-	public int GetOleObjectsCount() {
+	public int getOleObjectsCount() {
 		try {
 
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/oleobjects";
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/oleobjects";
 
 			// sign URI
 			String signedURI = "";
@@ -1201,18 +1201,18 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
 			Gson gson = new Gson();
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Deserializes the JSON to a object.
 			WorksheetResponse worksheetResponse = gson.fromJson(strResponse,
@@ -1232,16 +1232,16 @@ public class Worksheet {
 	// /
 	// / </summary>
 	// / <returns></returns>
-	public int GetChartsCount() {
+	public int getChartsCount() {
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/charts";
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/charts";
 
 			// sign URI
 			String signedURI = "";
@@ -1249,17 +1249,17 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
 			Gson gson = new Gson();
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Deserializes the JSON to a object.
 			WorksheetResponse worksheetResponse = gson.fromJson(strResponse,
@@ -1279,17 +1279,17 @@ public class Worksheet {
 	// /
 	// / </summary>
 	// / <returns></returns>
-	public int GetCommentsCount() {
+	public int getCommentsCount() {
 
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/comments";
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/comments";
 
 			// sign URI
 			String signedURI = "";
@@ -1297,18 +1297,18 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
 			Gson gson = new Gson();
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Deserializes the JSON to a object.
 			WorksheetResponse worksheetResponse = gson.fromJson(strResponse,
@@ -1328,17 +1328,17 @@ public class Worksheet {
 	// /
 	// / </summary>
 	// / <returns></returns>
-	public int GetHyperlinksCount() {
+	public int getHyperlinksCount() {
 
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/hyperlinks";
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/hyperlinks";
 
 			// sign URI
 			String signedURI = "";
@@ -1346,18 +1346,18 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
 			Gson gson = new Gson();
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Deserializes the JSON to a object.
 			WorksheetResponse worksheetResponse = gson.fromJson(strResponse,
@@ -1377,17 +1377,17 @@ public class Worksheet {
 	// /
 	// / </summary>
 	// / <returns></returns>
-	public boolean HideWorksheet() {
+	public boolean hideWorksheet() {
 
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName
 					+ "/visible?isVisible=false";
 
 			// sign URI
@@ -1396,16 +1396,16 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT");
+			InputStream responseStream = Utils.processCommand(signedURI, "PUT");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -1429,17 +1429,17 @@ public class Worksheet {
 	// /
 	// / </summary>
 	// / <returns></returns>
-	public boolean UnhideWorksheet() {
+	public boolean unhideWorksheet() {
 
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName
 					+ "/visible?isVisible=true";
 
 			// sign URI
@@ -1448,16 +1448,16 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT");
+			InputStream responseStream = Utils.processCommand(signedURI, "PUT");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -1478,21 +1478,21 @@ public class Worksheet {
 		}
 	}
 
-	public boolean MoveWorksheet(String worksheetName, Position position) {
+	public boolean moveWorksheet(String worksheetName, Position position) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/cells/" + FileName
-					+ "/worksheets/" + WorkSheetName + "/position";
+			String strURI = Product.getBaseProductUri() + "/cells/" + fileName
+					+ "/worksheets/" + workSheetName + "/position";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 			// serialize the JSON request content
 			MoveWorksheet moveWorksheet = new MoveWorksheet();
@@ -1500,10 +1500,10 @@ public class Worksheet {
 			moveWorksheet.setPosition(position);
 
 			InputStream responseStream = Utils
-					.ProcessCommand(signedURI, "POST");
+					.processCommand(signedURI, "POST");
 
 			// further process JSON response
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -1528,18 +1528,18 @@ public class Worksheet {
 	// / </summary>
 	// / <param name="formula"></param>
 	// / <returns></returns>
-	public String CalculateFormula(String formula) {
+	public String calculateFormula(String formula) {
 
 		try {
 
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName
 					+ "/formulaResult?formula=" + formula;
 
 			// sign URI
@@ -1548,18 +1548,18 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
 			Gson gson = new Gson();
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Deserializes the JSON to a object.
 			CalculateFormulaResponse formulaResponse = gson.fromJson(
@@ -1572,11 +1572,11 @@ public class Worksheet {
 		}
 	}
 
-	public boolean SetCellValue(String cellName, String valueType, String value) {
+	public boolean setCellValue(String cellName, String valueType, String value) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/cells/" + cellName
+			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/cells/" + cellName
 					+ "?value=" + value + "&type=" + valueType;
 
 			String signedURI = "";
@@ -1584,16 +1584,16 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT");
+			InputStream responseStream = Utils.processCommand(signedURI, "PUT");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -1621,17 +1621,17 @@ public class Worksheet {
 	// / <param name="offset"></param>
 	// / <param name="count"></param>
 	// / <returns></returns>
-	public int GetRowsCount(int offset, int count) {
+	public int getRowsCount(int offset, int count) {
 
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/rows?offset=" + offset
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/rows?offset=" + offset
 					+ "&count=" + count;
 
 			// sign URI
@@ -1640,18 +1640,18 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
 			Gson gson = new Gson();
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Deserializes the JSON to a object.
 			WorksheetResponse worksheetResponse = gson.fromJson(strResponse,
@@ -1666,17 +1666,17 @@ public class Worksheet {
 
 	}
 
-	public Row GetRow(int rowIndex) {
+	public Row getRow(int rowIndex) {
 
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/rows/" + rowIndex;
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/rows/" + rowIndex;
 
 			// sign URI
 			String signedURI = "";
@@ -1684,18 +1684,18 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
 			Gson gson = new Gson();
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Deserializes the JSON to a object.
 			RowsResponse rowsResponse = gson.fromJson(strResponse,
@@ -1709,17 +1709,17 @@ public class Worksheet {
 		}
 
 	}
-	public boolean AddRow(int rowIndex) {
+	public boolean addRow(int rowIndex) {
 
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-            strURI += "/worksheets/" + WorkSheetName + "/cells/rows/" + rowIndex;
+					+ "/cells/" + fileName;
+            strURI += "/worksheets/" + workSheetName + "/cells/rows/" + rowIndex;
 
 			// sign URI
 			String signedURI = "";
@@ -1727,15 +1727,15 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT");
-			String strJSON = Utils.StreamToString(responseStream);
+			InputStream responseStream = Utils.processCommand(signedURI, "PUT");
+			String strJSON = Utils.streamToString(responseStream);
 			Gson gson = new Gson();
 
 			// Parse the json string to JObject and Deserializes the JSON to a
@@ -1754,17 +1754,17 @@ public class Worksheet {
 			return false;
 		}
 	}
-	public boolean EditRow(int rowIndex, int height) {
+	public boolean editRow(int rowIndex, int height) {
 
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+  "/cells/" + FileName;
-	                strURI += "/worksheets/" + WorkSheetName + "/cells/rows/" + rowIndex + "?Height=" + height;
+					+  "/cells/" + fileName;
+	                strURI += "/worksheets/" + workSheetName + "/cells/rows/" + rowIndex + "?Height=" + height;
 
 			// sign URI
 			String signedURI = "";
@@ -1772,15 +1772,15 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "POST");
-			String strJSON = Utils.StreamToString(responseStream);
+			InputStream responseStream = Utils.processCommand(signedURI, "POST");
+			String strJSON = Utils.streamToString(responseStream);
 			Gson gson = new Gson();
 
 			// Parse the json string to JObject and Deserializes the JSON to a
@@ -1799,18 +1799,18 @@ public class Worksheet {
 			return false;
 		}
 	}
-	public boolean DeleteRow(int rowIndex) {
+	public boolean deleteRow(int rowIndex) {
 
 		try {
 
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/rows/" + rowIndex;
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/rows/" + rowIndex;
 
 			// sign URI
 			String signedURI = "";
@@ -1818,18 +1818,18 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI,
+			InputStream responseStream = Utils.processCommand(signedURI,
 					"DELETE");
 
 			// further process JSON response
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -1850,12 +1850,12 @@ public class Worksheet {
 		}
 	}
 
-	public boolean SortData(DataSort dataSort, String cellArea) {
+	public boolean sortData(DataSort dataSort, String cellArea) {
 		try {
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/sort?cellArea="
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/sort?cellArea="
 					+ cellArea;
 
 			String signedURI = "";
@@ -1863,11 +1863,11 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
 			String strJSON = "";
@@ -1876,10 +1876,10 @@ public class Worksheet {
 
 			strJSON = gson.toJson(dataSort, DataSort.class);
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI,
+			InputStream responseStream = Utils.processCommand(signedURI,
 					"POST", strJSON);
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Parse the json string to JObject
 			BaseResponse baseResponse = gson.fromJson(strResponse,
@@ -1896,17 +1896,17 @@ public class Worksheet {
 		}
 	}
 
-	public Column GetColumn(int columnIndex) {
+	public Column getColumn(int columnIndex) {
 
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/columns/"
+					+ "/cells/" + fileName;
+			strURI += "/worksheets/" + workSheetName + "/columns/"
 					+ columnIndex;
 
 			// sign URI
@@ -1915,15 +1915,15 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -1941,8 +1941,8 @@ public class Worksheet {
 
 	}
 
-	private String WorkSheetName;
-	private String FileName;
+	private String workSheetName;
+	private String fileName;
 	private boolean IsVisible;
 	private boolean IsSelected;
 	private boolean IsGridLinesVisible;
@@ -1951,11 +1951,11 @@ public class Worksheet {
 	private String Name;
 
 	public String getWorkSheetName() {
-		return WorkSheetName;
+		return workSheetName;
 	}
 
 	public String getFileName() {
-		return FileName;
+		return fileName;
 	}
 
 	public boolean getIsVisible() {
@@ -1982,17 +1982,17 @@ public class Worksheet {
 		return Name;
 	}
 	
-	public Boolean UnProtectWorksheet(String password, WorksheetProtectionType type, ProtectionOptions opts)
+	public Boolean unProtectWorksheet(String password, WorksheetProtectionType type, ProtectionOptions opts)
 	{
 		try
 		{
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName ;
-			strURI +=  "/worksheets/" +WorkSheetName + "/protection";
+					+ "/cells/" + fileName ;
+			strURI +=  "/worksheets/" +workSheetName + "/protection";
 
 			// sign URI
 			String signedURI = "";
@@ -2000,11 +2000,11 @@ public class Worksheet {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 			Gson gson = new Gson();
 
@@ -2029,9 +2029,9 @@ public class Worksheet {
 			
 	        String strJSON = "";
 			strJSON = gson.toJson(protectionRequest, WorksheetProtectionRequest.class);
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "DELETE",strJSON);
+			InputStream responseStream = Utils.processCommand(signedURI, "DELETE",strJSON);
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Parse the json string to JObject
 			BaseResponse baseResponse = gson.fromJson(strResponse,

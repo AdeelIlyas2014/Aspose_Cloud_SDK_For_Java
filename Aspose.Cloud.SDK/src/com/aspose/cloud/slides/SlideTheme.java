@@ -1,8 +1,8 @@
 package com.aspose.cloud.slides;
 
 public class SlideTheme {
-	private UriResponse Uri;
-	public UriResponse getUri(){return Uri;}
-	public void setUri(UriResponse Uri){this.Uri=Uri;}
+	private UriResponse uri;
+	public UriResponse getUri(){return uri;}
+	public void setUri(UriResponse uri){this.uri=uri;}
 
 }

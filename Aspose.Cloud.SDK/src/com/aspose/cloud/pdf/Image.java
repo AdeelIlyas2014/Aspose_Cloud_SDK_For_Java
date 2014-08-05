@@ -9,11 +9,11 @@ package com.aspose.cloud.pdf;
  */
 public class Image {
 //  public List<LinkResponse> Links;
-  private int Height;
-  private int Width;
+  private int height;
+  private int width;
   
   
-  public int getHeight(){return Height;}
-  public int getWidth(){return Width;}
+  public int getHeight(){return height;}
+  public int getWidth(){return width;}
 
 }

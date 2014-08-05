@@ -16,14 +16,14 @@ public class TextItem
 {
     public TextItem() { }
 
-    private List<LinkResponse> Links;
-    public List<LinkResponse> getLinks(){return Links;}
-    public void setLinks(List<LinkResponse> Links){this.Links=Links;}
+    private List<LinkResponse> links;
+    public List<LinkResponse> getLinks(){return links;}
+    public void setLinks(List<LinkResponse> links){this.links=links;}
 
-    private TextFormat Format;
-    private String Text;
+    private TextFormat format;
+    private String text;
     
-    public TextFormat getTextFormat(){return Format;}
-    public String getText(){return Text;}
+    public TextFormat getTextFormat(){return format;}
+    public String getText(){return text;}
 
 }
