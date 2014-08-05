@@ -7,13 +7,13 @@ import java.util.List;
     public class HyperlinksResponse extends com.aspose.cloud.common.BaseResponse
     {        
         private LinkResponse link;
-        private int Count;               
-        private List<LinkResponse> HyperlinkList;
-        private Hyperlink Hyperlink;
+        private int count;               
+        private List<LinkResponse> hyperlinkList;
+        private Hyperlink hyperlink;
 
         public LinkResponse getlink(){return link;}
-        public int getCount(){return Count;}               
-        public List<LinkResponse> getHyperlinkList(){return HyperlinkList;}  
-        public Hyperlink getHyperlink(){return Hyperlink;} 
+        public int getCount(){return count;}               
+        public List<LinkResponse> getHyperlinkList(){return hyperlinkList;}  
+        public Hyperlink getHyperlink(){return hyperlink;} 
       
     }

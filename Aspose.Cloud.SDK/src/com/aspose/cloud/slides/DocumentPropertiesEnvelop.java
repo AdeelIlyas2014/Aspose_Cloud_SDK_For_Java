@@ -15,7 +15,7 @@ public class DocumentPropertiesEnvelop
 {
 
 //    public List<LinkResponse> Links ;
-    private List<DocumentProperty> List;
+    private List<DocumentProperty> list;
     
-    public List<DocumentProperty> getList(){return List;}
+    public List<DocumentProperty> getList(){return list;}
 }

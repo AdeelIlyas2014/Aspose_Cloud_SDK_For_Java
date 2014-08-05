@@ -12,8 +12,8 @@ package com.aspose.cloud.slides;
 /// </summary>
 class ImagesResponse extends com.aspose.cloud.common.BaseResponse
 {
-    private ImagesEnvelop Images;
+    private ImagesEnvelop images;
     
-    public ImagesEnvelop getImages(){return Images;}
+    public ImagesEnvelop getImages(){return images;}
 
 }

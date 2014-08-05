@@ -24,14 +24,14 @@ public class Document {
 	// / PDF document name
 	// / </summary>
 	private AsposeAppNonStatic auth;
-	public String FileName;
+	public String fileName;
 
-	public Document(String fileName) {
-		FileName = fileName;
+	public Document(String _fileName) {
+		fileName = _fileName;
 	}
 
-	public Document(String fileName, AsposeAppNonStatic auth) {
-		this(fileName);
+	public Document(String _fileName, AsposeAppNonStatic auth) {
+		this(_fileName);
 		this.auth = auth;
 	}
 
@@ -39,27 +39,27 @@ public class Document {
 	// / Gets the page count of the specified PDF document
 	// / </summary>
 	// / <returns>page count</returns>
-	public int GetPageCount() {
+	public int getPageCount() {
 		try {
 			// build URI to get page count
 
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/Pages";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -79,27 +79,27 @@ public class Document {
 	// / Gets all the properties of the specified document
 	// / </summary>
 	// / <returns>list of properties</returns>
-	public List<DocumentProperty> GetDocumentProperties() {
+	public List<DocumentProperty> getDocumentProperties() {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/documentProperties";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -119,26 +119,26 @@ public class Document {
 	// / </summary>
 	// / <param name="propertyName"></param>
 	// / <returns>value of the specified property</returns>
-	public DocumentProperty GetDocumentProperty(String propertyName) {
+	public DocumentProperty getDocumentProperty(String propertyName) {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/documentProperties/" + propertyName;
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -160,22 +160,22 @@ public class Document {
 	// / <param name="propertyName"></param>
 	// / <param name="propertyValue"></param>
 	// / <returns></returns>
-	public boolean SetDocumentProperty(String propertyName, String propertyValue)
+	public boolean setDocumentProperty(String propertyName, String propertyValue)
 			throws SignatureException {
 
 		// build URI to get page count
-		String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+		String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 				+ "/documentProperties/" + propertyName;
 		String signedURI = "";
 		if (this.auth != null) {
 			if (!this.auth.validateAuth()) {
 				System.out.println("Please Specify AppKey and AppSID");
 			} else {
-				signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+				signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 						this.auth.getAppSID());
 			}
 		} else {
-			signedURI = Utils.Sign(strURI);
+			signedURI = Utils.sign(strURI);
 		}
 		// serialize the JSON request content
 		DocumentProperty docProperty = new DocumentProperty();
@@ -187,10 +187,10 @@ public class Document {
 
 		strJSON = gson.toJson(docProperty, DocumentProperty.class);
 
-		InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT",
+		InputStream responseStream = Utils.processCommand(signedURI, "PUT",
 				strJSON);
 
-		String strResponse = Utils.StreamToString(responseStream);
+		String strResponse = Utils.streamToString(responseStream);
 
 		// Parse the json string to JObject
 		DocumentPropertyResponse baseResponse = gson.fromJson(strResponse,
@@ -207,7 +207,7 @@ public class Document {
 	// / removes values of all the properties
 	// / </summary>
 	// / <returns></returns>
-	public boolean RemoveAllProperties() throws SignatureException {
+	public boolean removeAllProperties() throws SignatureException {
 		try {
 
 			// throw new Exception("Resource removeAll throws exception");
@@ -221,24 +221,24 @@ public class Document {
 			// The remote server returned an error: (400) Bad Request
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/documentProperties";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI,
+			InputStream responseStream = Utils.processCommand(signedURI,
 					"DELETE");
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 			// Parse the json string to JObject
@@ -262,27 +262,27 @@ public class Document {
 	// / Gets the form field count
 	// / </summary>
 	// / <returns>count of the form fields</returns>
-	public int GetFormFieldCount() {
+	public int getFormFieldCount() {
 
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/fields";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -303,27 +303,27 @@ public class Document {
 	// / Gets list of all the fields in the PDF file
 	// / </summary>
 	// / <returns>list of the form fields</returns>
-	public List<FormField> GetFormFields() {
+	public List<FormField> getFormFields() {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/fields";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -345,28 +345,28 @@ public class Document {
 	// / </summary>
 	// / <param name="fieldName"></param>
 	// / <returns>form field</returns>
-	public FormField GetFormField(String fieldName) {
+	public FormField getFormField(String fieldName) {
 
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/fields/" + fieldName;
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -391,7 +391,7 @@ public class Document {
 	// / <param name="xsltFileName"></param>
 	// / <param name="xmlFileName"></param>
 	// / <returns></returns>
-	public boolean CreateFromXml(String pdfFileName, String xsltFileName,
+	public boolean createFromXml(String pdfFileName, String xsltFileName,
 			String xmlFileName) {
 		try {
 
@@ -404,16 +404,16 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT");
+			InputStream responseStream = Utils.processCommand(signedURI, "PUT");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -441,7 +441,7 @@ public class Document {
 	// / <param name="pdfFileName"></param>
 	// / <param name="htmlFileName"></param>
 	// / <returns></returns>
-	public boolean CreateFromHtml(String pdfFileName, String htmlFileName) {
+	public boolean createFromHtml(String pdfFileName, String htmlFileName) {
 		try {
 
 			String strURI = Product.getBaseProductUri() + "/pdf/" + pdfFileName
@@ -451,16 +451,16 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT");
+			InputStream responseStream = Utils.processCommand(signedURI, "PUT");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -488,7 +488,7 @@ public class Document {
 	// / <param name="newDocumentName"></param>
 	// / <returns></returns>
 
-	public boolean CreateEmptyPdf(String newDocumentName) {
+	public boolean createEmptyPdf(String newDocumentName) {
 
 		try {
 			// build URI to get page count
@@ -499,16 +499,16 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT");
+			InputStream responseStream = Utils.processCommand(signedURI, "PUT");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -536,11 +536,11 @@ public class Document {
 	// / <param name="sourceFiles"></param>
 	// / <returns></returns>
 
-	public boolean MergeDocuments(List<String> sourceFiles) {
+	public boolean mergeDocuments(List<String> sourceFiles) {
 
 		try {
 			// New PDF Filename
-			String mergedFileName = FileName;
+			String mergedFileName = fileName;
 
 			if (sourceFiles.isEmpty())
 				throw new Exception("File to merge are not specified");
@@ -556,11 +556,11 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
 			Map<String, Object> mp = new HashMap<String, Object>();
@@ -569,11 +569,11 @@ public class Document {
 			Gson jsonlist = new Gson();
 			String jsondata = jsonlist.toJson(mp);
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT",
+			InputStream responseStream = Utils.processCommand(signedURI, "PUT",
 					jsondata, "json");
 
 			// further process JSON response
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -602,18 +602,18 @@ public class Document {
 	// / <param name="newPdf"></param>
 	// / <returns></returns>
 
-	public boolean AppendDocument(String basePdf, String newPdf) {
+	public boolean appendDocument(String basePdf, String newPdf) {
 
 		try {
 			// Saving Exisiting File name
-			String sOldFile = FileName;
+			String sOldFile = fileName;
 
 			// Getting Total page in PDF
-			FileName = newPdf;
-			int iPageCount = GetPageCount();
+			fileName = newPdf;
+			int iPageCount = getPageCount();
 
 			// Setting Old File name again
-			FileName = sOldFile;
+			fileName = sOldFile;
 
 			// build URI to get page count
 			String strURI = Product.getBaseProductUri() + "/pdf/" + basePdf
@@ -624,18 +624,18 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
 			InputStream responseStream = Utils
-					.ProcessCommand(signedURI, "POST");
+					.processCommand(signedURI, "POST");
 
 			// further process JSON response
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -667,7 +667,7 @@ public class Document {
 	// / <param name="endPage"></param>
 	// / <returns></returns>
 
-	public boolean AppendDocument(String basePdf, String newPdf, int startPage,
+	public boolean appendDocument(String basePdf, String newPdf, int startPage,
 			int endPage) {
 
 		try {
@@ -682,18 +682,18 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
 			InputStream responseStream = Utils
-					.ProcessCommand(signedURI, "POST");
+					.processCommand(signedURI, "POST");
 
 			// further process JSON response
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -720,29 +720,29 @@ public class Document {
 	// / </summary>
 	// / <returns></returns>
 
-	public boolean AddNewPage() {
+	public boolean addNewPage() {
 
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/pages";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT");
+			InputStream responseStream = Utils.processCommand(signedURI, "PUT");
 
 			// further process JSON response
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -769,28 +769,28 @@ public class Document {
 	// / <param name="pageNumber"></param>
 	// / <returns></returns>
 
-	public boolean DeletePage(int pageNumber) {
+	public boolean deletePage(int pageNumber) {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber);
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI,
+			InputStream responseStream = Utils.processCommand(signedURI,
 					"DELETE");
 
 			// further process JSON response
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -817,10 +817,10 @@ public class Document {
 	// / <param name="pageNumber"></param>
 	// / <param name="newLocation"></param>
 	// / <returns></returns>
-	public boolean MovePage(int pageNumber, int newLocation) {
+	public boolean movePage(int pageNumber, int newLocation) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber)
 					+ "/movePage?newIndex=" + Integer.toString(newLocation);
 			String signedURI = "";
@@ -828,18 +828,18 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
 			InputStream responseStream = Utils
-					.ProcessCommand(signedURI, "POST");
+					.processCommand(signedURI, "POST");
 
 			// further process JSON response
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -867,11 +867,11 @@ public class Document {
 	// / <param name="imageIndex"></param>
 	// / <param name="imageStream"></param>
 	// / <returns></returns>
-	public boolean ReplaceImageUsingStream(int pageNumber, int imageIndex,
+	public boolean replaceImageUsingStream(int pageNumber, int imageIndex,
 			InputStream imageStream) {
 		try {
 			// build URI to replace image
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/pages/" + pageNumber + "/images/" + imageIndex;
 
 			String signedURI = "";
@@ -879,18 +879,18 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI,
+			InputStream responseStream = Utils.processCommand(signedURI,
 					"POST", imageStream);
 
 			// further process JSON response
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -918,31 +918,31 @@ public class Document {
 	// / <param name="imageIndex"></param>
 	// / <param name="fileName"></param>
 	// / <returns></returns>
-	public boolean ReplaceImageUsingFile(int pageNumber, int imageIndex,
-			String fileName) {
+	public boolean replaceImageUsingFile(int pageNumber, int imageIndex,
+			String _fileName) {
 		try {
 			// build URI to replace image
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/pages/" + pageNumber + "/images/" + imageIndex
-					+ "?imageFile=" + fileName;
+					+ "?imageFile=" + _fileName;
 
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
 			InputStream responseStream = Utils
-					.ProcessCommand(signedURI, "POST");
+					.processCommand(signedURI, "POST");
 
 			// further process JSON response
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -962,15 +962,15 @@ public class Document {
 			return false;
 		}
 	}
-	public PdfDocument GetDocument()
+	public PdfDocument getDocument()
 	{ 
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri()  + "/pdf/" + FileName;
+			String strURI = Product.getBaseProductUri()  + "/pdf/" + fileName;
 
 
 			// sign URI
@@ -979,16 +979,16 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -1002,15 +1002,15 @@ public class Document {
 		}
 	}
 
-	public boolean InsertFormField(FormField formField)
+	public boolean insertFormField(FormField formField)
 	{
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri()  + "/pdf/" + FileName + "/fields/"+formField.getName();
+			String strURI = Product.getBaseProductUri()  + "/pdf/" + fileName + "/fields/"+formField.getName();
 
 			// sign URI
 			String signedURI = "";
@@ -1018,11 +1018,11 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 			Gson gson = new Gson();
 
@@ -1030,9 +1030,9 @@ public class Document {
 			String strJSON = "";
 			strJSON = gson.toJson(formField, FormField.class);
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT",strJSON);
+			InputStream responseStream = Utils.processCommand(signedURI, "PUT",strJSON);
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Parse the json string to JObject
 			BaseResponse baseResponse = gson.fromJson(strResponse,
@@ -1048,15 +1048,15 @@ public class Document {
 			return false;
 		}
 	}
-	public boolean InsertFormFields(FormFields formField)
+	public boolean insertFormFields(FormFields formField)
 	{
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri()  + "/pdf/" + FileName + "/fields";
+			String strURI = Product.getBaseProductUri()  + "/pdf/" + fileName + "/fields";
 
 			// sign URI
 			String signedURI = "";
@@ -1064,11 +1064,11 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 			Gson gson = new Gson();
 
@@ -1076,9 +1076,9 @@ public class Document {
 			String strJSON = "";
 			strJSON = gson.toJson(formField, FormFields.class);
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT",strJSON);
+			InputStream responseStream = Utils.processCommand(signedURI, "PUT",strJSON);
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Parse the json string to JObject
 			BaseResponse baseResponse = gson.fromJson(strResponse,
@@ -1094,15 +1094,15 @@ public class Document {
 			return false;
 		}
 	}
-	public boolean SaveAsTiff(SaveAsTiffOptions imageOptions, String folderName)
+	public boolean saveAsTiff(SaveAsTiffOptions imageOptions, String folderName)
 	{
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri()  + "/pdf/" + FileName + "/SaveAs/tiff?folder=" + folderName;
+			String strURI = Product.getBaseProductUri()  + "/pdf/" + fileName + "/SaveAs/tiff?folder=" + folderName;
 
 			// sign URI
 			String signedURI = "";
@@ -1110,11 +1110,11 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 			Gson gson = new Gson();
 
@@ -1122,9 +1122,9 @@ public class Document {
 			String strJSON = "";
 			strJSON = gson.toJson(imageOptions, SaveAsTiffOptions.class);
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT",strJSON);
+			InputStream responseStream = Utils.processCommand(signedURI, "PUT",strJSON);
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Parse the json string to JObject
 			BaseResponse baseResponse = gson.fromJson(strResponse,
@@ -1140,15 +1140,15 @@ public class Document {
 			return false;
 		}
 	}
-	public boolean SaveAsTiff(String outputFile, String compression, String folderName)
+	public boolean saveAsTiff(String outputFile, String compression, String folderName)
 	{
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri()  + "/pdf/" + FileName + "/SaveAs/tiff?resultFile=" + outputFile + "&compression=" + compression + "&folder=" + folderName;
+			String strURI = Product.getBaseProductUri()  + "/pdf/" + fileName + "/SaveAs/tiff?resultFile=" + outputFile + "&compression=" + compression + "&folder=" + folderName;
 
 			// sign URI
 			String signedURI = "";
@@ -1156,11 +1156,11 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 			Gson gson = new Gson();
 
@@ -1168,9 +1168,9 @@ public class Document {
 			//String strJSON = "";
 			//strJSON = gson.toJson(imageOptions, SaveAsTiffOptions.class);
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT");
+			InputStream responseStream = Utils.processCommand(signedURI, "PUT");
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Parse the json string to JObject
 			BaseResponse baseResponse = gson.fromJson(strResponse,
@@ -1186,15 +1186,15 @@ public class Document {
 			return false;
 		}
 	}
-	public LinkResponse[] SplitDocument()
+	public LinkResponse[] splitDocument()
 	{
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri()  + "/pdf/" + FileName + "/split";
+			String strURI = Product.getBaseProductUri()  + "/pdf/" + fileName + "/split";
 
 			// sign URI
 			String signedURI = "";
@@ -1202,18 +1202,18 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 			Gson gson = new Gson();
 
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "POST");
+			InputStream responseStream = Utils.processCommand(signedURI, "POST");
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Parse the json string to JObject
 			SplitPDFResponse PDFResponse = gson.fromJson(strResponse,
@@ -1225,15 +1225,15 @@ public class Document {
 			return null;
 		}
 	}
-	public LinkResponse[] SplitDocument(int from, int to)
+	public LinkResponse[] splitDocument(int from, int to)
 	{
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri()   + "/pdf/" + FileName + "/split?from=" + from + "&to=" + to;
+			String strURI = Product.getBaseProductUri()   + "/pdf/" + fileName + "/split?from=" + from + "&to=" + to;
 
 			// sign URI
 			String signedURI = "";
@@ -1241,18 +1241,18 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 			Gson gson = new Gson();
 
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "POST");
+			InputStream responseStream = Utils.processCommand(signedURI, "POST");
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Parse the json string to JObject
 			SplitPDFResponse PDFResponse = gson.fromJson(strResponse,
@@ -1264,15 +1264,15 @@ public class Document {
 			return null;
 		}
 	}
-	public LinkResponse[] SplitDocument(int from, int to, SplitDocumentFormat format)
+	public LinkResponse[] splitDocument(int from, int to, SplitDocumentFormat format)
 	{
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri()   + "/pdf/" + FileName + "/split?from=" + from + "&to=" + to + "&format=" + format.toString();
+			String strURI = Product.getBaseProductUri()   + "/pdf/" + fileName + "/split?from=" + from + "&to=" + to + "&format=" + format.toString();
 
 			// sign URI
 			String signedURI = "";
@@ -1280,18 +1280,18 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 			Gson gson = new Gson();
 
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "POST");
+			InputStream responseStream = Utils.processCommand(signedURI, "POST");
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			// Parse the json string to JObject
 			SplitPDFResponse PDFResponse = gson.fromJson(strResponse,
@@ -1303,15 +1303,15 @@ public class Document {
 			return null;
 		}
 	}
-	public boolean AddStamp(StampRequest stampRequest)
+	public boolean addStamp(StampRequest stampRequest)
 	{
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri()  + "/pdf/" + FileName + "/pages/" + stampRequest.getPageIndex() + "/stamp/";
+			String strURI = Product.getBaseProductUri()  + "/pdf/" + fileName + "/pages/" + stampRequest.getPageIndex() + "/stamp/";
 
 			// sign URI
 			String signedURI = "";
@@ -1319,19 +1319,19 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 			Gson gson = new Gson();
 			String strJSON = "";
 			strJSON = gson.toJson(stampRequest, StampRequest.class);
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT",strJSON);
+			InputStream responseStream = Utils.processCommand(signedURI, "PUT",strJSON);
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			BaseResponse baseResponse = gson.fromJson(strResponse,								BaseResponse.class);
 
@@ -1345,15 +1345,15 @@ public class Document {
 			return false;
 		}
 	}
-	public boolean AddStampWithTextState(StampRequest stampRequest)
+	public boolean addStampWithTextState(StampRequest stampRequest)
 	{
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri()  + "/pdf/" + FileName + "/pages/" + stampRequest.getPageIndex() + "/stamp/";
+			String strURI = Product.getBaseProductUri()  + "/pdf/" + fileName + "/pages/" + stampRequest.getPageIndex() + "/stamp/";
 
 			// sign URI
 			String signedURI = "";
@@ -1361,19 +1361,19 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 			Gson gson = new Gson();
 			String strJSON = "";
 			strJSON = gson.toJson(stampRequest, StampRequest.class);
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT",strJSON);
+			InputStream responseStream = Utils.processCommand(signedURI, "PUT",strJSON);
 
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			BaseResponse baseResponse = gson.fromJson(strResponse,								BaseResponse.class);
 
@@ -1388,15 +1388,15 @@ public class Document {
 		}
 	}
 	
-	public int GetTotalWordCount()
+	public int getTotalWordCount()
 	{ 
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName + "/Pages";
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName + "/Pages";
 			strURI += "/wordCount";
             
 
@@ -1406,16 +1406,16 @@ public class Document {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 

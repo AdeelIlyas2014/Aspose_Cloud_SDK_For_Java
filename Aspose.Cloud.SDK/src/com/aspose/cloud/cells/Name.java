@@ -8,20 +8,20 @@ public class Name
         }
 
         private LinkResponse link ;
-        private String Comment ;
-        private String WorksheetName ;
-        private String IsReferred ;
-        private String IsVisible ;
-        private String R1C1RefersTo ;
-        private String RefersTo ;
-        private String Text ;
+        private String comment ;
+        private String worksheetName ;
+        private String isReferred ;
+        private String isVisible ;
+        private String r1C1RefersTo ;
+        private String refersTo ;
+        private String text ;
 
         public LinkResponse getlink(){return link;}
-        public String getComment(){return Comment;}
-        public String getWorksheetName(){return WorksheetName;}
-        public String getIsReferred(){return IsReferred;}
-        public String getIsVisible(){return IsVisible;}
-        public String getR1C1RefersTo(){return R1C1RefersTo;}
-        public String getRefersTo(){return RefersTo;}
-        public String getText(){return Text;}
+        public String getComment(){return comment;}
+        public String getWorksheetName(){return worksheetName;}
+        public String getIsReferred(){return isReferred;}
+        public String getIsVisible(){return isVisible;}
+        public String getR1C1RefersTo(){return r1C1RefersTo;}
+        public String getRefersTo(){return refersTo;}
+        public String getText(){return text;}
     }

@@ -12,22 +12,22 @@ import com.google.gson.Gson;
     {
         public class WatermarkText
         {
-            public String Text ;
-            public double RotationAngle ;
+            public String text ;
+            public double rotationAngle ;
         }
 
         public class WatermarkImage
         {
             public String imageFile ;
-            public double RotationAngle ;
+            public double rotationAngle ;
         }
 
         public class ReplaceText
         {
-            public String OldValue ;
-            public String NewValue ;
-            public boolean IsMatchCase ;
-            public boolean IsMatchWholeWord ;
+            public String oldValue ;
+            public String newValue ;
+            public boolean isMatchCase ;
+            public boolean isMatchWholeWord ;
         }
 
         /// <summary>
@@ -37,19 +37,19 @@ import com.google.gson.Gson;
         /// <param name="text"></param>
         /// <param name="rotationAngle"></param>
         /// <returns></returns>
-        public Boolean insertWatermarkText(String FileName, String text, double rotationAngle)
+        public Boolean insertWatermarkText(String fileName, String text, double rotationAngle)
         {
             try
             {
             	//build URI to get Image
-                String strURI = Product.getBaseProductUri() + "/words/" + FileName + "/insertWatermarkText";
+                String strURI = Product.getBaseProductUri() + "/words/" + fileName + "/insertWatermarkText";
 
-                String signedURI = Utils.Sign(strURI);
+                String signedURI = Utils.sign(strURI);
 
                 //serialize the JSON request content
                 WatermarkText watermark = new WatermarkText();
-                watermark.Text = text;
-                watermark.RotationAngle = rotationAngle;
+                watermark.text = text;
+                watermark.rotationAngle = rotationAngle;
 
                 String strJSON = "";
 
@@ -57,9 +57,9 @@ import com.google.gson.Gson;
          	   
          	   strJSON = gson.toJson(watermark, WatermarkText.class);
 
-         	   InputStream responseStream = Utils.ProcessCommand(signedURI, "POST", strJSON);
+         	   InputStream responseStream = Utils.processCommand(signedURI, "POST", strJSON);
          	
-         	    String strResponse = Utils.StreamToString(responseStream);
+         	    String strResponse = Utils.streamToString(responseStream);
          	
          	    //Parse the json string to JObject
          	    BaseResponse baseResponse = gson.fromJson(strResponse,BaseResponse.class);
@@ -85,20 +85,20 @@ import com.google.gson.Gson;
         /// <param name="imageFile"></param>
         /// <param name="rotationAngle"></param>
         /// <returns></returns>
-        public Boolean insertWatermarkImage(String FileName, String imageFile, double rotationAngle)
+        public Boolean insertWatermarkImage(String fileName, String imageFile, double rotationAngle)
         {
             try
             {
                 //build URI to get Image
-                String strURI = Product.getBaseProductUri() + "/words/" + FileName + "/insertWatermarkImage?imageFile=";
+                String strURI = Product.getBaseProductUri() + "/words/" + fileName + "/insertWatermarkImage?imageFile=";
                 strURI += imageFile + "&rotationAngle=" + rotationAngle;
 
-                String signedURI = Utils.Sign(strURI);
+                String signedURI = Utils.sign(strURI);
 
-                InputStream responseStream =Utils.ProcessCommand(signedURI, "POST");
+                InputStream responseStream =Utils.processCommand(signedURI, "POST");
 
                 //further process JSON response
-                String strJSON = Utils.StreamToString(responseStream);
+                String strJSON = Utils.streamToString(responseStream);
 
                 Gson gson = new Gson();
 
@@ -128,21 +128,21 @@ import com.google.gson.Gson;
         /// <param name="IsMatchWholeWord"></param>
         /// <param name="output"></param>
         /// <returns></returns>
-        public boolean replaceText(String FileName, String OldValue, String NewValue, boolean IsMatchCase, boolean IsMatchWholeWord, String output)
+        public boolean replaceText(String fileName, String OldValue, String NewValue, boolean IsMatchCase, boolean IsMatchWholeWord, String output)
         {
             try
             {
                 //build URI to get Image
-                String strURI = Product.getBaseProductUri() + "/words/" + FileName + "/replaceText";
+                String strURI = Product.getBaseProductUri() + "/words/" + fileName + "/replaceText";
 
-                String signedURI = Utils.Sign(strURI);
+                String signedURI = Utils.sign(strURI);
 
                 //serialize the JSON request content
                 ReplaceText repacetext = new ReplaceText();
-                repacetext.OldValue = OldValue;
-                repacetext.NewValue = NewValue;
-                repacetext.IsMatchCase = IsMatchCase;
-                repacetext.IsMatchWholeWord = IsMatchWholeWord;
+                repacetext.oldValue = OldValue;
+                repacetext.newValue = NewValue;
+                repacetext.isMatchCase = IsMatchCase;
+                repacetext.isMatchWholeWord = IsMatchWholeWord;
 
                 String strJSON = "";
 
@@ -150,21 +150,21 @@ import com.google.gson.Gson;
           	   
           	   strJSON = gson.toJson(repacetext, ReplaceText.class);
 
-          	   InputStream responseStream = Utils.ProcessCommand(signedURI, "POST", strJSON);
+          	   InputStream responseStream = Utils.processCommand(signedURI, "POST", strJSON);
           	
-          	    String strResponse = Utils.StreamToString(responseStream);
+          	    String strResponse = Utils.streamToString(responseStream);
           	
           	    //Parse the json string to JObject
           	  ReplaceTextResponse baseResponse = gson.fromJson(strResponse,ReplaceTextResponse.class);
              
           	  
                 //sign URI
-                signedURI = Utils.Sign(baseResponse.getDocumentLink().getHref() + "?format=doc");
+                signedURI = Utils.sign(baseResponse.getDocumentLink().getHref() + "?format=doc");
 
                 //get response stream
-                responseStream = Utils.ProcessCommand(signedURI, "GET");
+                responseStream = Utils.processCommand(signedURI, "GET");
 
-                boolean response=Folder.SaveStreamToFile(output, responseStream);
+                boolean response=Folder.saveStreamToFile(output, responseStream);
 		        responseStream.close();
 		        return response;
             }

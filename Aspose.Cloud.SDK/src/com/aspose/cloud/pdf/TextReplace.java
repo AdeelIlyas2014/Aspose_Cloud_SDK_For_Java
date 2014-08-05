@@ -6,14 +6,14 @@ represents Text in PDF document
 public class TextReplace
 {
 	public TextReplace(){}
-	private String OldValue;
-	private String NewValue;
-	private String Regex;
+	private String oldValue;
+	private String newValue;
+	private String regex;
 	
-	public final String getOldValue(){ return OldValue; }
-	public final String getNewValue(){ return NewValue; }
-	public final String getRegex(){ return Regex; }
-	public final void setOldValue(String value){ OldValue = value; }
-	public final void setNewValue(String value){ NewValue = value; }
-	public final void setRegex(String value){ Regex = value; }
+	public final String getOldValue(){ return oldValue; }
+	public final String getNewValue(){ return newValue; }
+	public final String getRegex(){ return regex; }
+	public final void setOldValue(String value){ oldValue = value; }
+	public final void setNewValue(String value){ newValue = value; }
+	public final void setRegex(String value){ regex = value; }
 }

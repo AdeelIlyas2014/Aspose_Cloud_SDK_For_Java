@@ -7,24 +7,24 @@ public class Line
         
         }
 
-        private LinkResponse Link ;
-        private boolean IsAuto ;
-        private boolean IsVisible ;
+        private LinkResponse link ;
+        private boolean isAuto ;
+        private boolean isVisible ;
         private boolean isAutomaticColor ;
-        private Color Color ;
-        private double Transparency ;
-        private LineType Style ;
-        private WeightType WeightType ;
-        private double WeightPt ;
+        private Color color ;
+        private double transparency ;
+        private LineType style ;
+        private WeightType weightType ;
+        private double weightPt ;
         
-        public LinkResponse getLink(){return Link;}
-        public boolean getIsAuto(){return IsAuto;}
-        public boolean getIsVisible(){return IsVisible;}
+        public LinkResponse getLink(){return link;}
+        public boolean getIsAuto(){return isAuto;}
+        public boolean getIsVisible(){return isVisible;}
         public boolean getisAutomaticColor(){return isAutomaticColor;}
-        public Color getColor(){return Color;}
-        public double getTransparency(){return Transparency;}
-        public LineType getStyle(){return Style;}
-        public WeightType getWeightType(){return WeightType;}
-        public double getWeightPt(){return WeightPt;}
+        public Color getColor(){return color;}
+        public double getTransparency(){return transparency;}
+        public LineType getStyle(){return style;}
+        public WeightType getWeightType(){return weightType;}
+        public double getWeightPt(){return weightPt;}
 
     }

@@ -8,9 +8,9 @@ import java.util.List;
     {
         public DocumentPropertiesResponse() { }
                
-        private LinkResponse Link ;
-        private List<DocumentProperty> DocumentPropertyList ;
+        private LinkResponse link ;
+        private List<DocumentProperty> documentPropertyList ;
         
-        public LinkResponse getLink(){return Link;}
-        public List<DocumentProperty> getDocumentPropertyList(){return DocumentPropertyList;}
+        public LinkResponse getLink(){return link;}
+        public List<DocumentProperty> getDocumentPropertyList(){return documentPropertyList;}
     }

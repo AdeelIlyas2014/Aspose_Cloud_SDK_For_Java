@@ -12,9 +12,9 @@ package com.aspose.cloud.slides;
 // / </summary>
 public class ImageResponse {
 
-	private Image Image;
-	public Image getImage(){return Image;}
-	public void setImage(Image Image){this.Image=Image;}
+	private Image image;
+	public Image getImage(){return image;}
+	public void setImage(Image image){this.image=image;}
 
 	// private int Height;
 	// private int Width;

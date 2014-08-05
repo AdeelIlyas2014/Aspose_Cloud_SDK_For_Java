@@ -8,17 +8,17 @@ public class Encryption
         
         }
 
-        private EncryptionType EncryptionType ;
-        private String Password ;
-        private int Keylength ;     
+        private EncryptionType encryptionType ;
+        private String password ;
+        private int keylength ;     
         
-        public EncryptionType getEncryptionType(){return EncryptionType;}
-        public String getPassword(){return Password;}
-        public int getKeylength(){return Keylength;}      
+        public EncryptionType getEncryptionType(){return encryptionType;}
+        public String getPassword(){return password;}
+        public int getKeylength(){return keylength;}      
         
         
-        public void setEncryptionType(EncryptionType EncryptionType){ this.EncryptionType=EncryptionType;}
-        public void setPassword(String Password){ this.Password=Password;}
-        public void setKeylength(int Keylength){ this.Keylength=Keylength;}
+        public void setEncryptionType(EncryptionType EncryptionType){ this.encryptionType=EncryptionType;}
+        public void setPassword(String Password){ this.password=Password;}
+        public void setKeylength(int Keylength){ this.keylength=Keylength;}
 
     }

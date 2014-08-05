@@ -12,9 +12,9 @@ package com.aspose.cloud.storage;
 /// </summary>
 public class DiscUsage
 {
-    private long TotalSize;
-    private long UsedSize;
+    private long totalSize;
+    private long usedSize;
     
-    public long getTotalSize(){return TotalSize;}
-    public long getUsedSize(){return UsedSize;}
+    public long getTotalSize(){return totalSize;}
+    public long getUsedSize(){return usedSize;}
 }

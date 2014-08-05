@@ -15,7 +15,7 @@ public class DocumentPropertyValue
 
     public DocumentPropertyValue() { }
 
-    private String Value;
-    public String getDocumentPropertyValue(){return Value;}
+    private String value;
+    public String getDocumentPropertyValue(){return value;}
     
 }

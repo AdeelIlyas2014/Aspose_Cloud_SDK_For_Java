@@ -14,7 +14,7 @@ public class PagesEnvelop
 {
 
  //   public List<Saaspose.Pdf.LinkResponse> Links;
-    private List<PageResponse> List;
-    public List<PageResponse> getList(){return List;}
+    private List<PageResponse> list;
+    public List<PageResponse> getList(){return list;}
 }
 

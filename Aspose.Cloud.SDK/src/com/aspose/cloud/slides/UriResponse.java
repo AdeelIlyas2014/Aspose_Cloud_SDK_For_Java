@@ -12,13 +12,13 @@ import java.lang.String;
 /// </summary>
 public class UriResponse
 {
-    private String Href;
-    private String Relation;
-    private String LinkType;
-    private String Title;
+    private String href;
+    private String relation;
+    private String linkType;
+    private String title;
     
-    public String getHref(){return Href;}
-    public String getRelation(){return Relation;}
-    public String getLinkType(){return LinkType;}
-    public String getTitle(){return Title;}
+    public String getHref(){return href;}
+    public String getRelation(){return relation;}
+    public String getLinkType(){return linkType;}
+    public String getTitle(){return title;}
 }

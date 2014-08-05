@@ -14,13 +14,13 @@ import java.lang.String;
 public class SlidesEnvelop
 {
 
-    private List<String> AlternateLinks;
-    private List<LinkResponse> Links;
-    private UriResponse SelfUri;
-    private List<SlideResponse> SlideList;
+    private List<String> alternateLinks;
+    private List<LinkResponse> links;
+    private UriResponse selfUri;
+    private List<SlideResponse> slideList;
     
-    public List<String> getAlternateLinks(){return AlternateLinks;}
-    public List<LinkResponse> getLinks(){return Links;}
-    public List<SlideResponse> getSlideList(){return SlideList;}
-    public UriResponse getSelfUri(){return SelfUri;}
+    public List<String> getAlternateLinks(){return alternateLinks;}
+    public List<LinkResponse> getLinks(){return links;}
+    public List<SlideResponse> getSlideList(){return slideList;}
+    public UriResponse getSelfUri(){return selfUri;}
 }

@@ -6,16 +6,16 @@
     public class ChartEditorResponse extends com.aspose.cloud.common.BaseResponse
     {
 
-        private ChartArea ChartArea ;
+        private ChartArea chartArea ;
 
-        private FillFormat FillFormat ;
+        private FillFormat fillFormat ;
 
-        private Line Line ;
+        private Line line ;
         
-        public ChartArea getChartArea(){return ChartArea;}
+        public ChartArea getChartArea(){return chartArea;}
 
-        public FillFormat getFillFormat(){return FillFormat;}
+        public FillFormat getFillFormat(){return fillFormat;}
 
-        public Line getLine(){return Line;}
+        public Line getLine(){return line;}
 
     }

@@ -13,7 +13,7 @@ package com.aspose.cloud.slides;
 public class SlideResponse
 {
 
-    private UriResponse Uri;
-    public UriResponse getUri(){return Uri;}
+    private UriResponse uri;
+    public UriResponse getUri(){return uri;}
 
 }

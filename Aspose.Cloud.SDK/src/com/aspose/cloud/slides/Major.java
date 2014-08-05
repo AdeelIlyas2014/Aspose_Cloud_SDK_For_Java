@@ -1,16 +1,16 @@
 package com.aspose.cloud.slides;
 
 public class Major {
-	private String ComplexScript;
-	public String getComplexScript(){return ComplexScript;}
-	public void setComplexScript(String ComplexScript){this.ComplexScript=ComplexScript;}
+	private String complexScript;
+	public String getComplexScript(){return complexScript;}
+	public void setComplexScript(String complexScript){this.complexScript=complexScript;}
 
-	private String EastAsian;
-	public String getEastAsian(){return EastAsian;}
-	public void setEastAsian(String EastAsian){this.EastAsian=EastAsian;}
+	private String eastAsian;
+	public String getEastAsian(){return eastAsian;}
+	public void setEastAsian(String eastAsian){this.eastAsian=eastAsian;}
 
-	private String Latin;
-	public String getLatin(){return Latin;}
-	public void setLatin(String Latin){this.Latin=Latin;}
+	private String latin;
+	public String getLatin(){return latin;}
+	public void setLatin(String Latin){this.latin=Latin;}
 
 }

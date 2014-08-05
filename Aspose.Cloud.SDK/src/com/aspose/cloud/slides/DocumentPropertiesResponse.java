@@ -12,8 +12,8 @@ package com.aspose.cloud.slides;
 /// </summary>
 class DocumentPropertiesResponse extends com.aspose.cloud.common.BaseResponse
 {
-    private DocumentPropertiesEnvelop DocumentProperties;
+    private DocumentPropertiesEnvelop documentProperties;
     
-    public DocumentPropertiesEnvelop getDocumentProperties(){return DocumentProperties;}
+    public DocumentPropertiesEnvelop getDocumentProperties(){return documentProperties;}
 
 }

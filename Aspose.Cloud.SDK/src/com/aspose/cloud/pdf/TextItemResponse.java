@@ -12,7 +12,7 @@ package com.aspose.cloud.pdf;
 /// </summary>
 public class TextItemResponse extends com.aspose.cloud.common.BaseResponse
 {
-    private TextItem TextItem;
-    public TextItem getTextItem(){return TextItem;}
+    private TextItem textItem;
+    public TextItem getTextItem(){return textItem;}
 
 }

@@ -4,21 +4,21 @@ public class FontScheme {
 	public FontScheme() {
 	}
 
-	private UriResponse SelfUri;
-	public UriResponse getSelfUri(){return SelfUri;}
-	public void setSelfUri(UriResponse SelfUri){this.SelfUri=SelfUri;}
+	private UriResponse selfUri;
+	public UriResponse getSelfUri(){return selfUri;}
+	public void setSelfUri(UriResponse selfUri){this.selfUri=selfUri;}
 
-	private Major Major;
-	public Major getMajor(){return Major;}
-	public void setMajor(Major Major){this.Major=Major;}
+	private Major major;
+	public Major getMajor(){return major;}
+	public void setMajor(Major major){this.major=major;}
 
-	private Minor Minor;
-	public Minor getMinor(){return Minor;}
-	public void setMinor(Minor Minor){this.Minor=Minor;}
+	private Minor minor;
+	public Minor getMinor(){return minor;}
+	public void setMinor(Minor minor){this.minor=minor;}
 
-	private String Name;
-	public String getName(){return Name;}
-	public void setName(String Name){this.Name=Name;}
+	private String name;
+	public String getName(){return name;}
+	public void setName(String name){this.name=name;}
 
 }
 

@@ -23,17 +23,17 @@ public class DocumentProperty {
     public String Name ;
     public String Value ;
 */
-    private boolean BuiltIn;
-    private String Name ;
-    private String Value ;
+    private boolean builtIn;
+    private String name ;
+    private String value ;
 
-    public boolean getIsBuiltIn(){return BuiltIn;}
-    public String getName(){return Name;}
-    public String getValue(){return Value;}
+    public boolean getIsBuiltIn(){return builtIn;}
+    public String getName(){return name;}
+    public String getValue(){return value;}
 
-    public void setIsBuiltIn(boolean BuiltIn){ this.BuiltIn=BuiltIn;}
-    public void setName(String Name ){ this.Name=Name;}
-    public void setValue(String Value){ this.Value=Value;}
+    public void setIsBuiltIn(boolean BuiltIn){ this.builtIn=BuiltIn;}
+    public void setName(String Name ){ this.name=Name;}
+    public void setValue(String Value){ this.value=Value;}
 
    
 }

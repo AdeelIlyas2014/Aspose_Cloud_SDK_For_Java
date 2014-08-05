@@ -8,60 +8,60 @@ public class Picture
 
         }
        
-        private String Name ;
-        private String Placement ;
-        private int UpperLeftRow ;
-        private int Top ;
-        private int UpperLeftColumn ;
-        private int Left ;
-        private int LowerRightRow ;
-        private int Bottom ;
-        private int LowerRightColumn ;
-        private int Right ;
-        private int Width ;
-        private int Height ;
-        private int X ;
-        private int Y ;
-        private int RotationAngle ;
-        private boolean IsGroup ;
-        private boolean IsHidden ;
-        private boolean IsLockAspectRatio;
-        private boolean IsLocked ;
-        private boolean IsPrintable;
-        private String BorderLineColor ;
-        private double BorderWeight;
-        private int OriginalHeight ;
-        private int OriginalWidth ;
-        private String ImageFormat ;
-        private String SourceFullName ;
-        private int ZOrderPosition;
+        private String name ;
+        private String placement ;
+        private int upperLeftRow ;
+        private int top ;
+        private int upperLeftColumn ;
+        private int left ;
+        private int lowerRightRow ;
+        private int bottom ;
+        private int lowerRightColumn ;
+        private int right ;
+        private int width ;
+        private int height ;
+        private int x ;
+        private int y ;
+        private int rotationAngle ;
+        private boolean isGroup ;
+        private boolean isHidden ;
+        private boolean isLockAspectRatio;
+        private boolean isLocked ;
+        private boolean isPrintable;
+        private String borderLineColor ;
+        private double borderWeight;
+        private int originalHeight ;
+        private int originalWidth ;
+        private String imageFormat ;
+        private String sourceFullName ;
+        private int zOrderPosition;
         
-        public String getName(){return Name;}
-        public String getPlacement(){return Placement;}
-        public int getUpperLeftRow(){return UpperLeftRow;}
-        public int getTop(){return Top;}
-        public int getUpperLeftColumn(){return UpperLeftColumn;}
-        public int getLeft(){return Left;}
-        public int getLowerRightRow(){return LowerRightRow;}
-        public int getBottom(){return Bottom;}
-        public int getLowerRightColumn(){return LowerRightColumn;}
-        public int getRight(){return Right;}
-        public int getWidth(){return Width;}
-        public int getHeight(){return Height;}
-        public int getX(){return X;}
-        public int getY(){return Y;}
-        public int getRotationAngle(){return RotationAngle;}
-        public boolean getIsGroup(){return IsGroup;}
-        public boolean getIsHidden(){return IsHidden;}
-        public boolean getIsLockAspectRatio(){return IsLockAspectRatio;}
-        public boolean getIsLocked(){return IsLocked;}
-        public boolean getIsPrintable(){return IsPrintable;}
-        public String getBorderLineColor(){return BorderLineColor;}
-        public double getBorderWeight(){return BorderWeight;}
-        public int getOriginalHeight(){return OriginalHeight;}
-        public int getOriginalWidth(){return OriginalWidth;}
-        public String getImageFormat(){return ImageFormat;}
-        public String getSourceFullName(){return SourceFullName;}
-        public int getZOrderPosition(){return ZOrderPosition;}
+        public String getName(){return name;}
+        public String getPlacement(){return placement;}
+        public int getUpperLeftRow(){return upperLeftRow;}
+        public int getTop(){return top;}
+        public int getUpperLeftColumn(){return upperLeftColumn;}
+        public int getLeft(){return left;}
+        public int getLowerRightRow(){return lowerRightRow;}
+        public int getBottom(){return bottom;}
+        public int getLowerRightColumn(){return lowerRightColumn;}
+        public int getRight(){return right;}
+        public int getWidth(){return width;}
+        public int getHeight(){return height;}
+        public int getX(){return x;}
+        public int getY(){return y;}
+        public int getRotationAngle(){return rotationAngle;}
+        public boolean getIsGroup(){return isGroup;}
+        public boolean getIsHidden(){return isHidden;}
+        public boolean getIsLockAspectRatio(){return isLockAspectRatio;}
+        public boolean getIsLocked(){return isLocked;}
+        public boolean getIsPrintable(){return isPrintable;}
+        public String getBorderLineColor(){return borderLineColor;}
+        public double getBorderWeight(){return borderWeight;}
+        public int getOriginalHeight(){return originalHeight;}
+        public int getOriginalWidth(){return originalWidth;}
+        public String getImageFormat(){return imageFormat;}
+        public String getSourceFullName(){return sourceFullName;}
+        public int getZOrderPosition(){return zOrderPosition;}
 
     }

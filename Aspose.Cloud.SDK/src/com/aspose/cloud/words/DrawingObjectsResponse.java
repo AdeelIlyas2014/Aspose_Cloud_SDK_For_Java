@@ -2,12 +2,12 @@
 
     public class DrawingObjectsResponse extends com.aspose.cloud.common.BaseResponse
     {
-    	private DrawingObjects DrawingObjects;
-    	public DrawingObjects getDrawingObjects(){return DrawingObjects;}
-    	public void setDrawingObjects(DrawingObjects DrawingObjects){this.DrawingObjects=DrawingObjects;}
+    	private DrawingObjects drawingObjects;
+    	public DrawingObjects getDrawingObjects(){return drawingObjects;}
+    	public void setDrawingObjects(DrawingObjects drawingObjects){this.drawingObjects=drawingObjects;}
 
-    	private DrawingObject DrawingObject;
-    	public DrawingObject getDrawingObject(){return DrawingObject;}
-    	public void setDrawingObject(DrawingObject DrawingObject){this.DrawingObject=DrawingObject;}
+    	private DrawingObject drawingObject;
+    	public DrawingObject getDrawingObject(){return drawingObject;}
+    	public void setDrawingObject(DrawingObject drawingObject){this.drawingObject=drawingObject;}
 
     }

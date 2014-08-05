@@ -14,7 +14,7 @@ import java.util.List;
 public  class PdfLinksEnvelop
 {
   //  public List<LinkResponse> Links;
-    private List<Link> List;
+    private List<Link> list;
     
-    public List<Link> getList(){return List;}
+    public List<Link> getList(){return list;}
 }

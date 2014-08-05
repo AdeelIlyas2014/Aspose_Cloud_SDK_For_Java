@@ -7,18 +7,18 @@ public class PicFormatOption
         
         }
 
-        private FillPictureType Type ;
-        private double Scale ;
-        private double Left ;
-        private double Right ;
-        private double Top ;
-        private double Bottom ;
+        private FillPictureType type ;
+        private double scale ;
+        private double left ;
+        private double right ;
+        private double top ;
+        private double bottom ;
         
-        public FillPictureType getType(){return Type;}
-        public double getScale(){return Scale;}
-        public double getLeft(){return Left;}
-        public double getRight(){return Right;}
-        public double getTop(){return Top;}
-        public double getBottom(){return Bottom;}
+        public FillPictureType getType(){return type;}
+        public double getScale(){return scale;}
+        public double getLeft(){return left;}
+        public double getRight(){return right;}
+        public double getTop(){return top;}
+        public double getBottom(){return bottom;}
 
     }

@@ -8,49 +8,49 @@ public class OleObject
 
         }
 
-        private String Name;
-        private String Placement;
-        private int UpperLeftRow ;
-        private int Top;
-        private int UpperLeftColumn ;
-        private int Left;
-        private int LowerRightRow ;
-        private int Bottom ;
-        private int LowerRightColumn;
-        private int Right ;
-        private int Width ;
-        private int Height;
-        private int X ;
-        private int Y;
-        private boolean DisplayAsIcon ;
-        private String FileType;
-        private String ImageSourceFullName ;
-        private boolean IsAutoSize;
-        private boolean IsLink ;
-        private String ProgID ;
-        private String SourceFullName;
+        private String name;
+        private String placement;
+        private int upperLeftRow ;
+        private int top;
+        private int upperLeftColumn ;
+        private int left;
+        private int lowerRightRow ;
+        private int bottom ;
+        private int lowerRightColumn;
+        private int right ;
+        private int width ;
+        private int height;
+        private int x ;
+        private int y;
+        private boolean displayAsIcon ;
+        private String fileType;
+        private String imageSourceFullName ;
+        private boolean isAutoSize;
+        private boolean isLink ;
+        private String progID ;
+        private String sourceFullName;
         
         
-        public String getName(){return Name;}
-        public String getPlacement(){return Placement;}
-        public int getUpperLeftRow(){return UpperLeftRow;}
-        public int getTop(){return Top;}
-        public int getUpperLeftColumn(){return UpperLeftColumn;}
-        public int getLeft(){return Left;}
-        public int LowerRightRow(){return LowerRightRow;}
-        public int Bottom(){return Bottom;}
-        public int LowerRightColumn(){return LowerRightColumn;}
-        public int Right(){return Right;}
-        public int Width(){return Width;}
-        public int Height(){return Height;}
-        public int X(){return X;}
-        public int Y(){return Y;}
-        public boolean DisplayAsIcon(){return DisplayAsIcon;}
-        public String FileType(){return FileType;}
-        public String ImageSourceFullName(){return ImageSourceFullName;}
-        public boolean IsAutoSize(){return IsAutoSize;}
-        public boolean IsLink(){return IsLink;}
-        public String ProgID(){return ProgID;}
-        public String SourceFullName(){return SourceFullName;}
+        public String getName(){return name;}
+        public String getPlacement(){return placement;}
+        public int getUpperLeftRow(){return upperLeftRow;}
+        public int getTop(){return top;}
+        public int getUpperLeftColumn(){return upperLeftColumn;}
+        public int getLeft(){return left;}
+        public int LowerRightRow(){return lowerRightRow;}
+        public int Bottom(){return bottom;}
+        public int LowerRightColumn(){return lowerRightColumn;}
+        public int Right(){return right;}
+        public int Width(){return width;}
+        public int Height(){return height;}
+        public int X(){return x;}
+        public int Y(){return y;}
+        public boolean DisplayAsIcon(){return displayAsIcon;}
+        public String FileType(){return fileType;}
+        public String ImageSourceFullName(){return imageSourceFullName;}
+        public boolean IsAutoSize(){return isAutoSize;}
+        public boolean IsLink(){return isLink;}
+        public String ProgID(){return progID;}
+        public String SourceFullName(){return sourceFullName;}
 
     }

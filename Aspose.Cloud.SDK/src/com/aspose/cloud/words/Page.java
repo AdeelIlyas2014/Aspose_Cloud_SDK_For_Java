@@ -1,16 +1,16 @@
 package com.aspose.cloud.words;
 
 public class Page {
-	private String  Href;
-    public String getHref(){return Href;}
+	private String  href;
+    public String getHref(){return href;}
     
-    private String  Rel;
-    public String getRel(){return Rel;}
+    private String  rel;
+    public String getRel(){return rel;}
     
-    private String  Title;
-    public String getTitle(){return Title;}
+    private String  title;
+    public String getTitle(){return title;}
     
-    private String  Type;
-    public String getType(){return Type;}
+    private String  type;
+    public String getType(){return type;}
 	
 }

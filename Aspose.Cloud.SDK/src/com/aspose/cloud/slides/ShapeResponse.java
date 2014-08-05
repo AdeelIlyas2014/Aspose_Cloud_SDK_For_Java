@@ -12,6 +12,6 @@ package com.aspose.cloud.slides;
 /// </summary>
 public class ShapeResponse
 {
-    private Shape Shape ;
-    public Shape getShape(){return Shape;}
+    private Shape shape ;
+    public Shape getShape(){return shape;}
 }

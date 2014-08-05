@@ -17,12 +17,12 @@ public class File {
     /// <summary>
     /// Represents file name.
     /// </summary>
-    private String Name;
+    private String name;
 
     /// <summary>
     /// Indicates whether a folder or file.
     /// </summary>
-    private boolean IsFolder;
+    private boolean isFolder;
 
     /// <summary>
     /// Represents last modification date of file or folder.
@@ -30,16 +30,16 @@ public class File {
 //Need to verify
 //     public Calendar ModifiedDate;
 //    public String ModifiedDate;
-    private Date ModifiedDate;
+    private Date modifiedDate;
 
     /// <summary>
     /// Represents the size of the File or Folder.
     /// </summary>
-    private long Size;
+    private long size;
     
-    public String getName(){return Name;}
-    public boolean getIsFolder(){return IsFolder;}
-    public Date getModifiedDate(){return ModifiedDate;}
-    public long getSize(){return Size;}
+    public String getName(){return name;}
+    public boolean getIsFolder(){return isFolder;}
+    public Date getModifiedDate(){return modifiedDate;}
+    public long getSize(){return size;}
 
 }

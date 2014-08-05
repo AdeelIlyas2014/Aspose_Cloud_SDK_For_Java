@@ -14,9 +14,9 @@ public class TextItem
 {
     public TextItem() { }
 
-    private String Text; 
-    private ShapeURI Uri;
+    private String text; 
+    private ShapeURI uri;
     
-    public String getText(){return Text;}
-    public ShapeURI getUri(){return Uri;}
+    public String getText(){return text;}
+    public ShapeURI getUri(){return uri;}
 }

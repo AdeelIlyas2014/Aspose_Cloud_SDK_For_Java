@@ -16,7 +16,7 @@ public class TextItemsEnvelop
 {
 
  //   public List<LinkResponse> Links;
-    private List<TextItem> List;
-    public List<TextItem> getList(){return List;}
+    private List<TextItem> list;
+    public List<TextItem> getList(){return list;}
 
 }

@@ -8,28 +8,28 @@ public class Font
         
         }
 
-        private String Name ;
-        private Double Size ;
-        private Color Color ;
-        private Double DoubleSize ;
-        private boolean IsBold ;
-        private boolean IsItalic ;
-        private boolean IsSubscript ;
-        private boolean IsStrikeout ;
-        private boolean IsSuperscript ;
-        private String Underline ;
+        private String name ;
+        private Double size ;
+        private Color color ;
+        private Double doubleSize ;
+        private boolean isBold ;
+        private boolean isItalic ;
+        private boolean isSubscript ;
+        private boolean isStrikeout ;
+        private boolean isSuperscript ;
+        private String underline ;
         
         
-        public String getName(){return Name;}
-        public Double getSize(){return Size;}
-        public Color getColor(){return Color;}
-        public Double getDoubleSize(){return DoubleSize;}
-        public boolean getIsBold(){return IsBold;}
-        public boolean getIsItalic(){return IsItalic;}
-        public boolean getIsSubscript(){return IsSubscript;}
-        public boolean getIsStrikeout(){return IsStrikeout;}
-        public boolean getIsSuperscript(){return IsSuperscript;}
-        public String getUnderline(){return Underline;}
+        public String getName(){return name;}
+        public Double getSize(){return size;}
+        public Color getColor(){return color;}
+        public Double getDoubleSize(){return doubleSize;}
+        public boolean getIsBold(){return isBold;}
+        public boolean getIsItalic(){return isItalic;}
+        public boolean getIsSubscript(){return isSubscript;}
+        public boolean getIsStrikeout(){return isStrikeout;}
+        public boolean getIsSuperscript(){return isSuperscript;}
+        public String getUnderline(){return underline;}
 
 
     }

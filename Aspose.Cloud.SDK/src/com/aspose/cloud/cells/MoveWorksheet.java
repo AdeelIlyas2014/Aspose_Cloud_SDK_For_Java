@@ -8,13 +8,13 @@ public class MoveWorksheet
         
         }
 
-        private String DestinationWorksheet;
-        private Position Position;   
+        private String destinationWorksheet;
+        private Position position;   
         
-        public String getDestinationWorksheet(){return DestinationWorksheet;}
-        public Position getPosition(){return Position;}
+        public String getDestinationWorksheet(){return destinationWorksheet;}
+        public Position getPosition(){return position;}
         
-        public void setDestinationWorksheet(String DestinationWorksheet){ this.DestinationWorksheet=DestinationWorksheet;}
-        public void setPosition(Position Position){ this.Position=Position;}
+        public void setDestinationWorksheet(String DestinationWorksheet){ this.destinationWorksheet=DestinationWorksheet;}
+        public void setPosition(Position Position){ this.position=Position;}
 
     }

@@ -7,20 +7,20 @@ public class Theme {
 	public List<LinkResponse> getlinks(){return links;}
 	public void setlinks(List<LinkResponse> links){this.links=links;}
 
-	private ThemeColorScheme ColorScheme;
-	public ThemeColorScheme getColorScheme(){return ColorScheme;}
-	public void setColorScheme(ThemeColorScheme ColorScheme){this.ColorScheme=ColorScheme;}
+	private ThemeColorScheme colorScheme;
+	public ThemeColorScheme getColorScheme(){return colorScheme;}
+	public void setColorScheme(ThemeColorScheme colorScheme){this.colorScheme=colorScheme;}
 
-	private ThemeFontScheme FontScheme;
-	public ThemeFontScheme getFontScheme(){return FontScheme;}
-	public void setFontScheme(ThemeFontScheme FontScheme){this.FontScheme=FontScheme;}
+	private ThemeFontScheme fontScheme;
+	public ThemeFontScheme getFontScheme(){return fontScheme;}
+	public void setFontScheme(ThemeFontScheme fontScheme){this.fontScheme=fontScheme;}
 
-	private ThemeFormatScheme FormatScheme;
-	public ThemeFormatScheme getFormatScheme(){return FormatScheme;}
-	public void setFormatScheme(ThemeFormatScheme FormatScheme){this.FormatScheme=FormatScheme;}
+	private ThemeFormatScheme formatScheme;
+	public ThemeFormatScheme getFormatScheme(){return formatScheme;}
+	public void setFormatScheme(ThemeFormatScheme formatScheme){this.formatScheme=formatScheme;}
 
-	private String Name;
-	public String getName(){return Name;}
-	public void setName(String Name){this.Name=Name;}
+	private String name;
+	public String getName(){return name;}
+	public void setName(String name){this.name=name;}
 
 }

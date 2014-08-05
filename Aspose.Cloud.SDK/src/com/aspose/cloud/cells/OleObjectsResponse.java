@@ -7,10 +7,10 @@ import java.util.List;
     public class OleObjectsResponse extends com.aspose.cloud.common.BaseResponse
     {        
         private LinkResponse link ;
-        private List<LinkResponse> OleOjectList ;
-        private OleObject OleObject ;
+        private List<LinkResponse> oleOjectList ;
+        private OleObject oleObject ;
 
         public LinkResponse getLink(){return link;}
-        public List<LinkResponse> getOleOjectList(){return OleOjectList;}
-        public OleObject getOleObject(){return OleObject;}
+        public List<LinkResponse> getOleOjectList(){return oleOjectList;}
+        public OleObject getOleObject(){return oleObject;}
     }

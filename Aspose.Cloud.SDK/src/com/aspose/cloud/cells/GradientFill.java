@@ -9,15 +9,15 @@ public class GradientFill
         
         }
 
-        private GradientFillType FillType ;
-        private GradientDirectionType DirectionType ;
-        private int Angle ;
-        private List<GradientFillStop> GradientFillStops ;
+        private GradientFillType fillType ;
+        private GradientDirectionType directionType ;
+        private int angle ;
+        private List<GradientFillStop> gradientFillStops ;
         
         
-        public GradientFillType getFillType(){return FillType;}
-        public GradientDirectionType getDirectionType(){return DirectionType;}
-        public int getAngle(){return Angle;}
-        public List<GradientFillStop> getGradientFillStops(){return GradientFillStops;}
+        public GradientFillType getFillType(){return fillType;}
+        public GradientDirectionType getDirectionType(){return directionType;}
+        public int getAngle(){return angle;}
+        public List<GradientFillStop> getGradientFillStops(){return gradientFillStops;}
         
     }

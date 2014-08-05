@@ -1,58 +1,58 @@
 package com.aspose.cloud.slides;
 
 public class Placeholder {
-	private UriResponse SelfUri;
-	private int Index;
-	private Orientation Orientation;
-	private Size Size;
-	private Type Type;
-	private ShapeURI Shape;
+	private UriResponse selfUri;
+	private int index;
+	private Orientation orientation;
+	private Size size;
+	private Type type;
+	private ShapeURI shape;
 
 	public UriResponse getSelfUri() {
-		return SelfUri;
+		return selfUri;
 	}
 
-	public void setSelfUri(UriResponse selfUri) {
-		SelfUri = selfUri;
+	public void setSelfUri(UriResponse _selfUri) {
+		selfUri = _selfUri;
 	}
 
 	public int getIndex() {
-		return Index;
+		return index;
 	}
 
-	public void setIndex(int index) {
-		Index = index;
+	public void setIndex(int _index) {
+		index = _index;
 	}
 
 	public Orientation getOrientation() {
-		return Orientation;
+		return orientation;
 	}
 
-	public void setOrientation(Orientation orientation) {
-		Orientation = orientation;
+	public void setOrientation(Orientation _orientation) {
+		orientation = _orientation;
 	}
 
 	public Size getSize() {
-		return Size;
+		return size;
 	}
 
-	public void setSize(Size size) {
-		Size = size;
+	public void setSize(Size _size) {
+		size = _size;
 	}
 
 	public Type getType() {
-		return Type;
+		return type;
 	}
 
-	public void setType(Type type) {
-		Type = type;
+	public void setType(Type _type) {
+		type = _type;
 	}
 
 	public ShapeURI getShape() {
-		return Shape;
+		return shape;
 	}
 
-	public void setShape(ShapeURI shape) {
-		Shape = shape;
+	public void setShape(ShapeURI _shape) {
+		shape = _shape;
 	}
 }

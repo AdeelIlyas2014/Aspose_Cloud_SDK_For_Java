@@ -8,16 +8,16 @@ import com.aspose.cloud.common.Product;
     /// </summary>
     public class Validator
     {
-        public Validator(String fileName)
+        public Validator(String _fileName)
         {
             //set default values
-            FileName = fileName;
+            fileName = _fileName;
         }
 
         /// <summary>
         /// get or set file name
         /// </summary>
-        public String FileName ;
+        public String fileName ;
 
 
         /// <summary>

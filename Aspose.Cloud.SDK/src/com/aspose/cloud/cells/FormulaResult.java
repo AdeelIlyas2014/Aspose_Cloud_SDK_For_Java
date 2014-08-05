@@ -8,10 +8,10 @@ public class FormulaResult
         
         }
 
-        private int ValueType ;
-        private String Value ;
+        private int valueType ;
+        private String value ;
         
-        public int getValueType(){return ValueType;}
-        public String getValue(){return Value;}
+        public int getValueType(){return valueType;}
+        public String getValue(){return value;}
 
     }

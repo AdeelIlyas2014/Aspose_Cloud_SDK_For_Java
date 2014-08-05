@@ -3,22 +3,22 @@ package com.aspose.cloud.slides;
 import java.util.List;
 
 public class PlaceholdersEnvelop {
-	private UriResponse SelfUri;
-	private List<PlaceholderURI> PlaceholderLinks;
+	private UriResponse selfUri;
+	private List<PlaceholderURI> placeholderLinks;
 
 	public UriResponse getSelfUri() {
-		return SelfUri;
+		return selfUri;
 	}
 
-	public void setSelfUri(UriResponse selfUri) {
-		SelfUri = selfUri;
+	public void setSelfUri(UriResponse _selfUri) {
+		selfUri = _selfUri;
 	}
 
 	public List<PlaceholderURI> getPlaceholderLinks() {
-		return PlaceholderLinks;
+		return placeholderLinks;
 	}
 
-	public void setPlaceholderLinks(List<PlaceholderURI> placeholderLinks) {
-		PlaceholderLinks = placeholderLinks;
+	public void setPlaceholderLinks(List<PlaceholderURI> _placeholderLinks) {
+		placeholderLinks = _placeholderLinks;
 	}
 }

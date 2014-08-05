@@ -8,12 +8,12 @@ public class SortKey
         
         }
 
-        private int Key;
-        private String SortOrder;
+        private int key;
+        private String sortOrder;
         
-        public int getKey(){return Key;}
-        public String getSortOrder(){return SortOrder;}
+        public int getKey(){return key;}
+        public String getSortOrder(){return sortOrder;}
 
-		public void setKey(int Key) { this.Key = Key; }
-		public void setSortOrder(String SortOrder) { this.SortOrder = SortOrder; }
+		public void setKey(int Key) { this.key = Key; }
+		public void setSortOrder(String SortOrder) { this.sortOrder = SortOrder; }
     }

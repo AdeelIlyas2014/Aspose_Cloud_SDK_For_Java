@@ -7,13 +7,13 @@
     {
         public LinkResponse() { }
         
-        private String Href ;
-        private String Rel ;
-        private String Title ;
-        private String Type ;
+        private String href ;
+        private String rel ;
+        private String title ;
+        private String type ;
         
-        public String getHref(){return Href;}
-        public String getRel(){return Rel;}
-        public String getTitle(){return Title;}
-        public String getType(){return Type;}
+        public String getHref(){return href;}
+        public String getRel(){return rel;}
+        public String getTitle(){return title;}
+        public String getType(){return type;}
     }

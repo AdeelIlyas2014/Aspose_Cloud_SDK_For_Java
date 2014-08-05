@@ -12,7 +12,7 @@ package com.aspose.cloud.pdf;
 /// </summary>
 public class TextFormatResponse extends com.aspose.cloud.common.BaseResponse
 {
-    private TextFormat TextFormat;
-    public TextFormat getTextFormat(){return TextFormat;}
+    private TextFormat textFormat;
+    public TextFormat getTextFormat(){return textFormat;}
 
 }

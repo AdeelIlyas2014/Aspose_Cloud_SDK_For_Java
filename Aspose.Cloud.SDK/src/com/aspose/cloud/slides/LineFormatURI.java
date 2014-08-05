@@ -12,7 +12,7 @@ package com.aspose.cloud.slides;
 /// </summary>
 public class LineFormatURI
 {
-    private UriResponse Uri;
+    private UriResponse uri;
     
-    public UriResponse getUri(){return Uri;}
+    public UriResponse getUri(){return uri;}
 }

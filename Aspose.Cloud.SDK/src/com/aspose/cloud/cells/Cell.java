@@ -12,24 +12,24 @@ public class Cell
         }
        
         private LinkResponse link ;
-        private String Name ;
-        private String Type ;
-        private int Row ;
-        private int Column ;
-        private String Value ;
-        private String Formula ;
-        private boolean IsFormula ;
-        private boolean IsMerged ;  
+        private String name ;
+        private String type ;
+        private int row ;
+        private int column ;
+        private String value ;
+        private String formula ;
+        private boolean isFormula ;
+        private boolean isMerged ;  
         
         
         public LinkResponse getlink(){return link;}
-        public String getName(){return Name;}
-        public String getType(){return Type;}
-        public int getRow(){return Row;}
-        public int getColumn(){return Column;}
-        public String getValue(){return Value;}
-        public String getFormula(){return Formula;}
-        public boolean getIsFormula(){return IsFormula;}
-        public boolean getIsMerged(){return IsMerged;}
+        public String getName(){return name;}
+        public String getType(){return type;}
+        public int getRow(){return row;}
+        public int getColumn(){return column;}
+        public String getValue(){return value;}
+        public String getFormula(){return formula;}
+        public boolean getIsFormula(){return isFormula;}
+        public boolean getIsMerged(){return isMerged;}
 
     }

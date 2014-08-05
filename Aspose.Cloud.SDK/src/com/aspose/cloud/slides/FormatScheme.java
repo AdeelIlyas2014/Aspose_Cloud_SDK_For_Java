@@ -2,51 +2,51 @@ package com.aspose.cloud.slides;
 
 public class FormatScheme {
 	public UriResponse getSelfUri() {
-		return SelfUri;
+		return selfUri;
 	}
 
-	public void setSelfUri(UriResponse selfUri) {
-		SelfUri = selfUri;
+	public void setSelfUri(UriResponse _selfUri) {
+		selfUri = _selfUri;
 	}
 
 	public BackgroundStyles[] getBackgroundStyles() {
-		return BackgroundStyles;
+		return backgroundStyles;
 	}
 
-	public void setBackgroundStyles(BackgroundStyles[] backgroundStyles) {
-		BackgroundStyles = backgroundStyles;
+	public void setBackgroundStyles(BackgroundStyles[] _backgroundStyles) {
+		backgroundStyles = _backgroundStyles;
 	}
 
 	public EffectStyles[] getEffectStyles() {
-		return EffectStyles;
+		return effectStyles;
 	}
 
-	public void setEffectStyles(EffectStyles[] effectStyles) {
-		EffectStyles = effectStyles;
+	public void setEffectStyles(EffectStyles[] _effectStyles) {
+		effectStyles = _effectStyles;
 	}
 
 	public FillStyles[] getFillStyles() {
-		return FillStyles;
+		return fillStyles;
 	}
 
-	public void setFillStyles(FillStyles[] fillStyles) {
-		FillStyles = fillStyles;
+	public void setFillStyles(FillStyles[] _fillStyles) {
+		fillStyles = _fillStyles;
 	}
 
 	public LineStyles[] getLineStyles() {
-		return LineStyles;
+		return lineStyles;
 	}
 
-	public void setLineStyles(LineStyles[] lineStyles) {
-		LineStyles = lineStyles;
+	public void setLineStyles(LineStyles[] _lineStyles) {
+		lineStyles = _lineStyles;
 	}
 
 	public FormatScheme() {
 	}
 
-	private UriResponse SelfUri;
-	private BackgroundStyles[] BackgroundStyles;
-	private EffectStyles[] EffectStyles;
-	private FillStyles[] FillStyles;
-	private LineStyles[] LineStyles;
+	private UriResponse selfUri;
+	private BackgroundStyles[] backgroundStyles;
+	private EffectStyles[] effectStyles;
+	private FillStyles[] fillStyles;
+	private LineStyles[] lineStyles;
 }

@@ -12,8 +12,8 @@ import java.util.List;
     /// </summary>
     public class FolderResponse extends com.aspose.cloud.common.BaseResponse
     {
-        private List<com.aspose.cloud.storage.File> Files; 
-        public List<com.aspose.cloud.storage.File> getFiles(){return Files;}
+        private List<com.aspose.cloud.storage.File> files; 
+        public List<com.aspose.cloud.storage.File> getFiles(){return files;}
     }
 
 

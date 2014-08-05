@@ -3,68 +3,68 @@ package com.aspose.cloud.cells;
 import java.util.List;
 
 public class WorksheetProtectionRequest {
-	private boolean AllowDeletingColumn;
-	public boolean getAllowDeletingColumn(){return AllowDeletingColumn;}
-	public void setAllowDeletingColumn(boolean AllowDeletingColumn){this.AllowDeletingColumn=AllowDeletingColumn;}
+	private boolean allowDeletingColumn;
+	public boolean getAllowDeletingColumn(){return allowDeletingColumn;}
+	public void setAllowDeletingColumn(boolean allowDeletingColumn){this.allowDeletingColumn=allowDeletingColumn;}
 
-	private boolean AllowDeletingRow;
-	public boolean getAllowDeletingRow(){return AllowDeletingRow;}
-	public void setAllowDeletingRow(boolean AllowDeletingRow){this.AllowDeletingRow=AllowDeletingRow;}
+	private boolean allowDeletingRow;
+	public boolean getAllowDeletingRow(){return allowDeletingRow;}
+	public void setAllowDeletingRow(boolean allowDeletingRow){this.allowDeletingRow=allowDeletingRow;}
 
-	private List<String> AllowEditArea;
-	public List<String> getAllowEditArea(){return AllowEditArea;}
-	public void setAllowEditArea(List<String> AllowEditArea){this.AllowEditArea=AllowEditArea;}
+	private List<String> allowEditArea;
+	public List<String> getAllowEditArea(){return allowEditArea;}
+	public void setAllowEditArea(List<String> allowEditArea){this.allowEditArea=allowEditArea;}
 
-	private boolean AllowFiltering;
-	public boolean getAllowFiltering(){return AllowFiltering;}
-	public void setAllowFiltering(boolean AllowFiltering){this.AllowFiltering=AllowFiltering;}
+	private boolean allowFiltering;
+	public boolean getAllowFiltering(){return allowFiltering;}
+	public void setAllowFiltering(boolean allowFiltering){this.allowFiltering=allowFiltering;}
 
-	private boolean AllowFormattingCell;
-	public boolean getAllowFormattingCell(){return AllowFormattingCell;}
-	public void setAllowFormattingCell(boolean AllowFormattingCell){this.AllowFormattingCell=AllowFormattingCell;}
+	private boolean allowFormattingCell;
+	public boolean getAllowFormattingCell(){return allowFormattingCell;}
+	public void setAllowFormattingCell(boolean allowFormattingCell){this.allowFormattingCell=allowFormattingCell;}
 
-	private boolean AllowFormattingColumn;
-	public boolean getAllowFormattingColumn(){return AllowFormattingColumn;}
-	public void setAllowFormattingColumn(boolean AllowFormattingColumn){this.AllowFormattingColumn=AllowFormattingColumn;}
+	private boolean allowFormattingColumn;
+	public boolean getAllowFormattingColumn(){return allowFormattingColumn;}
+	public void setAllowFormattingColumn(boolean allowFormattingColumn){this.allowFormattingColumn=allowFormattingColumn;}
 
-	private boolean AllowFormattingRow;
-	public boolean getAllowFormattingRow(){return AllowFormattingRow;}
-	public void setAllowFormattingRow(boolean AllowFormattingRow){this.AllowFormattingRow=AllowFormattingRow;}
+	private boolean allowFormattingRow;
+	public boolean getAllowFormattingRow(){return allowFormattingRow;}
+	public void setAllowFormattingRow(boolean allowFormattingRow){this.allowFormattingRow=allowFormattingRow;}
 
-	private boolean AllowInsertingColumn;
-	public boolean getAllowInsertingColumn(){return AllowInsertingColumn;}
-	public void setAllowInsertingColumn(boolean AllowInsertingColumn){this.AllowInsertingColumn=AllowInsertingColumn;}
+	private boolean allowInsertingColumn;
+	public boolean getAllowInsertingColumn(){return allowInsertingColumn;}
+	public void setAllowInsertingColumn(boolean allowInsertingColumn){this.allowInsertingColumn=allowInsertingColumn;}
 
-	private boolean AllowInsertingHyperlink;
-	public boolean getAllowInsertingHyperlink(){return AllowInsertingHyperlink;}
-	public void setAllowInsertingHyperlink(boolean AllowInsertingHyperlink){this.AllowInsertingHyperlink=AllowInsertingHyperlink;}
+	private boolean allowInsertingHyperlink;
+	public boolean getAllowInsertingHyperlink(){return allowInsertingHyperlink;}
+	public void setAllowInsertingHyperlink(boolean allowInsertingHyperlink){this.allowInsertingHyperlink=allowInsertingHyperlink;}
 
-	private boolean AllowInsertingRow;
-	public boolean getAllowInsertingRow(){return AllowInsertingRow;}
-	public void setAllowInsertingRow(boolean AllowInsertingRow){this.AllowInsertingRow=AllowInsertingRow;}
+	private boolean allowInsertingRow;
+	public boolean getAllowInsertingRow(){return allowInsertingRow;}
+	public void setAllowInsertingRow(boolean allowInsertingRow){this.allowInsertingRow=allowInsertingRow;}
 
-	private boolean AllowSelectingLockedCell;
-	public boolean getAllowSelectingLockedCell(){return AllowSelectingLockedCell;}
-	public void setAllowSelectingLockedCell(boolean AllowSelectingLockedCell){this.AllowSelectingLockedCell=AllowSelectingLockedCell;}
+	private boolean allowSelectingLockedCell;
+	public boolean getAllowSelectingLockedCell(){return allowSelectingLockedCell;}
+	public void setAllowSelectingLockedCell(boolean allowSelectingLockedCell){this.allowSelectingLockedCell=allowSelectingLockedCell;}
 
-	private boolean AllowSelectingUnlockedCell;
-	public boolean getAllowSelectingUnlockedCell(){return AllowSelectingUnlockedCell;}
-	public void setAllowSelectingUnlockedCell(boolean AllowSelectingUnlockedCell){this.AllowSelectingUnlockedCell=AllowSelectingUnlockedCell;}
+	private boolean allowSelectingUnlockedCell;
+	public boolean getAllowSelectingUnlockedCell(){return allowSelectingUnlockedCell;}
+	public void setAllowSelectingUnlockedCell(boolean allowSelectingUnlockedCell){this.allowSelectingUnlockedCell=allowSelectingUnlockedCell;}
 
-	private boolean AllowSorting;
-	public boolean getAllowSorting(){return AllowSorting;}
-	public void setAllowSorting(boolean AllowSorting){this.AllowSorting=AllowSorting;}
+	private boolean allowSorting;
+	public boolean getAllowSorting(){return allowSorting;}
+	public void setAllowSorting(boolean allowSorting){this.allowSorting=allowSorting;}
 
-	private boolean AllowUsingPivotTable;
-	public boolean getAllowUsingPivotTable(){return AllowUsingPivotTable;}
-	public void setAllowUsingPivotTable(boolean AllowUsingPivotTable){this.AllowUsingPivotTable=AllowUsingPivotTable;}
+	private boolean allowUsingPivotTable;
+	public boolean getAllowUsingPivotTable(){return allowUsingPivotTable;}
+	public void setAllowUsingPivotTable(boolean allowUsingPivotTable){this.allowUsingPivotTable=allowUsingPivotTable;}
 
-	private String Password;
-	public String getPassword(){return Password;}
-	public void setPassword(String Password){this.Password=Password;}
+	private String password;
+	public String getPassword(){return password;}
+	public void setPassword(String Password){this.password=Password;}
 
-	private String ProtectionType;
-	public String getProtectionType(){return ProtectionType;}
-	public void setProtectionType(String ProtectionType){this.ProtectionType=ProtectionType;}
+	private String protectionType;
+	public String getProtectionType(){return protectionType;}
+	public void setProtectionType(String protectionType){this.protectionType=protectionType;}
 
 }

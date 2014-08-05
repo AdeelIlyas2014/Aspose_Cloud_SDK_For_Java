@@ -8,10 +8,10 @@ import java.util.List;
     {
         public TextItemsResponse() { }       
         private LinkResponse link;     
-        private List<TextItem> TextItemList;
+        private List<TextItem> textItemList;
         
         public LinkResponse getLink(){return link;}   
-        public List<TextItem> getTextItemList(){return TextItemList;}
+        public List<TextItem> getTextItemList(){return textItemList;}
         
         
     }

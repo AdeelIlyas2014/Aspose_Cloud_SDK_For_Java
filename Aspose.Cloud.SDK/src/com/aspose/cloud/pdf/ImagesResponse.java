@@ -12,7 +12,7 @@ package com.aspose.cloud.pdf;
 /// </summary>
 class ImagesResponse extends com.aspose.cloud.common.BaseResponse
 {
-    private ImagesEnvelop Images;
-    public ImagesEnvelop getImages(){return Images;}
+    private ImagesEnvelop images;
+    public ImagesEnvelop getImages(){return images;}
 
 }

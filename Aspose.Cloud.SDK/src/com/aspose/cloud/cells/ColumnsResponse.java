@@ -8,13 +8,13 @@ import java.util.List;
     {
         
         private LinkResponse link ;
-        private int MaxColumn ;
-        private List<LinkResponse> ColumnsList ;
-        private Column Column ;
+        private int maxColumn ;
+        private List<LinkResponse> columnsList ;
+        private Column column ;
         
         public LinkResponse getlink(){return link;}
-        public int getMaxColumn(){return MaxColumn;}
-        public List<LinkResponse> getColumnsList(){return ColumnsList;}
-        public Column getColumn(){return Column;}
+        public int getMaxColumn(){return maxColumn;}
+        public List<LinkResponse> getColumnsList(){return columnsList;}
+        public Column getColumn(){return column;}
        
     }

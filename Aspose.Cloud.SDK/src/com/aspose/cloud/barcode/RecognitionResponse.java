@@ -10,7 +10,7 @@ import java.util.List;
 public class RecognitionResponse extends com.aspose.cloud.common.BaseResponse
 {
    
-    private List<RecognizedBarCode> Barcodes ;
+    private List<RecognizedBarCode> barcodes ;
     
-    public List<RecognizedBarCode> getBarcodes(){return Barcodes;}
+    public List<RecognizedBarCode> getBarcodes(){return barcodes;}
 }

@@ -67,16 +67,16 @@ public class BarCodeReader {
 	// + barcodeRead.BarCodeType);
 	// / }
 	// / </example>
-	public List<RecognizedBarCode> ReadFromLocalImage(String localImage,
+	public List<RecognizedBarCode> readFromLocalImage(String localImage,
 			String remoteFolder, BarCodeReadType barcodeReadType) {
 		try {
 
 			// First upload the local image to remote location
 			Folder folder = new Folder();
-			folder.UploadFile(localImage, remoteFolder);
+			folder.uploadFile(localImage, remoteFolder);
 
 			// After upload, perform server recognition on uploaded image
-			return Read(new File(localImage).getName(), remoteFolder,
+			return read(new File(localImage).getName(), remoteFolder,
 					barcodeReadType);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -104,32 +104,32 @@ public class BarCodeReader {
 	// + barcodeRead.BarCodeType);
 	// / }
 	// / </example>
-	public List<RecognizedBarCode> Read(String remoteImageName,
+	public List<RecognizedBarCode> read(String remoteImageName,
 			String remoteFolder, BarCodeReadType readType) {
 		try {
 
 			_remoteImageName = remoteImageName;
 
-			PerformValidations(false);
+			performValidations(false);
 
 			// Build URL with queryString request parameters
-			String uri = UriBuilder(remoteImageName, remoteFolder, readType);
+			String uri = uriBuilder(remoteImageName, remoteFolder, readType);
 			InputStream responseStream = null;
 			// Send the request to aspose server
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppSID and AppKey");
 				} else {
-					responseStream = Utils.ProcessCommand(
-							Utils.Sign(uri, this.auth.getAppKey(),
+					responseStream = Utils.processCommand(
+							Utils.sign(uri, this.auth.getAppKey(),
 									this.auth.getAppSID()), "GET");
 				}
 			} else {
-				responseStream = Utils.ProcessCommand(Utils.Sign(uri), "GET");
+				responseStream = Utils.processCommand(Utils.sign(uri), "GET");
 			}
 
 			// Read the response
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and Deserializes the JSON to a object.
 			RecognitionResponse barcodeRecognitionResponse = gson.fromJson(
@@ -162,29 +162,29 @@ public class BarCodeReader {
 	// + barcodeRead.BarCodeType);
 	// / }
 	// / </example>
-	public List<RecognizedBarCode> Read(String url, BarCodeReadType readType) {
+	public List<RecognizedBarCode> read(String url, BarCodeReadType readType) {
 		try {
 			// Only validate the API keys
-			PerformValidations(true);
+			performValidations(true);
 
 			// Build URI for accessing com.aspose.barcode API
-			String uri = UriBuilderForURLImage(url, readType);
+			String uri = uriBuilderForURLImage(url, readType);
 			InputStream responseStream = null;
 			// Send the request to aspose server
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppSID and AppKey");
 				} else {
-					responseStream = Utils.ProcessCommand(
-							Utils.Sign(uri, this.auth.getAppKey(),
+					responseStream = Utils.processCommand(
+							Utils.sign(uri, this.auth.getAppKey(),
 									this.auth.getAppSID()), "POST");
 				}
 			} else {
-				responseStream = Utils.ProcessCommand(Utils.Sign(uri), "POST");
+				responseStream = Utils.processCommand(Utils.sign(uri), "POST");
 			}
 
 			// Read the response
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse the json String to JObject
 
@@ -200,7 +200,7 @@ public class BarCodeReader {
 		}
 	}
 
-	private String UriBuilder(String remoteImage, String remoteFolder,
+	private String uriBuilder(String remoteImage, String remoteFolder,
 			BarCodeReadType readType) {
 		// Initialize with server URI, text and type, which are must
 		String uri = com.aspose.cloud.common.Product.getBaseProductUri()
@@ -230,7 +230,7 @@ public class BarCodeReader {
 		return uri;
 	}
 
-	private void PerformValidations(boolean apikeysOnly) throws Exception {
+	private void performValidations(boolean apikeysOnly) throws Exception {
 		// Throw exception if App Key is empty
 		if (this.auth != null) {
 			if (!this.auth.validateAuth()) {
@@ -265,7 +265,7 @@ public class BarCodeReader {
 	// / <param name="url">URL of the image</param>
 	// / <param name="readType">barcode read type</param>
 	// / <returns>URI of aspose URL image recognition</returns>
-	private String UriBuilderForURLImage(String url, BarCodeReadType readType) {
+	private String uriBuilderForURLImage(String url, BarCodeReadType readType) {
 		// Initialize with server URI, text and type, which are must
 		String uri = com.aspose.cloud.common.Product.getBaseProductUri()
 				+ "/barcode/";

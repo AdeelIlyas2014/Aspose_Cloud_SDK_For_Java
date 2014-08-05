@@ -8,12 +8,12 @@ public class Border
         
         }
 
-        private String BorderType ;
-        private Color Color ;
-        private String LineStyle ;
+        private String borderType ;
+        private Color color ;
+        private String lineStyle ;
         
-        public String getBorderType() {return BorderType;}
-        public Color getColor() {return Color;}
-        public String getLineStyle(){ return LineStyle;}
+        public String getBorderType() {return borderType;}
+        public Color getColor() {return color;}
+        public String getLineStyle(){ return lineStyle;}
 
     }

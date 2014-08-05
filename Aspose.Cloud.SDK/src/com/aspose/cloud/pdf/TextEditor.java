@@ -21,46 +21,46 @@ import com.google.gson.Gson;
 public class TextEditor {
 	private AsposeAppNonStatic auth;
 
-	public TextEditor(String fileName) {
-		FileName = fileName;
+	public TextEditor(String _fileName) {
+		fileName = _fileName;
 		gson = new Gson();
 	}
 
-	public TextEditor(String fileName, AsposeAppNonStatic auth) {
-		this(fileName);
+	public TextEditor(String _fileName, AsposeAppNonStatic auth) {
+		this(_fileName);
 		this.auth = auth;
 	}
 
 	// / <summary>
 	// / PDF document name
 	// / </summary>
-	public String FileName;
+	public String fileName;
 	Gson gson = null;
 
 	// / <summary>
 	// / Gets raw text from the whole PDF file
 	// / </summary>
 	// / <returns></returns>
-	public String GetText() {
+	public String getText() {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/TextItems";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			String strJSON = Utils.StreamToString(responseStream);
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and Deserialize the JSON to a object.
 			TextItemsResponse textItemsResponse = gson.fromJson(strJSON,
@@ -83,26 +83,26 @@ public class TextEditor {
 	// / Gets raw text from a particular page
 	// / </summary>
 	// / <returns></returns>
-	public String GetText(int pageNumber) {
+	public String getText(int pageNumber) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber) + "/TextItems";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 			;
 
 			// Parse and Deserialize the JSON to a object.
@@ -127,26 +127,26 @@ public class TextEditor {
 	// / Gets text items from the whole PDF file
 	// / </summary>
 	// / <returns></returns>
-	public List<TextItem> GetTextItems() {
+	public List<TextItem> getTextItems() {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/TextItems";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 			;
 
 			// Parse and Deserializes the JSON to a object.
@@ -165,26 +165,26 @@ public class TextEditor {
 	// / Gets text items from a particular page
 	// / </summary>
 	// / <returns></returns>
-	public List<TextItem> GetTextItems(int pageNumber) {
+	public List<TextItem> getTextItems(int pageNumber) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber) + "/TextItems";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 			;
 
 			// Parse and Deserialize the JSON to a object.
@@ -202,10 +202,10 @@ public class TextEditor {
 	// / Gets all text items from a fragment
 	// / </summary>
 	// / <returns></returns>
-	public List<TextItem> GetTextItems(int pageNumber, int fragmentNumber) {
+	public List<TextItem> getTextItems(int pageNumber, int fragmentNumber) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber) + "/fragments/"
 					+ Integer.toString(fragmentNumber);
 			String signedURI = "";
@@ -213,16 +213,16 @@ public class TextEditor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 			;
 
 			// Parse and Deserializes the JSON to a object.
@@ -241,27 +241,27 @@ public class TextEditor {
 	// / </summary>
 	// / <param name="pageNumber"></param>
 	// / <returns></returns>
-	public int GetFragmentCount(int pageNumber) {
+	public int getFragmentCount(int pageNumber) {
 
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber) + "/fragments";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 			;
 
 			// Parse and deserializes the JSON to a object.
@@ -281,11 +281,11 @@ public class TextEditor {
 	// / <param name="pageNumber"></param>
 	// / <param name="fragmentNumber"></param>
 	// / <returns></returns>
-	public int GetSegmentCount(int pageNumber, int fragmentNumber) {
+	public int getSegmentCount(int pageNumber, int fragmentNumber) {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber) + "/fragments/"
 					+ Integer.toString(fragmentNumber);
 			String signedURI = "";
@@ -293,15 +293,15 @@ public class TextEditor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 			;
 
 			// Parse and deserializes the JSON to a object.
@@ -321,10 +321,10 @@ public class TextEditor {
 	// / <param name="pageNumber"></param>
 	// / <param name="fragmentNumber"></param>
 	// / <returns></returns>
-	public TextFormat GetTextFormat(int pageNumber, int fragmentNumber) {
+	public TextFormat getTextFormat(int pageNumber, int fragmentNumber) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber) + "/fragments/"
 					+ Integer.toString(fragmentNumber) + "/textformat";
 			String signedURI = "";
@@ -332,16 +332,16 @@ public class TextEditor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 			;
 
 			// Parse and Deserialize the JSON to a object.
@@ -362,12 +362,12 @@ public class TextEditor {
 	// / <param name="fragmentNumber"></param>
 	// / <param name="segmentNumber"></param>
 	// / <returns></returns>
-	public TextFormat GetTextFormat(int pageNumber, int fragmentNumber,
+	public TextFormat getTextFormat(int pageNumber, int fragmentNumber,
 			int segmentNumber) {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber) + "/fragments/"
 					+ Integer.toString(fragmentNumber) + "/segments/"
 					+ Integer.toString(segmentNumber) + "/textformat";
@@ -376,16 +376,16 @@ public class TextEditor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 			;
 
 			// Parse and Deserialize the JSON to a object.
@@ -405,22 +405,22 @@ public class TextEditor {
 	// / <param name="newText"></param>
 	// / <param name="isRegularExpression"></param>
 	// / <returns>Number of Matches</returns>
-	public int ReplaceText(String oldText, String newText,
+	public int replaceText(String oldText, String newText,
 			boolean isRegularExpression) {
 		try {
 			// build URI to get replace text
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/replaceText";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 			// serialize the JSON request content
 			TextReplace replaceText = new TextReplace();
@@ -433,11 +433,11 @@ public class TextEditor {
 
 			String strJSON = gson.toJson(replaceText, TextReplace.class);
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI,
+			InputStream responseStream = Utils.processCommand(signedURI,
 					"POST", strJSON);
 
 			// further process JSON response
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -466,22 +466,22 @@ public class TextEditor {
 	// / <param name="newText"></param>
 	// / <param name="isRegularExpression"></param>
 	// / <returns>Number of Matches</returns>
-	public int ReplaceText(int pageNumber, String oldText, String newText,
+	public int replaceText(int pageNumber, String oldText, String newText,
 			boolean isRegularExpression) {
 		try {
 			// build URI to get replace text
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
 					+ "/pages/" + pageNumber + "/replaceText";
 			String signedURI = "";
 			if (this.auth != null) {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
 			// serialize the JSON request content
@@ -495,11 +495,11 @@ public class TextEditor {
 
 			String strJSON = gson.toJson(replaceText, TextReplace.class);
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI,
+			InputStream responseStream = Utils.processCommand(signedURI,
 					"POST", strJSON);
 
 			// further process JSON response
-			String strResponse = Utils.StreamToString(responseStream);
+			String strResponse = Utils.streamToString(responseStream);
 
 			Gson gson = new Gson();
 
@@ -518,11 +518,11 @@ public class TextEditor {
 			return 0;
 		}
 	}
-	public String GetSegment(int pageNumber, int fragmentNumber, int segmentNumber) {
+	public String getSegment(int pageNumber, int fragmentNumber, int segmentNumber) {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName + "/pages/" +
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName + "/pages/" +
 			pageNumber + "/fragments/" + 
 			fragmentNumber + "/segments/" +
 			segmentNumber;
@@ -531,15 +531,15 @@ public class TextEditor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 			
 
 			// Parse and deserializes the JSON to a object.
@@ -552,11 +552,11 @@ public class TextEditor {
 			return "";
 		}
 	}
-	public int GetAllSegmentCount(int pageNumber, int fragmentNumber) {
+	public int getAllSegmentCount(int pageNumber, int fragmentNumber) {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + FileName + 
+			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName + 
 					"/pages/" + pageNumber +
 					"/fragments/" + fragmentNumber + 
 					"/segments";
@@ -565,15 +565,15 @@ public class TextEditor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 			;
 
 			// Parse and deserializes the JSON to a object.

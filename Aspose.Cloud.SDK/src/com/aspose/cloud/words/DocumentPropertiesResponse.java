@@ -10,11 +10,11 @@ import java.util.List;
         /// <link href="http://api.saaspose.com/v1.0/words/TestProperties.doc/documentProperties/Author" rel="self" />
         /// </summary>
         private LinkResponse link ;
-        private List<DocumentProperty> List;
+        private List<DocumentProperty> list;
         
         public LinkResponse getlink(){return link;} 
-        public List<DocumentProperty> getList(){return List;}
+        public List<DocumentProperty> getList(){return list;}
         
         public void setlink (LinkResponse link){this.link=link;}
-        public void setList(List<DocumentProperty> List){this.List=List;}
+        public void setList(List<DocumentProperty> List){this.list=List;}
     }

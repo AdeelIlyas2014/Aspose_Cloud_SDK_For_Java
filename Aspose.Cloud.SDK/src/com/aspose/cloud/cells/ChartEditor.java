@@ -13,8 +13,8 @@ public class ChartEditor {
 	private AsposeAppNonStatic auth;
 
 	public ChartEditor(String fileName, String worksheetName) {
-		FileName = fileName;
-		WorkSheetName = worksheetName;
+		_fileName = fileName;
+		workSheetName = worksheetName;
 		gson = new Gson();
 
 	}
@@ -25,13 +25,13 @@ public class ChartEditor {
 		this.auth = auth;
 	}
 
-	public boolean AddChart(ChartType chartType, int upperLeftRow,
+	public boolean addChart(ChartType chartType, int upperLeftRow,
 			int upperLeftColumn, int lowerRightRow, int lowerRightColumn)
 			throws Exception {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/charts?chartType="
+			String strURI = Product.getBaseProductUri() + "/cells/" + _fileName;
+			strURI += "/worksheets/" + workSheetName + "/charts?chartType="
 					+ chartType + "&upperLeftRow=" + upperLeftRow
 					+ "&upperLeftColumn=" + upperLeftColumn + "&lowerRightRow="
 					+ lowerRightRow + "&lowerRightColumn=" + lowerRightColumn;
@@ -41,17 +41,17 @@ public class ChartEditor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
 			// further process JSON response
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			BaseResponse baseResponse = gson.fromJson(strJSON,
 					BaseResponse.class);
@@ -67,15 +67,15 @@ public class ChartEditor {
 		}
 	}
 
-	public boolean DeleteChart(int chartIndex) throws Exception {
+	public boolean deleteChart(int chartIndex) throws Exception {
 		// check whether file is set or not
-		if (FileName.equals(""))
+		if (_fileName.equals(""))
 			throw new Exception("No file name specified");
 
 		// build URI
 		String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-				+ "/cells/" + FileName;
-		strURI += "/worksheets/" + WorkSheetName + "/charts/" + chartIndex;
+				+ "/cells/" + _fileName;
+		strURI += "/worksheets/" + workSheetName + "/charts/" + chartIndex;
 
 		// sign URI
 		String signedURI = "";
@@ -83,17 +83,17 @@ public class ChartEditor {
 			if (!this.auth.validateAuth()) {
 				System.out.println("Please Specify AppKey and AppSID");
 			} else {
-				signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+				signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 						this.auth.getAppSID());
 			}
 		} else {
-			signedURI = Utils.Sign(strURI);
+			signedURI = Utils.sign(strURI);
 		}
 
-		InputStream responseStream = Utils.ProcessCommand(signedURI, "DELETE");
+		InputStream responseStream = Utils.processCommand(signedURI, "DELETE");
 
 		// further process JSON response
-		String strJSON = Utils.StreamToString(responseStream);
+		String strJSON = Utils.streamToString(responseStream);
 
 		BaseResponse baseResponse = gson.fromJson(strJSON, BaseResponse.class);
 
@@ -103,15 +103,15 @@ public class ChartEditor {
 			return false;
 	}
 
-	public ChartArea GetChartArea(int chartIndex) throws Exception {
+	public ChartArea getChartArea(int chartIndex) throws Exception {
 		// check whether file is set or not
-		if (FileName.equals(""))
+		if (_fileName.equals(""))
 			throw new Exception("No file name specified");
 
 		// build URI
 		String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-				+ "/cells/" + FileName;
-		strURI += "/worksheets/" + WorkSheetName + "/charts/" + chartIndex
+				+ "/cells/" + _fileName;
+		strURI += "/worksheets/" + workSheetName + "/charts/" + chartIndex
 				+ "/chartArea";
 
 		// sign URI
@@ -120,17 +120,17 @@ public class ChartEditor {
 			if (!this.auth.validateAuth()) {
 				System.out.println("Please Specify AppKey and AppSID");
 			} else {
-				signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+				signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 						this.auth.getAppSID());
 			}
 		} else {
-			signedURI = Utils.Sign(strURI);
+			signedURI = Utils.sign(strURI);
 		}
 
-		InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+		InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
 		// further process JSON response
-		String strJSON = Utils.StreamToString(responseStream);
+		String strJSON = Utils.streamToString(responseStream);
 
 		// Deserializes the JSON to a object.
 		ChartEditorResponse chartResponse = gson.fromJson(strJSON,
@@ -139,15 +139,16 @@ public class ChartEditor {
 		return chartResponse.getChartArea();
 	}
 
-	public FillFormat GetFillFormat(int chartIndex) throws Exception {
+	public FillFormat getFillFormat(int chartIndex) throws Exception {
+		
 		// check whether file is set or not
-		if (FileName.equals(""))
+		if (_fileName.equals(""))
 			throw new Exception("No file name specified");
 
 		// build URI
 		String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-				+ "/cells/" + FileName;
-		strURI += "/worksheets/" + WorkSheetName + "/charts/" + chartIndex
+				+ "/cells/" + _fileName;
+		strURI += "/worksheets/" + workSheetName + "/charts/" + chartIndex
 				+ "/chartArea/fillFormat";
 
 		// sign URI
@@ -156,17 +157,17 @@ public class ChartEditor {
 			if (!this.auth.validateAuth()) {
 				System.out.println("Please Specify AppKey and AppSID");
 			} else {
-				signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+				signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 						this.auth.getAppSID());
 			}
 		} else {
-			signedURI = Utils.Sign(strURI);
+			signedURI = Utils.sign(strURI);
 		}
 
-		InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+		InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
 		// further process JSON response
-		String strJSON = Utils.StreamToString(responseStream);
+		String strJSON = Utils.streamToString(responseStream);
 
 		// Deserializes the JSON to a object.
 		ChartEditorResponse chartResponse = gson.fromJson(strJSON,
@@ -175,15 +176,15 @@ public class ChartEditor {
 		return chartResponse.getFillFormat();
 	}
 
-	public Line GetBorder(int chartIndex) throws Exception {
+	public Line getBorder(int chartIndex) throws Exception {
 		// check whether file is set or not
-		if (FileName.equals(""))
+		if (_fileName.equals(""))
 			throw new Exception("No file name specified");
 
 		// build URI
 		String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-				+ "/cells/" + FileName;
-		strURI += "/worksheets/" + WorkSheetName + "/charts/" + chartIndex
+				+ "/cells/" + _fileName;
+		strURI += "/worksheets/" + workSheetName + "/charts/" + chartIndex
 				+ "/chartArea/border";
 
 		// sign URI
@@ -192,16 +193,16 @@ public class ChartEditor {
 			if (!this.auth.validateAuth()) {
 				System.out.println("Please Specify AppKey and AppSID");
 			} else {
-				signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+				signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 						this.auth.getAppSID());
 			}
 		} else {
-			signedURI = Utils.Sign(strURI);
+			signedURI = Utils.sign(strURI);
 		}
-		InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+		InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
 		// further process JSON response
-		String strJSON = Utils.StreamToString(responseStream);
+		String strJSON = Utils.streamToString(responseStream);
 
 		// Deserializes the JSON to a object.
 		ChartEditorResponse chartResponse = gson.fromJson(strJSON,
@@ -214,12 +215,12 @@ public class ChartEditor {
 	// / <summary>
 	// /
 	// / </summary>
-	public String FileName;
+	public String _fileName;
 
 	// / <summary>
 	// /
 	// / </summary>
-	public String WorkSheetName;
+	public String workSheetName;
 
 	Gson gson = null;
 }

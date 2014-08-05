@@ -26,7 +26,7 @@ public class Converter {
 	// / Converter Class Constructor
 	// / </summary>
 	public Converter(String fileName) {
-		FileName = fileName;
+		_fileName = fileName;
 	}
 
 	public Converter(String fileName, AsposeAppNonStatic auth) {
@@ -38,8 +38,8 @@ public class Converter {
 	// / Converter Class Constructor
 	// / </summary>
 	public Converter(String fileName, String worksheetName) {
-		FileName = fileName;
-		WorkSheetName = worksheetName;
+		_fileName = fileName;
+		workSheetName = worksheetName;
 
 	}
 
@@ -55,19 +55,19 @@ public class Converter {
 	// / <param name="index"></param>
 	// / <param name="outputFileName"></param>
 	// / <param name="outputformat"></param>
-	public boolean AutoShapeToImage(int index, String outputFileName,
+	public boolean autoShapeToImage(int index, String outputFileName,
 			ImageFormat outputformat) {
 		try {
-			// check whether file is set or not
-			if (FileName.equals(""))
+			// check whether file is set or not 
+			if (_fileName.equals(""))
 				throw new Exception("No file name specified");
-			else if (WorkSheetName.equals(""))
+			else if (workSheetName.equals(""))
 				throw new Exception("No Worksheet name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/autoshapes/" + index
+					+ "/cells/" + _fileName;
+			strURI += "/worksheets/" + workSheetName + "/autoshapes/" + index
 					+ "?format=" + outputformat;
 
 			// sign URI
@@ -76,15 +76,15 @@ public class Converter {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			boolean response = Folder.SaveStreamToFile(outputFileName,
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
+			boolean response = Folder.saveStreamToFile(outputFileName,
 					responseStream);
 			responseStream.close();
 			return response;
@@ -100,19 +100,19 @@ public class Converter {
 	// / <param name="index"></param>
 	// / <param name="outputFileName"></param>
 	// / <param name="outputformat"></param>
-	public boolean ChartToImage(int index, String outputFileName,
+	public boolean chartToImage(int index, String outputFileName,
 			ImageFormat outputformat) {
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (_fileName.equals(""))
 				throw new Exception("No file name specified");
-			else if (WorkSheetName.equals(""))
+			else if (workSheetName.equals(""))
 				throw new Exception("No Worksheet name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/charts/" + index
+					+ "/cells/" + _fileName;
+			strURI += "/worksheets/" + workSheetName + "/charts/" + index
 					+ "?format=" + outputformat;
 
 			// sign URI
@@ -121,15 +121,15 @@ public class Converter {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			boolean response = Folder.SaveStreamToFile(outputFileName,
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
+			boolean response = Folder.saveStreamToFile(outputFileName,
 					responseStream);
 			responseStream.close();
 			return response;
@@ -146,19 +146,19 @@ public class Converter {
 	// / <param name="index"></param>
 	// / <param name="outputFileName"></param>
 	// / <param name="outputformat"></param>
-	public boolean OleObjectToImage(int index, String outputFileName,
+	public boolean oleObjectToImage(int index, String outputFileName,
 			ImageFormat outputformat) {
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (_fileName.equals(""))
 				throw new Exception("No file name specified");
-			else if (WorkSheetName.equals(""))
+			else if (workSheetName.equals(""))
 				throw new Exception("No Worksheet name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/oleobjects/" + index
+					+ "/cells/" + _fileName;
+			strURI += "/worksheets/" + workSheetName + "/oleobjects/" + index
 					+ "?format=" + outputformat;
 
 			// sign URI
@@ -167,14 +167,14 @@ public class Converter {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			boolean response = Folder.SaveStreamToFile(outputFileName,
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
+			boolean response = Folder.saveStreamToFile(outputFileName,
 					responseStream);
 			responseStream.close();
 			return response;
@@ -190,20 +190,20 @@ public class Converter {
 	// / <param name="index"></param>
 	// / <param name="outputFileName"></param>
 	// / <param name="outputformat"></param>
-	public boolean PictureToImage(int index, String outputFileName,
+	public boolean pictureToImage(int index, String outputFileName,
 			ImageFormat outputformat) {
 
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (_fileName.equals(""))
 				throw new Exception("No file name specified");
-			else if (WorkSheetName.equals(""))
+			else if (workSheetName.equals(""))
 				throw new Exception("No Worksheet name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "/pictures/" + index
+					+ "/cells/" + _fileName;
+			strURI += "/worksheets/" + workSheetName + "/pictures/" + index
 					+ "?format=" + outputformat;
 
 			// sign URI
@@ -212,14 +212,14 @@ public class Converter {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			boolean response = Folder.SaveStreamToFile(outputFileName,
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
+			boolean response = Folder.saveStreamToFile(outputFileName,
 					responseStream);
 			responseStream.close();
 			return response;
@@ -236,19 +236,19 @@ public class Converter {
 	// / <param name="outputFormat"></param>
 	// / <param name="saveLocation"></param>
 
-	public boolean WorksheetToImage(String outputFileName,
+	public boolean worksheetToImage(String outputFileName,
 			ImageFormat outputFormat) {
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (_fileName.equals(""))
 				throw new Exception("No file name specified");
-			else if (WorkSheetName.equals(""))
+			else if (workSheetName.equals(""))
 				throw new Exception("No Worksheet name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
-			strURI += "/worksheets/" + WorkSheetName + "?format="
+					+ "/cells/" + _fileName;
+			strURI += "/worksheets/" + workSheetName + "?format="
 					+ outputFormat;
 
 			// sign URI
@@ -257,15 +257,15 @@ public class Converter {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			boolean response = Folder.SaveStreamToFile(outputFileName,
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
+			boolean response = Folder.saveStreamToFile(outputFileName,
 					responseStream);
 			responseStream.close();
 			return response;
@@ -275,15 +275,15 @@ public class Converter {
 		}
 	}
 
-	public boolean Save(String outputFileName, SaveFormat outputFormat) {
+	public boolean save(String outputFileName, SaveFormat outputFormat) {
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (_fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
 			String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-					+ "/cells/" + FileName;
+					+ "/cells/" + _fileName;
 			strURI += "?format=" + outputFormat;
 
 			// sign URI
@@ -292,14 +292,14 @@ public class Converter {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			boolean response = Folder.SaveStreamToFile(outputFileName,
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
+			boolean response = Folder.saveStreamToFile(outputFileName,
 					responseStream);
 			responseStream.close();
 			return response;
@@ -315,7 +315,7 @@ public class Converter {
 	// / </summary>
 	// / <param name="outputFileName"></param>
 	// / <param name="outputFormat"></param>
-	public void ConvertLocalFile(String inputPath, String outputPath,
+	public void convertLocalFile(String inputPath, String outputPath,
 			SaveFormat outputFormat) {
 		try {
 
@@ -329,20 +329,20 @@ public class Converter {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
 			InputStream stream = new FileInputStream(inputPath);
 
 			// get response stream
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT",
+			InputStream responseStream = Utils.processCommand(signedURI, "PUT",
 					stream);
 
-			Folder.SaveStreamToFile(outputPath, responseStream);
+			Folder.saveStreamToFile(outputPath, responseStream);
 
 			responseStream.close();
 
@@ -352,7 +352,7 @@ public class Converter {
 
 	}
 
-	public void ConvertLocalFile(InputStream inputStream, String outputPath,
+	public void convertLocalFile(InputStream inputStream, String outputPath,
 			SaveFormat saveFormat) {
 		try {
 
@@ -366,17 +366,17 @@ public class Converter {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 			// get response stream
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT",
+			InputStream responseStream = Utils.processCommand(signedURI, "PUT",
 					inputStream);
 
-			Folder.SaveStreamToFile(outputPath, responseStream);
+			Folder.saveStreamToFile(outputPath, responseStream);
 
 			responseStream.close();
 
@@ -388,11 +388,11 @@ public class Converter {
 	// / <summary>
 	// /
 	// / </summary>
-	public String WorkSheetName;
+	public String workSheetName;
 
 	// / <summary>
 	// / Workbook name
 	// / </summary>
-	public String FileName;
+	public String _fileName;
 
 }

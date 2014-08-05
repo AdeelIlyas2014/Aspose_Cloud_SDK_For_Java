@@ -8,10 +8,10 @@ import java.util.List;
     {
        
         private LinkResponse link;
-        private int Count;
-        private List<Name> NameList;
+        private int count;
+        private List<Name> nameList;
         
         public LinkResponse getlink(){return link;}
-        public int getCount(){return Count;}
-        public List<Name> getNameList(){return NameList;}
+        public int getCount(){return count;}
+        public List<Name> getNameList(){return nameList;}
     }

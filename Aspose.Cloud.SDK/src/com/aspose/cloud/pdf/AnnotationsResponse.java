@@ -13,6 +13,6 @@ package com.aspose.cloud.pdf;
 public class AnnotationsResponse extends com.aspose.cloud.common.BaseResponse
 {
 //    public AnnotationsEnvelop Annotations;
-    private AnnotationsEnvelop Annotations;
-    public AnnotationsEnvelop getAnnotations(){return Annotations;};
+    private AnnotationsEnvelop annotations;
+    public AnnotationsEnvelop getAnnotations(){return annotations;};
 }

@@ -14,9 +14,9 @@ import com.aspose.cloud.storage.Folder;
 public class Converter {
 	private AsposeAppNonStatic auth;
 
-	public Converter(String fileName) {
+	public Converter(String _fileName) {
 		// set default values
-		FileName = fileName;
+		fileName = _fileName;
 		saveformat = SaveFormat.Doc;
 	}
 
@@ -28,7 +28,7 @@ public class Converter {
 	// / <summary>
 	// / get or set Doc file name
 	// / </summary>
-	public String FileName;
+	public String fileName;
 
 	// / <summary>
 	// / get or set the SaveFormat type
@@ -39,14 +39,14 @@ public class Converter {
 	// / convert a document to SaveFormat
 	// / </summary>
 	// / <param name="output">the location of the output file</param>
-	public boolean Convert(String output) {
+	public boolean convert(String output) {
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/words/" + FileName;
+			String strURI = Product.getBaseProductUri() + "/words/" + fileName;
 			strURI += "?format=" + saveformat;
 
 			// sign URI
@@ -55,15 +55,15 @@ public class Converter {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			boolean response = Folder.SaveStreamToFile(output, responseStream);
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
+			boolean response = Folder.saveStreamToFile(output, responseStream);
 			responseStream.close();
 			return response;
 		} catch (Exception ex) {
@@ -77,14 +77,14 @@ public class Converter {
 	// / </summary>
 	// / <param name="output">the location of the output file</param>
 	// / /// <param name="output">SaveFormat of the output file</param>
-	public boolean Convert(String output, SaveFormat OutPutType) {
+	public boolean convert(String output, SaveFormat OutPutType) {
 		try {
 			// check whether file is set or not
-			if (FileName.equals(""))
+			if (fileName.equals(""))
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/words/" + FileName;
+			String strURI = Product.getBaseProductUri() + "/words/" + fileName;
 			strURI += "?format=" + OutPutType;
 
 			// sign URI
@@ -93,15 +93,15 @@ public class Converter {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
-			boolean response = Folder.SaveStreamToFile(output, responseStream);
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
+			boolean response = Folder.saveStreamToFile(output, responseStream);
 			responseStream.close();
 			return response;
 		} catch (Exception ex) {
@@ -115,7 +115,7 @@ public class Converter {
 	// / </summary>
 	// / <param name="outputFileName"></param>
 	// / <param name="outputFormat"></param>
-	public void ConvertLocalFile(String inputPath, String outputPath,
+	public void convertLocalFile(String inputPath, String outputPath,
 			SaveFormat outputFormat) {
 		try {
 
@@ -129,19 +129,19 @@ public class Converter {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 			InputStream fileStream = new FileInputStream(inputPath);
 
 			// get response stream
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "PUT",
+			InputStream responseStream = Utils.processCommand(signedURI, "PUT",
 					fileStream);
 
-			Folder.SaveStreamToFile(outputPath, responseStream);
+			Folder.saveStreamToFile(outputPath, responseStream);
 			responseStream.close();
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -154,7 +154,7 @@ public class Converter {
 	// / </summary>
 	// / <param name="outputFileName"></param>
 	// / <param name="outputFormat"></param>
-	public InputStream ConvertLocalFile(InputStream inputStream,
+	public InputStream convertLocalFile(InputStream inputStream,
 			SaveFormat outputFormat) {
 		try {
 			// build URI
@@ -167,11 +167,11 @@ public class Converter {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
 			// InputStream ResponseStream;
@@ -179,7 +179,7 @@ public class Converter {
 			// ResponseStream = Utils.ProcessCommand(signedURI, "PUT",
 			// inputStream);//, Stream);
 
-			return Utils.ProcessCommand(signedURI, "PUT", inputStream);
+			return Utils.processCommand(signedURI, "PUT", inputStream);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			return null;

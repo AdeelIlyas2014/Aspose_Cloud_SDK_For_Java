@@ -12,6 +12,6 @@ package com.aspose.cloud.storage;
 /// </summary>
 public class ExistResponse extends com.aspose.cloud.common.BaseResponse
 {
-    private FileExist FileExist;
-    public FileExist getFileExist(){return FileExist;}
+    private FileExist fileExist;
+    public FileExist getFileExist(){return fileExist;}
 }

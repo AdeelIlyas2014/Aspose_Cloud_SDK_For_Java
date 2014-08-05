@@ -7,10 +7,10 @@ public class SolidFill
         
         }
 
-        private Color Color;
-        private double Transparency;
+        private Color color;
+        private double transparency;
         
-        public Color getColor(){return Color;}
-        public double getTransparency(){return Transparency;}
+        public Color getColor(){return color;}
+        public double getTransparency(){return transparency;}
         
     }

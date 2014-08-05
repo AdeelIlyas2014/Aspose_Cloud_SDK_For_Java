@@ -14,13 +14,13 @@ import java.util.List;
 public class TextItemsEnvelop
 {
 
-    private List<String> AlternateLinks;
-    private List<ShapeURI> Links;
-    private UriResponse SelfUri;
-    private List<TextItem> Items;
+    private List<String> alternateLinks;
+    private List<ShapeURI> links;
+    private UriResponse selfUri;
+    private List<TextItem> items;
     
-    public  List<String> getAlternateLinks(){return AlternateLinks;}
-    public  List<ShapeURI> getLinks(){return Links;}
-    public  List<TextItem> getItems(){return Items;}
-    public  UriResponse getSelfUri(){return SelfUri;}
+    public  List<String> getAlternateLinks(){return alternateLinks;}
+    public  List<ShapeURI> getLinks(){return links;}
+    public  List<TextItem> getItems(){return items;}
+    public  UriResponse getSelfUri(){return selfUri;}
 }

@@ -11,12 +11,12 @@ import java.lang.String;
 public class BaseResponse {
     public BaseResponse() { }
 
-    private String Code;
-    private String Status;
+    private String code;
+    private String status;
  
-    public String getCode(){return Code;}
-    public String getStatus(){return Status;}
+    public String getCode(){return code;}
+    public String getStatus(){return status;}
     
-    public void  setCode(String temCode){ Code=temCode;}
-    public void setStatus(String temStatus){ Status=temStatus;}
+    public void  setCode(String temCode){ code=temCode;}
+    public void setStatus(String temStatus){ status=temStatus;}
 }

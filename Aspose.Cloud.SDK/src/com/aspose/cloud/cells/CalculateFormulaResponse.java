@@ -5,12 +5,12 @@
     /// </summary>
     public class CalculateFormulaResponse extends com.aspose.cloud.common.BaseResponse
     {
-        private int ValueType;
+        private int valueType;
 
-        private String Value ;
+        private String value ;
         
-        public int getValueType(){return ValueType;}
+        public int getValueType(){return valueType;}
 
-        public String getValue(){return Value;}
+        public String getValue(){return value;}
 
     }

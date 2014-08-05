@@ -12,72 +12,72 @@ import java.lang.String;
 
         }
        
-        private String Name ;
-        private String AutoShapeType ;
-        private String Placement ;
-        private int UpperLeftRow ;
-        private int Top ;
-        private int UpperLeftColumn ;
-        private int Left ;
-        private int LowerRightRow ;
-        private int Bottom ;
-        private int LowerRightColumn ;
-        private int Right ;
-        private int Width ;
-        private int Height ;
+        private String name ;
+        private String autoShapeType ;
+        private String placement ;
+        private int upperLeftRow ;
+        private int top ;
+        private int upperLeftColumn ;
+        private int left ;
+        private int lowerRightRow ;
+        private int bottom ;
+        private int lowerRightColumn ;
+        private int right ;
+        private int width ;
+        private int height ;
         private int X ;
         private int Y ;
-        private int RotationAngle ;
-        private String LinkedCell ;
-        private String HtmlText ;
-        private String Text ;
-        private String AlternativeText ;
-        private String TextHorizontalAlignment ;
-        private String TextHorizontalOverflow ;
-        private String TextOrientationType ;
-        private String TextVerticalAlignment ;
-        private String TextVerticalOverflow ;
-        private boolean IsGroup ;
-        private boolean IsHidden ;
-        private boolean IsLockAspectRatio ;
-        private boolean IsLocked ;
-        private boolean IsPrintable ;
-        private boolean IsTextWrapped ;
-        private int ZOrderPosition ;
+        private int rotationAngle ;
+        private String linkedCell ;
+        private String htmlText ;
+        private String text ;
+        private String alternativeText ;
+        private String textHorizontalAlignment ;
+        private String textHorizontalOverflow ;
+        private String textOrientationType ;
+        private String textVerticalAlignment ;
+        private String textVerticalOverflow ;
+        private boolean isGroup ;
+        private boolean isHidden ;
+        private boolean isLockAspectRatio ;
+        private boolean isLocked ;
+        private boolean isPrintable ;
+        private boolean isTextWrapped ;
+        private int zOrderPosition ;
         
-        public String getName(){return Name;}
-        public String getAutoShapeType(){return AutoShapeType;}
-        public String getPlacement(){return Placement;}
-        public int getUpperLeftRow(){return UpperLeftRow;}
-        public int getTop(){return Top;}
-        public int getUpperLeftColumn(){return UpperLeftColumn;}
-        public int getLeft(){return Left;}
-        public int getLowerRightRow(){return LowerRightRow;}
-        public int getBottom(){return Bottom;}
-        public int getLowerRightColumn(){return LowerRightColumn;}
-        public int getRight(){return Right;}
-        public int getWidth(){return Width;}
-        public int getHeight(){return Height;}
+        public String getName(){return name;}
+        public String getAutoShapeType(){return autoShapeType;}
+        public String getPlacement(){return placement;}
+        public int getUpperLeftRow(){return upperLeftRow;}
+        public int getTop(){return top;}
+        public int getUpperLeftColumn(){return upperLeftColumn;}
+        public int getLeft(){return left;}
+        public int getLowerRightRow(){return lowerRightRow;}
+        public int getBottom(){return bottom;}
+        public int getLowerRightColumn(){return lowerRightColumn;}
+        public int getRight(){return right;}
+        public int getWidth(){return width;}
+        public int getHeight(){return height;}
         public int getX(){return X;}
         public int getY(){return Y;}
-        public int getRotationAngle(){return RotationAngle;}
-        public String getLinkedCell(){return LinkedCell;}
-        public String getHtmlText(){return HtmlText;}
-        public String getText(){return Text;}
-        public String getAlternativeText(){return AlternativeText;}
-        public String getTextHorizontalAlignment(){return TextHorizontalAlignment;}
-        public String getTextHorizontalOverflow(){return TextHorizontalOverflow;}
-        public String getTextOrientationType(){return TextOrientationType;}
-        public String getTextVerticalAlignment(){return TextVerticalAlignment;}
+        public int getRotationAngle(){return rotationAngle;}
+        public String getLinkedCell(){return linkedCell;}
+        public String getHtmlText(){return htmlText;}
+        public String getText(){return text;}
+        public String getAlternativeText(){return alternativeText;}
+        public String getTextHorizontalAlignment(){return textHorizontalAlignment;}
+        public String getTextHorizontalOverflow(){return textHorizontalOverflow;}
+        public String getTextOrientationType(){return textOrientationType;}
+        public String getTextVerticalAlignment(){return textVerticalAlignment;}
  
-        public String getTextVerticalOverflow(){return TextVerticalOverflow;}
-        public boolean getIsGroup(){return IsGroup;}
-        public boolean getIsHidden(){return IsHidden;}
-        public boolean getIsLockAspectRatio(){return IsLockAspectRatio;}
-        public boolean getIsLocked(){return IsLocked;}
-        public boolean getIsPrintable(){return IsPrintable;}
-        public boolean getIsTextWrapped(){return IsTextWrapped;}
-        public int getZOrderPosition(){return ZOrderPosition;}
+        public String getTextVerticalOverflow(){return textVerticalOverflow;}
+        public boolean getIsGroup(){return isGroup;}
+        public boolean getIsHidden(){return isHidden;}
+        public boolean getIsLockAspectRatio(){return isLockAspectRatio;}
+        public boolean getIsLocked(){return isLocked;}
+        public boolean getIsPrintable(){return isPrintable;}
+        public boolean getIsTextWrapped(){return isTextWrapped;}
+        public int getZOrderPosition(){return zOrderPosition;}
         
 
 

@@ -13,8 +13,8 @@ public class TextEditor {
 	// / <summary>
 	// / TextEditor Class Constructor
 	// / </summary>
-	public TextEditor(String fileName) {
-		FileName = fileName;
+	public TextEditor(String _fileName) {
+		fileName = _fileName;
 		gson = new Gson();
 
 	}
@@ -24,14 +24,14 @@ public class TextEditor {
 		this.auth = auth;
 	}
 
-	public List<TextItem> FindText(String text) throws Exception {
+	public List<TextItem> findText(String text) throws Exception {
 		// check whether file is set or not
-		if (FileName.equals(""))
+		if (fileName.equals(""))
 			throw new Exception("No file name specified");
 
 		// build URI
 		String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-				+ "/cells/" + FileName;
+				+ "/cells/" + fileName;
 		strURI += "/findText?text=" + text;
 
 		// sign URI
@@ -40,17 +40,17 @@ public class TextEditor {
 			if (!this.auth.validateAuth()) {
 				System.out.println("Please Specify AppKey and AppSID");
 			} else {
-				signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+				signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 						this.auth.getAppSID());
 			}
 		} else {
-			signedURI = Utils.Sign(strURI);
+			signedURI = Utils.sign(strURI);
 		}
 
-		InputStream responseStream = Utils.ProcessCommand(signedURI, "POST");
+		InputStream responseStream = Utils.processCommand(signedURI, "POST");
 
 		// further process JSON response
-		String strJSON = Utils.StreamToString(responseStream);
+		String strJSON = Utils.streamToString(responseStream);
 
 		// Deserializes the JSON to a object.
 		TextEditorResponse textEditorResponse = gson.fromJson(strJSON,
@@ -60,14 +60,14 @@ public class TextEditor {
 
 	}
 
-	public int ReplaceText(String oldText, String newText) throws Exception {
+	public int replaceText(String oldText, String newText) throws Exception {
 		// check whether file is set or not
-		if (FileName.equals(""))
+		if (fileName.equals(""))
 			throw new Exception("No file name specified");
 
 		// build URI
 		String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-				+ "/cells/" + FileName;
+				+ "/cells/" + fileName;
 		strURI += "/replaceText?oldValue=" + oldText + "&newValue=" + newText;
 
 		// sign URI
@@ -76,17 +76,17 @@ public class TextEditor {
 			if (!this.auth.validateAuth()) {
 				System.out.println("Please Specify AppKey and AppSID");
 			} else {
-				signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+				signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 						this.auth.getAppSID());
 			}
 		} else {
-			signedURI = Utils.Sign(strURI);
+			signedURI = Utils.sign(strURI);
 		}
 
-		InputStream responseStream = Utils.ProcessCommand(signedURI, "POST");
+		InputStream responseStream = Utils.processCommand(signedURI, "POST");
 
 		// further process JSON response
-		String strJSON = Utils.StreamToString(responseStream);
+		String strJSON = Utils.streamToString(responseStream);
 
 		// Deserializes the JSON to a object.
 		TextEditorResponse textEditorResponse = gson.fromJson(strJSON,
@@ -96,14 +96,14 @@ public class TextEditor {
 
 	}
 
-	public List<TextItem> GetTextItems() throws Exception {
+	public List<TextItem> getTextItems() throws Exception {
 		// check whether file is set or not
-		if (FileName.equals(""))
+		if (fileName.equals(""))
 			throw new Exception("No file name specified");
 
 		// build URI
 		String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-				+ "/cells/" + FileName;
+				+ "/cells/" + fileName;
 		strURI += "/textItems";
 
 		// sign URI
@@ -112,16 +112,16 @@ public class TextEditor {
 			if (!this.auth.validateAuth()) {
 				System.out.println("Please Specify AppKey and AppSID");
 			} else {
-				signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+				signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 						this.auth.getAppSID());
 			}
 		} else {
-			signedURI = Utils.Sign(strURI);
+			signedURI = Utils.sign(strURI);
 		}
-		InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+		InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
 		// further process JSON response
-		String strJSON = Utils.StreamToString(responseStream);
+		String strJSON = Utils.streamToString(responseStream);
 
 		// Deserializes the JSON to a object.
 		TextEditorResponse textEditorResponse = gson.fromJson(strJSON,
@@ -136,15 +136,15 @@ public class TextEditor {
 	// / </summary>
 	// / <param name="text"></param>
 	// / <returns></returns>
-	public List<TextItem> FindText(String WorkSheetName, String text)
+	public List<TextItem> findText(String WorkSheetName, String text)
 			throws Exception {
 		// check whether file is set or not
-		if (FileName.equals(""))
+		if (fileName.equals(""))
 			throw new Exception("No file name specified");
 
 		// build URI
 		String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-				+ "/cells/" + FileName;
+				+ "/cells/" + fileName;
 		strURI += "/worksheets/" + WorkSheetName + "/findText?text=" + text;
 
 		// sign URI
@@ -153,17 +153,17 @@ public class TextEditor {
 			if (!this.auth.validateAuth()) {
 				System.out.println("Please Specify AppKey and AppSID");
 			} else {
-				signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+				signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 						this.auth.getAppSID());
 			}
 		} else {
-			signedURI = Utils.Sign(strURI);
+			signedURI = Utils.sign(strURI);
 		}
 
-		InputStream responseStream = Utils.ProcessCommand(signedURI, "POST");
+		InputStream responseStream = Utils.processCommand(signedURI, "POST");
 
 		// further process JSON response
-		String strJSON = Utils.StreamToString(responseStream);
+		String strJSON = Utils.streamToString(responseStream);
 
 		// Deserializes the JSON to a object.
 		TextEditorResponse textEditorResponse = gson.fromJson(strJSON,
@@ -173,15 +173,15 @@ public class TextEditor {
 
 	}
 
-	public int ReplaceText(String workSheet, String oldText, String newText)
+	public int replaceText(String workSheet, String oldText, String newText)
 			throws Exception {
 		// check whether file is set or not
-		if (FileName.equals(""))
+		if (fileName.equals(""))
 			throw new Exception("No file name specified");
 
 		// build URI
 		String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-				+ "/cells/" + FileName;
+				+ "/cells/" + fileName;
 		strURI += "/worksheets/" + workSheet + "/replaceText?oldValue="
 				+ oldText + "&newValue=" + newText;
 
@@ -191,17 +191,17 @@ public class TextEditor {
 			if (!this.auth.validateAuth()) {
 				System.out.println("Please Specify AppKey and AppSID");
 			} else {
-				signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+				signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 						this.auth.getAppSID());
 			}
 		} else {
-			signedURI = Utils.Sign(strURI);
+			signedURI = Utils.sign(strURI);
 		}
 
-		InputStream responseStream = Utils.ProcessCommand(signedURI, "POST");
+		InputStream responseStream = Utils.processCommand(signedURI, "POST");
 
 		// further process JSON response
-		String strJSON = Utils.StreamToString(responseStream);
+		String strJSON = Utils.streamToString(responseStream);
 
 		// Deserializes the JSON to a object.
 		TextEditorResponse textEditorResponse = gson.fromJson(strJSON,
@@ -215,14 +215,14 @@ public class TextEditor {
 	// /
 	// / </summary>
 	// / <returns></returns>
-	public List<TextItem> GetTextItems(String WorkSheetName) throws Exception {
+	public List<TextItem> getTextItems(String WorkSheetName) throws Exception {
 		// check whether file is set or not
-		if (FileName.equals(""))
+		if (fileName.equals(""))
 			throw new Exception("No file name specified");
 
 		// build URI
 		String strURI = com.aspose.cloud.common.Product.getBaseProductUri()
-				+ "/cells/" + FileName + "/textItems";
+				+ "/cells/" + fileName + "/textItems";
 
 		// sign URI
 		String signedURI = "";
@@ -230,16 +230,16 @@ public class TextEditor {
 			if (!this.auth.validateAuth()) {
 				System.out.println("Please Specify AppKey and AppSID");
 			} else {
-				signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+				signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 						this.auth.getAppSID());
 			}
 		} else {
-			signedURI = Utils.Sign(strURI);
+			signedURI = Utils.sign(strURI);
 		}
-		InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+		InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
 		// further process JSON response
-		String strJSON = Utils.StreamToString(responseStream);
+		String strJSON = Utils.streamToString(responseStream);
 
 		// Deserializes the JSON to a object.
 		TextEditorResponse textEditorResponse = gson.fromJson(strJSON,
@@ -251,5 +251,5 @@ public class TextEditor {
 
 	Gson gson = null;
 
-	public String FileName;
+	public String fileName;
 }

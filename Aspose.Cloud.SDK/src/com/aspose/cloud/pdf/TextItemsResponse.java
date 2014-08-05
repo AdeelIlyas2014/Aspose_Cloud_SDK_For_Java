@@ -12,6 +12,6 @@ package com.aspose.cloud.pdf;
 /// </summary>
 class TextItemsResponse extends com.aspose.cloud.common.BaseResponse
 {
-    private TextItemsEnvelop TextItems;
-    public TextItemsEnvelop getTextItems(){return TextItems;}
+    private TextItemsEnvelop textItems;
+    public TextItemsEnvelop getTextItems(){return textItems;}
 }

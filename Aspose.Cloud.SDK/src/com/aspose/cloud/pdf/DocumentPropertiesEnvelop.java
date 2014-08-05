@@ -14,7 +14,7 @@ import java.util.List;
 /// </summary>
 public class DocumentPropertiesEnvelop {
 	//  public List<LinkResponse> Links;
-      private List<DocumentProperty> List;
-      public List<DocumentProperty> getList(){return List;}	
+      private List<DocumentProperty> list;
+      public List<DocumentProperty> getList(){return list;}	
 
 }

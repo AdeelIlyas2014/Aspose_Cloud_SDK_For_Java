@@ -7,18 +7,18 @@ public class TilePicOption
         
         }
 
-        private double OffsetX ;
+        private double offsetX ;
         private double offsetY ;
-        private double ScaleX ;
-        private double ScaleY ;
-        private RectangleAlignmentType AlignmentType ;
-        private MirrorType MirrorType ; 
+        private double scaleX ;
+        private double scaleY ;
+        private RectangleAlignmentType alignmentType ;
+        private MirrorType mirrorType ; 
         
-        public double getOffsetX(){return OffsetX;}
+        public double getOffsetX(){return offsetX;}
         public double getoffsetY(){return offsetY;}
-        public double getScaleX(){return ScaleX;}
-        public double getScaleY(){return ScaleY;}
-        public RectangleAlignmentType getAlignmentType(){return AlignmentType;}
-        public MirrorType getMirrorType(){return MirrorType;}
+        public double getScaleX(){return scaleX;}
+        public double getScaleY(){return scaleY;}
+        public RectangleAlignmentType getAlignmentType(){return alignmentType;}
+        public MirrorType getMirrorType(){return mirrorType;}
 
     }

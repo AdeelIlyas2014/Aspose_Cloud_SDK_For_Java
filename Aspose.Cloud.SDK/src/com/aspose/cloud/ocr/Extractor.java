@@ -41,11 +41,11 @@ public class Extractor {
 	// / <param name="fileName">The image file name.</param>
 	// / <param name="folder">The image file folder.</param>
 	// / <returns><see cref="OCRResponse"/> with the operation result.</returns>
-	public OCRResponse ExtractText(String imageFileName, String folder) {
+	public OCRResponse extractText(String imageFileName, String folder) {
 		try {
 			// build URI to extract text
 			String strURI = "";
-			if (IsNullOrEmpty(folder))
+			if (isNullOrEmpty(folder))
 				strURI = Product.getBaseProductUri() + "/ocr/" + imageFileName
 						+ "/recognize";
 			else
@@ -59,16 +59,16 @@ public class Extractor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 			// execute signed URI request and get response
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and deserialize the JSON to a object.
 			OCRResponse ocrResponse = gson.fromJson(strJSON, OCRResponse.class);
@@ -89,13 +89,13 @@ public class Extractor {
 	// not.</param>
 	// / <param name="folder">The image folder.</param>
 	// / <returns><see cref="OCRResponse"/> with the operation result.</returns>
-	public OCRResponse ExtractText(String imageFileName, LanguageName language,
+	public OCRResponse extractText(String imageFileName, LanguageName language,
 			boolean useDefaultDictionaries, String folder) {
 		try {
 
 			// build URI to extract text
 			String strURI = "";
-			if (IsNullOrEmpty(folder))
+			if (isNullOrEmpty(folder))
 				strURI = Product.getBaseProductUri() + "/ocr/" + imageFileName
 						+ "/recognize?language=" + language
 						+ "&useDefaultDictionaries=" + useDefaultDictionaries;
@@ -111,17 +111,17 @@ public class Extractor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
 			// execute signed URI request and get response
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and deserialize the JSON to a object.
 			OCRResponse ocrResponse = gson.fromJson(strJSON, OCRResponse.class);
@@ -141,7 +141,7 @@ public class Extractor {
 	// / <param name="useDefaultDictionaries">Use default dictionaries or
 	// not.</param>
 	// / <returns><see cref="OCRResponse"/> with the operation result.</returns>
-	public OCRResponse ExtractText(String localFile, LanguageName language,
+	public OCRResponse extractText(String localFile, LanguageName language,
 			boolean useDefaultDictionaries) {
 		try {
 
@@ -156,19 +156,19 @@ public class Extractor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 			InputStream fileStream = new FileInputStream(localFile);
 
 			// execute signed URI request and get response
-			InputStream responseStream = Utils.ProcessCommand(signedURI,
+			InputStream responseStream = Utils.processCommand(signedURI,
 					"POST", fileStream);
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and deserialize the JSON to a object.
 			OCRResponse ocrResponse = gson.fromJson(strJSON, OCRResponse.class);
@@ -188,7 +188,7 @@ public class Extractor {
 	// / <param name="useDefaultDictionaries">Use default dictionaries or
 	// not.</param>
 	// / <returns><see cref="OCRResponse"/> with the operation result.</returns>
-	public OCRResponse ExtractText(InputStream stream, LanguageName language,
+	public OCRResponse extractText(InputStream stream, LanguageName language,
 			boolean useDefaultDictionaries) {
 		try {
 
@@ -203,18 +203,18 @@ public class Extractor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
 			// execute signed URI request and get response
-			InputStream responseStream = Utils.ProcessCommand(signedURI,
+			InputStream responseStream = Utils.processCommand(signedURI,
 					"POST", stream);
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and deserialize the JSON to a object.
 			OCRResponse ocrResponse = gson.fromJson(strJSON, OCRResponse.class);
@@ -230,7 +230,7 @@ public class Extractor {
 	// / Scans whole or part of images and extracts OCR text
 	// / </summary>
 	// / <param name="imageFileName">Name of the image file</param>
-	public OCRResponse ExtractText(String imageFileName) {
+	public OCRResponse extractText(String imageFileName) {
 		try {
 			// build URI to extract text
 			String strURI = Product.getBaseProductUri() + "/ocr/"
@@ -242,17 +242,17 @@ public class Extractor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
 			// execute signed URI request and get response
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and deserialize the JSON to a object.
 			OCRResponse ocrResponse = gson.fromJson(strJSON, OCRResponse.class);
@@ -282,7 +282,7 @@ public class Extractor {
 	// inside specified Rectangle region</param>
 	// / <param name="folder">Folder with images to recognize</param>
 	// / <returns></returns>
-	public OCRResponse ExtractText(String imageFileName, LanguageName language,
+	public OCRResponse extractText(String imageFileName, LanguageName language,
 			boolean useDefaultDictionaries, int x, int y, int width,
 			int height, String folder) {
 		try {
@@ -301,7 +301,7 @@ public class Extractor {
 							+ "&rectHeight=" + height
 							: "") + "&useDefaultDictionaries="
 					+ ((useDefaultDictionaries) ? "true" : "false")
-					+ ((IsNullOrEmpty(folder)) ? "" : "&folder=" + folder);
+					+ ((isNullOrEmpty(folder)) ? "" : "&folder=" + folder);
 
 			// sign URI
 
@@ -310,17 +310,17 @@ public class Extractor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 
 			// execute signed URI request and get response
-			InputStream responseStream = Utils.ProcessCommand(signedURI, "GET");
+			InputStream responseStream = Utils.processCommand(signedURI, "GET");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and deserialize the JSON to a object.
 			OCRResponse ocrResponse = gson.fromJson(strJSON, OCRResponse.class);
@@ -341,7 +341,7 @@ public class Extractor {
 	// / <param name="useDefaultDictionaries">Use default dictionaries or
 	// not.</param>
 	// / <returns><see cref="OCRResponse"/> with the operation result.</returns>
-	public OCRResponse ExtractTextFromURL(String url, LanguageName language,
+	public OCRResponse extractTextFromURL(String url, LanguageName language,
 			boolean useDefaultDictionaries) {
 		try {
 
@@ -356,17 +356,17 @@ public class Extractor {
 				if (!this.auth.validateAuth()) {
 					System.out.println("Please Specify AppKey and AppSID");
 				} else {
-					signedURI = Utils.Sign(strURI, this.auth.getAppKey(),
+					signedURI = Utils.sign(strURI, this.auth.getAppKey(),
 							this.auth.getAppSID());
 				}
 			} else {
-				signedURI = Utils.Sign(strURI);
+				signedURI = Utils.sign(strURI);
 			}
 			// execute signed URI request and get response
 			InputStream responseStream = Utils
-					.ProcessCommand(signedURI, "POST");
+					.processCommand(signedURI, "POST");
 
-			String strJSON = Utils.StreamToString(responseStream);
+			String strJSON = Utils.streamToString(responseStream);
 
 			// Parse and deserialize the JSON to a object.
 			OCRResponse ocrResponse = gson.fromJson(strJSON, OCRResponse.class);
@@ -378,12 +378,12 @@ public class Extractor {
 		}
 	}
 
-	public static boolean IsNull(String str) {
+	public static boolean isNull(String str) {
 		return str == null ? true : false;
 	}
 
-	public static boolean IsNullOrEmpty(String param) {
-		if (IsNull(param) || param.trim().length() == 0) {
+	public static boolean isNullOrEmpty(String param) {
+		if (isNull(param) || param.trim().length() == 0) {
 			return true;
 		}
 		return false;
